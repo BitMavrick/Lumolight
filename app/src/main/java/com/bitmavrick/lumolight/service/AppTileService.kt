@@ -1,5 +1,6 @@
 package com.bitmavrick.lumolight.service
 
+import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
 import android.util.Log
 
@@ -20,8 +21,19 @@ class AppTileService : TileService() {
         Log.e("Tile", " ------>> The tile is now stop updating.")
     }
 
+    var active = false
+
     override fun onClick() {
         super.onClick()
+        qsTile.state = if(!active) {
+            Tile.STATE_ACTIVE
+        }else {
+            Tile.STATE_INACTIVE
+        }
+        active = !active
+        qsTile.label = if(active){ "Flash On" }else{ "Flash Off" }
+        qsTile.updateTile()
+
         Log.e("Tile", " ------>> Tile is clicked.")
     }
 
