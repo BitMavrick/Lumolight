@@ -41,9 +41,10 @@ class AppTileService : TileService() {
         active = !active
         qsTile.label = if(active){ "Flash On" }else{ "Flash Off" }
         if(active){
-            val intent = Intent(applicationContext, FlashActivity::class.java)
-            val pendingIntent = PendingIntent.getActivity(applicationContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-            startActivityAndCollapse(pendingIntent)
+            Intent(applicationContext, FlashActivity::class.java).also {
+                startActivity(it)
+            }
+
         }
         qsTile.updateTile()
 
