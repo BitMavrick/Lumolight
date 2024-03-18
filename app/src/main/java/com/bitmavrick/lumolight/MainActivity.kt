@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
                     MainScreen(
                         onClickButton = {
                             Intent(applicationContext, FlashActivity::class.java).also {
-                                startActivity(it)
+                                startActivity(it) // Should be navigation
                             }
                         }
                     )
