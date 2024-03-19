@@ -41,10 +41,11 @@ class AppTileService : TileService() {
         active = !active
         qsTile.label = if(active){ "Flash On" }else{ "Flash Off" }
         if(active){
+            // TODO: I think we should implement explicit intent in this case
+
             Intent(applicationContext, FlashActivity::class.java).also {
                 startActivity(it)
             }
-
         }
         qsTile.updateTile()
 
