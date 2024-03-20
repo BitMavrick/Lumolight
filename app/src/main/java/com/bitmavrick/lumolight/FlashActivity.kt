@@ -12,7 +12,7 @@ class FlashActivity: ComponentActivity() {
         
         setContent {
             LumoLightTheme {
-                Text(text = "This is the flash activity")
+                Text(text = "Flash activity opened successfully")
             }
         }
     }
