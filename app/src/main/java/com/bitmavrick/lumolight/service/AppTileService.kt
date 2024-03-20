@@ -1,13 +1,11 @@
 package com.bitmavrick.lumolight.service
 
-import android.app.PendingIntent
 import android.content.Intent
 import android.os.Build
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
 import android.util.Log
 import androidx.annotation.RequiresApi
-import androidx.compose.ui.input.key.Key.Companion.O
 import com.bitmavrick.lumolight.FlashActivity
 
 class AppTileService : TileService() {
