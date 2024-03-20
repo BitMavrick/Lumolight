@@ -1,11 +1,9 @@
 package com.bitmavrick.lumolight.service
 
 import android.content.Intent
-import android.os.Build
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
 import android.util.Log
-import androidx.annotation.RequiresApi
 import com.bitmavrick.lumolight.FlashActivity
 
 class AppTileService : TileService() {
@@ -28,7 +26,6 @@ class AppTileService : TileService() {
     var active = false
 
 
-    @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     override fun onClick() {
         super.onClick()
         qsTile.state = if(!active) {
