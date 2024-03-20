@@ -25,7 +25,7 @@
         <service
             android:name=".service.AppTileService"
             android:exported="true"
-            android:label="Lumo Flash"
+            android:label="Lumo Light"
             android:icon="@drawable/ic_launcher_foreground"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>

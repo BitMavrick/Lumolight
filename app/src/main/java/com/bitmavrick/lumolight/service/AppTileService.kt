@@ -34,14 +34,15 @@ class AppTileService : TileService() {
             Tile.STATE_INACTIVE
         }
         active = !active
-        qsTile.label = if(active){ "Flash On" }else{ "Flash Off" }
-        if(active){
-            // TODO: I think we should implement explicit intent in this case
+        qsTile.label = if(active){ "Light On" }else{ "Lumo Light" }
 
-            Intent(applicationContext, FlashActivity::class.java).also {
-                startActivity(it)
-            }
+        // Successfully open the flash activity in android 12
+        if(active) {
+            val intent = Intent(applicationContext, FlashActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
         }
+
         qsTile.updateTile()
 
         Log.e("Tile", " ------>> Tile is clicked.")
