@@ -21,7 +21,7 @@ class FlashActivity: ComponentActivity() {
             LumoLightTheme {
                 UpdateBrightness()
                 KeepScreenOn()
-                Text(text = "Flash activity opened successfully")
+                Text(text = "Flash is turned on")
             }
         }
     }
