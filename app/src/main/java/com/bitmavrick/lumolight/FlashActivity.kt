@@ -42,7 +42,7 @@ fun FlashScreen(){
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(text = "Flash is now activated")
+        Text(text = "Flash active")
     }
 }
 
