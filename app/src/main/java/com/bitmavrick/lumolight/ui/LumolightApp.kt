@@ -5,6 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import com.bitmavrick.lumolight.ui.utils.LumolightNavigationType
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.bitmavrick.lumolight.ui.screen.HomeScreen
+import com.bitmavrick.lumolight.ui.utils.NavigationItem
 
 @Composable
 fun LumolightApp(
@@ -16,23 +18,27 @@ fun LumolightApp(
 
     when(windowSize){
         WindowWidthSizeClass.Compact -> {
-            // For Mobile Devices
             navigationType = LumolightNavigationType.BOTTOM_NAVIGATION
         }
 
         WindowWidthSizeClass.Medium -> {
-            // For Foldable Devices
             navigationType = LumolightNavigationType.NAVIGATION_RAIL
         }
 
         WindowWidthSizeClass.Expanded -> {
-            // For Tablet or Chromebooks
             navigationType = LumolightNavigationType.PERMANENT_NAVIGATION_DRAWER
         }
 
         else -> {
-            // For other devices
             navigationType = LumolightNavigationType.BOTTOM_NAVIGATION
         }
     }
+
+    HomeScreen(
+        navigationType = navigationType,
+        uiState = lumolightUiState,
+        onTabPressed = {navigationItem: NavigationItem ->
+            viewModel.updateCurrentNavigationItem(navigationItem)
+        }
+    )
 }
