@@ -35,6 +35,36 @@ fun HomeScreen(
     )
 }
 
+@Composable
+private fun LumolightBottomNavigationBar(
+    currentTab: NavigationItem,
+    onTabPressed: ((NavigationItem) -> Unit),
+    navigationItemContentList: List<NavigationItemContent>,
+){
+    // Bottom Navigation Bar
+
+}
+
+@Composable
+private fun LumolightNavigationRail(
+    currentTab: NavigationItem,
+    onTabPressed: ((NavigationItem) -> Unit),
+    navigationItemContentList: List<NavigationItemContent>,
+){
+    // Navigation Rail
+
+}
+
+@Composable
+private fun LumolightNavigationDrawer(
+    currentTab: NavigationItem,
+    onTabPressed: ((NavigationItem) -> Unit),
+    navigationItemContentList: List<NavigationItemContent>,
+){
+    // Navigation Drawer
+
+}
+
 private data class NavigationItemContent(
     val screenType: NavigationItem,
     val icon: ImageVector,
