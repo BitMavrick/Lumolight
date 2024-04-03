@@ -29,6 +29,7 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 # Custom Implementation
 androidx-material3-window = { group = "androidx.compose.material3", name = "material3-window-size-class" }
 androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
+androidx-material-icon-extended = { group = "androidx.compose.material", name = "material-icons-extended-android" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

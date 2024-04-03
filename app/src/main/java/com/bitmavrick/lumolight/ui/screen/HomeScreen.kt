@@ -6,9 +6,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.BrightnessHigh
 import androidx.compose.material.icons.filled.Build
+import androidx.compose.material.icons.filled.FlashlightOn
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.PhoneIphone
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -32,17 +35,17 @@ fun HomeScreen(
     val navigationItemContentList = listOf(
         NavigationItemContent(
             screenType = NavigationItem.SCREEN_FLASH,
-            icon = Icons.Default.Person,
+            icon = Icons.Default.PhoneIphone,
             text = "Screen Flash"
         ),
         NavigationItemContent(
             screenType = NavigationItem.QUICK_ACTION,
-            icon = Icons.Default.Home,
+            icon = Icons.Default.BrightnessHigh,
             text = "Quick Action"
         ),
         NavigationItemContent(
             screenType = NavigationItem.FLASHLIGHT,
-            icon = Icons.Default.Build,
+            icon = Icons.Default.FlashlightOn,
             text = "Flashlight"
         )
     )
@@ -55,7 +58,20 @@ fun HomeScreen(
                 Box(
                     modifier = Modifier.weight(1f)
                 ) {
-                    Text(text = "This is the bottom navigation bar")
+                    when(uiState.currentNavigationItem){
+                        NavigationItem.SCREEN_FLASH -> {
+                            ScreenFlashScreen()
+                        }
+
+                        NavigationItem.QUICK_ACTION -> {
+                            QuickActionScreen()
+
+                        }
+
+                        NavigationItem.FLASHLIGHT -> {
+                            FlashlightScreen()
+                        }
+                    }
                 }
                 LumolightBottomNavigationBar(
                     currentTab = uiState.currentNavigationItem,
@@ -72,7 +88,20 @@ fun HomeScreen(
                 Box(
                     modifier = Modifier.weight(1f)
                 ) {
-                    Text(text = "This is the navigation rail")
+                    when(uiState.currentNavigationItem){
+                        NavigationItem.SCREEN_FLASH -> {
+                            Text(text = "This is the screen flash")
+                        }
+
+                        NavigationItem.QUICK_ACTION -> {
+                            Text(text = "This is the quick action")
+
+                        }
+
+                        NavigationItem.FLASHLIGHT -> {
+                            Text(text = "This is the flashlight")
+                        }
+                    }
                 }
                 LumolightNavigationRail(
                     currentTab = uiState.currentNavigationItem,
@@ -89,7 +118,20 @@ fun HomeScreen(
                 Box(
                     modifier = Modifier.weight(1f)
                 ) {
-                    Text(text = "This is the navigation rail")
+                    when(uiState.currentNavigationItem){
+                        NavigationItem.SCREEN_FLASH -> {
+                            Text(text = "This is the screen flash")
+                        }
+
+                        NavigationItem.QUICK_ACTION -> {
+                            Text(text = "This is the quick action")
+
+                        }
+
+                        NavigationItem.FLASHLIGHT -> {
+                            Text(text = "This is the flashlight")
+                        }
+                    }
                 }
                 LumolightNavigationRail(
                     currentTab = uiState.currentNavigationItem,
