@@ -67,9 +67,9 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-
-    // implementation ("androidx.compose.material3:material3-window-size-class")
+    // Custom Implementation
     implementation(libs.androidx.material3.window)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 }
 
 
