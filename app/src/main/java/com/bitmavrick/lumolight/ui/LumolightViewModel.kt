@@ -13,7 +13,6 @@ class LumolightViewModel : ViewModel() {
     val uiState: StateFlow<LumolightUiState> = _uiState
 
     fun updateCurrentNavigationItem(navigationItem: NavigationItem){
-        Log.d("Tab", "The value is updating")
         _uiState.update {
             it.copy(
                 currentNavigationItem = navigationItem

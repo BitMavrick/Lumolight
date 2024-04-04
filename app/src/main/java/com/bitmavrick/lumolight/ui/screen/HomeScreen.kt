@@ -65,7 +65,6 @@ fun HomeScreen(
 
                         NavigationItem.QUICK_ACTION -> {
                             QuickActionScreen()
-
                         }
 
                         NavigationItem.FLASHLIGHT -> {
