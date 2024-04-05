@@ -96,7 +96,6 @@ fun QuickActionScreen(){
                 ) {
                     Text(
                         text = "SOS",
-                        // modifier = Modifier.padding(8.dp)
                     )
                 }
             }
