@@ -1,5 +1,6 @@
 package com.bitmavrick.lumolight.ui.screen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -19,9 +20,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.dp
 import com.bitmavrick.lumolight.ui.LumolightUiState
 import com.bitmavrick.lumolight.ui.utils.LumolightNavigationType
 import com.bitmavrick.lumolight.ui.utils.NavigationItem
@@ -84,34 +87,40 @@ fun HomeScreen(
             Column(
                 Modifier.fillMaxSize()
             ) {
+
                 Box(
                     modifier = Modifier.weight(1f)
                 ) {
-                    when(uiState.currentNavigationItem){
-                        NavigationItem.SCREEN_FLASH -> {
-                            ScreenFlashScreen()
-                        }
+                    Column(
+                        Modifier
+                            .fillMaxSize()
+                            .padding(start =80.dp)
+                    ) {
+                        when(uiState.currentNavigationItem){
+                            NavigationItem.SCREEN_FLASH -> {
+                                ScreenFlashScreen()
+                            }
 
-                        NavigationItem.QUICK_ACTION -> {
-                            QuickActionScreen()
-                        }
+                            NavigationItem.QUICK_ACTION -> {
+                                QuickActionScreen()
+                            }
 
-                        NavigationItem.FLASHLIGHT -> {
-                            ScreenFlashScreen()
+                            NavigationItem.FLASHLIGHT -> {
+                                ScreenFlashScreen()
+                            }
                         }
                     }
+
+                    LumolightNavigationRail(
+                        currentTab = uiState.currentNavigationItem,
+                        navigationItemContentList = navigationItemContentList,
+                        onTabPressed = onTabPressed
+                    )
                 }
-                LumolightNavigationRail(
-                    currentTab = uiState.currentNavigationItem,
-                    navigationItemContentList = navigationItemContentList,
-                    onTabPressed = onTabPressed
-                )
             }
         }
 
         LumolightNavigationType.PERMANENT_NAVIGATION_DRAWER -> {
-
-
 
             Column(
                 Modifier.fillMaxSize()
@@ -120,26 +129,33 @@ fun HomeScreen(
                 Box(
                     modifier = Modifier.weight(1f)
                 ) {
-                    when(uiState.currentNavigationItem){
-                        NavigationItem.SCREEN_FLASH -> {
-                            ScreenFlashScreen()
+                        Column(
+                            Modifier
+                                .fillMaxSize()
+                                .padding(start =80.dp)
+                        ) {
+                            when(uiState.currentNavigationItem){
+                                NavigationItem.SCREEN_FLASH -> {
+                                    ScreenFlashScreen()
+                                }
+
+                                NavigationItem.QUICK_ACTION -> {
+                                    QuickActionScreen()
+                                }
+
+                                NavigationItem.FLASHLIGHT -> {
+                                    ScreenFlashScreen()
+                                }
+                            }
+
                         }
 
-                        NavigationItem.QUICK_ACTION -> {
-                            QuickActionScreen()
-                        }
-
-                        NavigationItem.FLASHLIGHT -> {
-                            ScreenFlashScreen()
-                        }
-                    }
+                        LumolightNavigationRail(
+                            currentTab = uiState.currentNavigationItem,
+                            navigationItemContentList = navigationItemContentList,
+                            onTabPressed = onTabPressed
+                        )
                 }
-
-                LumolightNavigationRail(
-                    currentTab = uiState.currentNavigationItem,
-                    navigationItemContentList = navigationItemContentList,
-                    onTabPressed = onTabPressed
-                )
             }
         }
     }
