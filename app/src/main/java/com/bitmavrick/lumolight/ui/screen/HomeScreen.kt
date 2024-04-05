@@ -1,27 +1,27 @@
 package com.bitmavrick.lumolight.ui.screen
 
-import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BrightnessHigh
-import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.FlashlightOn
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PhoneIphone
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
-import androidx.compose.material3.PermanentNavigationDrawer
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.bitmavrick.lumolight.ui.LumolightUiState
 import com.bitmavrick.lumolight.ui.utils.LumolightNavigationType
 import com.bitmavrick.lumolight.ui.utils.NavigationItem
@@ -89,16 +89,15 @@ fun HomeScreen(
                 ) {
                     when(uiState.currentNavigationItem){
                         NavigationItem.SCREEN_FLASH -> {
-                            Text(text = "This is the screen flash")
+                            ScreenFlashScreen()
                         }
 
                         NavigationItem.QUICK_ACTION -> {
-                            Text(text = "This is the quick action")
-
+                            QuickActionScreen()
                         }
 
                         NavigationItem.FLASHLIGHT -> {
-                            Text(text = "This is the flashlight")
+                            ScreenFlashScreen()
                         }
                     }
                 }
@@ -111,27 +110,31 @@ fun HomeScreen(
         }
 
         LumolightNavigationType.PERMANENT_NAVIGATION_DRAWER -> {
+
+
+
             Column(
                 Modifier.fillMaxSize()
             ) {
+
                 Box(
                     modifier = Modifier.weight(1f)
                 ) {
                     when(uiState.currentNavigationItem){
                         NavigationItem.SCREEN_FLASH -> {
-                            Text(text = "This is the screen flash")
+                            ScreenFlashScreen()
                         }
 
                         NavigationItem.QUICK_ACTION -> {
-                            Text(text = "This is the quick action")
-
+                            QuickActionScreen()
                         }
 
                         NavigationItem.FLASHLIGHT -> {
-                            Text(text = "This is the flashlight")
+                            ScreenFlashScreen()
                         }
                     }
                 }
+
                 LumolightNavigationRail(
                     currentTab = uiState.currentNavigationItem,
                     navigationItemContentList = navigationItemContentList,
@@ -194,20 +197,21 @@ private fun LumolightNavigationRail(
 
 }
 
-/*
-@Composable
-private fun LumolightNavigationDrawer(
-    currentTab: NavigationItem,
-    onTabPressed: ((NavigationItem) -> Unit),
-    navigationItemContentList: List<NavigationItemContent>,
-){
-
-
-}
-*/
-
 private data class NavigationItemContent(
     val screenType: NavigationItem,
     val icon: ImageVector,
     val text: String
 )
+
+@Preview(
+    showBackground = true,
+    device = "spec:width=411dp,height=891dp,dpi=420,isRound=false,chinSize=0dp,orientation=landscape"
+)
+@Composable
+fun HomeScreenPreview(){
+    HomeScreen(
+        navigationType = LumolightNavigationType.PERMANENT_NAVIGATION_DRAWER,
+        uiState = LumolightUiState(),
+        onTabPressed = {}
+    )
+}
