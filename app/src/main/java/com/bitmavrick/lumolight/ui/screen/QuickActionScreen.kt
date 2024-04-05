@@ -8,7 +8,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
@@ -37,8 +41,19 @@ fun QuickActionScreen(){
         var selectedIndex by remember { mutableIntStateOf(0) }
         val options = listOf("Front", "Both", "Back")
 
-        // Spacer(modifier = Modifier.height(200.dp))
-        Spacer(Modifier.weight(1f))
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .weight(1f),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.Top
+        ){
+            Text(
+                text = "Quick Actions",
+                style = MaterialTheme.typography.headlineMedium,
+                modifier = Modifier.padding(top = 24.dp)
+            )
+        }
 
         Row(
             Modifier
@@ -55,21 +70,36 @@ fun QuickActionScreen(){
                 .fillMaxWidth()
                 .weight(1f),
             horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
+            //verticalAlignment = Alignment.CenterVertically
         ){
-            SingleChoiceSegmentedButtonRow {
-                options.forEachIndexed { index, label ->
-                    SegmentedButton(
-                        shape = SegmentedButtonDefaults.itemShape(index = index, count = options.size),
-                        onClick = { selectedIndex = index },
-                        selected = index == selectedIndex
-                    ) {
-                        Text(label)
+            Column(
+                Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.SpaceEvenly,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+
+
+                SingleChoiceSegmentedButtonRow {
+                    options.forEachIndexed { index, label ->
+                        SegmentedButton(
+                            shape = SegmentedButtonDefaults.itemShape(index = index, count = options.size),
+                            onClick = { selectedIndex = index },
+                            selected = index == selectedIndex
+                        ) {
+                            Text(label)
+                        }
                     }
+                }
+
+                OutlinedButton(
+                    onClick = { /*TODO*/ }
+                ) {
+                    Text(
+                        text = "SOS",
+                        // modifier = Modifier.padding(8.dp)
+                    )
                 }
             }
         }
-
-
     }
 }

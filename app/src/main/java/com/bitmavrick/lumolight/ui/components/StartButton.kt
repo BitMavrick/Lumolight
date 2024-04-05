@@ -80,11 +80,13 @@ fun StartButton(){
                 ){
                     if (selectedIndex){
                         Text(
-                            text = "STOP"
+                            text = "STOP",
+                            style = MaterialTheme.typography.titleLarge
                         )
                     }else{
                         Text(
-                            text = "START"
+                            text = "START",
+                            style = MaterialTheme.typography.titleLarge
                         )
                     }
 

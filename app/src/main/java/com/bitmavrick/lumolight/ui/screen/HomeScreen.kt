@@ -41,7 +41,7 @@ fun HomeScreen(
         NavigationItemContent(
             screenType = NavigationItem.QUICK_ACTION,
             icon = Icons.Default.BrightnessHigh,
-            text = "Quick Action"
+            text = "Quick Actions"
         ),
         NavigationItemContent(
             screenType = NavigationItem.FLASHLIGHT,
