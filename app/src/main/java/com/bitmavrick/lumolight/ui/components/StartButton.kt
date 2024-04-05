@@ -1,6 +1,7 @@
 package com.bitmavrick.lumolight.ui.components
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
@@ -12,6 +13,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -28,7 +30,7 @@ import androidx.compose.ui.unit.dp
 @Preview()
 @Composable
 fun StartButton(){
-    var selectedIndex by remember { mutableStateOf(true) }
+    var selectedIndex by remember { mutableStateOf(false) }
     val backgroundButtonColor: CardColors
     val foregroundButtonColor: CardColors
 
@@ -43,12 +45,12 @@ fun StartButton(){
         )
     }else{
         backgroundButtonColor = CardDefaults.cardColors(
-            containerColor = Color.DarkGray
+            containerColor = MaterialTheme.colorScheme.primaryContainer
         )
 
         foregroundButtonColor = CardDefaults.cardColors(
-            containerColor = Color.Green,
-            contentColor = Color.DarkGray
+            containerColor = MaterialTheme.colorScheme.primary,
+            contentColor = MaterialTheme.colorScheme.onPrimary
         )
     }
 
@@ -59,7 +61,8 @@ fun StartButton(){
             ),
         shape = CircleShape,
         colors = backgroundButtonColor,
-        elevation = CardDefaults.cardElevation()
+        elevation = CardDefaults.cardElevation(),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.primaryContainer)
 
     ) {
         Box(
@@ -76,9 +79,13 @@ fun StartButton(){
                     modifier = Modifier.fillMaxSize()
                 ){
                     if (selectedIndex){
-                        Text(text = "STOP")
+                        Text(
+                            text = "STOP"
+                        )
                     }else{
-                        Text(text = "START")
+                        Text(
+                            text = "START"
+                        )
                     }
 
                 }
