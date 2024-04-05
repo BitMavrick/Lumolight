@@ -53,7 +53,7 @@ fun StartButton(){
     }
 
     Card(
-        modifier = Modifier.aspectRatio(1.0f)
+        modifier = Modifier.aspectRatio(1.0f).padding(8.dp)
             .noRippleClickable(
                 onClick = { selectedIndex = !selectedIndex }
             ),

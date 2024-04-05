@@ -37,12 +37,13 @@ fun QuickActionScreen(){
         var selectedIndex by remember { mutableIntStateOf(0) }
         val options = listOf("Front", "Both", "Back")
 
-        Spacer(modifier = Modifier.height(200.dp))
+        // Spacer(modifier = Modifier.height(200.dp))
+        Spacer(Modifier.weight(1f))
 
         Row(
             Modifier
                 .fillMaxWidth()
-                .height(250.dp),
+                .weight(1f),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -52,9 +53,9 @@ fun QuickActionScreen(){
         Row(
             Modifier
                 .fillMaxWidth()
-                .height(200.dp),
+                .weight(1f),
             horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.Bottom
+            verticalAlignment = Alignment.CenterVertically
         ){
             SingleChoiceSegmentedButtonRow {
                 options.forEachIndexed { index, label ->
