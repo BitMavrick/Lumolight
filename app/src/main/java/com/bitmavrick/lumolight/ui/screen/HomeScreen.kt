@@ -135,7 +135,7 @@ fun HomeScreen(
                                 }
 
                                 NavigationItem.QUICK_ACTION -> {
-                                    QuickActionScreen()
+                                    QuickActionScreenLandScape()
                                 }
 
                                 NavigationItem.FLASHLIGHT -> {

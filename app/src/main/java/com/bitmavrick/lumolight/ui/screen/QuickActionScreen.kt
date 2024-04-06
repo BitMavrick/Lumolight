@@ -25,9 +25,9 @@ import androidx.compose.ui.unit.dp
 import com.bitmavrick.lumolight.ui.components.StartButton
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview(showBackground = true)
+// @Preview(showBackground = true)
 @Composable
-fun QuickActionScreen(){
+fun QuickActionScreen() {
     Column(
         Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -99,15 +99,94 @@ fun QuickActionScreen(){
 }
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Preview(
     showBackground = true,
     device = "spec:width=411dp,height=891dp,dpi=420,isRound=false,chinSize=0dp,orientation=landscape"
 )
 @Composable
-fun QuickActionScreenLandScape(){
+fun QuickActionScreenLandScape() {
+
+    var selectedIndex by remember { mutableIntStateOf(0) }
+    val options = listOf("Front", "Both", "Back")
+
     Column(
         Modifier.fillMaxSize()
     ) {
-        Text(text = "This is the landscape screen")
+        Row(
+            Modifier
+                .weight(1f, true)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = "Quick Actions",
+                style = MaterialTheme.typography.headlineMedium,
+                modifier = Modifier.padding(top = 24.dp)
+            )
+        }
+
+        Row(
+            Modifier
+                .weight(3.5f, true)
+                .fillMaxWidth()
+        ) {
+            Column(
+                Modifier
+                    .weight(1f)
+                    .fillMaxSize(),
+                verticalArrangement = Arrangement.SpaceEvenly,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                OutlinedButton(
+                    onClick = { /*TODO*/ }
+                ) {
+                    Text(
+                        text = "SOS",
+                    )
+                }
+
+
+                SingleChoiceSegmentedButtonRow {
+                    options.forEachIndexed { index, label ->
+                        SegmentedButton(
+                            shape = SegmentedButtonDefaults.itemShape(index = index, count = options.size),
+                            onClick = { selectedIndex = index },
+                            selected = index == selectedIndex
+                        ) {
+                            Text(label)
+                        }
+                    }
+                }
+
+            }
+
+            Column(
+                Modifier
+                    .weight(1f)
+                    .fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Column(
+                    Modifier.padding(8.dp)
+                ) {
+                    StartButton()
+                }
+            }
+        }
+
+        Row(
+            Modifier
+                .weight(1f, true)
+                .fillMaxSize(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Text(text = "This is the Ads section")
+        }
+
     }
+
 }
