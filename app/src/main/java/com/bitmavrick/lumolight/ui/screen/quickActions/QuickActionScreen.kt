@@ -13,6 +13,7 @@ import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
@@ -21,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bitmavrick.lumolight.ui.components.quickActions.QuickSOSButton
 import com.bitmavrick.lumolight.ui.components.quickActions.QuickStartButton
 import com.bitmavrick.lumolight.ui.utils.LumolightNavigationType
@@ -30,8 +32,10 @@ import com.bitmavrick.lumolight.ui.utils.LumolightNavigationType
 fun QuickActionScreen(
     navigationType: LumolightNavigationType
 ) {
+    val viewModel: QuickActionsViewModel = viewModel()
+    val uiState = viewModel.uiState.collectAsState().value
+
     // For segmented button
-    var selectedIndex by remember { mutableIntStateOf(0) }
     val options = listOf("Front", "Both", "Back")
 
     if(navigationType == LumolightNavigationType.BOTTOM_NAVIGATION || navigationType == LumolightNavigationType.NAVIGATION_RAIL){
@@ -67,7 +71,8 @@ fun QuickActionScreen(
             Row(
                 Modifier
                     .fillMaxWidth()
-                    .weight(1f).padding(8.dp),
+                    .weight(1f)
+                    .padding(8.dp),
                 horizontalArrangement = Arrangement.Center
             ){
                 Column(
@@ -79,8 +84,8 @@ fun QuickActionScreen(
                         options.forEachIndexed { index, label ->
                             SegmentedButton(
                                 shape = SegmentedButtonDefaults.itemShape(index = index, count = options.size),
-                                onClick = { selectedIndex = index },
-                                selected = index == selectedIndex
+                                onClick = { viewModel.updateSegmentedButtonStatus(index) },
+                                selected = index == uiState.segmentedButtonIndex
                             ) {
                                 Text(label)
                             }
@@ -127,8 +132,8 @@ fun QuickActionScreen(
                         options.forEachIndexed { index, label ->
                             SegmentedButton(
                                 shape = SegmentedButtonDefaults.itemShape(index = index, count = options.size),
-                                onClick = { selectedIndex = index },
-                                selected = index == selectedIndex
+                                onClick = { viewModel.updateSegmentedButtonStatus(index) },
+                                selected = index == uiState.segmentedButtonIndex
                             ) {
                                 Text(label)
                             }

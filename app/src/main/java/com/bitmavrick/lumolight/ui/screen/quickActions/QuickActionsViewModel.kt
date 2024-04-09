@@ -25,10 +25,10 @@ class QuickActionsViewModel : ViewModel() {
         }
     }
 
-    fun updateSegmentedButtonStatus(status : QuickActionSegmentedButtonStatus){
+    fun updateSegmentedButtonStatus(value : Int){
         _uiState.update {
             it.copy(
-                quickActionSegmentedButtonStatus = status
+                segmentedButtonIndex = value
             )
         }
     }

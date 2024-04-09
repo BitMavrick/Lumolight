@@ -2,17 +2,10 @@ package com.bitmavrick.lumolight.ui.screen.quickActions
 
 
 data class QuickActionsUiState (
-    val quickActionSegmentedButtonStatus: QuickActionSegmentedButtonStatus = QuickActionSegmentedButtonStatus.FRONT,
+    val startButtonStatus: Boolean = false,
     val quickSOSButtonStatus: QuickSOSButtonStatus = QuickSOSButtonStatus.NONE,
-    val startButtonStatus: Boolean = false
+    val segmentedButtonIndex: Int = 1
 )
-
-
-enum class QuickActionSegmentedButtonStatus {
-    FRONT,
-    BOTH,
-    BACK
-}
 
 enum class QuickSOSButtonStatus {
     NONE,
