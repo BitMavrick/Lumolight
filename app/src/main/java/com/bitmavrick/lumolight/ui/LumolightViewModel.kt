@@ -1,6 +1,5 @@
 package com.bitmavrick.lumolight.ui
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.bitmavrick.lumolight.ui.utils.NavigationItem
 import kotlinx.coroutines.flow.MutableStateFlow
