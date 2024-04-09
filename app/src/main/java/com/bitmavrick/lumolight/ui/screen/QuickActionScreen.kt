@@ -22,10 +22,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.bitmavrick.lumolight.ui.components.StartButton
+import com.bitmavrick.lumolight.ui.components.QuickSOSButton
+import com.bitmavrick.lumolight.ui.components.QuickStartButton
 
 @OptIn(ExperimentalMaterial3Api::class)
-// @Preview(showBackground = true)
+@Preview(showBackground = true)
 @Composable
 fun QuickActionScreen() {
     Column(
@@ -33,6 +34,7 @@ fun QuickActionScreen() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        // For segmented button
         var selectedIndex by remember { mutableIntStateOf(0) }
         val options = listOf("Front", "Both", "Back")
 
@@ -57,15 +59,14 @@ fun QuickActionScreen() {
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            StartButton()
+            QuickStartButton()
         }
 
         Row(
             Modifier
                 .fillMaxWidth()
                 .weight(1f),
-            horizontalArrangement = Arrangement.Center,
-            //verticalAlignment = Alignment.CenterVertically
+            horizontalArrangement = Arrangement.Center
         ){
             Column(
                 Modifier.fillMaxSize(),
@@ -86,13 +87,7 @@ fun QuickActionScreen() {
                     }
                 }
 
-                OutlinedButton(
-                    onClick = { /*TODO*/ }
-                ) {
-                    Text(
-                        text = "SOS",
-                    )
-                }
+                QuickSOSButton()
             }
         }
     }
@@ -100,10 +95,13 @@ fun QuickActionScreen() {
 
 
 @OptIn(ExperimentalMaterial3Api::class)
+/*
 @Preview(
+    // The Landscape preview
     showBackground = true,
     device = "spec:width=411dp,height=891dp,dpi=420,isRound=false,chinSize=0dp,orientation=landscape"
 )
+*/
 @Composable
 fun QuickActionScreenLandScape() {
 
@@ -172,7 +170,7 @@ fun QuickActionScreenLandScape() {
                 Column(
                     Modifier.padding(8.dp)
                 ) {
-                    StartButton()
+                    QuickStartButton()
                 }
             }
         }
