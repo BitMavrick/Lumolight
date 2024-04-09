@@ -1,4 +1,4 @@
-package com.bitmavrick.lumolight.ui.screen
+package com.bitmavrick.lumolight.ui.screen.quickActions
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,8 +22,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.bitmavrick.lumolight.ui.components.QuickSOSButton
-import com.bitmavrick.lumolight.ui.components.QuickStartButton
+import com.bitmavrick.lumolight.ui.components.quickActions.QuickSOSButton
+import com.bitmavrick.lumolight.ui.components.quickActions.QuickStartButton
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = true)

@@ -1,4 +1,4 @@
-package com.bitmavrick.lumolight.ui.components
+package com.bitmavrick.lumolight.ui.components.quickActions
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke

@@ -1,4 +1,4 @@
-package com.bitmavrick.lumolight.ui.components
+package com.bitmavrick.lumolight.ui.components.quickActions
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

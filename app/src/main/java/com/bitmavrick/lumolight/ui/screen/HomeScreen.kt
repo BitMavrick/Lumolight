@@ -21,6 +21,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bitmavrick.lumolight.ui.LumolightUiState
+import com.bitmavrick.lumolight.ui.screen.flashlight.FlashlightScreen
+import com.bitmavrick.lumolight.ui.screen.quickActions.QuickActionScreen
+import com.bitmavrick.lumolight.ui.screen.quickActions.QuickActionScreenLandScape
+import com.bitmavrick.lumolight.ui.screen.screenFlash.ScreenFlashScreen
 import com.bitmavrick.lumolight.ui.utils.LumolightNavigationType
 import com.bitmavrick.lumolight.ui.utils.NavigationItem
 

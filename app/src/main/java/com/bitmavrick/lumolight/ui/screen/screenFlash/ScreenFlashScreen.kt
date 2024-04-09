@@ -1,4 +1,4 @@
-package com.bitmavrick.lumolight.ui.screen
+package com.bitmavrick.lumolight.ui.screen.screenFlash
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
