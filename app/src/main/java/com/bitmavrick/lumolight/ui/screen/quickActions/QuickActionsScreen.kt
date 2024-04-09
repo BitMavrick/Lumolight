@@ -14,10 +14,6 @@ import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,7 +25,7 @@ import com.bitmavrick.lumolight.ui.utils.LumolightNavigationType
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun QuickActionScreen(
+fun QuickActionsScreen(
     navigationType: LumolightNavigationType
 ) {
     val viewModel: QuickActionsViewModel = viewModel()
@@ -65,7 +61,7 @@ fun QuickActionScreen(
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                QuickStartButton()
+                QuickStartButton(viewModel)
             }
 
             Row(
@@ -91,7 +87,6 @@ fun QuickActionScreen(
                             }
                         }
                     }
-
                     QuickSOSButton()
                 }
             }
@@ -152,7 +147,7 @@ fun QuickActionScreen(
                     Column(
                         Modifier.padding(8.dp)
                     ) {
-                        QuickStartButton()
+                        QuickStartButton(viewModel)
                     }
                 }
             }
@@ -178,5 +173,5 @@ fun QuickActionScreen(
 )
 @Composable
 fun QuickActionScreenPreview(){
-    QuickActionScreen(navigationType = LumolightNavigationType.BOTTOM_NAVIGATION)
+    QuickActionsScreen(navigationType = LumolightNavigationType.BOTTOM_NAVIGATION)
 }
