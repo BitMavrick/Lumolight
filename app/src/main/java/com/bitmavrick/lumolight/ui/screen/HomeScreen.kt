@@ -23,7 +23,6 @@ import androidx.compose.ui.unit.dp
 import com.bitmavrick.lumolight.ui.LumolightUiState
 import com.bitmavrick.lumolight.ui.screen.flashlight.FlashlightScreen
 import com.bitmavrick.lumolight.ui.screen.quickActions.QuickActionScreen
-import com.bitmavrick.lumolight.ui.screen.quickActions.QuickActionScreenLandScape
 import com.bitmavrick.lumolight.ui.screen.screenFlash.ScreenFlashScreen
 import com.bitmavrick.lumolight.ui.utils.LumolightNavigationType
 import com.bitmavrick.lumolight.ui.utils.NavigationItem
@@ -52,8 +51,6 @@ fun HomeScreen(
         )
     )
 
-    // For Quick Action Screen
-
 
     when(navigationType){
         LumolightNavigationType.BOTTOM_NAVIGATION -> {
@@ -69,7 +66,7 @@ fun HomeScreen(
                         }
 
                         NavigationItem.QUICK_ACTION -> {
-                            QuickActionScreen()
+                            QuickActionScreen(navigationType)
                         }
 
                         NavigationItem.FLASHLIGHT -> {
@@ -104,7 +101,7 @@ fun HomeScreen(
                             }
 
                             NavigationItem.QUICK_ACTION -> {
-                                QuickActionScreen()
+                                QuickActionScreen(navigationType)
                             }
 
                             NavigationItem.FLASHLIGHT -> {
@@ -142,14 +139,13 @@ fun HomeScreen(
                                 }
 
                                 NavigationItem.QUICK_ACTION -> {
-                                    QuickActionScreenLandScape()
+                                    QuickActionScreen(navigationType)
                                 }
 
                                 NavigationItem.FLASHLIGHT -> {
                                     ScreenFlashScreen()
                                 }
                             }
-
                         }
 
                         LumolightNavigationRail(
@@ -223,12 +219,12 @@ private data class NavigationItemContent(
 
 @Preview(
     showBackground = true,
-    device = "spec:width=411dp,height=891dp,dpi=420,isRound=false,chinSize=0dp,orientation=landscape"
+    // device = "spec:width=411dp,height=891dp,dpi=420,isRound=false,chinSize=0dp,orientation=landscape"
 )
 @Composable
 fun HomeScreenPreview(){
     HomeScreen(
-        navigationType = LumolightNavigationType.PERMANENT_NAVIGATION_DRAWER,
+        navigationType = LumolightNavigationType.BOTTOM_NAVIGATION,
         uiState = LumolightUiState(),
         onTabPressed = {}
     )
