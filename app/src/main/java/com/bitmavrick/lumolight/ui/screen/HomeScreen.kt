@@ -93,7 +93,7 @@ fun HomeScreen(
                     Column(
                         Modifier
                             .fillMaxSize()
-                            .padding(start =80.dp)
+                            .padding(start = 80.dp)
                     ) {
                         when(uiState.currentNavigationItem){
                             NavigationItem.SCREEN_FLASH -> {
@@ -131,7 +131,7 @@ fun HomeScreen(
                         Column(
                             Modifier
                                 .fillMaxSize()
-                                .padding(start =80.dp)
+                                .padding(start = 80.dp)
                         ) {
                             when(uiState.currentNavigationItem){
                                 NavigationItem.SCREEN_FLASH -> {
@@ -191,7 +191,9 @@ private fun LumolightNavigationRail(
     navigationItemContentList: List<NavigationItemContent>,
     modifier: Modifier = Modifier
 ){
-    NavigationRail(modifier = modifier) {
+    NavigationRail(
+        modifier = modifier
+    ) {
         Spacer(Modifier.weight(1f))
         for (navItem in navigationItemContentList){
             NavigationRailItem(
@@ -219,12 +221,12 @@ private data class NavigationItemContent(
 
 @Preview(
     showBackground = true,
-    // device = "spec:width=411dp,height=891dp,dpi=420,isRound=false,chinSize=0dp,orientation=landscape"
+    //device = "spec:width=411dp,height=891dp,dpi=420,isRound=false,chinSize=0dp,orientation=landscape"
 )
 @Composable
 fun HomeScreenPreview(){
     HomeScreen(
-        navigationType = LumolightNavigationType.BOTTOM_NAVIGATION,
+        navigationType = LumolightNavigationType.NAVIGATION_RAIL,
         uiState = LumolightUiState(),
         onTabPressed = {}
     )
