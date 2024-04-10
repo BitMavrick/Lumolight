@@ -18,10 +18,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bitmavrick.lumolight.ui.components.quickActions.QuickSOSButton
 import com.bitmavrick.lumolight.ui.components.quickActions.QuickStartButton
+import com.bitmavrick.lumolight.ui.utils.GoogleAds
 import com.bitmavrick.lumolight.ui.utils.LumolightNavigationType
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -159,12 +164,26 @@ fun QuickActionsScreen(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
-                Text(text = "This is the Ads section")
+                // Text(text = "This is the Ads section")
+                BannerAd()
             }
 
         }
     }
 
+}
+
+@Composable
+fun BannerAd(){
+    AndroidView(factory = {context ->
+        AdView(context).apply {
+            setAdSize(AdSize.BANNER)
+            adUnitId = "ca-app-pub-3940256099942544~3347511713"
+
+            // Request ad
+            loadAd(AdRequest.Builder().build())
+        }
+    })
 }
 
 @Preview(

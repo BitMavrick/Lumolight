@@ -1,10 +1,13 @@
 package com.bitmavrick.lumolight.ui.screen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BrightnessHigh
 import androidx.compose.material.icons.filled.FlashlightOn
@@ -17,6 +20,7 @@ import androidx.compose.material3.NavigationRailItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -86,7 +90,6 @@ fun HomeScreen(
             Column(
                 Modifier.fillMaxSize()
             ) {
-
                 Box(
                     modifier = Modifier.weight(1f)
                 ) {
@@ -226,7 +229,7 @@ private data class NavigationItemContent(
 @Composable
 fun HomeScreenPreview(){
     HomeScreen(
-        navigationType = LumolightNavigationType.NAVIGATION_RAIL,
+        navigationType = LumolightNavigationType.BOTTOM_NAVIGATION,
         uiState = LumolightUiState(),
         onTabPressed = {}
     )

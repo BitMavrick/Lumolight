@@ -8,6 +8,7 @@ import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSiz
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import com.bitmavrick.lumolight.ui.LumolightApp
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
+import com.google.android.gms.ads.MobileAds
 
 class MainActivity : ComponentActivity() {
 
@@ -17,6 +18,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             LumolightTheme {
                 Surface{
+                    MobileAds.initialize(this)
                     val windowSize = calculateWindowSizeClass(this)
 
                     LumolightApp(

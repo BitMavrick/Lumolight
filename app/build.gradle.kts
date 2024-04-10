@@ -72,6 +72,9 @@ dependencies {
     implementation(libs.androidx.material3.window)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.material.icon.extended)
+
+    // Google Ads
+    implementation(libs.play.services.ads)
 }
 
 
