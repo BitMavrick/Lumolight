@@ -3,8 +3,10 @@ package com.bitmavrick.lumolight.ui.screen.quickActions
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -52,11 +54,22 @@ fun QuickActionsScreen(
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.Top
             ){
-                Text(
-                    text = "Quick Actions",
-                    style = MaterialTheme.typography.headlineMedium,
-                    modifier = Modifier.padding(top = 24.dp)
-                )
+                Column(
+                    Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.SpaceBetween,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Quick Actions",
+                        style = MaterialTheme.typography.headlineMedium,
+                        modifier = Modifier.padding(top = 24.dp)
+                    )
+
+                    // BannerAd()
+                    Text(text = "Banner Ad Placeholder")
+
+                    Spacer(modifier = Modifier.height(1.dp))
+                }
             }
 
             Row(
@@ -164,8 +177,8 @@ fun QuickActionsScreen(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
-                // Text(text = "This is the Ads section")
-                BannerAd()
+                // BannerAd()
+                Text(text = "Banner Ad Placeholder")
             }
 
         }
@@ -178,9 +191,7 @@ fun BannerAd(){
     AndroidView(factory = {context ->
         AdView(context).apply {
             setAdSize(AdSize.BANNER)
-            adUnitId = "ca-app-pub-3940256099942544~3347511713"
-
-            // Request ad
+            adUnitId = GoogleAds.adID
             loadAd(AdRequest.Builder().build())
         }
     })
