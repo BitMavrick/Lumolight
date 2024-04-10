@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -17,20 +18,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.bitmavrick.lumolight.ui.screen.quickActions.QuickActionsViewModel
+import com.bitmavrick.lumolight.ui.screen.quickActions.QuickSOSButtonStatus
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-@Preview(showBackground = true)
 @Composable
-fun QuickSOSButton(){
-
-    val _timerValue = 10
-    var timerValue by remember { mutableIntStateOf(10) }
-    var timerJob by remember { mutableStateOf<Job?>(null) }
-    var buttonStatus by remember { mutableStateOf(ButtonStatus.NONE) }
+fun QuickSOSButton(
+    viewModel: QuickActionsViewModel
+){
+    val uiState = viewModel.uiState.collectAsState().value
 
     Column(
         Modifier
@@ -39,65 +39,53 @@ fun QuickSOSButton(){
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        if(buttonStatus == ButtonStatus.RUNNING){
-            Text(text = "SOS starts in $timerValue seconds")
-        }else if(buttonStatus == ButtonStatus.ACTIVE) {
-            Text(text = "SOS Now Active")
+        if(uiState.quickSOSRunningSeconds != null && uiState.quickSOSButtonStatus == QuickSOSButtonStatus.RUNNING){
+            Text(text = "SOS will starts in ${uiState.quickSOSRunningSeconds} seconds")
+        }else if(uiState.quickSOSButtonStatus == QuickSOSButtonStatus.ACTIVE){
+            Text(text = "SOS Now Active!")
         }
 
         Spacer(modifier = Modifier.height(12.dp))
 
         OutlinedButton(
             onClick = {
-                when(buttonStatus) {
-                    ButtonStatus.NONE -> {
-                        buttonStatus = ButtonStatus.RUNNING
-                        timerJob = CoroutineScope(Dispatchers.Default).launch {
-                            repeat(_timerValue){
-                                delay(1000)
-                                timerValue --
-                            }
-
-                            buttonStatus = ButtonStatus.ACTIVE
-                            // TODO: Code for SOS activation
-                        }
+                when(uiState.quickSOSButtonStatus) {
+                    QuickSOSButtonStatus.NONE -> {
+                        viewModel.runSOSTimer()
                     }
 
-                    ButtonStatus.RUNNING -> {
-                        timerJob?.cancel()
-                        timerValue = _timerValue
-                        buttonStatus = ButtonStatus.NONE
+                    QuickSOSButtonStatus.RUNNING -> {
+                        viewModel.cancelSOSTimer()
                     }
 
-                    ButtonStatus.ACTIVE -> {
-                        buttonStatus = ButtonStatus.NONE
-                        timerValue = _timerValue
+                    QuickSOSButtonStatus.ACTIVE -> {
+                        viewModel.stopSOS()
                     }
                 }
 
 
             }
         ) {
-            when(buttonStatus) {
-                ButtonStatus.NONE -> {
+            when(uiState.quickSOSButtonStatus) {
+                QuickSOSButtonStatus.NONE -> {
                     Text(text = "Start")
                 }
 
-                ButtonStatus.RUNNING -> {
+                QuickSOSButtonStatus.RUNNING -> {
                     Text(text = "Cancel")
                 }
 
-                ButtonStatus.ACTIVE -> {
+                QuickSOSButtonStatus.ACTIVE -> {
                     Text(text = "Stop")
                 }
             }
         }
-
     }
 }
 
-private enum class ButtonStatus {
-    NONE,
-    RUNNING,
-    ACTIVE
+
+@Preview(showBackground = true)
+@Composable
+fun QuickSOSButtonPreview(){
+    QuickSOSButton(viewModel = QuickActionsViewModel())
 }

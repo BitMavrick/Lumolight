@@ -87,7 +87,7 @@ fun QuickActionsScreen(
                             }
                         }
                     }
-                    QuickSOSButton()
+                    QuickSOSButton(viewModel)
                 }
             }
         }
@@ -121,7 +121,7 @@ fun QuickActionsScreen(
                     verticalArrangement = Arrangement.SpaceEvenly,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    QuickSOSButton()
+                    QuickSOSButton(viewModel)
 
                     SingleChoiceSegmentedButtonRow {
                         options.forEachIndexed { index, label ->
