@@ -28,7 +28,6 @@ class QuickScreenFlashActivity: ComponentActivity() {
     }
 }
 
-
 @Preview(showBackground = true)
 @Composable
 fun QuickScreenFlash(){
