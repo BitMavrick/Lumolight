@@ -1,5 +1,7 @@
 package com.bitmavrick.lumolight.ui.screen.quickActions
 
+import android.content.Context
+import android.content.Intent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,10 +20,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.bitmavrick.lumolight.ui.activities.QuickScreenFlashActivity
 import com.bitmavrick.lumolight.ui.components.quickActions.QuickSOSButton
 import com.bitmavrick.lumolight.ui.components.quickActions.QuickStartButton
 import com.bitmavrick.lumolight.ui.utils.GoogleAds
@@ -37,9 +42,8 @@ fun QuickActionsScreen(
 ) {
     val viewModel: QuickActionsViewModel = viewModel()
     val uiState = viewModel.uiState.collectAsState().value
-
-    // For segmented button
     val options = listOf("Front", "Both", "Back")
+    val context = LocalContext.current
 
     if(navigationType == LumolightNavigationType.BOTTOM_NAVIGATION || navigationType == LumolightNavigationType.NAVIGATION_RAIL){
         Column(
@@ -79,7 +83,14 @@ fun QuickActionsScreen(
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                QuickStartButton(viewModel)
+                QuickStartButton(
+                    uiState = uiState,
+                    onClickStartButton = {
+                        Intent(context, QuickScreenFlashActivity::class.java).also {
+                            context.startActivity(it) // Should be navigation
+                        }
+                    }
+                )
             }
 
             Row(
@@ -152,7 +163,6 @@ fun QuickActionsScreen(
                             }
                         }
                     }
-
                 }
 
                 Column(
@@ -165,7 +175,14 @@ fun QuickActionsScreen(
                     Column(
                         Modifier.padding(8.dp)
                     ) {
-                        QuickStartButton(viewModel)
+                        QuickStartButton(
+                            uiState = uiState,
+                            onClickStartButton = {
+                                Intent(context, QuickScreenFlashActivity::class.java).also {
+                                    context.startActivity(it) // Should be navigation
+                                }
+                            }
+                        )
                     }
                 }
             }
@@ -180,7 +197,6 @@ fun QuickActionsScreen(
                 // BannerAd()
                 Text(text = "Banner Ad Placeholder")
             }
-
         }
     }
 
@@ -191,11 +207,13 @@ fun BannerAd(){
     AndroidView(factory = {context ->
         AdView(context).apply {
             setAdSize(AdSize.BANNER)
-            adUnitId = GoogleAds.adID
+            adUnitId = GoogleAds.ID
             loadAd(AdRequest.Builder().build())
         }
     })
 }
+
+
 
 @Preview(
     showBackground = true,

@@ -15,7 +15,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,14 +22,13 @@ import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bitmavrick.lumolight.ui.screen.quickActions.QuickActionsViewModel
+import com.bitmavrick.lumolight.ui.screen.quickActions.QuickActionsUiState
 
 @Composable
 fun QuickStartButton(
-    viewModel: QuickActionsViewModel
+    uiState: QuickActionsUiState,
+    onClickStartButton: () -> Unit
 ){
-    val uiState = viewModel.uiState.collectAsState().value
     val backgroundButtonColor: CardColors
     val foregroundButtonColor: CardColors
 
@@ -60,11 +58,14 @@ fun QuickStartButton(
             .padding(8.dp)
             .noRippleClickable(
                 onClick = {
+                    /*
                     if (uiState.startButtonStatus) {
                         viewModel.stopStartButton()
                     } else {
                         viewModel.activeStartButton()
                     }
+                    */
+                    onClickStartButton()
                 }
             ),
         shape = CircleShape,
@@ -118,6 +119,8 @@ fun Modifier.noRippleClickable(
 @Preview(showBackground = true)
 @Composable
 fun QuickStartButtonPreview(){
-    val viewModel: QuickActionsViewModel = viewModel()
-    QuickStartButton(viewModel = viewModel)
+    QuickStartButton(
+        uiState = QuickActionsUiState(),
+        onClickStartButton = {}
+    )
 }
