@@ -1,6 +1,5 @@
 package com.bitmavrick.lumolight.ui.screen.quickActions
 
-import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,7 +23,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bitmavrick.lumolight.ui.activities.QuickScreenFlashActivity
 import com.bitmavrick.lumolight.ui.components.quickActions.QuickSOSButton
