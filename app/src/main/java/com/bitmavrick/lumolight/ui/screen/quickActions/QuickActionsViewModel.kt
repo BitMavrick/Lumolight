@@ -34,6 +34,25 @@ class QuickActionsViewModel : ViewModel() {
         }
     }
 
+    fun loadingStartButtonWithTimer(seconds: Int){
+        _uiState.update {
+            it.copy(
+                startButtonLittleLoading = true
+            )
+        }
+        viewModelScope.launch {
+            repeat(seconds){
+                delay(1000)
+            }
+
+            _uiState.update {
+                it.copy(
+                    startButtonLittleLoading = false
+                )
+            }
+        }
+    }
+
     fun updateSegmentedButtonStatus(value : Int){
         _uiState.update {
             it.copy(

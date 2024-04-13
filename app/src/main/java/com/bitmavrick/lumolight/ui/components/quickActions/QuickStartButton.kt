@@ -12,6 +12,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -87,17 +88,22 @@ fun QuickStartButton(
                     contentAlignment = Alignment.Center,
                     modifier = Modifier.fillMaxSize()
                 ){
-                    if (uiState.startButtonStatus){
-                        Text(
-                            text = "STOP",
-                            style = MaterialTheme.typography.titleLarge
-                        )
+                    if(uiState.startButtonLittleLoading){
+                        CircularProgressIndicator(color = Color.White)
                     }else{
-                        Text(
-                            text = "START",
-                            style = MaterialTheme.typography.titleLarge
-                        )
+                        if (uiState.startButtonStatus){
+                            Text(
+                                text = "STOP",
+                                style = MaterialTheme.typography.titleLarge
+                            )
+                        }else{
+                            Text(
+                                text = "START",
+                                style = MaterialTheme.typography.titleLarge
+                            )
+                        }
                     }
+
                 }
             }
         }
@@ -109,6 +115,7 @@ fun Modifier.noRippleClickable(
     onClick: () -> Unit
 ): Modifier = composed {
     clickable(
+        // enabled = true, // * when the button needs to disable
         indication = null,
         interactionSource = remember { MutableInteractionSource() }) {
         onClick()

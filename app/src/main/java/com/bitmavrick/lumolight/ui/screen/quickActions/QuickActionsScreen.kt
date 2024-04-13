@@ -85,14 +85,6 @@ fun QuickActionsScreen(
                 QuickStartButton(
                     uiState = uiState,
                     onClickStartButton = {
-
-                        /*
-                        Intent(context, QuickScreenFlashActivity::class.java).also {
-                            context.startActivity(it)
-                        }
-
-                         */
-
                         startButtonActionHandler(
                             viewModel = viewModel,
                             uiState = uiState,
@@ -187,9 +179,11 @@ fun QuickActionsScreen(
                         QuickStartButton(
                             uiState = uiState,
                             onClickStartButton = {
-                                Intent(context, QuickScreenFlashActivity::class.java).also {
-                                    context.startActivity(it) // Should be navigation
-                                }
+                                startButtonActionHandler(
+                                    viewModel = viewModel,
+                                    uiState = uiState,
+                                    context = context
+                                )
                             }
                         )
                     }
@@ -228,11 +222,13 @@ fun startButtonActionHandler(
     context: Context
 ){
     if (uiState.segmentedButtonIndex == 0){
-        // Only screen flash
+        viewModel.loadingStartButtonWithTimer(10)
         Intent(context, QuickScreenFlashActivity::class.java).also {
             context.startActivity(it)
         }
     }
+
+    /*
 
     if(uiState.segmentedButtonIndex == 1){
         // Screen and flashlight
@@ -243,6 +239,8 @@ fun startButtonActionHandler(
         // Only flashlight
         // TODO
     }
+
+    */
 }
 
 

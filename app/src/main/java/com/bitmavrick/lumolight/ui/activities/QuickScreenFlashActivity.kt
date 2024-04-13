@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,6 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.bitmavrick.lumolight.ui.screen.quickActions.QuickActionsViewModel
 import com.bitmavrick.lumolight.ui.utils.KeepScreenOn
 import com.bitmavrick.lumolight.ui.utils.UpdateBrightness
 
@@ -30,7 +33,11 @@ class QuickScreenFlashActivity: ComponentActivity() {
         setContent {
             UpdateBrightness()
             KeepScreenOn()
-            QuickScreenFlash(onExit = { onBackPressed() })
+            QuickScreenFlash(
+                onExit = {
+                    onBackPressed()
+                }
+            )
         }
     }
 }
