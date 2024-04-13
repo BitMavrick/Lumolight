@@ -1,5 +1,6 @@
 package com.bitmavrick.lumolight.ui.screen.quickActions
 
+import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -84,9 +85,19 @@ fun QuickActionsScreen(
                 QuickStartButton(
                     uiState = uiState,
                     onClickStartButton = {
+
+                        /*
                         Intent(context, QuickScreenFlashActivity::class.java).also {
-                            context.startActivity(it) // Should be navigation
+                            context.startActivity(it)
                         }
+
+                         */
+
+                        startButtonActionHandler(
+                            viewModel = viewModel,
+                            uiState = uiState,
+                            context = context
+                        )
                     }
                 )
             }
@@ -211,6 +222,28 @@ fun BannerAd(){
     })
 }
 
+fun startButtonActionHandler(
+    viewModel: QuickActionsViewModel,
+    uiState: QuickActionsUiState,
+    context: Context
+){
+    if (uiState.segmentedButtonIndex == 0){
+        // Only screen flash
+        Intent(context, QuickScreenFlashActivity::class.java).also {
+            context.startActivity(it)
+        }
+    }
+
+    if(uiState.segmentedButtonIndex == 1){
+        // Screen and flashlight
+        // TODO
+    }
+
+    if(uiState.segmentedButtonIndex == 2){
+        // Only flashlight
+        // TODO
+    }
+}
 
 
 @Preview(
