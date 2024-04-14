@@ -227,7 +227,7 @@ fun startButtonActionHandler(
         }
     }
 
-    /*
+
     if(uiState.segmentedButtonIndex == 1){
         // Screen and flashlight
         // TODO
@@ -235,9 +235,9 @@ fun startButtonActionHandler(
 
     if(uiState.segmentedButtonIndex == 2){
         // Only flashlight
-        // TODO
+        viewModel.toggleFlashLight(context, true)
     }
-    */
+
 }
 
 
