@@ -59,13 +59,6 @@ fun QuickStartButton(
             .padding(8.dp)
             .noRippleClickable(
                 onClick = {
-                    /*
-                    if (uiState.startButtonStatus) {
-                        viewModel.stopStartButton()
-                    } else {
-                        viewModel.activeStartButton()
-                    }
-                    */
                     onClickStartButton()
                 }
             ),
@@ -89,7 +82,7 @@ fun QuickStartButton(
                     modifier = Modifier.fillMaxSize()
                 ){
                     if(uiState.startButtonLittleLoading){
-                        CircularProgressIndicator(color = Color.White)
+                        CircularProgressIndicator(color = MaterialTheme.colorScheme.onPrimary)
                     }else{
                         if (uiState.startButtonStatus){
                             Text(
@@ -103,7 +96,6 @@ fun QuickStartButton(
                             )
                         }
                     }
-
                 }
             }
         }

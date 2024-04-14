@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bitmavrick.lumolight.ui.activities.QuickScreenFlashActivity
+import com.bitmavrick.lumolight.ui.activities.QuickScreenFlashAndTorchActivity
 import com.bitmavrick.lumolight.ui.components.quickActions.QuickSOSButton
 import com.bitmavrick.lumolight.ui.components.quickActions.QuickStartButton
 import com.bitmavrick.lumolight.ui.utils.GoogleAds
@@ -43,6 +44,10 @@ fun QuickActionsScreen(
     val uiState = viewModel.uiState.collectAsState().value
     val options = listOf("Front", "Both", "Back")
     val context = LocalContext.current
+
+    if(uiState.segmentedButtonIndex == 0 || uiState.segmentedButtonIndex == 1){
+        viewModel.stopStartButton()
+    }
 
     if(navigationType == LumolightNavigationType.BOTTOM_NAVIGATION || navigationType == LumolightNavigationType.NAVIGATION_RAIL){
         Column(
@@ -229,8 +234,10 @@ fun startButtonActionHandler(
 
 
     if(uiState.segmentedButtonIndex == 1){
-        // Screen and flashlight
-        // TODO
+        viewModel.loadingStartButtonWithTimer(1)
+        Intent(context, QuickScreenFlashAndTorchActivity::class.java).also {
+            context.startActivity(it)
+        }
     }
 
     if(uiState.segmentedButtonIndex == 2){

@@ -32,6 +32,7 @@
         </activity>
 
         <activity android:name=".ui.activities.QuickScreenFlashActivity"/>
+        <activity android:name=".ui.activities.QuickScreenFlashAndTorchActivity"/>
 
         <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
         <meta-data
