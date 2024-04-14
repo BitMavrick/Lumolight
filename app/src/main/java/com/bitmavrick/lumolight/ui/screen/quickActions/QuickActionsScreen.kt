@@ -234,10 +234,20 @@ fun startButtonActionHandler(
     }
 
     if(uiState.segmentedButtonIndex == 2){
-        // Only flashlight
-        viewModel.toggleFlashLight(context, true)
+        if(uiState.startButtonStatus){
+            // When its on
+            viewModel.loadingStartButton(true)
+            viewModel.toggleFlashLight(context, false)
+            viewModel.stopStartButton()
+            viewModel.loadingStartButton(false)
+        }else{
+            // When its off
+            viewModel.loadingStartButton(true)
+            viewModel.toggleFlashLight(context, true)
+            viewModel.activeStartButton()
+            viewModel.loadingStartButton(false)
+        }
     }
-
 }
 
 

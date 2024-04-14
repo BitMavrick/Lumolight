@@ -57,6 +57,14 @@ class QuickActionsViewModel : ViewModel() {
         }
     }
 
+    fun loadingStartButton(status: Boolean){
+        _uiState.update {
+            it.copy(
+                startButtonLittleLoading = status
+            )
+        }
+    }
+
     fun updateSegmentedButtonStatus(value : Int){
         _uiState.update {
             it.copy(
