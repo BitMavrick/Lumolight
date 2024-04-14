@@ -202,7 +202,6 @@ fun QuickActionsScreen(
             }
         }
     }
-
 }
 
 @Composable
@@ -222,14 +221,13 @@ fun startButtonActionHandler(
     context: Context
 ){
     if (uiState.segmentedButtonIndex == 0){
-        viewModel.loadingStartButtonWithTimer(10)
+        viewModel.loadingStartButtonWithTimer(1)
         Intent(context, QuickScreenFlashActivity::class.java).also {
             context.startActivity(it)
         }
     }
 
     /*
-
     if(uiState.segmentedButtonIndex == 1){
         // Screen and flashlight
         // TODO
@@ -239,7 +237,6 @@ fun startButtonActionHandler(
         // Only flashlight
         // TODO
     }
-
     */
 }
 
