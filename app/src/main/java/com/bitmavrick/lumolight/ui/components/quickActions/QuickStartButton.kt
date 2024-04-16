@@ -1,6 +1,7 @@
 package com.bitmavrick.lumolight.ui.components.quickActions
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -21,17 +22,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bitmavrick.lumolight.ui.screen.quickActions.QuickActionsUiState
+import com.bitmavrick.lumolight.ui.screen.quickActions.QuickSOSButtonStatus
 
 @Composable
 fun QuickStartButton(
     uiState: QuickActionsUiState,
     onClickStartButton: () -> Unit
 ){
-    val backgroundButtonColor: CardColors
+    var backgroundButtonColor: CardColors
     val foregroundButtonColor: CardColors
+    val context = LocalContext.current
 
     if (uiState.startButtonStatus){
         backgroundButtonColor = CardDefaults.cardColors(
@@ -53,13 +57,23 @@ fun QuickStartButton(
         )
     }
 
+    if(uiState.quickSOSButtonStatus != QuickSOSButtonStatus.NONE){
+        backgroundButtonColor = CardDefaults.cardColors(
+            containerColor = Color.Red
+        )
+    }
+
     Card(
         modifier = Modifier
             .aspectRatio(1.0f)
             .padding(8.dp)
             .noRippleClickable(
                 onClick = {
-                    onClickStartButton()
+                    if(uiState.quickSOSButtonStatus == QuickSOSButtonStatus.NONE){
+                        onClickStartButton()
+                    }else{
+                        Toast.makeText(context, "SOS Running!", Toast.LENGTH_SHORT).show()
+                    }
                 }
             ),
         shape = CircleShape,
@@ -104,10 +118,10 @@ fun QuickStartButton(
 
 @SuppressLint("ModifierFactoryUnreferencedReceiver")
 fun Modifier.noRippleClickable(
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ): Modifier = composed {
     clickable(
-        // enabled = true, // * when the button needs to disable
+        enabled = true,
         indication = null,
         interactionSource = remember { MutableInteractionSource() }) {
         onClick()

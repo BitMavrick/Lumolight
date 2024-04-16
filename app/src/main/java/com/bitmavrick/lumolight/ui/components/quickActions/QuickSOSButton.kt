@@ -38,6 +38,7 @@ fun QuickSOSButton(
         Spacer(modifier = Modifier.height(12.dp))
 
         OutlinedButton(
+            enabled = true,
             onClick = {
                 when(uiState.quickSOSButtonStatus) {
                     QuickSOSButtonStatus.NONE -> {

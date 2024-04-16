@@ -116,7 +116,7 @@ fun QuickActionsScreen(
                             SegmentedButton(
                                 shape = SegmentedButtonDefaults.itemShape(index = index, count = options.size),
                                 onClick = { viewModel.updateSegmentedButtonStatus(index) },
-                                selected = index == uiState.segmentedButtonIndex
+                                selected = index == uiState.segmentedButtonIndex,
                             ) {
                                 Text(label)
                             }
