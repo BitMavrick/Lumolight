@@ -31,12 +31,12 @@ fun HomeScreen(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "Home Screen")
+            Text(text = "Lumolight Home Screen")
             Spacer(modifier = Modifier.height(16.dp))
             Button(
                 onClick = { navController.navigate(Screen.SettingScreen.route) }
             ) {
-                Text(text = "Settings")
+                Text(text = "Go Settings")
             }
         }
     }
