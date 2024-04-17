@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import android.graphics.Color
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.ui.Alignment
+import com.bitmavrick.lumolight.activity.core.Lumolight
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 
 class MainActivity : ComponentActivity() {
@@ -37,7 +38,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     LumolightTheme {
-                        MainScreen()
+                        Lumolight()
                     }
                 }
             }
@@ -45,17 +46,3 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun MainScreen() {
-    Scaffold {
-        Column(
-            Modifier
-                .padding(it)
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(text = "Lumolight")
-        }
-    }
-}

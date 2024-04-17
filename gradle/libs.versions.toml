@@ -11,12 +11,14 @@ composeBom = "2024.04.00"
 
 # Custom Implementation
 lifecycleViewmodelCompose = "2.7.0"
+navigationCompose = "2.7.7"
 playServicesAds = "23.0.0"
 roomKtx = "2.6.1"
 
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
