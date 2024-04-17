@@ -19,14 +19,16 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.ui.Alignment
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // TODO: To handling system bars correctly, we must have to use scaffold!
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT),
             navigationBarStyle = SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT)
         )
+
         setContent {
             LumolightTheme {
                 // A surface container using the 'background' color from the theme
