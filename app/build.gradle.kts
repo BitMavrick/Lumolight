@@ -7,6 +7,7 @@ android {
     namespace = "com.bitmavrick.lumolight"
     compileSdk = 34
 
+
     defaultConfig {
         applicationId = "com.bitmavrick.lumolight"
         minSdk = 24
