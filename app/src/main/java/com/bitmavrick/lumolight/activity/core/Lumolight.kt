@@ -7,12 +7,6 @@ import androidx.navigation.compose.rememberNavController
 import com.bitmavrick.lumolight.ui.screen.home.HomeScreen
 import com.bitmavrick.lumolight.ui.screen.setting.SettingScreen
 
-
-sealed class Screen(val route: String){
-    data object HomeScreen : Screen("home_screen")
-    data object SettingScreen : Screen("setting_screen")
-}
-
 @Composable
 fun Lumolight() {
     val navController = rememberNavController()
@@ -24,4 +18,9 @@ fun Lumolight() {
             SettingScreen(navController = navController)
         }
     }
+}
+
+sealed class Screen(val route: String){
+    data object HomeScreen : Screen("home_screen")
+    data object SettingScreen : Screen("setting_screen")
 }
