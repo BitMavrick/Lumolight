@@ -1,4 +1,4 @@
-package com.bitmavrick.lumolight
+package com.bitmavrick.lumolight.activity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
