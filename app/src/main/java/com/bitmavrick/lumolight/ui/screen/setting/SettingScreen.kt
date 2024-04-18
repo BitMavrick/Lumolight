@@ -16,7 +16,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.bitmavrick.lumolight.activity.core.Screen
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 
 @Composable
@@ -34,7 +33,9 @@ fun SettingScreen(
             Text(text = "Lumolight Setting Screen")
             Spacer(modifier = Modifier.height(16.dp))
             Button(
-                onClick = { navController.navigate(Screen.HomeScreen.route) }
+                onClick = {
+                    navController.popBackStack()
+                }
             ) {
                 Text(text = "Go Home")
             }
