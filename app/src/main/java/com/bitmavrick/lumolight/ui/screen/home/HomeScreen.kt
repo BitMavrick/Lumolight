@@ -2,18 +2,20 @@ package com.bitmavrick.lumolight.ui.screen.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.Comment
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material.icons.outlined.Share
+import androidx.compose.material.icons.outlined.Spoke
 import androidx.compose.material.icons.outlined.StarRate
-import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -29,7 +31,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.bitmavrick.lumolight.activity.core.Screen
@@ -56,12 +57,6 @@ fun HomeScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(text = "Lumolight Home Screen")
-                Spacer(modifier = Modifier.height(16.dp))
-                Button(
-                    onClick = { navController.navigate(Screen.SettingScreen.route) }
-                ) {
-                    Text(text = "Go Settings")
-                }
             }
         }
     )
@@ -89,7 +84,7 @@ fun HomeScreenTopBar(
             ) {
                 Icon(
                     imageVector = Icons.Outlined.Settings,
-                    contentDescription = "Localized description"
+                    contentDescription = null
                 )
             }
 
@@ -98,7 +93,7 @@ fun HomeScreenTopBar(
             ) {
                 Icon(
                     imageVector = Icons.Outlined.MoreVert,
-                    contentDescription = "Localized description"
+                    contentDescription = null
                 )
             }
 
@@ -108,11 +103,57 @@ fun HomeScreenTopBar(
             ) {
                 DropdownMenuItem(
                     text = {
-                        Text(text = "Rate Us")
+                        Text(text = "Feedback")
+                    },
+                    onClick = { /*TODO*/ },
+                    leadingIcon = {
+                        Icon(imageVector = Icons.AutoMirrored.Outlined.Comment,
+                            contentDescription = null)
+                    }
+                )
+
+                DropdownMenuItem(
+                    text = {
+                        Text(text = "Share")
+                    },
+                    onClick = { /*TODO*/ },
+                    leadingIcon = {
+                        Icon(imageVector = Icons.Outlined.Share,
+                            contentDescription = null)
+                    }
+                )
+
+                DropdownMenuItem(
+                    text = {
+                        Text(text = "About us")
+                    },
+                    onClick = { /*TODO*/ },
+                    leadingIcon = {
+                        Icon(imageVector = Icons.Outlined.Info,
+                            contentDescription = null)
+                    }
+                )
+
+                HorizontalDivider()
+
+                DropdownMenuItem(
+                    text = {
+                        Text(text = "Rate Lumolight")
                     },
                     onClick = { /*TODO*/ },
                     leadingIcon = {
                         Icon(imageVector = Icons.Outlined.StarRate,
+                            contentDescription = null)
+                    }
+                )
+
+                DropdownMenuItem(
+                    text = {
+                        Text(text = "Try more apps")
+                    },
+                    onClick = { /*TODO*/ },
+                    leadingIcon = {
+                        Icon(imageVector = Icons.Outlined.Spoke,
                             contentDescription = null)
                     }
                 )
