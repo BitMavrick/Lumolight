@@ -44,7 +44,9 @@ fun Lumolight() {
 
     ) {
         composable(route = Screen.HomeScreen.route){
-            HomeScreen(navController = navController)
+            HomeScreen(
+                navController = navController
+            )
         }
         composable(route = Screen.SettingScreen.route){
             SettingScreen(navController = navController)
