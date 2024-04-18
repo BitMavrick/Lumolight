@@ -1,0 +1,27 @@
+-- LUMOLIGHT CUSTOM NAVIGATION ANIMATION ---
+val enterAnimationDuration = 500
+val exitAnimationDuration = 450
+
+        enterTransition = {
+            fadeIn(animationSpec = tween(enterAnimationDuration)) + slideIntoContainer(
+                AnimatedContentTransitionScope.SlideDirection.Up, tween(enterAnimationDuration)
+            )
+        },
+        exitTransition =  {
+            fadeOut(animationSpec = tween(exitAnimationDuration)) + slideOutOfContainer(
+                AnimatedContentTransitionScope.SlideDirection.Up, tween(exitAnimationDuration)
+            )
+        },
+
+        popEnterTransition = {
+            fadeIn(animationSpec = tween(enterAnimationDuration)) + slideIntoContainer(
+                AnimatedContentTransitionScope.SlideDirection.Down, tween(enterAnimationDuration)
+            )
+        },
+
+        popExitTransition = {
+            fadeOut(animationSpec = tween(exitAnimationDuration)) + slideOutOfContainer(
+                AnimatedContentTransitionScope.SlideDirection.Down, tween(exitAnimationDuration)
+            )
+        }
+-----------------------------------------
