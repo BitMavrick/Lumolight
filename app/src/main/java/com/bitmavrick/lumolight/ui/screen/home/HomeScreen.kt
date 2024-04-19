@@ -48,6 +48,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.bitmavrick.lumolight.activity.core.Screen
+import com.bitmavrick.lumolight.ui.tab.flashlight.FlashlightScreen
+import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionScreen
+import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashScreen
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -133,7 +136,19 @@ fun HomeScreen(
                         modifier = Modifier.fillMaxSize(),
                         contentAlignment = Alignment.Center
                     ) {
-                        Text(text = "${tabItems[index].title} Screen")
+                        when(index){
+                            0 -> {
+                                QuickActionScreen()
+                            }
+
+                            1 -> {
+                                ScreenFlashScreen()
+                            }
+
+                            2 -> {
+                                FlashlightScreen()
+                            }
+                        }
                     }
                 }
             }
