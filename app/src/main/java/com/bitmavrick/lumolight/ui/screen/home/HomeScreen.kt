@@ -1,8 +1,14 @@
 package com.bitmavrick.lumolight.ui.screen.home
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.Comment
 import androidx.compose.material.icons.filled.FlashlightOn
@@ -34,7 +40,9 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -44,6 +52,7 @@ import androidx.navigation.compose.rememberNavController
 import com.bitmavrick.lumolight.activity.core.Screen
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(
     navController: NavController
@@ -75,6 +84,9 @@ fun HomeScreen(
         },
         content = { innerPadding ->
             var selectedTabIndex by remember { mutableIntStateOf(0) }
+            val pagerState = rememberPagerState {
+                tabItems.size
+            }
 
             Column(
                 Modifier
@@ -100,6 +112,20 @@ fun HomeScreen(
                                 )
                             }
                         )
+                    }
+                }
+
+                HorizontalPager(
+                    state = pagerState,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f)
+                ) {index ->
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(text = "${tabItems[index].title} Screen")
                     }
                 }
             }
