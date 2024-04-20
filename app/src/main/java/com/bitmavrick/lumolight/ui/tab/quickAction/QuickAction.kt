@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
@@ -24,10 +25,10 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun QuickActionScreen() {
 
-    val options = listOf("Front", "Both", "Back")
+    val options = listOf("Screen", "Both", "Torch")
 
     Column(
-        Modifier.fillMaxSize()
+        Modifier.fillMaxSize().padding(16.dp)
     ) {
         Column(
             Modifier

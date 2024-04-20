@@ -112,7 +112,10 @@ fun HomeScreen(
                                 selectedTabIndex = index
                             },
                             text = {
-                                Text(text = item.title)
+                                Text(
+                                    text = item.title,
+                                    maxLines = 1
+                                )
                             },
                             icon = {
                                 Icon(
