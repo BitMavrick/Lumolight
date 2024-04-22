@@ -13,7 +13,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Timer
+import androidx.compose.material.icons.outlined.BrightnessLow
+import androidx.compose.material.icons.outlined.ColorLens
+import androidx.compose.material.icons.outlined.Timelapse
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -55,13 +57,15 @@ fun ScreenFlashScreen() {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(
-                        imageVector = Icons.Default.Timer,
+                        imageVector = Icons.Outlined.Timelapse,
+                        tint = MaterialTheme.colorScheme.primary,
                         contentDescription = null
                     )
 
                     Text(
-                        text = "Duration",
+                        text = "DURATION",
                         style = MaterialTheme.typography.titleSmall,
+                        color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.padding(start = 8.dp)
                     )
                 }
@@ -99,13 +103,15 @@ fun ScreenFlashScreen() {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(
-                        imageVector = Icons.Default.Timer,
+                        imageVector = Icons.Outlined.ColorLens,
+                        tint = MaterialTheme.colorScheme.primary,
                         contentDescription = null
                     )
 
                     Text(
-                        text = "Duration",
+                        text = "COLOR",
                         style = MaterialTheme.typography.titleSmall,
+                        color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.padding(start = 8.dp)
                     )
                 }
@@ -143,13 +149,15 @@ fun ScreenFlashScreen() {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(
-                        imageVector = Icons.Default.Timer,
+                        imageVector = Icons.Outlined.BrightnessLow,
+                        tint = MaterialTheme.colorScheme.primary,
                         contentDescription = null
                     )
 
                     Text(
-                        text = "Duration",
+                        text = "BRIGHTNESS",
                         style = MaterialTheme.typography.titleSmall,
+                        color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.padding(start = 8.dp)
                     )
                 }
