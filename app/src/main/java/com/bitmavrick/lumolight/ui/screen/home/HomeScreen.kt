@@ -142,6 +142,7 @@ fun HomeScreen(
                         when(index){
                             0 -> {
                                 QuickActionScreen()
+                                // ScreenFlashScreen()
                             }
 
                             1 -> {
