@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun QuickActionScreen() {
 
-    val options = listOf("Screen", "Both", "Torch")
+    val options = listOf("Screen", "Both", "Flash")
 
     Column(
         Modifier.fillMaxSize().padding(16.dp)

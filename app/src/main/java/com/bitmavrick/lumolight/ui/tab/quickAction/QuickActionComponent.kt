@@ -101,20 +101,6 @@ fun QuickStartButton(
                     if(uiState.startButtonLittleLoading){
                         CircularProgressIndicator(color = MaterialTheme.colorScheme.onPrimary)
                     }else{
-                        /*
-                        if (uiState.startButtonStatus){
-                            Text(
-                                text = "STOP",
-                                style = MaterialTheme.typography.titleLarge
-                            )
-                        }else{
-                            Text(
-                                text = "START",
-                                style = MaterialTheme.typography.titleLarge
-                            )
-                        }
-
-                         */
                         Icon(
                             imageVector = Icons.Filled.PowerSettingsNew,
                             contentDescription = null,
