@@ -10,16 +10,16 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.Comment
-import androidx.compose.material.icons.filled.FlashlightOn
+import androidx.compose.material.icons.filled.CameraRear
+import androidx.compose.material.icons.filled.DynamicForm
 import androidx.compose.material.icons.filled.PhoneIphone
-import androidx.compose.material.icons.filled.StarRate
-import androidx.compose.material.icons.outlined.FlashlightOn
+import androidx.compose.material.icons.outlined.CameraRear
+import androidx.compose.material.icons.outlined.DynamicForm
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material.icons.outlined.Smartphone
-import androidx.compose.material.icons.outlined.Sos
 import androidx.compose.material.icons.outlined.Spoke
 import androidx.compose.material.icons.outlined.StarRate
 import androidx.compose.material3.DropdownMenu
@@ -64,8 +64,8 @@ fun HomeScreen(
     val tabItems = listOf(
         TabItem(
             title = "Actions",
-            unselectedIcon = Icons.Outlined.StarRate,
-            selectedIcon = Icons.Filled.StarRate
+            unselectedIcon = Icons.Outlined.DynamicForm,
+            selectedIcon = Icons.Filled.DynamicForm
         ),
         TabItem(
             title = "Screen",
@@ -74,8 +74,8 @@ fun HomeScreen(
         ),
         TabItem(
             title = "Flashlight",
-            unselectedIcon = Icons.Outlined.FlashlightOn,
-            selectedIcon = Icons.Filled.FlashlightOn
+            unselectedIcon = Icons.Outlined.CameraRear,
+            selectedIcon = Icons.Filled.CameraRear
         ),
     )
 
@@ -152,17 +152,9 @@ fun HomeScreen(
                         contentAlignment = Alignment.Center
                     ) {
                         when(index){
-                            0 -> {
-                                QuickActionScreen(quickActionViewModel)
-                            }
-
-                            1 -> {
-                                ScreenFlashScreen()
-                            }
-
-                            2 -> {
-                                FlashlightScreen()
-                            }
+                            0 -> QuickActionScreen(quickActionViewModel)
+                            1 -> ScreenFlashScreen()
+                            2 -> FlashlightScreen()
                         }
                     }
                 }
@@ -188,6 +180,8 @@ fun HomeScreenTopBar(
             )
         },
         actions = {
+
+            /* ! SOS feature will not be implemented in first release
             IconButton(
                 onClick = { /* TODO */ }
             ) {
@@ -196,6 +190,7 @@ fun HomeScreenTopBar(
                     contentDescription = null
                 )
             }
+            */
 
             IconButton(
                 onClick = { onClickSettings() }

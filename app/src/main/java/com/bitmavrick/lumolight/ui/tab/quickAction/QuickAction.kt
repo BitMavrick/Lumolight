@@ -1,5 +1,6 @@
 package com.bitmavrick.lumolight.ui.tab.quickAction
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -26,6 +28,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 fun QuickActionScreen(
     viewModel: QuickActionViewModel
 ) {
+    val context = LocalContext.current
     val uiState = viewModel.uiState.collectAsState().value
     val options = listOf("Screen", "Both", "Flash")
 
@@ -58,7 +61,7 @@ fun QuickActionScreen(
                 horizontalArrangement = Arrangement.Center
             ){
                 QuickStartButton(
-                    uiState = QuickActionsUiState(),
+                    uiState = uiState,
                     onClickStartButton = {}
                 )
             }
@@ -80,7 +83,7 @@ fun QuickActionScreen(
                             if(!uiState.segmentedButtonDisable){
                                 viewModel.updateSegmentedButtonIndex(index)
                             }else{
-                                /* TODO */
+                                Toast.makeText(context, "Segmented Button Disable", Toast.LENGTH_SHORT).show()
                             }
                         },
                         selected = index == uiState.segmentedButtonSelectedIndex

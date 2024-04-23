@@ -13,8 +13,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Bolt
 import androidx.compose.material.icons.outlined.ColorLens
+import androidx.compose.material.icons.outlined.FilterTiltShift
 import androidx.compose.material.icons.outlined.FlashlightOn
+import androidx.compose.material.icons.outlined.Fluorescent
+import androidx.compose.material.icons.outlined.Highlight
 import androidx.compose.material.icons.outlined.Timelapse
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.HorizontalDivider
@@ -100,7 +104,7 @@ fun FlashlightScreen() {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(
-                        imageVector = Icons.Outlined.ColorLens,
+                        imageVector = Icons.Outlined.Fluorescent,
                         tint = MaterialTheme.colorScheme.primary,
                         contentDescription = null
                     )
@@ -147,7 +151,7 @@ fun FlashlightScreen() {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(
-                        imageVector = Icons.Outlined.FlashlightOn,
+                        imageVector = Icons.Outlined.Highlight,
                         tint = MaterialTheme.colorScheme.primary,
                         contentDescription = null
                     )

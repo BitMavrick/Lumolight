@@ -13,7 +13,7 @@ composeBom = "2024.04.00"
 lifecycleViewmodelCompose = "2.7.0"
 navigationCompose = "2.7.7"
 playServicesAds = "23.0.0"
-roomKtx = "2.6.1"
+# roomKtx = "2.6.1"
 
 
 [libraries]
@@ -37,7 +37,7 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 androidx-material3-window = { group = "androidx.compose.material3", name = "material3-window-size-class" }
 androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
 androidx-material-icon-extended = { group = "androidx.compose.material", name = "material-icons-extended-android" }
-androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomKtx" }
+# androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomKtx" }
 play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "playServicesAds" }
 
 [plugins]
