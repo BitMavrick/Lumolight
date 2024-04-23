@@ -14,21 +14,25 @@ import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview(showBackground = true)
 @Composable
-fun QuickActionScreen() {
-
+fun QuickActionScreen(
+    viewModel: QuickActionViewModel
+) {
+    val uiState = viewModel.uiState.collectAsState().value
     val options = listOf("Screen", "Both", "Flash")
 
     Column(
-        Modifier.fillMaxSize().padding(16.dp)
+        Modifier
+            .fillMaxSize()
+            .padding(16.dp)
     ) {
         Column(
             Modifier
@@ -37,7 +41,9 @@ fun QuickActionScreen() {
             verticalArrangement = Arrangement.Bottom
         ) {
             Row(
-                Modifier.weight(1f).fillMaxWidth(),
+                Modifier
+                    .weight(1f)
+                    .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
@@ -70,15 +76,28 @@ fun QuickActionScreen() {
                 options.forEachIndexed { index, label ->
                     SegmentedButton(
                         shape = SegmentedButtonDefaults.itemShape(index = index, count = options.size),
-                        onClick = { },
-                        selected = index == 0
+                        onClick = {
+                            if(!uiState.segmentedButtonDisable){
+                                viewModel.updateSegmentedButtonIndex(index)
+                            }else{
+                                /* TODO */
+                            }
+                        },
+                        selected = index == uiState.segmentedButtonSelectedIndex
                     ) {
                         Text(label)
                     }
                 }
             }
-
             Spacer(modifier = Modifier.weight(1f))
         }
     }
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun QuickActionScreenPreview(){
+    val quickActionViewModel : QuickActionViewModel = viewModel()
+    QuickActionScreen(quickActionViewModel)
 }

@@ -52,6 +52,7 @@ import androidx.navigation.compose.rememberNavController
 import com.bitmavrick.lumolight.activity.core.Screen
 import com.bitmavrick.lumolight.ui.tab.flashlight.FlashlightScreen
 import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionScreen
+import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionViewModel
 import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashScreen
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 
@@ -80,9 +81,9 @@ fun HomeScreen(
 
     // init all the viewmodel
     val homeViewModel : HomeViewModel = viewModel()
+    val quickActionViewModel : QuickActionViewModel = viewModel()
 
 
-    // Init all the UI state
     val homeUiState = homeViewModel.uiState.collectAsState().value
 
 
@@ -152,7 +153,7 @@ fun HomeScreen(
                     ) {
                         when(index){
                             0 -> {
-                                QuickActionScreen()
+                                QuickActionScreen(quickActionViewModel)
                             }
 
                             1 -> {
