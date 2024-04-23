@@ -30,6 +30,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LeadingIconTab
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -79,6 +81,8 @@ fun HomeScreen(
         ),
     )
 
+    val snackBarHostState = remember { SnackbarHostState() }
+
     // init all the viewmodel
     val homeViewModel : HomeViewModel = viewModel()
     val quickActionViewModel : QuickActionViewModel = viewModel()
@@ -120,7 +124,6 @@ fun HomeScreen(
                         LeadingIconTab(
                             selected = index == homeUiState.selectedTabIndex,
                             onClick = {
-                                // selectedTabIndex = index
                                 homeViewModel.updateTabIndex(index)
                             },
                             text = {
@@ -152,13 +155,20 @@ fun HomeScreen(
                         contentAlignment = Alignment.Center
                     ) {
                         when(index){
-                            0 -> QuickActionScreen(quickActionViewModel)
+                            0 -> QuickActionScreen(
+                                viewModel = quickActionViewModel,
+                                snakeBarHost = snackBarHostState
+                            )
                             1 -> ScreenFlashScreen()
                             2 -> FlashlightScreen()
                         }
                     }
                 }
             }
+        },
+
+        snackbarHost = {
+            SnackbarHost(snackBarHostState)
         }
     )
 }

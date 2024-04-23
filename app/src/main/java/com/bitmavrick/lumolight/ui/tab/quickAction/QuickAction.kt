@@ -1,7 +1,5 @@
 package com.bitmavrick.lumolight.ui.tab.quickAction
 
-import android.content.Context
-import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,21 +12,27 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun QuickActionScreen(
-    viewModel: QuickActionViewModel
+    viewModel: QuickActionViewModel,
+    snakeBarHost: SnackbarHostState
 ) {
+    val scope = rememberCoroutineScope()
     val context = LocalContext.current
     val uiState = viewModel.uiState.collectAsState().value
     val options = listOf("Screen", "Both", "Flash")
@@ -89,7 +93,12 @@ fun QuickActionScreen(
                             if(!uiState.segmentedButtonDisable){
                                 viewModel.updateSegmentedButtonIndex(index)
                             }else{
-                                Toast.makeText(context, "Segmented Button Disable", Toast.LENGTH_SHORT).show()
+                                scope.launch {
+                                    snakeBarHost.showSnackbar(
+                                        message = "Can't change the type while flash is active",
+                                        withDismissAction = true
+                                    )
+                                }
                             }
                         },
                         selected = index == uiState.segmentedButtonSelectedIndex
@@ -103,58 +112,14 @@ fun QuickActionScreen(
     }
 }
 
-fun startButtonActionHandler(
-    viewModel: QuickActionViewModel,
-    uiState: QuickActionUiState,
-    context: Context
-){
-    if (uiState.segmentedButtonSelectedIndex == 0 && !uiState.startButtonStatus){
-        // Selected screen off state, click to on
-        /* TODO */
-        Toast.makeText(context, "Screen flash is on", Toast.LENGTH_SHORT).show()
-        viewModel.activeStartButton()
-    }
-
-    if (uiState.segmentedButtonSelectedIndex == 0 && uiState.startButtonStatus){
-        // Selected screen on state, click to off
-        /* TODO */
-        Toast.makeText(context, "Screen flash is off", Toast.LENGTH_SHORT).show()
-        viewModel.stopStartButton()
-    }
-
-    if (uiState.segmentedButtonSelectedIndex == 1 && !uiState.startButtonStatus){
-        // Selected both off state, click to on
-        /* TODO */
-        Toast.makeText(context, "Both flash is on", Toast.LENGTH_SHORT).show()
-        viewModel.activeStartButton()
-    }
-
-    if (uiState.segmentedButtonSelectedIndex == 1 && uiState.startButtonStatus){
-        // Selected both on state, click to off
-        /* TODO */
-        Toast.makeText(context, "Both flash is off", Toast.LENGTH_SHORT).show()
-        viewModel.stopStartButton()
-    }
-
-    if (uiState.segmentedButtonSelectedIndex == 2 && !uiState.startButtonStatus){
-        // Selected flash off state, click to on
-        /* TODO */
-        Toast.makeText(context, "Back flash is on", Toast.LENGTH_SHORT).show()
-        viewModel.activeStartButton()
-    }
-
-    if (uiState.segmentedButtonSelectedIndex == 2 && uiState.startButtonStatus){
-        // Selected flash off state, click to on
-        /* TODO */
-        Toast.makeText(context, "Back flash is off", Toast.LENGTH_SHORT).show()
-        viewModel.stopStartButton()
-    }
-}
-
 
 @Preview(showBackground = true)
 @Composable
 fun QuickActionScreenPreview(){
     val quickActionViewModel : QuickActionViewModel = viewModel()
-    QuickActionScreen(quickActionViewModel)
+    val snackBarHostState = remember { SnackbarHostState() }
+    QuickActionScreen(
+        viewModel = quickActionViewModel,
+        snakeBarHost = snackBarHostState
+    )
 }
