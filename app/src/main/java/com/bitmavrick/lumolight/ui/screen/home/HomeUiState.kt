@@ -1,4 +1,13 @@
 package com.bitmavrick.lumolight.ui.screen.home
 
-class HomeUiState {
+data class HomeUiState (
+    val selectedTabIndex: Int = 0,
+    val topSOSButtonStatus: TopSOSButtonStatus = TopSOSButtonStatus.IDLE
+)
+
+
+enum class TopSOSButtonStatus {
+    IDLE,
+    COUNTING,
+    RUNNING
 }

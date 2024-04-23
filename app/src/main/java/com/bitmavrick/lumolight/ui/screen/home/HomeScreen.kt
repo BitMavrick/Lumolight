@@ -11,7 +11,7 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.Comment
 import androidx.compose.material.icons.filled.FlashlightOn
-import androidx.compose.material.icons.filled.Smartphone
+import androidx.compose.material.icons.filled.PhoneIphone
 import androidx.compose.material.icons.filled.StarRate
 import androidx.compose.material.icons.outlined.FlashlightOn
 import androidx.compose.material.icons.outlined.Info
@@ -35,8 +35,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -46,6 +46,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.bitmavrick.lumolight.activity.core.Screen
@@ -68,7 +69,7 @@ fun HomeScreen(
         TabItem(
             title = "Screen",
             unselectedIcon = Icons.Outlined.Smartphone,
-            selectedIcon = Icons.Filled.Smartphone
+            selectedIcon = Icons.Filled.PhoneIphone
         ),
         TabItem(
             title = "Flashlight",
@@ -76,6 +77,15 @@ fun HomeScreen(
             selectedIcon = Icons.Filled.FlashlightOn
         ),
     )
+
+    // init all the viewmodel
+    val homeViewModel : HomeViewModel = viewModel()
+
+
+    // Init all the UI state
+    val homeUiState = homeViewModel.uiState.collectAsState().value
+
+
     Scaffold (
         topBar = {
             HomeScreenTopBar(
@@ -85,18 +95,17 @@ fun HomeScreen(
             )
         },
         content = { innerPadding ->
-            var selectedTabIndex by remember { mutableIntStateOf(0) }
             val pagerState = rememberPagerState {
                 tabItems.size
             }
 
-            LaunchedEffect(selectedTabIndex) {
-                pagerState.animateScrollToPage(selectedTabIndex)
+            LaunchedEffect(homeUiState.selectedTabIndex) {
+                pagerState.animateScrollToPage(homeUiState.selectedTabIndex)
             }
 
             LaunchedEffect(pagerState.currentPage, pagerState.isScrollInProgress) {
                 if(!pagerState.isScrollInProgress){
-                    selectedTabIndex = pagerState.currentPage
+                    homeViewModel.updateTabIndex(pagerState.currentPage)
                 }
             }
 
@@ -105,12 +114,13 @@ fun HomeScreen(
                     .padding(innerPadding)
                     .fillMaxSize()
             ) {
-                TabRow(selectedTabIndex = selectedTabIndex) {
+                TabRow(selectedTabIndex = homeUiState.selectedTabIndex) {
                     tabItems.forEachIndexed{index, item ->
                         LeadingIconTab(
-                            selected = index == selectedTabIndex,
+                            selected = index == homeUiState.selectedTabIndex,
                             onClick = {
-                                selectedTabIndex = index
+                                // selectedTabIndex = index
+                                homeViewModel.updateTabIndex(index)
                             },
                             text = {
                                 Text(
@@ -120,7 +130,7 @@ fun HomeScreen(
                             },
                             icon = {
                                 Icon(
-                                    imageVector = if(index == selectedTabIndex){
+                                    imageVector = if(index == homeUiState.selectedTabIndex){
                                         item.selectedIcon
                                     } else item.unselectedIcon ,
                                     contentDescription = null
