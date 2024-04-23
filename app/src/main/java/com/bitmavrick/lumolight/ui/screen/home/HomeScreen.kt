@@ -19,6 +19,7 @@ import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material.icons.outlined.Smartphone
+import androidx.compose.material.icons.outlined.Sos
 import androidx.compose.material.icons.outlined.Spoke
 import androidx.compose.material.icons.outlined.StarRate
 import androidx.compose.material3.DropdownMenu
@@ -142,7 +143,6 @@ fun HomeScreen(
                         when(index){
                             0 -> {
                                 QuickActionScreen()
-                                // ScreenFlashScreen()
                             }
 
                             1 -> {
@@ -177,6 +177,15 @@ fun HomeScreenTopBar(
             )
         },
         actions = {
+            IconButton(
+                onClick = { /* TODO */ }
+            ) {
+                Icon(
+                    imageVector = Icons.Outlined.Sos,
+                    contentDescription = null
+                )
+            }
+
             IconButton(
                 onClick = { onClickSettings() }
             ) {

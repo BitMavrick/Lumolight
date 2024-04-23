@@ -37,8 +37,7 @@ fun ScreenFlashScreen() {
         Modifier
             .fillMaxSize()
             .padding(16.dp),
-        verticalArrangement = Arrangement.Bottom,
-        horizontalAlignment = Alignment.CenterHorizontally
+        verticalArrangement = Arrangement.Bottom
     ) {
 
         val colorNames = listOf(
