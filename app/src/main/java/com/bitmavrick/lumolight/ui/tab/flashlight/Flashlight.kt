@@ -13,10 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Bolt
-import androidx.compose.material.icons.outlined.ColorLens
-import androidx.compose.material.icons.outlined.FilterTiltShift
-import androidx.compose.material.icons.outlined.FlashlightOn
 import androidx.compose.material.icons.outlined.Fluorescent
 import androidx.compose.material.icons.outlined.Highlight
 import androidx.compose.material.icons.outlined.Timelapse
@@ -185,7 +181,6 @@ fun FlashlightScreen() {
                     }
                 }
             }
-
         }
 
         Spacer(modifier = Modifier.height(16.dp))

@@ -1,7 +1,6 @@
 package com.bitmavrick.lumolight.ui.tab.quickAction
 
 import android.annotation.SuppressLint
-import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -25,7 +24,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
@@ -34,9 +32,8 @@ fun QuickStartButton(
     uiState: QuickActionsUiState,
     onClickStartButton: () -> Unit
 ){
-    var backgroundButtonColor: CardColors
+    val backgroundButtonColor: CardColors
     val foregroundButtonColor: CardColors
-    val context = LocalContext.current
 
     if (uiState.startButtonStatus){
         backgroundButtonColor = CardDefaults.cardColors(
@@ -58,25 +55,13 @@ fun QuickStartButton(
         )
     }
 
-    if(uiState.quickSOSButtonStatus != QuickSOSButtonStatus.NONE){
-        backgroundButtonColor = CardDefaults.cardColors(
-            containerColor = Color.Red
-        )
-    }
-
     Card(
         modifier = Modifier
             .aspectRatio(1.0f)
             .padding(8.dp)
             .noRippleClickable(
                 onClick = {
-                    if (uiState.quickSOSButtonStatus == QuickSOSButtonStatus.NONE) {
-                        onClickStartButton()
-                    } else {
-                        Toast
-                            .makeText(context, "SOS Running!", Toast.LENGTH_SHORT)
-                            .show()
-                    }
+                    onClickStartButton()
                 }
             ),
         shape = CircleShape,

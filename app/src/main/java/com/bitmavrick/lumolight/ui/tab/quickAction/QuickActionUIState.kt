@@ -5,13 +5,4 @@ data class QuickActionsUiState (
     val startButtonLittleLoading: Boolean = false,
     val segmentedButtonSelectedIndex: Int = 0,
     val segmentedButtonDisable: Boolean = false,
-
-    val quickSOSButtonStatus: QuickSOSButtonStatus = QuickSOSButtonStatus.NONE,
-    val quickSOSRunningSeconds: Int? = null,
 )
-
-enum class QuickSOSButtonStatus {
-    NONE,
-    RUNNING,
-    ACTIVE
-}
