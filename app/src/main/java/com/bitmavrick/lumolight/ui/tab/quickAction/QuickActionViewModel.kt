@@ -6,8 +6,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 
 class QuickActionViewModel : ViewModel(){
-    private val _uiState = MutableStateFlow(QuickActionsUiState())
-    val uiState : StateFlow<QuickActionsUiState> = _uiState
+    private val _uiState = MutableStateFlow(QuickActionUiState())
+    val uiState : StateFlow<QuickActionUiState> = _uiState
 
     private fun activateSegmentedButton(){
         _uiState.update {

@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun QuickStartButton(
-    uiState: QuickActionsUiState,
+    uiState: QuickActionUiState,
     onClickStartButton: () -> Unit
 ){
     val backgroundButtonColor: CardColors
@@ -114,7 +114,7 @@ fun Modifier.noRippleClickable(
 @Composable
 fun QuickStartButtonPreview(){
     QuickStartButton(
-        uiState = QuickActionsUiState(),
+        uiState = QuickActionUiState(),
         onClickStartButton = {}
     )
 }
