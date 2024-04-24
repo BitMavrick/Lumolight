@@ -56,6 +56,7 @@ import com.bitmavrick.lumolight.ui.tab.flashlight.FlashlightScreen
 import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionScreen
 import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionViewModel
 import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashScreen
+import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashViewModel
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -86,6 +87,7 @@ fun HomeScreen(
     // init all the viewmodel
     val homeViewModel : HomeViewModel = viewModel()
     val quickActionViewModel : QuickActionViewModel = viewModel()
+    val screenFlashViewModel : ScreenFlashViewModel = viewModel()
 
 
     val homeUiState = homeViewModel.uiState.collectAsState().value
@@ -159,7 +161,9 @@ fun HomeScreen(
                                 viewModel = quickActionViewModel,
                                 snakeBarHost = snackBarHostState
                             )
-                            1 -> ScreenFlashScreen()
+                            1 -> ScreenFlashScreen(
+                                viewModel = screenFlashViewModel
+                            )
                             2 -> FlashlightScreen()
                         }
                     }

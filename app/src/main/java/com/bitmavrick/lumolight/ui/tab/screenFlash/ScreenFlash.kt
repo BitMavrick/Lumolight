@@ -13,26 +13,34 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.outlined.BrightnessLow
 import androidx.compose.material.icons.outlined.ColorLens
 import androidx.compose.material.icons.outlined.Timelapse
 import androidx.compose.material3.AssistChip
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEachIndexed
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.bitmavrick.lumolight.util.TimeDuration
 
 
 @OptIn(ExperimentalLayoutApi::class)
-@Preview(showBackground = true)
 @Composable
-fun ScreenFlashScreen() {
+fun ScreenFlashScreen(
+    viewModel: ScreenFlashViewModel
+) {
+    val uiState = viewModel.uiState.collectAsState().value
+
     Column(
         Modifier
             .fillMaxSize()
@@ -52,7 +60,8 @@ fun ScreenFlashScreen() {
             item {
                 Row(
                     Modifier
-                        .fillMaxWidth().padding(bottom = 8.dp),
+                        .fillMaxWidth()
+                        .padding(bottom = 8.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(
@@ -68,9 +77,6 @@ fun ScreenFlashScreen() {
                         modifier = Modifier.padding(start = 8.dp)
                     )
                 }
-            }
-
-            item {
                 Column {
                     FlowRow(
                         Modifier
@@ -78,13 +84,23 @@ fun ScreenFlashScreen() {
                             .wrapContentHeight(align = Alignment.Top),
                         horizontalArrangement = Arrangement.Start,
                     ) {
-                        colorNames.fastForEachIndexed { index, element ->
-                            AssistChip(
+                        TimeDuration.list.fastForEachIndexed { index, element ->
+                            FilterChip(
                                 modifier = Modifier
                                     .padding(horizontal = 4.dp)
                                     .align(alignment = Alignment.CenterVertically),
-                                onClick = { /* do something*/ },
-                                label = { Text("$element $index") }
+                                selected = index == uiState.screenFlashDurationIndex,
+                                onClick = { viewModel.updateScreenFlashDuration(index, element.time) },
+                                label = { Text(element.duration) },
+                                leadingIcon = if(index == uiState.screenFlashDurationIndex){
+                                    {
+                                        Icon(
+                                            imageVector = Icons.Filled.Done,
+                                            contentDescription = "")
+                                    }
+                                } else {
+                                    null
+                                }
                             )
                         }
                     }
@@ -98,7 +114,8 @@ fun ScreenFlashScreen() {
 
                 Row(
                     Modifier
-                        .fillMaxWidth().padding(vertical = 8.dp),
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(
@@ -144,7 +161,8 @@ fun ScreenFlashScreen() {
 
                 Row(
                     Modifier
-                        .fillMaxWidth().padding(vertical = 8.dp),
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(
@@ -187,4 +205,13 @@ fun ScreenFlashScreen() {
         Spacer(modifier = Modifier.height(8.dp))
         ScreenFlashStartButton()
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ScreenFlashScreenPreview(){
+    val screenFlashViewModel : ScreenFlashViewModel = viewModel()
+    ScreenFlashScreen(
+        viewModel = screenFlashViewModel
+    )
 }
