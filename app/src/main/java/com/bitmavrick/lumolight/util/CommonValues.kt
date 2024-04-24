@@ -17,7 +17,38 @@ class TimeDuration{
     }
 }
 
+class ColorValue{
+    companion object {
+        val list: List<Color> = listOf(
+            Color("White", "#FFFFFF"),
+            // Color("Silver", "#C0C0C0"),
+            Color("Gray", "#808080"),
+            Color("Black", "#000000"),
+            Color("Red", "#FF0000"),
+            // Color("Maroon", "#800000"),
+            Color("Yellow", "#FFFF00"),
+            // Color("Olive", "#808000"),
+            Color("Lime", "#00FF00"),
+            Color("Green", "#008000"),
+            Color("Aqua", "#00FFFF"),
+            // Color("Teal", "#008080"),
+            Color("Blue", "#0000FF"),
+            // Color("Navy", "#000080"),
+            Color("Fuchsia", "#FF00FF"),
+            Color("Purple", "#800080"),
+
+
+        )
+    }
+}
+
+
 data class Duration(
     val duration: String,
     val time: Int
+)
+
+data class Color(
+    val name: String,
+    val code: String,
 )

@@ -18,4 +18,13 @@ class ScreenFlashViewModel : ViewModel() {
         }
     }
 
+    fun updateScreenFlashColor(index : Int, color : String){
+        _uiState.update {
+            it.copy(
+                screenFlashColorIndex = index,
+                screenFlashColorValue = color
+            )
+        }
+    }
+
 }

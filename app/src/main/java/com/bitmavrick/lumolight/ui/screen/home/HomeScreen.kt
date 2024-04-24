@@ -84,7 +84,7 @@ fun HomeScreen(
 
     val snackBarHostState = remember { SnackbarHostState() }
 
-    // init all the viewmodel
+    // init all the view models
     val homeViewModel : HomeViewModel = viewModel()
     val quickActionViewModel : QuickActionViewModel = viewModel()
     val screenFlashViewModel : ScreenFlashViewModel = viewModel()

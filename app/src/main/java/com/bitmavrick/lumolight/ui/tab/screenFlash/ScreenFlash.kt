@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.icons.filled.TripOrigin
 import androidx.compose.material.icons.outlined.BrightnessLow
 import androidx.compose.material.icons.outlined.ColorLens
 import androidx.compose.material.icons.outlined.Timelapse
@@ -27,10 +28,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEachIndexed
+import androidx.core.graphics.toColorInt
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.bitmavrick.lumolight.util.ColorValue
 import com.bitmavrick.lumolight.util.TimeDuration
 
 
@@ -96,7 +100,7 @@ fun ScreenFlashScreen(
                                     {
                                         Icon(
                                             imageVector = Icons.Filled.Done,
-                                            contentDescription = "")
+                                            contentDescription = "Done Icon")
                                     }
                                 } else {
                                     null
@@ -141,13 +145,29 @@ fun ScreenFlashScreen(
                             .wrapContentHeight(align = Alignment.Top),
                         horizontalArrangement = Arrangement.Start,
                     ) {
-                        colorNames.fastForEachIndexed { index, element ->
-                            AssistChip(
+                        ColorValue.list.fastForEachIndexed { index, element ->
+                            FilterChip(
                                 modifier = Modifier
                                     .padding(horizontal = 4.dp)
                                     .align(alignment = Alignment.CenterVertically),
-                                onClick = { /* do something*/ },
-                                label = { Text("$element $index") }
+                                selected = index == uiState.screenFlashColorIndex,
+                                onClick = { viewModel.updateScreenFlashColor(index, element.code) },
+                                label = { Text(element.name) },
+                                leadingIcon = if(index == uiState.screenFlashColorIndex){
+                                    {
+                                        Icon(
+                                            imageVector = Icons.Filled.Done,
+                                            contentDescription = "Done Icon")
+                                    }
+                                } else {
+                                    {
+                                        Icon(
+                                            imageVector = Icons.Filled.TripOrigin,
+                                            tint = Color(element.code.toColorInt()),
+                                            contentDescription = "Done Icon"
+                                        )
+                                    }
+                                }
                             )
                         }
                     }
