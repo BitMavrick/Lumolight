@@ -37,7 +37,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -62,7 +61,9 @@ import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(
-    navController: NavController
+    navController: NavController,
+    homeUiState: HomeUiState,
+    homeOnEvent: (HomeUiEvent) -> Unit
 ) {
     val tabItems = listOf(
         TabItem(
@@ -85,12 +86,8 @@ fun HomeScreen(
     val snackBarHostState = remember { SnackbarHostState() }
 
     // init all the view models
-    val homeViewModel : HomeViewModel = viewModel()
     val quickActionViewModel : QuickActionViewModel = viewModel()
     val screenFlashViewModel : ScreenFlashViewModel = viewModel()
-
-
-    val homeUiState = homeViewModel.uiState.collectAsState().value
 
 
     Scaffold (
@@ -112,7 +109,7 @@ fun HomeScreen(
 
             LaunchedEffect(pagerState.currentPage, pagerState.isScrollInProgress) {
                 if(!pagerState.isScrollInProgress){
-                    homeViewModel.updateTabIndex(pagerState.currentPage)
+                    homeOnEvent(HomeUiEvent.updateTab(pagerState.currentPage))
                 }
             }
 
@@ -126,7 +123,7 @@ fun HomeScreen(
                         LeadingIconTab(
                             selected = index == homeUiState.selectedTabIndex,
                             onClick = {
-                                homeViewModel.updateTabIndex(index)
+                                homeOnEvent(HomeUiEvent.updateTab(index))
                             },
                             text = {
                                 Text(
@@ -299,6 +296,14 @@ data class TabItem(
 @Composable
 fun HomeScreenPreview() {
     LumolightTheme {
-        HomeScreen(navController = rememberNavController())
+        HomeScreen(
+            navController = rememberNavController(),
+            homeUiState = HomeUiState(
+                selectedTabIndex = 0,
+                topSOSButtonStatus = TopSOSButtonStatus.IDLE,
+                quickSOSCountingSeconds = null,
+            ),
+            homeOnEvent = {}
+        )
     }
 }

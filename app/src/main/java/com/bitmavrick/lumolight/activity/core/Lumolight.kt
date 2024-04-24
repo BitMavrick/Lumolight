@@ -1,10 +1,13 @@
 package com.bitmavrick.lumolight.activity.core
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.bitmavrick.lumolight.ui.screen.home.HomeScreen
+import com.bitmavrick.lumolight.ui.screen.home.HomeViewModel
 import com.bitmavrick.lumolight.ui.screen.setting.SettingScreen
 
 @Composable
@@ -16,8 +19,12 @@ fun Lumolight() {
         // DRAFT : LUMOLIGHT CUSTOM NAVIGATION ANIMATION
     ) {
         composable(route = Screen.HomeScreen.route){
+            val homeViewModel : HomeViewModel = viewModel()
+            val homeUiState = homeViewModel.uiState.collectAsState().value
             HomeScreen(
-                navController = navController
+                navController = navController,
+                homeUiState = homeUiState,
+                homeOnEvent = homeViewModel::onEvent
             )
         }
         composable(route = Screen.SettingScreen.route){

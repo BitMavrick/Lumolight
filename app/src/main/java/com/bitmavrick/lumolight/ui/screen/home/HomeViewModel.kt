@@ -9,7 +9,15 @@ class HomeViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState : StateFlow<HomeUiState> = _uiState
 
-    fun updateTabIndex(value: Int){
+    fun onEvent(event: HomeUiEvent){
+        when(event){
+            is HomeUiEvent.updateTab -> {
+                updateTabIndex(event.tabIndex)
+            }
+        }
+    }
+
+    private fun updateTabIndex(value: Int){
         _uiState.update {
             it.copy(
                 selectedTabIndex = value
