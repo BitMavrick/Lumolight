@@ -5,5 +5,6 @@ data class ScreenFlashUiState (
     val screenFlashDurationMin : Int = -1,
     val screenFlashColorIndex : Int = 0,
     val screenFlashColorValue : String = "#FFFFFF",
-
+    val screenFlashBrightnessIndex: Int = 0,
+    val screenFlashBrightnessValue: Int = 100,
 )

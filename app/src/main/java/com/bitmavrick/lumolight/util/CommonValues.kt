@@ -42,6 +42,18 @@ class ColorValue{
     }
 }
 
+class BrightnessValue{
+    companion object {
+        val list : List<Brightness> = listOf(
+            Brightness("100%", 100),
+            Brightness("80%", 80),
+            Brightness("60%", 60),
+            Brightness("40%", 40),
+            Brightness("20%", 20)
+        )
+    }
+}
+
 
 data class Duration(
     val duration: String,
@@ -51,4 +63,9 @@ data class Duration(
 data class Color(
     val name: String,
     val code: String,
+)
+
+data class Brightness(
+    val title: String,
+    val value: Int
 )

@@ -18,7 +18,6 @@ import androidx.compose.material.icons.filled.TripOrigin
 import androidx.compose.material.icons.outlined.BrightnessLow
 import androidx.compose.material.icons.outlined.ColorLens
 import androidx.compose.material.icons.outlined.Timelapse
-import androidx.compose.material3.AssistChip
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -34,9 +33,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEachIndexed
 import androidx.core.graphics.toColorInt
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.bitmavrick.lumolight.util.BrightnessValue
 import com.bitmavrick.lumolight.util.ColorValue
 import com.bitmavrick.lumolight.util.TimeDuration
-
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -51,12 +50,6 @@ fun ScreenFlashScreen(
             .padding(16.dp),
         verticalArrangement = Arrangement.Bottom
     ) {
-
-        val colorNames = listOf(
-            "Blue", "Yellow", "Red", "Orange", "Black", "Green",
-            "White", "Magenta", "Gray", "Transparent"
-        )
-
 
         LazyColumn(
             Modifier.weight(1f)
@@ -174,7 +167,8 @@ fun ScreenFlashScreen(
                 }
             }
 
-            item{
+            item {
+
                 HorizontalDivider(
                     Modifier.padding(vertical = 8.dp)
                 )
@@ -198,9 +192,7 @@ fun ScreenFlashScreen(
                         modifier = Modifier.padding(start = 8.dp)
                     )
                 }
-            }
 
-            item {
                 Column {
                     FlowRow(
                         Modifier
@@ -208,14 +200,25 @@ fun ScreenFlashScreen(
                             .wrapContentHeight(align = Alignment.Top),
                         horizontalArrangement = Arrangement.Start,
                     ) {
-                        colorNames.fastForEachIndexed { index, element ->
-                            AssistChip(
+                        BrightnessValue.list.fastForEachIndexed { index, element ->
+                            FilterChip(
                                 modifier = Modifier
                                     .padding(horizontal = 4.dp)
                                     .align(alignment = Alignment.CenterVertically),
-                                onClick = { /* do something*/ },
-                                label = { Text("$element $index") }
+                                selected = index == uiState.screenFlashBrightnessIndex,
+                                onClick = { viewModel.updateScreenFlashBrightness(index, element.value) },
+                                label = { Text(element.title) },
+                                leadingIcon = if(index == uiState.screenFlashBrightnessIndex){
+                                    {
+                                        Icon(
+                                            imageVector = Icons.Filled.Done,
+                                            contentDescription = "Done Icon")
+                                    }
+                                } else {
+                                    null
+                                }
                             )
+
                         }
                     }
                 }
