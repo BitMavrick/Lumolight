@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -76,4 +78,7 @@ dependencies {
 
     // Google Ads
     implementation(libs.play.services.ads)
+
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 }
