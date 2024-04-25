@@ -13,10 +13,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.outlined.Fluorescent
 import androidx.compose.material.icons.outlined.Highlight
 import androidx.compose.material.icons.outlined.Timelapse
 import androidx.compose.material3.AssistChip
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -29,6 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEachIndexed
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.bitmavrick.lumolight.util.TimeDuration
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -71,9 +74,6 @@ fun FlashlightScreen(
                         modifier = Modifier.padding(start = 8.dp)
                     )
                 }
-            }
-
-            item {
                 Column {
                     FlowRow(
                         Modifier
@@ -81,13 +81,23 @@ fun FlashlightScreen(
                             .wrapContentHeight(align = Alignment.Top),
                         horizontalArrangement = Arrangement.Start,
                     ) {
-                        colorNames.fastForEachIndexed { index, element ->
-                            AssistChip(
+                        TimeDuration.list.fastForEachIndexed { index, element ->
+                            FilterChip(
                                 modifier = Modifier
                                     .padding(horizontal = 4.dp)
                                     .align(alignment = Alignment.CenterVertically),
-                                onClick = { /* do something*/ },
-                                label = { Text("$element $index") }
+                                selected = index == uiState.flashlightDurationIndex,
+                                onClick = { viewModel.updateFlashlightDuration(index, element.time) },
+                                label = { Text(element.duration) },
+                                leadingIcon = if(index == uiState.flashlightDurationIndex){
+                                    {
+                                        Icon(
+                                            imageVector = Icons.Filled.Done,
+                                            contentDescription = "Done Icon")
+                                    }
+                                } else {
+                                    null
+                                }
                             )
                         }
                     }
