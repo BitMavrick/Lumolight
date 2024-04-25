@@ -31,6 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEachIndexed
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.bitmavrick.lumolight.util.BpmValue
 import com.bitmavrick.lumolight.util.TimeDuration
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -104,7 +105,7 @@ fun FlashlightScreen(
                 }
             }
 
-            item{
+            item {
                 HorizontalDivider(
                     Modifier.padding(vertical = 8.dp)
                 )
@@ -128,9 +129,6 @@ fun FlashlightScreen(
                         modifier = Modifier.padding(start = 8.dp)
                     )
                 }
-            }
-
-            item {
                 Column {
                     FlowRow(
                         Modifier
@@ -138,13 +136,23 @@ fun FlashlightScreen(
                             .wrapContentHeight(align = Alignment.Top),
                         horizontalArrangement = Arrangement.Start,
                     ) {
-                        colorNames.fastForEachIndexed { index, element ->
-                            AssistChip(
+                        BpmValue.list.fastForEachIndexed { index, element ->
+                            FilterChip(
                                 modifier = Modifier
                                     .padding(horizontal = 4.dp)
                                     .align(alignment = Alignment.CenterVertically),
-                                onClick = { /* do something*/ },
-                                label = { Text("$element $index") }
+                                selected = index == uiState.flashlightBpmIndex,
+                                onClick = { viewModel.updateFlashlightBpm(index, element.value) },
+                                label = { Text(element.title) },
+                                leadingIcon = if(index == uiState.flashlightBpmIndex){
+                                    {
+                                        Icon(
+                                            imageVector = Icons.Filled.Done,
+                                            contentDescription = "Done Icon")
+                                    }
+                                } else {
+                                    null
+                                }
                             )
                         }
                     }
@@ -200,8 +208,10 @@ fun FlashlightScreen(
             }
         }
 
+        /* !! Maybe in the upcoming version
         Spacer(modifier = Modifier.height(16.dp))
         FlashlightMorseCodeButton()
+        */
         Spacer(modifier = Modifier.height(16.dp))
         FlashlightStartButton()
     }
