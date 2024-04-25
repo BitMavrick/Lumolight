@@ -52,6 +52,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.bitmavrick.lumolight.activity.core.Screen
 import com.bitmavrick.lumolight.ui.tab.flashlight.FlashlightScreen
+import com.bitmavrick.lumolight.ui.tab.flashlight.FlashlightViewModel
 import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionScreen
 import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionViewModel
 import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashScreen
@@ -88,6 +89,7 @@ fun HomeScreen(
     // init all the view models
     val quickActionViewModel : QuickActionViewModel = viewModel()
     val screenFlashViewModel : ScreenFlashViewModel = viewModel()
+    val flashlightViewModel : FlashlightViewModel = viewModel()
 
 
     Scaffold (
@@ -161,7 +163,9 @@ fun HomeScreen(
                             1 -> ScreenFlashScreen(
                                 viewModel = screenFlashViewModel
                             )
-                            2 -> FlashlightScreen()
+                            2 -> FlashlightScreen(
+                                viewModel = flashlightViewModel
+                            )
                         }
                     }
                 }

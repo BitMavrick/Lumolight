@@ -22,16 +22,20 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEachIndexed
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @OptIn(ExperimentalLayoutApi::class)
-@Preview(showBackground = true)
 @Composable
-fun FlashlightScreen() {
+fun FlashlightScreen(
+    viewModel: FlashlightViewModel
+) {
+    val uiState = viewModel.uiState.collectAsState().value
 
     val colorNames = listOf(
         "Blue", "Yellow", "Red", "Orange", "Black", "Green",
@@ -50,7 +54,8 @@ fun FlashlightScreen() {
             item {
                 Row(
                     Modifier
-                        .fillMaxWidth().padding(bottom = 8.dp),
+                        .fillMaxWidth()
+                        .padding(bottom = 8.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(
@@ -96,7 +101,8 @@ fun FlashlightScreen() {
 
                 Row(
                     Modifier
-                        .fillMaxWidth().padding(vertical = 8.dp),
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(
@@ -143,7 +149,8 @@ fun FlashlightScreen() {
 
                 Row(
                     Modifier
-                        .fillMaxWidth().padding(vertical = 8.dp),
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(
@@ -188,4 +195,11 @@ fun FlashlightScreen() {
         Spacer(modifier = Modifier.height(16.dp))
         FlashlightStartButton()
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun FlashlightScreenPreview(){
+    val flashlightViewModel : FlashlightViewModel = viewModel()
+    FlashlightScreen(flashlightViewModel)
 }

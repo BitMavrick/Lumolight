@@ -79,6 +79,7 @@ dependencies {
     // Google Ads
     implementation(libs.play.services.ads)
 
+    // Dagger hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
 }
