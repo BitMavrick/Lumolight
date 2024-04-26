@@ -67,6 +67,22 @@ class BpmValue{
     }
 }
 
+class IntensityValue{
+    companion object {
+        val list : List<Intensity> = listOf(
+            Intensity("Low", "LOW"),
+            Intensity("Medium", "MEDIUM"),
+            Intensity("High", "HIGH"),
+            Intensity("Highest", "HIGHEST"),
+        )
+    }
+}
+
+data class Intensity(
+    val title: String,
+    val value: String,
+)
+
 
 data class Duration(
     val duration: String,

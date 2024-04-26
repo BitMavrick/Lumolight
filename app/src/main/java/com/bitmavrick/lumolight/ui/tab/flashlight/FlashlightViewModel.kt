@@ -27,7 +27,7 @@ class FlashlightViewModel : ViewModel() {
         }
     }
 
-    fun updateFlashlightIntensity(index: Int, value : Int){
+    fun updateFlashlightIntensity(index: Int, value : String){
         _uiState.update {
             it.copy(
                 flashlightIntensityIndex = index,

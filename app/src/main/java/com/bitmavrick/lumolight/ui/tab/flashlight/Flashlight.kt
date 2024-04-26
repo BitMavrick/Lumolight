@@ -17,7 +17,6 @@ import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.outlined.Fluorescent
 import androidx.compose.material.icons.outlined.Highlight
 import androidx.compose.material.icons.outlined.Timelapse
-import androidx.compose.material3.AssistChip
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -32,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEachIndexed
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bitmavrick.lumolight.util.BpmValue
+import com.bitmavrick.lumolight.util.IntensityValue
 import com.bitmavrick.lumolight.util.TimeDuration
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -40,11 +40,6 @@ fun FlashlightScreen(
     viewModel: FlashlightViewModel
 ) {
     val uiState = viewModel.uiState.collectAsState().value
-
-    val colorNames = listOf(
-        "Blue", "Yellow", "Red", "Orange", "Black", "Green",
-        "White", "Magenta", "Gray", "Transparent"
-    )
 
     Column(
         Modifier
@@ -159,8 +154,7 @@ fun FlashlightScreen(
                 }
             }
 
-
-            item{
+            item {
                 HorizontalDivider(
                     Modifier.padding(vertical = 8.dp)
                 )
@@ -184,9 +178,7 @@ fun FlashlightScreen(
                         modifier = Modifier.padding(start = 8.dp)
                     )
                 }
-            }
 
-            item {
                 Column {
                     FlowRow(
                         Modifier
@@ -194,13 +186,23 @@ fun FlashlightScreen(
                             .wrapContentHeight(align = Alignment.Top),
                         horizontalArrangement = Arrangement.Start,
                     ) {
-                        colorNames.fastForEachIndexed { index, element ->
-                            AssistChip(
+                        IntensityValue.list.fastForEachIndexed { index, element ->
+                            FilterChip(
                                 modifier = Modifier
                                     .padding(horizontal = 4.dp)
                                     .align(alignment = Alignment.CenterVertically),
-                                onClick = { /* do something*/ },
-                                label = { Text("$element $index") }
+                                selected = index == uiState.flashlightIntensityIndex,
+                                onClick = { viewModel.updateFlashlightIntensity(index, element.value) },
+                                label = { Text(element.title) },
+                                leadingIcon = if(index == uiState.flashlightIntensityIndex){
+                                    {
+                                        Icon(
+                                            imageVector = Icons.Filled.Done,
+                                            contentDescription = "Done Icon")
+                                    }
+                                } else {
+                                    null
+                                }
                             )
                         }
                     }
