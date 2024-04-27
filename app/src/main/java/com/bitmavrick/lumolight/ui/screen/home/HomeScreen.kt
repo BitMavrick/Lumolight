@@ -64,7 +64,10 @@ import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 fun HomeScreen(
     navController: NavController,
     homeUiState: HomeUiState,
-    homeOnEvent: (HomeUiEvent) -> Unit
+    homeOnEvent: (HomeUiEvent) -> Unit,
+    quickActionViewModel : QuickActionViewModel = viewModel(),
+    screenFlashViewModel : ScreenFlashViewModel = viewModel(),
+    flashlightViewModel : FlashlightViewModel = viewModel()
 ) {
     val tabItems = listOf(
         TabItem(
@@ -86,10 +89,12 @@ fun HomeScreen(
 
     val snackBarHostState = remember { SnackbarHostState() }
 
+    /*
     // init all the view models
     val quickActionViewModel : QuickActionViewModel = viewModel()
     val screenFlashViewModel : ScreenFlashViewModel = viewModel()
     val flashlightViewModel : FlashlightViewModel = viewModel()
+     */
 
 
     Scaffold (
@@ -161,7 +166,8 @@ fun HomeScreen(
                                 snakeBarHost = snackBarHostState
                             )
                             1 -> ScreenFlashScreen(
-                                viewModel = screenFlashViewModel
+                                viewModel = screenFlashViewModel,
+                                onClickStart = {}
                             )
                             2 -> FlashlightScreen(
                                 viewModel = flashlightViewModel

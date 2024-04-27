@@ -9,22 +9,38 @@ import androidx.navigation.compose.rememberNavController
 import com.bitmavrick.lumolight.ui.screen.home.HomeScreen
 import com.bitmavrick.lumolight.ui.screen.home.HomeViewModel
 import com.bitmavrick.lumolight.ui.screen.setting.SettingScreen
+import com.bitmavrick.lumolight.ui.tab.flashlight.FlashlightViewModel
+import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionViewModel
+import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashViewModel
+
+
+sealed class Screen(val route: String){
+    data object HomeScreen : Screen("home_screen")
+    data object SettingScreen : Screen("setting_screen")
+}
+
 
 @Composable
-fun Lumolight() {
+fun Lumolight(
+    homeViewModel: HomeViewModel = viewModel(),
+    quickActionViewModel: QuickActionViewModel = viewModel(),
+    screenFlashViewModel: ScreenFlashViewModel = viewModel(),
+    flashlightViewModel: FlashlightViewModel = viewModel()
+) {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
         startDestination = Screen.HomeScreen.route
-        // DRAFT : LUMOLIGHT CUSTOM NAVIGATION ANIMATION
     ) {
         composable(route = Screen.HomeScreen.route){
-            val homeViewModel : HomeViewModel = viewModel()
             val homeUiState = homeViewModel.uiState.collectAsState().value
             HomeScreen(
                 navController = navController,
                 homeUiState = homeUiState,
-                homeOnEvent = homeViewModel::onEvent
+                homeOnEvent = homeViewModel::onEvent,
+                quickActionViewModel = quickActionViewModel,
+                screenFlashViewModel = screenFlashViewModel,
+                flashlightViewModel = flashlightViewModel
             )
         }
         composable(route = Screen.SettingScreen.route){
@@ -33,7 +49,3 @@ fun Lumolight() {
     }
 }
 
-sealed class Screen(val route: String){
-    data object HomeScreen : Screen("home_screen")
-    data object SettingScreen : Screen("setting_screen")
-}

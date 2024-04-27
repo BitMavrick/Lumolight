@@ -40,7 +40,8 @@ import com.bitmavrick.lumolight.util.TimeDuration
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun ScreenFlashScreen(
-    viewModel: ScreenFlashViewModel
+    viewModel: ScreenFlashViewModel,
+    onClickStart: () -> Unit
 ) {
     val uiState = viewModel.uiState.collectAsState().value
 
@@ -226,7 +227,9 @@ fun ScreenFlashScreen(
         }
 
         Spacer(modifier = Modifier.height(8.dp))
-        ScreenFlashStartButton()
+        ScreenFlashStartButton(
+            onClickStart
+        )
     }
 }
 
@@ -235,6 +238,7 @@ fun ScreenFlashScreen(
 fun ScreenFlashScreenPreview(){
     val screenFlashViewModel : ScreenFlashViewModel = viewModel()
     ScreenFlashScreen(
-        viewModel = screenFlashViewModel
+        viewModel = screenFlashViewModel,
+        onClickStart = {}
     )
 }
