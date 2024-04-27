@@ -96,7 +96,6 @@ fun HomeScreen(
     val flashlightViewModel : FlashlightViewModel = viewModel()
      */
 
-
     Scaffold (
         topBar = {
             HomeScreenTopBar(
@@ -167,7 +166,7 @@ fun HomeScreen(
                             )
                             1 -> ScreenFlashScreen(
                                 viewModel = screenFlashViewModel,
-                                onClickStart = {}
+                                onClickStart = { navController.navigate(Screen.FlashScreen.route) }
                             )
                             2 -> FlashlightScreen(
                                 viewModel = flashlightViewModel
@@ -308,11 +307,7 @@ fun HomeScreenPreview() {
     LumolightTheme {
         HomeScreen(
             navController = rememberNavController(),
-            homeUiState = HomeUiState(
-                selectedTabIndex = 0,
-                topSOSButtonStatus = TopSOSButtonStatus.IDLE,
-                quickSOSCountingSeconds = null,
-            ),
+            homeUiState = HomeUiState(),
             homeOnEvent = {}
         )
     }
