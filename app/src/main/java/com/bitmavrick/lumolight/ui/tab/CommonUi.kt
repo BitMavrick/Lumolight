@@ -74,7 +74,7 @@ fun CustomFilledButton(
 @Composable
 fun CustomOutlinedButtonPreview(){
     CustomOutlinedButton(
-        buttonText = "morse code",
+        buttonText = "Outlined Button",
         onClick = {}
     )
 }
@@ -83,7 +83,7 @@ fun CustomOutlinedButtonPreview(){
 @Composable
 fun CustomFilledButtonPreview(){
     CustomFilledButton(
-        buttonText = "start",
+        buttonText = "Filled Button",
         onClick = {}
     )
 }

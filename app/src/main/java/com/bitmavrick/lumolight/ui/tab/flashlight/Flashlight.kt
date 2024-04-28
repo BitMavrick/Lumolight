@@ -30,6 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEachIndexed
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.bitmavrick.lumolight.ui.tab.CustomFilledButton
 import com.bitmavrick.lumolight.util.BpmValue
 import com.bitmavrick.lumolight.util.IntensityValue
 import com.bitmavrick.lumolight.util.TimeDuration
@@ -215,7 +216,10 @@ fun FlashlightScreen(
         FlashlightMorseCodeButton()
         */
         Spacer(modifier = Modifier.height(16.dp))
-        FlashlightStartButton()
+        CustomFilledButton(
+            buttonText = "Start",
+            onClick = {}
+        )
     }
 }
 
