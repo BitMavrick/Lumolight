@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.toColorInt
 import com.bitmavrick.lumolight.system.KeepScreenOn
-import com.bitmavrick.lumolight.system.SetMaxBrightness
+import com.bitmavrick.lumolight.system.SetBrightness
 import com.bitmavrick.lumolight.ui.tab.CustomOutlinedButton
 import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashUiState
 
@@ -22,7 +22,7 @@ fun FlashScreen(
     screenFlashUiState: ScreenFlashUiState = ScreenFlashUiState(),
     onClose: () -> Unit
 ) {
-    SetMaxBrightness()
+    SetBrightness(screenFlashUiState.screenFlashBrightnessValue)
     KeepScreenOn()
 
     Scaffold (

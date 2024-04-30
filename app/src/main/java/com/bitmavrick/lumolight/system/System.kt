@@ -31,19 +31,19 @@ fun Context.findActivity(): Activity? {
 
 
 @Composable
-fun SetMaxBrightness() {
+fun SetBrightness(level: Float) {
     val context = LocalContext.current
     DisposableEffect(Unit) {
-        setBrightness(context, isFull = true)
+        brightness(context, isFull = true, level)
         onDispose {
-            setBrightness(context, isFull = false)
+            brightness(context, isFull = false)
         }
     }
 }
 
-fun setBrightness(context: Context, isFull: Boolean) {
+fun brightness(context: Context, isFull: Boolean, level: Float = 1f) {
     val activity = context as? Activity ?: return
     val layoutParams: WindowManager.LayoutParams = activity.window.attributes
-    layoutParams.screenBrightness = if (isFull) 1f else WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE
+    layoutParams.screenBrightness = if (isFull) level else WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE // 1f is the brightness value
     activity.window.attributes = layoutParams
 }

@@ -35,9 +35,7 @@ class ColorValue{
             Color("Blue", "#0000FF"),
             // Color("Navy", "#000080"),
             Color("Fuchsia", "#FF00FF"),
-            Color("Purple", "#800080"),
-
-
+            Color("Purple", "#800080")
         )
     }
 }
@@ -45,11 +43,11 @@ class ColorValue{
 class BrightnessValue{
     companion object {
         val list : List<Brightness> = listOf(
-            Brightness("100%", 100),
-            Brightness("80%", 80),
-            Brightness("60%", 60),
-            Brightness("40%", 40),
-            Brightness("20%", 20)
+            Brightness("100%", 1f),
+            Brightness("80%", .8f),
+            Brightness("60%", .6f),
+            Brightness("40%", .4f),
+            Brightness("20%", .2f)
         )
     }
 }
@@ -96,7 +94,7 @@ data class Color(
 
 data class Brightness(
     val title: String,
-    val value: Int
+    val value: Float
 )
 
 data class BPM(

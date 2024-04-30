@@ -27,7 +27,7 @@ class ScreenFlashViewModel : ViewModel() {
         }
     }
 
-    fun updateScreenFlashBrightness(index: Int, brightness: Int){
+    fun updateScreenFlashBrightness(index: Int, brightness: Float){
         _uiState.update {
             it.copy(
                 screenFlashBrightnessIndex = index,
