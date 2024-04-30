@@ -12,17 +12,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.toColorInt
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
+import com.bitmavrick.lumolight.system.KeepScreenOn
+import com.bitmavrick.lumolight.system.SetMaxBrightness
 import com.bitmavrick.lumolight.ui.tab.CustomOutlinedButton
 import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashUiState
 
 @Composable
 fun FlashScreen(
-    // navController: NavController,
     screenFlashUiState: ScreenFlashUiState = ScreenFlashUiState(),
     onClose: () -> Unit
 ) {
+    SetMaxBrightness()
+    KeepScreenOn()
+
     Scaffold (
         content = { innerPadding ->
             Column (
@@ -37,7 +39,6 @@ fun FlashScreen(
                 CustomOutlinedButton(
                     buttonText = "Close",
                     onClick = {
-                        // navController.popBackStack()
                         onClose()
                     }
                 )
@@ -50,7 +51,6 @@ fun FlashScreen(
 @Composable
 fun FlashScreenPreview(){
     FlashScreen(
-        // navController = rememberNavController(),
         onClose = {}
     )
 }
