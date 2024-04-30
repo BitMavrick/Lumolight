@@ -19,13 +19,6 @@ fun startButtonActionHandler(
         viewModel.activeStartButton()
     }
 
-    if (uiState.segmentedButtonSelectedIndex == 0 && uiState.startButtonStatus){
-        // Selected screen on state, click to off
-        /* TODO */
-        Toast.makeText(context, "Screen flash is off", Toast.LENGTH_SHORT).show()
-        viewModel.stopStartButton()
-    }
-
     if (uiState.segmentedButtonSelectedIndex == 1 && !uiState.startButtonStatus){
         // Selected both off state, click to on
         /* TODO */

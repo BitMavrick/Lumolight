@@ -2,6 +2,7 @@ package com.bitmavrick.lumolight.activity.core
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -28,34 +29,35 @@ fun Lumolight(
     flashlightViewModel: FlashlightViewModel = viewModel()
 ) {
     val navController = rememberNavController()
+
     NavHost(
         navController = navController,
         startDestination = Screen.HomeScreen.route
     ) {
         composable(route = Screen.HomeScreen.route){
-            val homeUiState = homeViewModel.uiState.collectAsState().value
             HomeScreen(
                 navController = navController,
-                homeUiState = homeUiState,
+                homeUiState = homeViewModel.uiState.collectAsState().value,
                 homeOnEvent = homeViewModel::onEvent,
                 quickActionViewModel = quickActionViewModel,
                 screenFlashViewModel = screenFlashViewModel,
                 flashlightViewModel = flashlightViewModel
             )
         }
-        composable(route = Screen.SettingScreen.route){
-            SettingScreen(navController = navController)
-        }
+
         composable(route = Screen.FlashScreen.route){
-            val screenFlashUiState = screenFlashViewModel.uiState.collectAsState().value
             FlashScreen(
-                screenFlashUiState = screenFlashUiState,
+                screenFlashUiState = screenFlashViewModel.uiState.collectAsState().value,
                 onClose = {
                     quickActionViewModel.stopStartButton()
+                    // quickActionViewModel.toggleFlashLight(LocalContext.current, false)
                     navController.popBackStack()
                 }
             )
         }
+
+        composable(route = Screen.SettingScreen.route){
+            SettingScreen(navController = navController)
+        }
     }
 }
-
