@@ -24,11 +24,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun QuickActionScreen(
+    navController: NavController,
     viewModel: QuickActionViewModel,
     snakeBarHost: SnackbarHostState
 ) {
@@ -67,8 +70,9 @@ fun QuickActionScreen(
             ){
                 QuickStartButton(
                     uiState = uiState,
-                    onClickStartButton = {
+                    onClick = {
                         startButtonActionHandler(
+                            navController = navController,
                             viewModel = viewModel,
                             uiState = uiState,
                             context = context
@@ -119,6 +123,7 @@ fun QuickActionScreenPreview(){
     val quickActionViewModel : QuickActionViewModel = viewModel()
     val snackBarHostState = remember { SnackbarHostState() }
     QuickActionScreen(
+        navController = rememberNavController(),
         viewModel = quickActionViewModel,
         snakeBarHost = snackBarHostState
     )

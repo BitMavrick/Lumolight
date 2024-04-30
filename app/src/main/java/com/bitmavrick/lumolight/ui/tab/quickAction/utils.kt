@@ -2,15 +2,19 @@ package com.bitmavrick.lumolight.ui.tab.quickAction
 
 import android.content.Context
 import android.widget.Toast
+import androidx.navigation.NavController
+import com.bitmavrick.lumolight.activity.core.Screen
 
 fun startButtonActionHandler(
+    navController: NavController,
     viewModel: QuickActionViewModel,
     uiState: QuickActionUiState,
     context: Context
 ){
     if (uiState.segmentedButtonSelectedIndex == 0 && !uiState.startButtonStatus){
-        // Selected screen off state, click to on
-        /* TODO */
+
+        navController.navigate(Screen.FlashScreen.route)
+
         Toast.makeText(context, "Screen flash is on", Toast.LENGTH_SHORT).show()
         viewModel.activeStartButton()
     }

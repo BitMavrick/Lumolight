@@ -89,13 +89,6 @@ fun HomeScreen(
 
     val snackBarHostState = remember { SnackbarHostState() }
 
-    /*
-    // init all the view models
-    val quickActionViewModel : QuickActionViewModel = viewModel()
-    val screenFlashViewModel : ScreenFlashViewModel = viewModel()
-    val flashlightViewModel : FlashlightViewModel = viewModel()
-     */
-
     Scaffold (
         topBar = {
             HomeScreenTopBar(
@@ -161,6 +154,7 @@ fun HomeScreen(
                     ) {
                         when(index){
                             0 -> QuickActionScreen(
+                                navController = navController,
                                 viewModel = quickActionViewModel,
                                 snakeBarHost = snackBarHostState
                             )

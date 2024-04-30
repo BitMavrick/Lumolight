@@ -19,23 +19,27 @@ import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashUiState
 
 @Composable
 fun FlashScreen(
-    navController: NavController,
-    uiState: ScreenFlashUiState
+    // navController: NavController,
+    screenFlashUiState: ScreenFlashUiState = ScreenFlashUiState(),
+    onClose: () -> Unit
 ) {
     Scaffold (
-        content = {innerPadding ->
+        content = { innerPadding ->
             Column (
                 Modifier
                     .fillMaxSize()
                     .background(
-                        color = Color(uiState.screenFlashColorValue.toColorInt())
+                        color = Color(screenFlashUiState.screenFlashColorValue.toColorInt())
                     )
                     .padding(innerPadding).padding(16.dp),
                 verticalArrangement = Arrangement.Bottom,
             ){
                 CustomOutlinedButton(
                     buttonText = "Close",
-                    onClick = { navController.popBackStack() }
+                    onClick = {
+                        // navController.popBackStack()
+                        onClose()
+                    }
                 )
             }
         }
@@ -46,7 +50,7 @@ fun FlashScreen(
 @Composable
 fun FlashScreenPreview(){
     FlashScreen(
-        navController = rememberNavController(),
-        uiState = ScreenFlashUiState()
+        // navController = rememberNavController(),
+        onClose = {}
     )
 }

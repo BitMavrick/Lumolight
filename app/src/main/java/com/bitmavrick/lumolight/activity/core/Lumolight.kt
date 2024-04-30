@@ -14,14 +14,11 @@ import com.bitmavrick.lumolight.ui.tab.flashlight.FlashlightViewModel
 import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionViewModel
 import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashViewModel
 
-
 sealed class Screen(val route: String){
     data object HomeScreen : Screen("home_screen")
     data object SettingScreen : Screen("setting_screen")
-
     data object FlashScreen : Screen("flash_screen")
 }
-
 
 @Composable
 fun Lumolight(
@@ -52,8 +49,11 @@ fun Lumolight(
         composable(route = Screen.FlashScreen.route){
             val screenFlashUiState = screenFlashViewModel.uiState.collectAsState().value
             FlashScreen(
-                navController = navController,
-                uiState = screenFlashUiState,
+                screenFlashUiState = screenFlashUiState,
+                onClose = {
+                    quickActionViewModel.stopStartButton()
+                    navController.popBackStack()
+                }
             )
         }
     }
