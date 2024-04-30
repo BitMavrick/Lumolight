@@ -29,6 +29,7 @@ fun Lumolight(
     flashlightViewModel: FlashlightViewModel = viewModel()
 ) {
     val navController = rememberNavController()
+    val context = LocalContext.current
 
     NavHost(
         navController = navController,
@@ -50,7 +51,7 @@ fun Lumolight(
                 screenFlashUiState = screenFlashViewModel.uiState.collectAsState().value,
                 onClose = {
                     quickActionViewModel.stopStartButton()
-                    // quickActionViewModel.toggleFlashLight(LocalContext.current, false)
+                    quickActionViewModel.toggleFlashLight(context, false)
                     navController.popBackStack()
                 }
             )
