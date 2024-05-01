@@ -48,6 +48,7 @@ fun Lumolight(
 
         composable(route = Screen.FlashScreen.route){
             FlashScreen(
+                navController = navController,
                 screenFlashUiState = screenFlashViewModel.uiState.collectAsState().value,
                 onClose = {
                     quickActionViewModel.stopStartButton()

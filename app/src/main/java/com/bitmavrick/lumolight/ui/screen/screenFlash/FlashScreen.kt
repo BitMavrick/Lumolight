@@ -7,23 +7,36 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.toColorInt
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.bitmavrick.lumolight.system.KeepScreenOn
 import com.bitmavrick.lumolight.system.SetBrightness
 import com.bitmavrick.lumolight.ui.tab.CustomOutlinedButton
 import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashUiState
+import kotlinx.coroutines.delay
 
 @Composable
 fun FlashScreen(
+    navController: NavController,
     screenFlashUiState: ScreenFlashUiState = ScreenFlashUiState(),
     onClose: () -> Unit
 ) {
     SetBrightness(screenFlashUiState.screenFlashBrightnessValue)
     KeepScreenOn()
+
+    if(screenFlashUiState.screenFlashDurationMin != -1){
+        LaunchedEffect(key1 = Unit) {
+            delay(screenFlashUiState.screenFlashDurationMin * 60 * 1000L)
+            navController.popBackStack()
+        }
+    }
+
 
     Scaffold (
         content = { innerPadding ->
@@ -33,7 +46,8 @@ fun FlashScreen(
                     .background(
                         color = Color(screenFlashUiState.screenFlashColorValue.toColorInt())
                     )
-                    .padding(innerPadding).padding(16.dp),
+                    .padding(innerPadding)
+                    .padding(16.dp),
                 verticalArrangement = Arrangement.Bottom,
             ){
                 CustomOutlinedButton(
@@ -51,6 +65,7 @@ fun FlashScreen(
 @Composable
 fun FlashScreenPreview(){
     FlashScreen(
+        navController = rememberNavController(),
         onClose = {}
     )
 }
