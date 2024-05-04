@@ -41,10 +41,10 @@ fun FlashlightScreen(
 ) {
     val uiState = viewModel.uiState.collectAsState().value
 
-    if(uiState.flashlightAlertDialog){
+    if(uiState.flashlightStatus){
         AlertDialog(
             onDismissRequest = {},
-            confirmButton = {  },
+            confirmButton = {},
             title = { Text(text = "Flashlight Active") },
             text = { Text(text = "Are you sure you want to turn off the flashlight?") },
             dismissButton = {
@@ -235,7 +235,7 @@ fun FlashlightScreen(
         */
         Spacer(modifier = Modifier.height(16.dp))
         CustomFilledButton(
-            buttonText = "Start",
+            buttonText = if(uiState.flashlightStatus) "Running" else "START",
             onClick = { viewModel.updateFlashlightAlert(true) }
         )
     }

@@ -27,6 +27,7 @@ class FlashlightViewModel : ViewModel() {
         }
     }
 
+    /*
     fun updateFlashlightIntensity(index: Int, value : String){
         _uiState.update {
             it.copy(
@@ -36,10 +37,12 @@ class FlashlightViewModel : ViewModel() {
         }
     }
 
+     */
+
     fun updateFlashlightAlert(value : Boolean){
         _uiState.update {
             it.copy(
-                flashlightAlertDialog = value
+                flashlightStatus = value
             )
         }
     }
