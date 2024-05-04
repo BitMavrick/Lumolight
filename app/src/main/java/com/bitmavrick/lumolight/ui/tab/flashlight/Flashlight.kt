@@ -26,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEachIndexed
@@ -39,6 +40,7 @@ import com.bitmavrick.lumolight.util.TimeDuration
 fun FlashlightScreen(
     viewModel: FlashlightViewModel
 ) {
+    val context = LocalContext.current
     val uiState = viewModel.uiState.collectAsState().value
 
     if(uiState.flashlightStatus){
@@ -236,7 +238,10 @@ fun FlashlightScreen(
         Spacer(modifier = Modifier.height(16.dp))
         CustomFilledButton(
             buttonText = if(uiState.flashlightStatus) "Running" else "START",
-            onClick = { viewModel.updateFlashlightAlert(true) }
+            onClick = {
+                viewModel.testTorch(context)
+                viewModel.updateFlashlightAlert(true)
+            }
         )
     }
 }
