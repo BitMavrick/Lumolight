@@ -15,8 +15,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.outlined.Fluorescent
-import androidx.compose.material.icons.outlined.Highlight
 import androidx.compose.material.icons.outlined.Timelapse
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -32,7 +32,6 @@ import androidx.compose.ui.util.fastForEachIndexed
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bitmavrick.lumolight.ui.tab.CustomFilledButton
 import com.bitmavrick.lumolight.util.BpmValue
-import com.bitmavrick.lumolight.util.IntensityValue
 import com.bitmavrick.lumolight.util.TimeDuration
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -41,6 +40,21 @@ fun FlashlightScreen(
     viewModel: FlashlightViewModel
 ) {
     val uiState = viewModel.uiState.collectAsState().value
+
+    if(uiState.flashlightAlertDialog){
+        AlertDialog(
+            onDismissRequest = {},
+            confirmButton = {  },
+            title = { Text(text = "Flashlight Active") },
+            text = { Text(text = "Are you sure you want to turn off the flashlight?") },
+            dismissButton = {
+                CustomFilledButton(
+                    buttonText = "STOP",
+                    onClick = { viewModel.updateFlashlightAlert(false) }
+                )
+            }
+        )
+    }
 
     Column(
         Modifier
@@ -155,6 +169,8 @@ fun FlashlightScreen(
                 }
             }
 
+            /* !! Maybe in the upcoming version
+
             item {
                 HorizontalDivider(
                     Modifier.padding(vertical = 8.dp)
@@ -209,6 +225,8 @@ fun FlashlightScreen(
                     }
                 }
             }
+
+            */
         }
 
         /* !! Maybe in the upcoming version
@@ -218,7 +236,7 @@ fun FlashlightScreen(
         Spacer(modifier = Modifier.height(16.dp))
         CustomFilledButton(
             buttonText = "Start",
-            onClick = {}
+            onClick = { viewModel.updateFlashlightAlert(true) }
         )
     }
 }

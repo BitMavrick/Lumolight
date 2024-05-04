@@ -35,4 +35,12 @@ class FlashlightViewModel : ViewModel() {
             )
         }
     }
+
+    fun updateFlashlightAlert(value : Boolean){
+        _uiState.update {
+            it.copy(
+                flashlightAlertDialog = value
+            )
+        }
+    }
 }
