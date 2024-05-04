@@ -17,7 +17,7 @@ import androidx.compose.material.icons.outlined.CameraRear
 import androidx.compose.material.icons.outlined.DynamicForm
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.MoreVert
-import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material.icons.outlined.PowerSettingsNew
 import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material.icons.outlined.Smartphone
 import androidx.compose.material.icons.outlined.Spoke
@@ -58,6 +58,7 @@ import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionViewModel
 import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashScreen
 import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashViewModel
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
+import kotlin.system.exitProcess
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -93,7 +94,8 @@ fun HomeScreen(
         topBar = {
             HomeScreenTopBar(
                 onClickSettings = {
-                    navController.navigate(Screen.SettingScreen.route)
+                    // navController.navigate(Screen.SettingScreen.route)
+                    exitProcess(0)
                 }
             )
         },
@@ -210,7 +212,7 @@ fun HomeScreenTopBar(
                 onClick = { onClickSettings() }
             ) {
                 Icon(
-                    imageVector = Icons.Outlined.Settings,
+                    imageVector = Icons.Outlined.PowerSettingsNew,
                     contentDescription = null
                 )
             }
