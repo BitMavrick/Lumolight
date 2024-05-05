@@ -73,7 +73,17 @@ fun FlashlightScreen(
             onDismissRequest = {},
             confirmButton = {},
             title = { Text(text = "Flashlight Active") },
-            text = { Text(text = formatDuration(time)) },
+            text = {
+                if(uiState.flashlightDurationMin != -1){
+                    Text(
+                        text = "Duration: ${formatDuration(time)}\nBlink per min: ${uiState.flashlightBpmValue}"
+                    )
+                }else{
+                    Text(
+                        text = "Duration: N/A\nBlink per min: ${uiState.flashlightBpmValue}"
+                    )
+                }
+            },
             dismissButton = {
                 CustomFilledButton(
                     buttonText = "STOP",
