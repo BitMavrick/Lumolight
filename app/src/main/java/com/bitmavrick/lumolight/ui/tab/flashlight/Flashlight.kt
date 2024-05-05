@@ -54,7 +54,7 @@ fun FlashlightScreen(
                 CustomFilledButton(
                     buttonText = "STOP",
                     onClick = {
-                        viewModel.toggleFlashLight(context)
+                        viewModel.toggleFlashLight(context, false)
                         viewModel.updateFlashlightAlert(false)
                     }
                 )
@@ -244,7 +244,7 @@ fun FlashlightScreen(
             buttonText = if(uiState.flashlightStatus) "Running" else "START",
             onClick = {
                 viewModel.updateFlashlightAlert(true)
-                viewModel.toggleFlashLight(context)
+                viewModel.toggleFlashLight(context, true)
             }
         )
     }

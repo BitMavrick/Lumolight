@@ -56,33 +56,30 @@ class FlashlightViewModel : ViewModel() {
     }
 
 
-    fun toggleFlashLight(context: Context) {
+    fun toggleFlashLight(context: Context, status: Boolean) {
         val cameraManager = ContextCompat.getSystemService(context, CameraManager::class.java) as CameraManager
         val cameraId = cameraManager.cameraIdList[0]
 
+        // val bpm = 60000L / uiState.value.flashlightBpmValue.toLong()
+
         viewModelScope.launch {
-            while (uiState.value.flashlightStatus) {
+            if(uiState.value.flashlightBpmValue == 0){
                 try {
-                    cameraManager.setTorchMode(cameraId, true)
-                    delay(500)
-                    cameraManager.setTorchMode(cameraId, false)
-                    delay(500)
+                    cameraManager.setTorchMode(cameraId, status)
                 } catch (e: CameraAccessException) {
                     e.printStackTrace()
                 }
-            }
-        }
-    }
-
-    fun toggleFlashLight2(context: Context, status: Boolean){
-        val cameraManager = ContextCompat.getSystemService(context, CameraManager::class.java) as CameraManager
-        val cameraId = cameraManager.cameraIdList[0]
-
-        viewModelScope.launch {
-            try {
-                cameraManager.setTorchMode(cameraId, status)
-            } catch (e: CameraAccessException) {
-                e.printStackTrace()
+            }else{
+                while (uiState.value.flashlightStatus) {
+                    try {
+                        cameraManager.setTorchMode(cameraId, true)
+                        delay(500)
+                        cameraManager.setTorchMode(cameraId, false)
+                        delay(500)
+                    } catch (e: CameraAccessException) {
+                        e.printStackTrace()
+                    }
+                }
             }
         }
     }
