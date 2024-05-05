@@ -3,6 +3,7 @@ package com.bitmavrick.lumolight.ui.tab.flashlight
 import android.content.Context
 import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraManager
+import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -55,25 +56,12 @@ class FlashlightViewModel : ViewModel() {
     }
 
 
-    fun toggleFlashLight(context: Context, status: Boolean){
+    fun toggleFlashLight(context: Context) {
         val cameraManager = ContextCompat.getSystemService(context, CameraManager::class.java) as CameraManager
         val cameraId = cameraManager.cameraIdList[0]
 
         viewModelScope.launch {
-            try {
-                cameraManager.setTorchMode(cameraId, status)
-            } catch (e: CameraAccessException) {
-                e.printStackTrace()
-            }
-        }
-    }
-
-    fun testTorch(context: Context){
-        val cameraManager = ContextCompat.getSystemService(context, CameraManager::class.java) as CameraManager
-        val cameraId = cameraManager.cameraIdList[0]
-
-        viewModelScope.launch {
-            for(i in 0 .. 100){
+            while (uiState.value.flashlightStatus) {
                 try {
                     cameraManager.setTorchMode(cameraId, true)
                     delay(500)
@@ -82,6 +70,19 @@ class FlashlightViewModel : ViewModel() {
                 } catch (e: CameraAccessException) {
                     e.printStackTrace()
                 }
+            }
+        }
+    }
+
+    fun toggleFlashLight2(context: Context, status: Boolean){
+        val cameraManager = ContextCompat.getSystemService(context, CameraManager::class.java) as CameraManager
+        val cameraId = cameraManager.cameraIdList[0]
+
+        viewModelScope.launch {
+            try {
+                cameraManager.setTorchMode(cameraId, status)
+            } catch (e: CameraAccessException) {
+                e.printStackTrace()
             }
         }
     }

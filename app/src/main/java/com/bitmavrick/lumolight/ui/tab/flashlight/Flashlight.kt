@@ -43,6 +43,7 @@ fun FlashlightScreen(
     val context = LocalContext.current
     val uiState = viewModel.uiState.collectAsState().value
 
+
     if(uiState.flashlightStatus){
         AlertDialog(
             onDismissRequest = {},
@@ -52,7 +53,10 @@ fun FlashlightScreen(
             dismissButton = {
                 CustomFilledButton(
                     buttonText = "STOP",
-                    onClick = { viewModel.updateFlashlightAlert(false) }
+                    onClick = {
+                        viewModel.toggleFlashLight(context)
+                        viewModel.updateFlashlightAlert(false)
+                    }
                 )
             }
         )
@@ -239,8 +243,8 @@ fun FlashlightScreen(
         CustomFilledButton(
             buttonText = if(uiState.flashlightStatus) "Running" else "START",
             onClick = {
-                viewModel.testTorch(context)
                 viewModel.updateFlashlightAlert(true)
+                viewModel.toggleFlashLight(context)
             }
         )
     }
