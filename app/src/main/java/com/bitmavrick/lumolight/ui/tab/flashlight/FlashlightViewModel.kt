@@ -3,7 +3,6 @@ package com.bitmavrick.lumolight.ui.tab.flashlight
 import android.content.Context
 import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraManager
-import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -44,7 +43,6 @@ class FlashlightViewModel : ViewModel() {
             )
         }
     }
-
      */
 
     fun updateFlashlightAlert(value : Boolean){
@@ -60,8 +58,6 @@ class FlashlightViewModel : ViewModel() {
         val cameraManager = ContextCompat.getSystemService(context, CameraManager::class.java) as CameraManager
         val cameraId = cameraManager.cameraIdList[0]
 
-        // val bpm = 60000L / uiState.value.flashlightBpmValue.toLong()
-
         viewModelScope.launch {
             if(uiState.value.flashlightBpmValue == 0){
                 try {
@@ -70,12 +66,13 @@ class FlashlightViewModel : ViewModel() {
                     e.printStackTrace()
                 }
             }else{
+                val bpm = 60000L / uiState.value.flashlightBpmValue.toLong()
                 while (uiState.value.flashlightStatus) {
                     try {
                         cameraManager.setTorchMode(cameraId, true)
-                        delay(500)
+                        delay(bpm / 2)
                         cameraManager.setTorchMode(cameraId, false)
-                        delay(500)
+                        delay(bpm / 2)
                     } catch (e: CameraAccessException) {
                         e.printStackTrace()
                     }
