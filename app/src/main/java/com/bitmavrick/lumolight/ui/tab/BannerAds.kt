@@ -1,5 +1,6 @@
 package com.bitmavrick.lumolight.ui.tab
 
+/*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.viewinterop.AndroidView
 import com.bitmavrick.lumolight.util.Ads
@@ -17,3 +18,5 @@ fun BannerAd(){
         }
     })
 }
+
+*/

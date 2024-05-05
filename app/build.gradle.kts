@@ -76,8 +76,8 @@ dependencies {
     implementation(libs.androidx.material.icon.extended)
     implementation(libs.androidx.navigation.compose)
 
-    // Google Ads
-    implementation(libs.play.services.ads)
+    // Google Ads (for future)
+    // implementation(libs.play.services.ads)
 
     // Dagger hilt
     implementation(libs.hilt.android)

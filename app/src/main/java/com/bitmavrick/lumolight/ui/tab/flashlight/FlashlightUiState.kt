@@ -7,5 +7,5 @@ data class FlashlightUiState (
     val flashlightBpmValue : Int = 0,
     val flashlightIntensityIndex : Int = 0,
     val flashlightIntensityValue : String = "LOW",
-    val flashlightStatus : Boolean = false // On or off
+    val flashlightStatus : Boolean = false
 )
