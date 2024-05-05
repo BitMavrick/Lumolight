@@ -19,7 +19,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.toColorInt
@@ -29,6 +28,7 @@ import com.bitmavrick.lumolight.system.KeepScreenOn
 import com.bitmavrick.lumolight.system.SetBrightness
 import com.bitmavrick.lumolight.ui.tab.CustomOutlinedButton
 import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashUiState
+import com.bitmavrick.lumolight.util.formatDuration
 import kotlinx.coroutines.delay
 
 @Composable
@@ -75,7 +75,7 @@ fun FlashScreen(
                 ) {
                     if(time != -1){
                         Text(
-                            text = formatTime(time),
+                            text = formatDuration(time),
                             color = MaterialTheme.colorScheme.primary,
                         )
                     }
@@ -89,13 +89,6 @@ fun FlashScreen(
             }
         }
     )
-}
-
-@SuppressLint("DefaultLocale")
-fun formatTime(seconds: Int): String {
-    val minutes = seconds / 60
-    val remainingSeconds = seconds % 60
-    return String.format("%02d:%02d", minutes, remainingSeconds)
 }
 
 @Preview(showBackground = true, showSystemUi = true)

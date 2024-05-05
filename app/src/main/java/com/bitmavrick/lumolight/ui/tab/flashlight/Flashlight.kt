@@ -23,7 +23,12 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -34,6 +39,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bitmavrick.lumolight.ui.tab.CustomFilledButton
 import com.bitmavrick.lumolight.util.BpmValue
 import com.bitmavrick.lumolight.util.TimeDuration
+import com.bitmavrick.lumolight.util.formatDuration
+import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -43,19 +50,39 @@ fun FlashlightScreen(
     val context = LocalContext.current
     val uiState = viewModel.uiState.collectAsState().value
 
+    var time by remember { mutableIntStateOf(uiState.flashlightDurationMin) }
 
     if(uiState.flashlightStatus){
+
+        if(uiState.flashlightDurationMin != -1){
+
+            time = uiState.flashlightDurationMin * 60
+
+            LaunchedEffect(key1 = Unit) {
+                for (i in 1..uiState.flashlightDurationMin * 60) {
+                    delay(1000L)
+                    time--
+                }
+                viewModel.toggleFlashLight(context, false)
+                viewModel.updateFlashlightAlert(false)
+                time = uiState.flashlightDurationMin * 60
+            }
+        }
+
         AlertDialog(
             onDismissRequest = {},
             confirmButton = {},
             title = { Text(text = "Flashlight Active") },
-            text = { Text(text = "Are you sure you want to turn off the flashlight?") },
+            text = { Text(text = formatDuration(time)) },
             dismissButton = {
                 CustomFilledButton(
                     buttonText = "STOP",
                     onClick = {
                         viewModel.toggleFlashLight(context, false)
                         viewModel.updateFlashlightAlert(false)
+                        if(uiState.flashlightDurationMin != -1){
+                            time = uiState.flashlightDurationMin * 60
+                        }
                     }
                 )
             }
