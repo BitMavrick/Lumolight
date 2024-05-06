@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.Comment
 import androidx.compose.material.icons.filled.CameraRear
 import androidx.compose.material.icons.filled.DynamicForm
 import androidx.compose.material.icons.filled.PhoneIphone
@@ -18,14 +17,11 @@ import androidx.compose.material.icons.outlined.DynamicForm
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material.icons.outlined.PowerSettingsNew
-import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material.icons.outlined.Smartphone
-import androidx.compose.material.icons.outlined.Spoke
-import androidx.compose.material.icons.outlined.StarRate
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LeadingIconTab
@@ -96,6 +92,9 @@ fun HomeScreen(
                 onClickSettings = {
                     // navController.navigate(Screen.SettingScreen.route)
                     exitProcess(0)
+                },
+                onClickAbout = {
+                    homeOnEvent(HomeUiEvent.updateShowAboutDialog(true))
                 }
             )
         },
@@ -113,6 +112,17 @@ fun HomeScreen(
                     homeOnEvent(HomeUiEvent.updateTab(pagerState.currentPage))
                 }
             }
+
+            if(homeUiState.showAboutDialog){
+                AlertDialog(
+                    title = {
+                        Text(text = "About Lumolight")
+                    },
+                    onDismissRequest = { homeOnEvent(HomeUiEvent.updateShowAboutDialog(false))  },
+                    confirmButton = {  }
+                )
+            }
+
 
             Column(
                 Modifier
@@ -183,6 +193,7 @@ fun HomeScreen(
 @Composable
 fun HomeScreenTopBar(
     onClickSettings: () -> Unit,
+    onClickAbout : () -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
 
@@ -230,6 +241,19 @@ fun HomeScreenTopBar(
                 expanded = expanded,
                 onDismissRequest = { expanded = false }
             ) {
+
+                DropdownMenuItem(
+                    text = {
+                        Text(text = "About")
+                    },
+                    onClick = { onClickAbout() },
+                    leadingIcon = {
+                        Icon(imageVector = Icons.Outlined.Info,
+                            contentDescription = null)
+                    }
+                )
+
+                /*
                 DropdownMenuItem(
                     text = {
                         Text(text = "Feedback")
@@ -286,6 +310,8 @@ fun HomeScreenTopBar(
                             contentDescription = null)
                     }
                 )
+
+                 */
             }
         }
     )
