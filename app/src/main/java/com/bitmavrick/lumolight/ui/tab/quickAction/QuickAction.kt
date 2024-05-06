@@ -59,7 +59,7 @@ fun QuickActionScreen(
                 horizontalArrangement = Arrangement.Center
             ) {
                 // BannerAd()
-                Text(text = "Ad Placeholder")
+                //Text(text = "Ad Placeholder")
             }
 
             Row (
