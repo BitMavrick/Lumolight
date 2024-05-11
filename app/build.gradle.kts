@@ -13,7 +13,7 @@ android {
         applicationId = "com.bitmavrick.lumolight"
         minSdk = 24
         targetSdk = 34
-        versionCode = 2
+        versionCode = 3
         versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -77,7 +77,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
 
     // Google Ads (for future)
-    // implementation(libs.play.services.ads)
+    implementation(libs.play.services.ads)
 
     // Dagger hilt
     implementation(libs.hilt.android)
