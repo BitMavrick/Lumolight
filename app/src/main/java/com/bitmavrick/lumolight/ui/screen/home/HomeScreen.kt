@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CameraRear
@@ -28,23 +29,26 @@ import androidx.compose.material3.LeadingIconTab
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.TabRow
+import androidx.compose.material3.TabPosition
+import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Constraints
+import androidx.compose.ui.unit.lerp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -57,6 +61,7 @@ import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashScreen
 import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashViewModel
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 import com.bitmavrick.lumolight.util.getAppVersion
+import kotlinx.coroutines.launch
 import kotlin.system.exitProcess
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -88,6 +93,7 @@ fun HomeScreen(
     )
 
     val snackBarHostState = remember { SnackbarHostState() }
+    val coroutineScope = rememberCoroutineScope()
 
     Scaffold (
         topBar = {
@@ -104,16 +110,6 @@ fun HomeScreen(
         content = { innerPadding ->
             val pagerState = rememberPagerState {
                 tabItems.size
-            }
-
-            LaunchedEffect(homeUiState.selectedTabIndex) {
-                pagerState.animateScrollToPage(homeUiState.selectedTabIndex)
-            }
-
-            LaunchedEffect(pagerState.currentPage, pagerState.isScrollInProgress) {
-                if(!pagerState.isScrollInProgress){
-                    homeOnEvent(HomeUiEvent.updateTab(pagerState.currentPage))
-                }
             }
 
             if(homeUiState.showAboutDialog){
@@ -140,12 +136,20 @@ fun HomeScreen(
                     .padding(innerPadding)
                     .fillMaxSize()
             ) {
-                TabRow(selectedTabIndex = homeUiState.selectedTabIndex) {
+                CustomTabRow(
+                    selectedTabIndex = homeUiState.selectedTabIndex,
+                    indicator = { tabPositions ->
+                        TabRowDefaults.Indicator(
+                            modifier = Modifier.pagerTabIndicatorOffset(pagerState, tabPositions)
+                        )
+                    }
+                ) {
                     tabItems.forEachIndexed{index, item ->
                         LeadingIconTab(
                             selected = index == homeUiState.selectedTabIndex,
                             onClick = {
                                 homeOnEvent(HomeUiEvent.updateTab(index))
+                                coroutineScope.launch { pagerState.animateScrollToPage(index) }
                             },
                             text = {
                                 Text(
@@ -173,7 +177,6 @@ fun HomeScreen(
                 ) {index ->
                     Box(
                         modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center
                     ) {
                         when(index){
                             0 -> QuickActionScreen(
@@ -344,5 +347,51 @@ fun HomeScreenPreview() {
             homeUiState = HomeUiState(),
             homeOnEvent = {}
         )
+    }
+}
+
+
+@OptIn(ExperimentalFoundationApi::class)
+private fun Modifier.pagerTabIndicatorOffset(
+    pagerState: PagerState,
+    tabPositions: List<TabPosition>,
+    pageIndexMapping: (Int) -> Int = { it },
+) = layout { measurable, constraints ->
+    if (tabPositions.isEmpty()) {
+        layout(constraints.maxWidth, 0) {}
+    } else {
+        val currentPage = minOf(tabPositions.lastIndex, pageIndexMapping(pagerState.currentPage))
+        val currentTab = tabPositions[currentPage]
+        val previousTab = tabPositions.getOrNull(currentPage - 1)
+        val nextTab = tabPositions.getOrNull(currentPage + 1)
+        val fraction = pagerState.currentPageOffsetFraction
+        val indicatorWidth = if (fraction > 0 && nextTab != null) {
+            lerp(currentTab.width, nextTab.width, fraction).roundToPx()
+        } else if (fraction < 0 && previousTab != null) {
+            lerp(currentTab.width, previousTab.width, -fraction).roundToPx()
+        } else {
+            currentTab.width.roundToPx()
+        }
+        val indicatorOffset = if (fraction > 0 && nextTab != null) {
+            lerp(currentTab.left, nextTab.left, fraction).roundToPx()
+        } else if (fraction < 0 && previousTab != null) {
+            lerp(currentTab.left, previousTab.left, -fraction).roundToPx()
+        } else {
+            currentTab.left.roundToPx()
+        }
+        val placeable = measurable.measure(
+            Constraints(
+                minWidth = indicatorWidth,
+                maxWidth = indicatorWidth,
+                minHeight = 0,
+                maxHeight = constraints.maxHeight
+            )
+        )
+        layout(constraints.maxWidth, maxOf(placeable.height, constraints.minHeight)) {
+            placeable.placeRelative(
+                indicatorOffset,
+                maxOf(constraints.minHeight - placeable.height, 0)
+            )
+        }
     }
 }
