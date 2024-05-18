@@ -13,8 +13,8 @@ android {
         applicationId = "com.bitmavrick.lumolight"
         minSdk = 24
         targetSdk = 34
-        versionCode = 4
-        versionName = "1.0.1"
+        versionCode = 5
+        versionName = "1.1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -77,7 +77,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
 
     // Google Ads (for future)
-    implementation(libs.play.services.ads)
+    // implementation(libs.play.services.ads)
 
     // Dagger hilt
     implementation(libs.hilt.android)
