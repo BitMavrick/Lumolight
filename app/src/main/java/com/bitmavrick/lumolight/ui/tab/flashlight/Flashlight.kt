@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEachIndexed
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bitmavrick.lumolight.ui.tab.CustomFilledButton
+import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionViewModel
 import com.bitmavrick.lumolight.util.BpmValue
 import com.bitmavrick.lumolight.util.TimeDuration
 import com.bitmavrick.lumolight.util.formatDuration
@@ -45,10 +46,11 @@ import kotlinx.coroutines.delay
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun FlashlightScreen(
-    viewModel: FlashlightViewModel
+    quickActionViewModel: QuickActionViewModel,
+    flashlightViewModel: FlashlightViewModel,
 ) {
     val context = LocalContext.current
-    val uiState = viewModel.uiState.collectAsState().value
+    val uiState = flashlightViewModel.uiState.collectAsState().value
 
     var time by remember { mutableIntStateOf(uiState.flashlightDurationMin) }
 
@@ -63,8 +65,8 @@ fun FlashlightScreen(
                     delay(1000L)
                     time--
                 }
-                viewModel.toggleFlashLight(context, false)
-                viewModel.updateFlashlightAlert(false)
+                flashlightViewModel.toggleFlashLight(context, false)
+                flashlightViewModel.updateFlashlightAlert(false)
                 time = uiState.flashlightDurationMin * 60
             }
         }
@@ -88,8 +90,9 @@ fun FlashlightScreen(
                 CustomFilledButton(
                     buttonText = "STOP",
                     onClick = {
-                        viewModel.toggleFlashLight(context, false)
-                        viewModel.updateFlashlightAlert(false)
+                        flashlightViewModel.toggleFlashLight(context, false)
+                        flashlightViewModel.updateFlashlightAlert(false)
+                        quickActionViewModel.stopStartButton()
                         if(uiState.flashlightDurationMin != -1){
                             time = uiState.flashlightDurationMin * 60
                         }
@@ -141,7 +144,7 @@ fun FlashlightScreen(
                                     .padding(horizontal = 4.dp)
                                     .align(alignment = Alignment.CenterVertically),
                                 selected = index == uiState.flashlightDurationIndex,
-                                onClick = { viewModel.updateFlashlightDuration(index, element.time) },
+                                onClick = { flashlightViewModel.updateFlashlightDuration(index, element.time) },
                                 label = { Text(element.duration) },
                                 leadingIcon = if(index == uiState.flashlightDurationIndex){
                                     {
@@ -195,7 +198,7 @@ fun FlashlightScreen(
                                     .padding(horizontal = 4.dp)
                                     .align(alignment = Alignment.CenterVertically),
                                 selected = index == uiState.flashlightBpmIndex,
-                                onClick = { viewModel.updateFlashlightBpm(index, element.value) },
+                                onClick = { flashlightViewModel.updateFlashlightBpm(index, element.value) },
                                 label = { Text(element.title) },
                                 leadingIcon = if(index == uiState.flashlightBpmIndex){
                                     {
@@ -280,8 +283,8 @@ fun FlashlightScreen(
         CustomFilledButton(
             buttonText = if(uiState.flashlightStatus) "Running" else "START",
             onClick = {
-                viewModel.updateFlashlightAlert(true)
-                viewModel.toggleFlashLight(context, true)
+                flashlightViewModel.updateFlashlightAlert(true)
+                flashlightViewModel.toggleFlashLight(context, true)
             }
         )
     }
@@ -291,5 +294,9 @@ fun FlashlightScreen(
 @Composable
 fun FlashlightScreenPreview(){
     val flashlightViewModel : FlashlightViewModel = viewModel()
-    FlashlightScreen(flashlightViewModel)
+    val quickActionViewModel : QuickActionViewModel = viewModel()
+    FlashlightScreen(
+        quickActionViewModel = quickActionViewModel,
+        flashlightViewModel = flashlightViewModel
+    )
 }

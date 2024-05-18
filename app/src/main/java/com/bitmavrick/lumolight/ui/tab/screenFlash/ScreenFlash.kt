@@ -34,6 +34,7 @@ import androidx.compose.ui.util.fastForEachIndexed
 import androidx.core.graphics.toColorInt
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bitmavrick.lumolight.ui.tab.CustomFilledButton
+import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionViewModel
 import com.bitmavrick.lumolight.util.BrightnessValue
 import com.bitmavrick.lumolight.util.ColorValue
 import com.bitmavrick.lumolight.util.TimeDuration
@@ -41,10 +42,10 @@ import com.bitmavrick.lumolight.util.TimeDuration
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun ScreenFlashScreen(
-    viewModel: ScreenFlashViewModel,
+    screenFlashViewModel: ScreenFlashViewModel,
     onClickStart: () -> Unit
 ) {
-    val uiState = viewModel.uiState.collectAsState().value
+    val uiState = screenFlashViewModel.uiState.collectAsState().value
 
     Column(
         Modifier
@@ -89,7 +90,7 @@ fun ScreenFlashScreen(
                                     .padding(horizontal = 4.dp)
                                     .align(alignment = Alignment.CenterVertically),
                                 selected = index == uiState.screenFlashDurationIndex,
-                                onClick = { viewModel.updateScreenFlashDuration(index, element.time) },
+                                onClick = { screenFlashViewModel.updateScreenFlashDuration(index, element.time) },
                                 label = { Text(element.duration) },
                                 leadingIcon = if(index == uiState.screenFlashDurationIndex){
                                     {
@@ -146,7 +147,7 @@ fun ScreenFlashScreen(
                                     .padding(horizontal = 4.dp)
                                     .align(alignment = Alignment.CenterVertically),
                                 selected = index == uiState.screenFlashColorIndex,
-                                onClick = { viewModel.updateScreenFlashColor(index, element.code) },
+                                onClick = { screenFlashViewModel.updateScreenFlashColor(index, element.code) },
                                 label = { Text(element.name) },
                                 leadingIcon = if(index == uiState.screenFlashColorIndex){
                                     {
@@ -208,7 +209,7 @@ fun ScreenFlashScreen(
                                     .padding(horizontal = 4.dp)
                                     .align(alignment = Alignment.CenterVertically),
                                 selected = index == uiState.screenFlashBrightnessIndex,
-                                onClick = { viewModel.updateScreenFlashBrightness(index, element.value) },
+                                onClick = { screenFlashViewModel.updateScreenFlashBrightness(index, element.value) },
                                 label = { Text(element.title) },
                                 leadingIcon = if(index == uiState.screenFlashBrightnessIndex){
                                     {
@@ -241,7 +242,7 @@ fun ScreenFlashScreen(
 fun ScreenFlashScreenPreview(){
     val screenFlashViewModel : ScreenFlashViewModel = viewModel()
     ScreenFlashScreen(
-        viewModel = screenFlashViewModel,
+        screenFlashViewModel = screenFlashViewModel,
         onClickStart = {}
     )
 }
