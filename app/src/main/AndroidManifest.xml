@@ -30,7 +30,7 @@
             android:screenOrientation="portrait"
             android:exported="true"
             android:theme="@style/Theme.Lumolight"
-            tools:ignore="DiscouragedApi">
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

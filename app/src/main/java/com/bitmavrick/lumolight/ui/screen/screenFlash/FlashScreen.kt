@@ -1,6 +1,5 @@
 package com.bitmavrick.lumolight.ui.screen.screenFlash
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
