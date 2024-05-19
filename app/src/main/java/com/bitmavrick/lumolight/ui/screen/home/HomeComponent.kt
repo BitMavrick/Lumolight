@@ -31,9 +31,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.bitmavrick.lumolight.util.openUrl
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -41,6 +43,7 @@ fun HomeScreenTopBar(
     onClickSettings: () -> Unit,
     onClickAbout : () -> Unit
 ) {
+    val context = LocalContext.current
     var expanded by remember { mutableStateOf(false) }
 
     TopAppBar(
@@ -127,7 +130,12 @@ fun HomeScreenTopBar(
                     text = {
                         Text(text = "Privacy Policy")
                     },
-                    onClick = { /*TODO*/ },
+                    onClick = {
+                        openUrl(
+                            context = context,
+                            url = "https://bitmavrick.github.io/Lumolight-Web/privacy"
+                        )
+                    },
                     leadingIcon = {
                         Icon(imageVector = Icons.Outlined.PrivacyTip,
                             contentDescription = null)
