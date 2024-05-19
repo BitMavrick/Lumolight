@@ -83,7 +83,8 @@ fun FlashScreen(
                     buttonText = "Close",
                     onClick = {
                         onClose()
-                    }
+                    },
+                    color = MaterialTheme.colorScheme.primary
                 )
             }
         }

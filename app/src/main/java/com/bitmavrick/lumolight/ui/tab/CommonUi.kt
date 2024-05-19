@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -19,7 +20,8 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun CustomOutlinedButton(
     buttonText : String,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    color: Color = Color.Red
 ) {
     val customShape = RoundedCornerShape(percent = 15)
 
@@ -29,7 +31,7 @@ fun CustomOutlinedButton(
             .height(48.dp)
             .border(
                 width = 2.dp,
-                color = MaterialTheme.colorScheme.primary,
+                color = color,
                 shape = customShape
             )
             .clickable { onClick() },
@@ -37,7 +39,7 @@ fun CustomOutlinedButton(
     ) {
         Text(
             text = buttonText.uppercase(),
-            color = MaterialTheme.colorScheme.primary,
+            color = color,
             fontWeight = FontWeight.Bold
         )
     }

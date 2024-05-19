@@ -10,6 +10,7 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.Comment
 import androidx.compose.material.icons.filled.CameraRear
 import androidx.compose.material.icons.filled.DynamicForm
 import androidx.compose.material.icons.filled.PhoneIphone
@@ -17,12 +18,17 @@ import androidx.compose.material.icons.outlined.CameraRear
 import androidx.compose.material.icons.outlined.DynamicForm
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.MoreVert
-import androidx.compose.material.icons.outlined.PowerSettingsNew
+import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material.icons.outlined.Smartphone
+import androidx.compose.material.icons.outlined.Sos
+import androidx.compose.material.icons.outlined.Spoke
+import androidx.compose.material.icons.outlined.StarRate
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LeadingIconTab
@@ -63,7 +69,6 @@ import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashViewModel
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 import com.bitmavrick.lumolight.util.getAppVersion
 import kotlinx.coroutines.launch
-import kotlin.system.exitProcess
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -100,8 +105,7 @@ fun HomeScreen(
         topBar = {
             HomeScreenTopBar(
                 onClickSettings = {
-                    // navController.navigate(Screen.SettingScreen.route)
-                    exitProcess(0)
+                    navController.navigate(Screen.SettingScreen.route)
                 },
                 onClickAbout = {
                     homeOnEvent(HomeUiEvent.updateShowAboutDialog(true))
@@ -230,7 +234,7 @@ fun HomeScreenTopBar(
         },
         actions = {
 
-            /* ! SOS feature will not be implemented in first release
+
             IconButton(
                 onClick = { /* TODO */ }
             ) {
@@ -239,13 +243,13 @@ fun HomeScreenTopBar(
                     contentDescription = null
                 )
             }
-            */
+
 
             IconButton(
                 onClick = { onClickSettings() }
             ) {
                 Icon(
-                    imageVector = Icons.Outlined.PowerSettingsNew,
+                    imageVector = Icons.Outlined.Settings,
                     contentDescription = null
                 )
             }
@@ -276,7 +280,7 @@ fun HomeScreenTopBar(
                     }
                 )
 
-                /*
+
                 DropdownMenuItem(
                     text = {
                         Text(text = "Feedback")
@@ -334,7 +338,7 @@ fun HomeScreenTopBar(
                     }
                 )
 
-                 */
+
             }
         }
     )

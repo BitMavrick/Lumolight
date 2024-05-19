@@ -24,8 +24,8 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = true // Enable it true really improved the overall app performance
-            isShrinkResources = true // it should also improve the performance but I did not notice any.
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
