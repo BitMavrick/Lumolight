@@ -133,7 +133,7 @@ fun HomeScreenTopBar(
                     onClick = {
                         openUrl(
                             context = context,
-                            url = "https://bitmavrick.github.io/Lumolight-Web/privacy"
+                            url = "https://bitmavrick.github.io/privacy-policy/lumolight.html"
                         )
                     },
                     leadingIcon = {
@@ -179,7 +179,7 @@ fun CustomTabRow(
     containerColor: Color = MaterialTheme.colorScheme.surfaceColorAtElevation(TabRowElevation),
     contentColor: Color = MaterialTheme.colorScheme.primary,
     indicator: @Composable (tabPositions: List<TabPosition>) -> Unit = @Composable { tabPositions ->
-        TabRowDefaults.Indicator(
+        TabRowDefaults.SecondaryIndicator(
             modifier = Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex])
         )
     },

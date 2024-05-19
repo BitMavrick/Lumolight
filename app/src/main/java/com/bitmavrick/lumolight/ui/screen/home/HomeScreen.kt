@@ -131,7 +131,7 @@ fun HomeScreen(
                 CustomTabRow(
                     selectedTabIndex = homeUiState.selectedTabIndex,
                     indicator = { tabPositions ->
-                        TabRowDefaults.Indicator(
+                        TabRowDefaults.SecondaryIndicator(
                             modifier = Modifier.pagerTabIndicatorOffset(pagerState, tabPositions)
                         )
                     }
