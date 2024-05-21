@@ -76,6 +76,9 @@ dependencies {
     implementation(libs.androidx.material.icon.extended)
     implementation(libs.androidx.navigation.compose)
 
+    // Preferences Datastore
+    implementation(libs.androidx.datastore.preferences)
+
     // Google Ads (for future)
     // implementation(libs.play.services.ads)
 

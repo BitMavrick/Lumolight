@@ -1,5 +1,6 @@
 [versions]
 agp = "8.4.0"
+datastorePreferences = "1.1.1"
 hiltAndroid = "2.50"
 kotlin = "1.9.23"
 coreKtx = "1.13.1"
@@ -19,6 +20,7 @@ playServicesAds = "23.1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroid" }

@@ -6,12 +6,19 @@ import android.hardware.camera2.CameraManager
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bitmavrick.lumolight.data.UserPreferencesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class QuickActionViewModel : ViewModel(){
+
+@HiltViewModel
+class QuickActionViewModel @Inject constructor (
+    private val userPreferencesRepository: UserPreferencesRepository
+) : ViewModel(){
     private val _uiState = MutableStateFlow(QuickActionUiState())
     val uiState : StateFlow<QuickActionUiState> = _uiState
 
