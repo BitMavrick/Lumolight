@@ -8,7 +8,6 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-
 private const val USER_PREFERENCES_NAME = "user_preferences"
 val Context.dataStore by preferencesDataStore(name = USER_PREFERENCES_NAME)
 
