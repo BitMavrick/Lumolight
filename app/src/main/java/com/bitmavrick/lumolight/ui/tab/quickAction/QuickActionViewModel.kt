@@ -44,6 +44,7 @@ class QuickActionViewModel @Inject constructor (
                 segmentedButtonSelectedIndex = value
             )
         }
+        updateSegmentedButtonPreference(value)
     }
 
     fun activeStartButton(){
@@ -73,6 +74,24 @@ class QuickActionViewModel @Inject constructor (
                 cameraManager.setTorchMode(cameraId, status)
             } catch (e: CameraAccessException) {
                 e.printStackTrace()
+            }
+        }
+    }
+
+    private fun updateSegmentedButtonPreference(value: Int){
+        viewModelScope.launch {
+            userPreferencesRepository.saveSegmentedButtonValue(value)
+        }
+    }
+
+    init {
+        viewModelScope.launch {
+            userPreferencesRepository.segmentedButtonValue.collect{value ->
+                _uiState.update {
+                    it.copy(
+                        segmentedButtonSelectedIndex = value
+                    )
+                }
             }
         }
     }

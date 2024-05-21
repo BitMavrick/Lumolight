@@ -9,7 +9,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.bitmavrick.lumolight.activity.core.CoreViewModel
+import com.bitmavrick.lumolight.activity.core.InitialLoadingScreen
 import com.bitmavrick.lumolight.activity.core.Lumolight
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,13 +30,20 @@ class MainActivity : ComponentActivity() {
         )
 
         setContent {
+            val coreViewModel : CoreViewModel = viewModel()
+            val coreUiState = coreViewModel.uiState.collectAsState().value
+
             LumolightTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
                     LumolightTheme {
-                        Lumolight()
+                        if(coreUiState.appLoading){
+                            Lumolight()
+                        }else{
+                            InitialLoadingScreen()
+                        }
                     }
                 }
             }
