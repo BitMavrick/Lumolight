@@ -40,7 +40,7 @@ fun SettingScreen(
         content = { innerPadding ->
             LazyColumn(
                 contentPadding = innerPadding,
-                verticalArrangement = Arrangement.spacedBy(4.dp)
+                verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 val list = (0..20).map { it.toString() }
                 items(count = list.size) {

@@ -37,7 +37,7 @@ fun SettingsItem(
         Modifier
             .clickable(onClick = onClick)
             .fillMaxWidth()
-            .height(80.dp)
+            .height(84.dp)
     ){
 
         Column(
@@ -53,7 +53,7 @@ fun SettingsItem(
         }
 
         Column (
-            Modifier.fillMaxHeight(),
+            Modifier.fillMaxHeight().weight(1f),
             verticalArrangement = Arrangement.Center
         ){
             Text(
@@ -64,12 +64,10 @@ fun SettingsItem(
             )
             Text(
                 text = subTitle,
-                maxLines = 1,
+                // maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
         }
-
-        Spacer(modifier = Modifier.weight(1f))
 
         if(showSwitch){
             Column(
@@ -93,6 +91,8 @@ fun SettingsItemPreview() {
         title = "Package Type",
         subTitle = "release",
         leadingIcon = Icons.Outlined.Cookie,
+        showSwitch = true,
+        switchChecked = true,
         onClick = {}
     )
 }
