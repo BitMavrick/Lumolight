@@ -18,7 +18,6 @@ import com.bitmavrick.lumolight.activity.core.Lumolight
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
