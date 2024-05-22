@@ -59,7 +59,9 @@ fun Lumolight(
         }
 
         composable(route = Screen.SettingScreen.route){
-            SettingScreen(navController = navController)
+            SettingScreen(
+                onClickBack = { navController.popBackStack() }
+            )
         }
     }
 }

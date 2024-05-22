@@ -64,7 +64,8 @@ fun SettingsItem(
             )
             Text(
                 text = subTitle,
-                // maxLines = 1,
+                style = MaterialTheme.typography.bodyMedium,
+                maxLines = 2,
                 overflow = TextOverflow.Ellipsis
             )
         }

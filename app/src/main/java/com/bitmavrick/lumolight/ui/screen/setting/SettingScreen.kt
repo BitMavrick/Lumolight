@@ -4,7 +4,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
-import androidx.compose.material.icons.outlined.Cookie
+import androidx.compose.material.icons.outlined.ColorLens
+import androidx.compose.material.icons.outlined.DynamicForm
+import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material.icons.outlined.Sos
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -19,14 +22,12 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingScreen(
-    navController: NavController
+    onClickBack: () -> Unit
 ) {
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     Scaffold (
@@ -34,7 +35,7 @@ fun SettingScreen(
         topBar = {
             SettingScreenTopBar(
                 scrollBehavior = scrollBehavior,
-                onClickBack = { navController.popBackStack() }
+                onClickBack = { onClickBack() }
             )
         },
         content = { innerPadding ->
@@ -42,13 +43,42 @@ fun SettingScreen(
                 contentPadding = innerPadding,
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                val list = (0..20).map { it.toString() }
-                items(count = list.size) {
+                item {
                     SettingsItem(
-                        title = "Package Type",
-                        subTitle = "release",
-                        leadingIcon = Icons.Outlined.Cookie,
+                        title = "Appearance",
+                        subTitle = "Configure application appearance",
+                        leadingIcon = Icons.Outlined.ColorLens,
+                        onClick = {}
+                    )
+                }
+
+                item {
+                    SettingsItem(
+                        title = "Save Quick Action",
+                        subTitle = "Save the last selected status",
+                        leadingIcon = Icons.Outlined.DynamicForm,
                         showSwitch = true,
+                        switchChecked = true,
+                        onClick = {}
+                    )
+                }
+
+                item {
+                    SettingsItem(
+                        title = "Show SOS Button",
+                        subTitle = "Show SOS button on the top bar",
+                        leadingIcon = Icons.Outlined.Sos,
+                        showSwitch = true,
+                        switchChecked = false,
+                        onClick = {}
+                    )
+                }
+
+                item {
+                    SettingsItem(
+                        title = "About",
+                        subTitle = "About application",
+                        leadingIcon = Icons.Outlined.Info,
                         onClick = {}
                     )
                 }
@@ -87,6 +117,8 @@ fun SettingScreenTopBar(
 @Composable
 fun SettingScreenPreview() {
     LumolightTheme {
-        SettingScreen(navController = rememberNavController())
+        SettingScreen(
+            onClickBack = {}
+        )
     }
 }
