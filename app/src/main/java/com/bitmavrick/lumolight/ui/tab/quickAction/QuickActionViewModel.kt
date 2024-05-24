@@ -10,6 +10,7 @@ import com.bitmavrick.lumolight.data.UserPreferencesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -23,21 +24,18 @@ class QuickActionViewModel @Inject constructor (
     val uiState : StateFlow<QuickActionUiState> = _uiState
 
     init {
+        // Combine both flows to update the UI state in one go
         viewModelScope.launch {
-            userPreferencesRepository.segmentedButtonValue.collect { value ->
-                _uiState.update {
-                    it.copy(
-                        segmentedButtonSelectedIndex = value
-                    )
-                }
-            }
-
-            userPreferencesRepository.saveQuickAction.collect { value ->
-                _uiState.update {
-                    it.copy(
-                        shouldSaveSegmentedButtonIndex = value
-                    )
-                }
+            combine(
+                userPreferencesRepository.segmentedButtonValue,
+                userPreferencesRepository.saveQuickAction
+            ) { segmentedButtonValue, shouldSaveSegmentedButtonIndex ->
+                QuickActionUiState(
+                    segmentedButtonSelectedIndex = segmentedButtonValue,
+                    shouldSaveSegmentedButtonIndex = shouldSaveSegmentedButtonIndex
+                )
+            }.collect { newState ->
+                _uiState.value = newState
             }
         }
     }
