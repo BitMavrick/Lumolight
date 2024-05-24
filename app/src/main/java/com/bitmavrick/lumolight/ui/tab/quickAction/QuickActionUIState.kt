@@ -5,4 +5,5 @@ data class QuickActionUiState (
     val startButtonLittleLoading: Boolean = false,
     val segmentedButtonSelectedIndex: Int = -1,
     val segmentedButtonDisable: Boolean = false,
+    val shouldSaveSegmentedButtonIndex: Boolean = false,
 )

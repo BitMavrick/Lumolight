@@ -21,7 +21,6 @@ class CoreViewModel @Inject constructor (
 
     init {
         viewModelScope.launch {
-            delay(300)
             userPreferencesRepository.appLoading.collect{ value ->
                 _uiState.update {
                     it.copy(
@@ -29,6 +28,7 @@ class CoreViewModel @Inject constructor (
                     )
                 }
             }
+            delay(300)
         }
     }
 }

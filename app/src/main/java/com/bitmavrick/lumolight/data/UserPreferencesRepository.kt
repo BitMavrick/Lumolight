@@ -27,7 +27,7 @@ class UserPreferencesRepository(context: Context) {
 
     val saveQuickAction: Flow<Boolean> = dataStore.data
         .map { preferences ->
-            preferences[SAVE_QUICK_ACTION_KEY] ?: false
+            preferences[SAVE_QUICK_ACTION_KEY] ?: true
         }
 
     val segmentedButtonValue: Flow<Int> = dataStore.data

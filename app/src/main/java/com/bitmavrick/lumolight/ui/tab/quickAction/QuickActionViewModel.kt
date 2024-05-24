@@ -22,6 +22,26 @@ class QuickActionViewModel @Inject constructor (
     private val _uiState = MutableStateFlow(QuickActionUiState())
     val uiState : StateFlow<QuickActionUiState> = _uiState
 
+    init {
+        viewModelScope.launch {
+            userPreferencesRepository.segmentedButtonValue.collect { value ->
+                _uiState.update {
+                    it.copy(
+                        segmentedButtonSelectedIndex = value
+                    )
+                }
+            }
+
+            userPreferencesRepository.saveQuickAction.collect { value ->
+                _uiState.update {
+                    it.copy(
+                        shouldSaveSegmentedButtonIndex = value
+                    )
+                }
+            }
+        }
+    }
+
     private fun activateSegmentedButton(){
         _uiState.update {
             it.copy(
@@ -80,18 +100,10 @@ class QuickActionViewModel @Inject constructor (
 
     private fun updateSegmentedButtonPreference(value: Int){
         viewModelScope.launch {
-            userPreferencesRepository.saveSegmentedButtonValue(value)
-        }
-    }
-
-    init {
-        viewModelScope.launch {
-            userPreferencesRepository.segmentedButtonValue.collect{value ->
-                _uiState.update {
-                    it.copy(
-                        segmentedButtonSelectedIndex = value
-                    )
-                }
+            if(uiState.value.shouldSaveSegmentedButtonIndex){
+                userPreferencesRepository.saveSegmentedButtonValue(value)
+            }else{
+                userPreferencesRepository.saveSegmentedButtonValue(0)
             }
         }
     }
