@@ -11,6 +11,7 @@ import com.bitmavrick.lumolight.ui.screen.home.HomeScreen
 import com.bitmavrick.lumolight.ui.screen.home.HomeViewModel
 import com.bitmavrick.lumolight.ui.screen.screenFlash.FlashScreen
 import com.bitmavrick.lumolight.ui.screen.setting.SettingScreen
+import com.bitmavrick.lumolight.ui.screen.setting.SettingViewModel
 import com.bitmavrick.lumolight.ui.tab.flashlight.FlashlightViewModel
 import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionViewModel
 import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashViewModel
@@ -26,7 +27,8 @@ fun Lumolight(
     homeViewModel: HomeViewModel = viewModel(),
     quickActionViewModel: QuickActionViewModel = viewModel(),
     screenFlashViewModel: ScreenFlashViewModel = viewModel(),
-    flashlightViewModel: FlashlightViewModel = viewModel()
+    flashlightViewModel: FlashlightViewModel = viewModel(),
+    settingViewModel: SettingViewModel = viewModel()
 ) {
     val navController = rememberNavController()
     val context = LocalContext.current
@@ -60,6 +62,8 @@ fun Lumolight(
 
         composable(route = Screen.SettingScreen.route){
             SettingScreen(
+                settingUiState = settingViewModel.uiState.collectAsState().value,
+                settingOnEvent = settingViewModel::onEvent,
                 onClickBack = { navController.popBackStack() }
             )
         }

@@ -203,19 +203,6 @@ data class TabItem(
     val selectedIcon: ImageVector
 )
 
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun HomeScreenPreview() {
-    LumolightTheme {
-        HomeScreen(
-            navController = rememberNavController(),
-            homeUiState = HomeUiState(),
-            homeOnEvent = {}
-        )
-    }
-}
-
-
 @OptIn(ExperimentalFoundationApi::class)
 private fun Modifier.pagerTabIndicatorOffset(
     pagerState: PagerState,
@@ -258,5 +245,17 @@ private fun Modifier.pagerTabIndicatorOffset(
                 maxOf(constraints.minHeight - placeable.height, 0)
             )
         }
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun HomeScreenPreview() {
+    LumolightTheme {
+        HomeScreen(
+            navController = rememberNavController(),
+            homeUiState = HomeUiState(),
+            homeOnEvent = {}
+        )
     }
 }

@@ -27,6 +27,8 @@ import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingScreen(
+    settingUiState: SettingUiState,
+    settingOnEvent: (SettingUiEvent) -> Unit,
     onClickBack: () -> Unit
 ) {
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
@@ -58,8 +60,10 @@ fun SettingScreen(
                         subTitle = "Save the last selected status",
                         leadingIcon = Icons.Outlined.DynamicForm,
                         showSwitch = true,
-                        switchChecked = true,
-                        onClick = {}
+                        switchChecked = settingUiState.saveQuickAction,
+                        onClick = {
+                            settingOnEvent(SettingUiEvent.UpdateSaveQuickActionSetting(!settingUiState.saveQuickAction))
+                        }
                     )
                 }
 
@@ -118,6 +122,8 @@ fun SettingScreenTopBar(
 fun SettingScreenPreview() {
     LumolightTheme {
         SettingScreen(
+            settingUiState = SettingUiState(),
+            settingOnEvent = {},
             onClickBack = {}
         )
     }
