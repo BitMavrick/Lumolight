@@ -27,6 +27,7 @@ class SettingViewModel @Inject constructor (
     private fun updateQuickActionPreference(value: Boolean){
         viewModelScope.launch {
             userPreferencesRepository.updateQuickActionPreference(value)
+            userPreferencesRepository.resetSegmentedButtonValue()
         }
     }
 

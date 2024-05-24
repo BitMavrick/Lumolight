@@ -46,5 +46,11 @@ class UserPreferencesRepository(context: Context) {
             preferences[SEGMENTED_BUTTON_VALUE_KEY] = value
         }
     }
+
+    suspend fun resetSegmentedButtonValue() {
+        dataStore.edit { preferences ->
+            preferences[SEGMENTED_BUTTON_VALUE_KEY] = 0
+        }
+    }
 }
 
