@@ -13,8 +13,9 @@ val Context.dataStore by preferencesDataStore(name = USER_PREFERENCES_NAME)
 
 class UserPreferencesRepository(context: Context) {
     companion object {
-        private val SEGMENTED_BUTTON_VALUE_KEY = intPreferencesKey("segmentedButtonValue")
         private val APP_LOADING_KEY = booleanPreferencesKey("appLoading")
+        private val SAVE_QUICK_ACTION_KEY = booleanPreferencesKey("saveQuickAction")
+        private val SEGMENTED_BUTTON_VALUE_KEY = intPreferencesKey("segmentedButtonValue")
     }
 
     private val dataStore = context.dataStore
@@ -24,10 +25,21 @@ class UserPreferencesRepository(context: Context) {
             preferences[APP_LOADING_KEY] ?: true
         }
 
+    val saveQuickAction: Flow<Boolean> = dataStore.data
+        .map { preferences ->
+            preferences[SAVE_QUICK_ACTION_KEY] ?: false
+        }
+
     val segmentedButtonValue: Flow<Int> = dataStore.data
         .map { preferences ->
             preferences[SEGMENTED_BUTTON_VALUE_KEY] ?: 0
         }
+
+    suspend fun updateQuickActionPreference(value: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[SAVE_QUICK_ACTION_KEY] = value
+        }
+    }
 
     suspend fun saveSegmentedButtonValue(value: Int) {
         dataStore.edit { preferences ->
