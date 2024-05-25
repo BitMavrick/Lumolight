@@ -24,7 +24,6 @@ class QuickActionViewModel @Inject constructor (
     val uiState : StateFlow<QuickActionUiState> = _uiState
 
     init {
-        // Combine both flows to update the UI state in one go
         viewModelScope.launch {
             combine(
                 userPreferencesRepository.segmentedButtonValue,
@@ -106,3 +105,5 @@ class QuickActionViewModel @Inject constructor (
         }
     }
 }
+
+// TODO: We have to pass onEvent instead of viewmodel, that way the preview will work
