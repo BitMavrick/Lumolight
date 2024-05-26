@@ -15,6 +15,7 @@ class UserPreferencesRepository(context: Context) {
     companion object {
         private val APP_LOADING_KEY = booleanPreferencesKey("appLoading")
         private val SAVE_QUICK_ACTION_KEY = booleanPreferencesKey("saveQuickAction")
+        private val SHOW_SOS_BUTTON_KEY = booleanPreferencesKey("showSosButton")
         private val SEGMENTED_BUTTON_VALUE_KEY = intPreferencesKey("segmentedButtonValue")
     }
 
@@ -23,6 +24,11 @@ class UserPreferencesRepository(context: Context) {
     val appLoading: Flow<Boolean> = dataStore.data
         .map { preferences ->
             preferences[APP_LOADING_KEY] ?: true
+        }
+
+    val showSosButton: Flow<Boolean> = dataStore.data
+        .map { preferences ->
+            preferences[SHOW_SOS_BUTTON_KEY] ?: true
         }
 
     val saveQuickAction: Flow<Boolean> = dataStore.data
@@ -38,6 +44,12 @@ class UserPreferencesRepository(context: Context) {
     suspend fun updateQuickActionPreference(value: Boolean) {
         dataStore.edit { preferences ->
             preferences[SAVE_QUICK_ACTION_KEY] = value
+        }
+    }
+
+    suspend fun updateShowSosButtonPreference(value: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[SHOW_SOS_BUTTON_KEY] = value
         }
     }
 

@@ -6,6 +6,7 @@ import com.bitmavrick.lumolight.data.UserPreferencesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,10 +17,30 @@ class SettingViewModel @Inject constructor (
     private val _uiState = MutableStateFlow(SettingUiState())
     val uiState : StateFlow<SettingUiState> = _uiState
 
+    init {
+        viewModelScope.launch {
+            combine(
+                userPreferencesRepository.saveQuickAction,
+                userPreferencesRepository.showSosButton
+            ){ saveQuickAction, showSosButton ->
+                SettingUiState(
+                    saveQuickAction = saveQuickAction,
+                    showSosButton = showSosButton
+                )
+            }.collect{newState ->
+                _uiState.value = newState
+            }
+        }
+    }
+
     fun onEvent(event: SettingUiEvent){
         when(event){
             is SettingUiEvent.UpdateSaveQuickActionSetting -> {
                 updateQuickActionPreference(event.saveQuickAction)
+            }
+
+            is SettingUiEvent.UpdateShowSosButtonPreference -> {
+                updateShowSosButtonPreference(event.sosButtonPreference)
             }
         }
     }
@@ -31,13 +52,9 @@ class SettingViewModel @Inject constructor (
         }
     }
 
-    init {
+    private fun updateShowSosButtonPreference(value: Boolean){
         viewModelScope.launch {
-            userPreferencesRepository.saveQuickAction.collect{ value ->
-                _uiState.value = _uiState.value.copy(
-                    saveQuickAction = value
-                )
-            }
+            userPreferencesRepository.updateShowSosButtonPreference(value)
         }
     }
 }
