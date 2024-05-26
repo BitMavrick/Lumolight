@@ -6,29 +6,29 @@ import com.bitmavrick.lumolight.activity.core.Screen
 
 fun startButtonActionHandler(
     navController: NavController,
-    viewModel: QuickActionViewModel,
     uiState: QuickActionUiState,
+    uiEvent: (QuickActionUiEvent) -> Unit,
     context: Context
 ){
     if (uiState.segmentedButtonSelectedIndex == 0 && !uiState.startButtonStatus){
         navController.navigate(Screen.FlashScreen.route)
-        viewModel.activeStartButton()
+        uiEvent(QuickActionUiEvent.ActiveStartButton)
     }
 
     if (uiState.segmentedButtonSelectedIndex == 1 && !uiState.startButtonStatus){
-        viewModel.toggleFlashLight(context, true)
+        uiEvent(QuickActionUiEvent.ToggleFlashLight(context, true))
         navController.navigate(Screen.FlashScreen.route)
-        viewModel.activeStartButton()
+        uiEvent(QuickActionUiEvent.ActiveStartButton)
     }
 
 
     if (uiState.segmentedButtonSelectedIndex == 2 && !uiState.startButtonStatus){
-        viewModel.toggleFlashLight(context, true)
-        viewModel.activeStartButton()
+        uiEvent(QuickActionUiEvent.ToggleFlashLight(context, true))
+        uiEvent(QuickActionUiEvent.ActiveStartButton)
     }
 
     if (uiState.segmentedButtonSelectedIndex == 2 && uiState.startButtonStatus){
-        viewModel.toggleFlashLight(context, false)
-        viewModel.stopStartButton()
+        uiEvent(QuickActionUiEvent.ToggleFlashLight(context, false))
+        uiEvent(QuickActionUiEvent.StopStartButton)
     }
 }

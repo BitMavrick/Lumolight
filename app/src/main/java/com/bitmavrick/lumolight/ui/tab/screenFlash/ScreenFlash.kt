@@ -34,7 +34,6 @@ import androidx.compose.ui.util.fastForEachIndexed
 import androidx.core.graphics.toColorInt
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bitmavrick.lumolight.ui.tab.CustomFilledButton
-import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionViewModel
 import com.bitmavrick.lumolight.util.BrightnessValue
 import com.bitmavrick.lumolight.util.ColorValue
 import com.bitmavrick.lumolight.util.TimeDuration

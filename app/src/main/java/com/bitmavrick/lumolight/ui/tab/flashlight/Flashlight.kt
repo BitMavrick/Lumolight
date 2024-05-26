@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEachIndexed
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bitmavrick.lumolight.ui.tab.CustomFilledButton
+import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionUiEvent
 import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionViewModel
 import com.bitmavrick.lumolight.util.BpmValue
 import com.bitmavrick.lumolight.util.TimeDuration
@@ -46,7 +47,7 @@ import kotlinx.coroutines.delay
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun FlashlightScreen(
-    quickActionViewModel: QuickActionViewModel,
+    quickActionUiEvent: (QuickActionUiEvent) -> Unit,
     flashlightViewModel: FlashlightViewModel,
 ) {
     val context = LocalContext.current
@@ -92,7 +93,7 @@ fun FlashlightScreen(
                     onClick = {
                         flashlightViewModel.toggleFlashLight(context, false)
                         flashlightViewModel.updateFlashlightAlert(false)
-                        quickActionViewModel.stopStartButton()
+                        quickActionUiEvent(QuickActionUiEvent.StopStartButton)
                         if(uiState.flashlightDurationMin != -1){
                             time = uiState.flashlightDurationMin * 60
                         }
@@ -294,9 +295,8 @@ fun FlashlightScreen(
 @Composable
 fun FlashlightScreenPreview(){
     val flashlightViewModel : FlashlightViewModel = viewModel()
-    val quickActionViewModel : QuickActionViewModel = viewModel()
     FlashlightScreen(
-        quickActionViewModel = quickActionViewModel,
+        quickActionUiEvent = {},
         flashlightViewModel = flashlightViewModel
     )
 }

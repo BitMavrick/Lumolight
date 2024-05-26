@@ -15,7 +15,6 @@ import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -23,7 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
@@ -32,12 +30,12 @@ import kotlinx.coroutines.launch
 @Composable
 fun QuickActionScreen(
     navController: NavController,
-    viewModel: QuickActionViewModel,
+    quickActionUiState: QuickActionUiState,
+    quickActionUiEvent: (QuickActionUiEvent) -> Unit,
     snakeBarHost: SnackbarHostState
 ) {
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
-    val uiState = viewModel.uiState.collectAsState().value
     val options = listOf("Screen", "Both", "Flash")
 
     Column(
@@ -69,12 +67,12 @@ fun QuickActionScreen(
                 horizontalArrangement = Arrangement.Center
             ){
                 QuickStartButton(
-                    uiState = uiState,
+                    uiState = quickActionUiState,
                     onClick = {
                         startButtonActionHandler(
                             navController = navController,
-                            viewModel = viewModel,
-                            uiState = uiState,
+                            uiState = quickActionUiState,
+                            uiEvent = quickActionUiEvent,
                             context = context
                         )
                     }
@@ -94,8 +92,8 @@ fun QuickActionScreen(
                     SegmentedButton(
                         shape = SegmentedButtonDefaults.itemShape(index = index, count = options.size),
                         onClick = {
-                            if(!uiState.segmentedButtonDisable){
-                                viewModel.updateSegmentedButtonIndex(index)
+                            if(!quickActionUiState.segmentedButtonDisable){
+                                quickActionUiEvent(QuickActionUiEvent.UpdateSegmentedButtonIndex(index))
                             }else{
                                 scope.launch {
                                     snakeBarHost.showSnackbar(
@@ -105,7 +103,7 @@ fun QuickActionScreen(
                                 }
                             }
                         },
-                        selected = index == uiState.segmentedButtonSelectedIndex
+                        selected = index == quickActionUiState.segmentedButtonSelectedIndex
                     ) {
                         Text(label)
                     }
@@ -120,11 +118,11 @@ fun QuickActionScreen(
 @Preview(showBackground = true)
 @Composable
 fun QuickActionScreenPreview(){
-    val quickActionViewModel : QuickActionViewModel = viewModel()
     val snackBarHostState = remember { SnackbarHostState() }
     QuickActionScreen(
         navController = rememberNavController(),
-        viewModel = quickActionViewModel,
+        quickActionUiState = QuickActionUiState(),
+        quickActionUiEvent = {},
         snakeBarHost = snackBarHostState
     )
 }

@@ -44,7 +44,8 @@ import com.bitmavrick.lumolight.activity.core.Screen
 import com.bitmavrick.lumolight.ui.tab.flashlight.FlashlightScreen
 import com.bitmavrick.lumolight.ui.tab.flashlight.FlashlightViewModel
 import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionScreen
-import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionViewModel
+import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionUiEvent
+import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionUiState
 import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashScreen
 import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashViewModel
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
@@ -57,7 +58,8 @@ fun HomeScreen(
     navController: NavController,
     homeUiState: HomeUiState,
     homeOnEvent: (HomeUiEvent) -> Unit,
-    quickActionViewModel : QuickActionViewModel = viewModel(),
+    quickActionUiState: QuickActionUiState,
+    quickActionUiEvent: (QuickActionUiEvent) -> Unit,
     screenFlashViewModel : ScreenFlashViewModel = viewModel(),
     flashlightViewModel : FlashlightViewModel = viewModel()
 ) {
@@ -173,7 +175,8 @@ fun HomeScreen(
                         when(index){
                             0 -> QuickActionScreen(
                                 navController = navController,
-                                viewModel = quickActionViewModel,
+                                quickActionUiState = quickActionUiState,
+                                quickActionUiEvent = quickActionUiEvent,
                                 snakeBarHost = snackBarHostState
                             )
                             1 -> ScreenFlashScreen(
@@ -181,7 +184,7 @@ fun HomeScreen(
                                 onClickStart = { navController.navigate(Screen.FlashScreen.route) }
                             )
                             2 -> FlashlightScreen(
-                                quickActionViewModel = quickActionViewModel,
+                                quickActionUiEvent = quickActionUiEvent,
                                 flashlightViewModel = flashlightViewModel
                             )
                         }
@@ -255,7 +258,9 @@ fun HomeScreenPreview() {
         HomeScreen(
             navController = rememberNavController(),
             homeUiState = HomeUiState(),
-            homeOnEvent = {}
+            homeOnEvent = {},
+            quickActionUiState = QuickActionUiState(),
+            quickActionUiEvent = {},
         )
     }
 }

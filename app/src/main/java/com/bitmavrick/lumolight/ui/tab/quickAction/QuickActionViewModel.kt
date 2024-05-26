@@ -39,6 +39,25 @@ class QuickActionViewModel @Inject constructor (
         }
     }
 
+    fun onEvent(event: QuickActionUiEvent){
+        when(event) {
+            is QuickActionUiEvent.ActiveStartButton -> {
+                activeStartButton()
+            }
+            is QuickActionUiEvent.StopStartButton -> {
+                stopStartButton()
+            }
+
+            is QuickActionUiEvent.UpdateSegmentedButtonIndex -> {
+                updateSegmentedButtonIndex(event.index)
+            }
+
+            is QuickActionUiEvent.ToggleFlashLight -> {
+                toggleFlashLight(event.context, event.isFlashLightOn)
+            }
+        }
+    }
+
     private fun activateSegmentedButton(){
         _uiState.update {
             it.copy(
@@ -55,7 +74,7 @@ class QuickActionViewModel @Inject constructor (
         }
     }
 
-    fun updateSegmentedButtonIndex(value : Int) {
+    private fun updateSegmentedButtonIndex(value : Int) {
         _uiState.update {
             it.copy(
                 segmentedButtonSelectedIndex = value
@@ -64,7 +83,7 @@ class QuickActionViewModel @Inject constructor (
         updateSegmentedButtonPreference(value)
     }
 
-    fun activeStartButton(){
+    private fun activeStartButton(){
         _uiState.update {
             it.copy(
                 startButtonStatus = true
@@ -73,7 +92,7 @@ class QuickActionViewModel @Inject constructor (
         deactivateSegmentedButton()
     }
 
-    fun stopStartButton(){
+    private fun stopStartButton(){
         _uiState.update {
             it.copy(
                 startButtonStatus = false
@@ -82,7 +101,7 @@ class QuickActionViewModel @Inject constructor (
         activateSegmentedButton()
     }
 
-    fun toggleFlashLight(context: Context, status: Boolean){
+    private fun toggleFlashLight(context: Context, status: Boolean){
         val cameraManager = ContextCompat.getSystemService(context, CameraManager::class.java) as CameraManager
         val cameraId = cameraManager.cameraIdList[0]
 
@@ -105,5 +124,3 @@ class QuickActionViewModel @Inject constructor (
         }
     }
 }
-
-// TODO: We have to pass onEvent instead of viewmodel, that way the preview will work
