@@ -40,6 +40,7 @@ import com.bitmavrick.lumolight.util.openUrl
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreenTopBar(
+    showSosButton : Boolean,
     onClickSettings: () -> Unit,
     onClickAbout : () -> Unit
 ) {
@@ -57,16 +58,16 @@ fun HomeScreenTopBar(
         },
         actions = {
 
-
-            IconButton(
-                onClick = { /* TODO */ }
-            ) {
-                Icon(
-                    imageVector = Icons.Outlined.Sos,
-                    contentDescription = null
-                )
+            if(showSosButton){
+                IconButton(
+                    onClick = { /* TODO */ }
+                ) {
+                    Icon(
+                        imageVector = Icons.Outlined.Sos,
+                        contentDescription = null
+                    )
+                }
             }
-
 
             IconButton(
                 onClick = { onClickSettings() }

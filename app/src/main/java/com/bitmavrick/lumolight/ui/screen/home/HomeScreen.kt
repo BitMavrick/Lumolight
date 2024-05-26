@@ -87,6 +87,7 @@ fun HomeScreen(
     Scaffold (
         topBar = {
             HomeScreenTopBar(
+                showSosButton = homeUiState.showSosButton,
                 onClickSettings = {
                     navController.navigate(Screen.SettingScreen.route)
                 },

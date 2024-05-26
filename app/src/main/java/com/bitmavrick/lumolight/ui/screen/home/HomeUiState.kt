@@ -1,6 +1,7 @@
 package com.bitmavrick.lumolight.ui.screen.home
 
 data class HomeUiState (
+    val showSosButton : Boolean = true,
     val selectedTabIndex: Int = 0,
     val topSOSButtonStatus: TopSOSButtonStatus = TopSOSButtonStatus.IDLE,
     val quickSOSCountingSeconds: Int? = null,
