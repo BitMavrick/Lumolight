@@ -4,41 +4,37 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Code
-import androidx.compose.material.icons.filled.LogoDev
-import androidx.compose.material.icons.outlined.Api
 import androidx.compose.material.icons.outlined.Code
-import androidx.compose.material.icons.outlined.ColorLens
 import androidx.compose.material.icons.outlined.Commit
-import androidx.compose.material.icons.outlined.Dataset
-import androidx.compose.material.icons.outlined.LogoDev
+import androidx.compose.material.icons.outlined.Cookie
 import androidx.compose.material.icons.outlined.PrivacyTip
 import androidx.compose.material.icons.outlined.Token
-import androidx.compose.material.icons.outlined.ViewCozy
 import androidx.compose.material.icons.outlined.Widgets
-import androidx.compose.material.icons.outlined.Wifi
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
+import com.bitmavrick.lumolight.util.AppConstants
+import com.bitmavrick.lumolight.util.getAppVersion
+import com.bitmavrick.lumolight.util.openUrl
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AboutScreen(
-    settingUiState: SettingUiState,
-    settingOnEvent: (SettingUiEvent) -> Unit,
     onClickBack: () -> Unit
 ) {
+    val context = LocalContext.current
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
 
     Scaffold (
-
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+
         topBar = {
             SettingScreenTopBar(
                 title = "About",
@@ -56,7 +52,7 @@ fun AboutScreen(
                 item {
                     SettingsItem(
                         title = "App name",
-                        subTitle = "Lumolight",
+                        subTitle = AppConstants.APP_NAME,
                         leadingIcon = Icons.Outlined.Widgets,
                         onClick = {}
                     )
@@ -65,7 +61,7 @@ fun AboutScreen(
                 item {
                     SettingsItem(
                         title = "Version",
-                        subTitle = "1.0.0",
+                        subTitle = getAppVersion(context), // Works only release mode
                         leadingIcon = Icons.Outlined.Commit,
                         onClick = {}
                     )
@@ -73,8 +69,17 @@ fun AboutScreen(
 
                 item {
                     SettingsItem(
+                        title = "Package type",
+                        subTitle = AppConstants.APP_PRODUCTION_MODE.name.lowercase(),
+                        leadingIcon = Icons.Outlined.Cookie,
+                        onClick = {}
+                    )
+                }
+
+                item {
+                    SettingsItem(
                         title = "Developer",
-                        subTitle = "BitMavrick",
+                        subTitle = AppConstants.DEVELOPER,
                         leadingIcon = Icons.Outlined.Code,
                         onClick = {}
                     )
@@ -89,18 +94,22 @@ fun AboutScreen(
                 item {
                     SettingsItem(
                         title = "Repository",
-                        subTitle = "github.com/lumolight",
+                        subTitle = AppConstants.REPOSITORY,
                         leadingIcon = Icons.Outlined.Token,
-                        onClick = {}
+                        onClick = {
+                            openUrl(context, AppConstants.REPOSITORY)
+                        }
                     )
                 }
 
                 item {
                     SettingsItem(
                         title = "Privacy policy",
-                        subTitle = "github.com/lumolight",
+                        subTitle = AppConstants.PRIVACY_POLICY,
                         leadingIcon = Icons.Outlined.PrivacyTip,
-                        onClick = {}
+                        onClick = {
+                            openUrl(context, AppConstants.PRIVACY_POLICY)
+                        }
                     )
                 }
             }
@@ -113,8 +122,6 @@ fun AboutScreen(
 fun AboutScreenPreview() {
     LumolightTheme {
         AboutScreen(
-            settingUiState = SettingUiState(),
-            settingOnEvent = {},
             onClickBack = {}
         )
     }

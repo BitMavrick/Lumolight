@@ -12,10 +12,14 @@ fun formatDuration(seconds: Int): String {
 }
 
 fun getAppVersion(context: Context): String {
-    return try {
-        val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
-        packageInfo.versionName
-    } catch (e: PackageManager.NameNotFoundException) {
-        "Unknown"
+    return if(AppConstants.APP_PRODUCTION_MODE == ProductionMode.RELEASE){
+        try {
+            val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
+            packageInfo.versionName
+        } catch (e: PackageManager.NameNotFoundException) {
+            "Unable to fetch"
+        }
+    }else {
+        "Unknown" // Due to the preview limitation we had to do this!
     }
 }

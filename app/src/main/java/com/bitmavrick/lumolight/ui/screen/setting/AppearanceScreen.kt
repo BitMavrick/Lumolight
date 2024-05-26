@@ -4,7 +4,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.ColorLens
+import androidx.compose.material.icons.outlined.DarkMode
+import androidx.compose.material.icons.outlined.SettingsBrightness
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarDefaults
@@ -14,6 +15,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppearanceScreen(
@@ -43,7 +45,7 @@ fun AppearanceScreen(
                     SettingsItem(
                         title = "App theme",
                         subTitle = "Follow System",
-                        leadingIcon = Icons.Outlined.ColorLens,
+                        leadingIcon = Icons.Outlined.DarkMode,
                         onClick = {}
                     )
                 }
@@ -52,7 +54,7 @@ fun AppearanceScreen(
                     SettingsItem(
                         title = "OLED theme",
                         subTitle = "Enable pure black background",
-                        leadingIcon = Icons.Outlined.ColorLens,
+                        leadingIcon = Icons.Outlined.SettingsBrightness,
                         showSwitch = true,
                         switchChecked = false,
                         onClick = {}

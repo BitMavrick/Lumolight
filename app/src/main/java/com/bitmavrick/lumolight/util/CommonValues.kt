@@ -1,4 +1,18 @@
 package com.bitmavrick.lumolight.util
+class AppConstants{
+    companion object {
+        val APP_PRODUCTION_MODE : ProductionMode = ProductionMode.DEBUG
+        const val APP_NAME = "Lumolight"
+        const val DEVELOPER = "BitMavrick"
+        const val REPOSITORY = "https://github.com/BitMavrick/Lumolight"
+        const val PRIVACY_POLICY = "https://bitmavrick.github.io/privacy-policy/lumolight.html"
+    }
+}
+
+enum class ProductionMode {
+    DEBUG,
+    RELEASE
+}
 
 class TimeDuration{
     companion object {
@@ -65,6 +79,7 @@ class BpmValue{
     }
 }
 
+/*
 class IntensityValue{
     companion object {
         val list : List<Intensity> = listOf(
@@ -80,6 +95,8 @@ data class Intensity(
     val title: String,
     val value: String,
 )
+
+ */
 
 
 data class Duration(

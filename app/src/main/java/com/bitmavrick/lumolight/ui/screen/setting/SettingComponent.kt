@@ -99,7 +99,7 @@ fun SettingsItem(
         Column (
             Modifier
                 .fillMaxHeight()
-                .weight(1f),
+                .weight(1f).padding(end = 16.dp),
             verticalArrangement = Arrangement.Center
         ){
             Text(
@@ -120,7 +120,7 @@ fun SettingsItem(
             Column(
                 Modifier
                     .fillMaxHeight()
-                    .padding(16.dp),
+                    .padding(end = 16.dp),
                 verticalArrangement = Arrangement.Center,
             ){
                 Switch(
