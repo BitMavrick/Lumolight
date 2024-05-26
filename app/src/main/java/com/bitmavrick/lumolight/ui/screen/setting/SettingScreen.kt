@@ -73,8 +73,10 @@ fun SettingScreen(
                         subTitle = "Show SOS button on the top bar",
                         leadingIcon = Icons.Outlined.Sos,
                         showSwitch = true,
-                        switchChecked = false,
-                        onClick = {}
+                        switchChecked = settingUiState.showSosButton,
+                        onClick = {
+                            settingOnEvent(SettingUiEvent.UpdateShowSosButtonPreference(!settingUiState.showSosButton))
+                        }
                     )
                 }
 
