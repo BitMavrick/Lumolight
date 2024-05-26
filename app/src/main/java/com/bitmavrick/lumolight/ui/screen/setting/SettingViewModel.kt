@@ -27,7 +27,7 @@ class SettingViewModel @Inject constructor (
                     saveQuickAction = saveQuickAction,
                     showSosButton = showSosButton
                 )
-            }.collect{newState ->
+            }.collect{ newState ->
                 _uiState.value = newState
             }
         }
