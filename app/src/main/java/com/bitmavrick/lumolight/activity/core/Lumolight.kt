@@ -11,6 +11,7 @@ import com.bitmavrick.lumolight.ui.screen.home.HomeScreen
 import com.bitmavrick.lumolight.ui.screen.home.HomeViewModel
 import com.bitmavrick.lumolight.ui.screen.screenFlash.FlashScreen
 import com.bitmavrick.lumolight.ui.screen.setting.AboutScreen
+import com.bitmavrick.lumolight.ui.screen.setting.AppearanceScreen
 import com.bitmavrick.lumolight.ui.screen.setting.SettingScreen
 import com.bitmavrick.lumolight.ui.screen.setting.SettingViewModel
 import com.bitmavrick.lumolight.ui.tab.flashlight.FlashlightViewModel
@@ -23,6 +24,7 @@ sealed class Screen(val route: String){
     data object FlashScreen : Screen("flash_screen")
     data object SettingScreen : Screen("setting_screen")
     data object AboutScreen : Screen("about_screen")
+    data object AppearanceScreen : Screen("appearance_screen")
 }
 
 @Composable
@@ -71,12 +73,20 @@ fun Lumolight(
                 settingOnEvent = settingViewModel::onEvent,
                 onClickBack = { navController.popBackStack() },
                 onClickAbout = { navController.navigate(Screen.AboutScreen.route) },
-                onClickAppearance = {}
+                onClickAppearance = { navController.navigate(Screen.AppearanceScreen.route) }
             )
         }
 
         composable(route = Screen.AboutScreen.route){
             AboutScreen(
+                settingUiState = settingViewModel.uiState.collectAsState().value,
+                settingOnEvent = settingViewModel::onEvent,
+                onClickBack = { navController.popBackStack() }
+            )
+        }
+
+        composable(route = Screen.AppearanceScreen.route){
+            AppearanceScreen(
                 settingUiState = settingViewModel.uiState.collectAsState().value,
                 settingOnEvent = settingViewModel::onEvent,
                 onClickBack = { navController.popBackStack() }

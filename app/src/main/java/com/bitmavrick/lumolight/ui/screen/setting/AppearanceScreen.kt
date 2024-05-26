@@ -14,10 +14,9 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AboutScreen(
+fun AppearanceScreen(
     settingUiState: SettingUiState,
     settingOnEvent: (SettingUiEvent) -> Unit,
     onClickBack: () -> Unit
@@ -25,11 +24,10 @@ fun AboutScreen(
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
 
     Scaffold (
-
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             SettingScreenTopBar(
-                title = "About",
+                title = "Appearance",
                 scrollBehavior = scrollBehavior,
                 onClickBack = { onClickBack() }
             )
@@ -43,8 +41,8 @@ fun AboutScreen(
             ) {
                 item {
                     SettingsItem(
-                        title = "App name",
-                        subTitle = "Lumolight",
+                        title = "App theme",
+                        subTitle = "Follow System",
                         leadingIcon = Icons.Outlined.ColorLens,
                         onClick = {}
                     )
@@ -52,42 +50,11 @@ fun AboutScreen(
 
                 item {
                     SettingsItem(
-                        title = "Version",
-                        subTitle = "1.0.0",
+                        title = "OLED theme",
+                        subTitle = "Enable pure black background",
                         leadingIcon = Icons.Outlined.ColorLens,
-                        onClick = {}
-                    )
-                }
-
-                item {
-                    SettingsItem(
-                        title = "Developer",
-                        subTitle = "BitMavrick",
-                        leadingIcon = Icons.Outlined.ColorLens,
-                        onClick = {}
-                    )
-                }
-
-                item {
-                    SettingSubDividerText(
-                        subtitle = "Links"
-                    )
-                }
-
-                item {
-                    SettingsItem(
-                        title = "Repository",
-                        subTitle = "github.com/lumolight",
-                        leadingIcon = Icons.Outlined.ColorLens,
-                        onClick = {}
-                    )
-                }
-
-                item {
-                    SettingsItem(
-                        title = "Privacy policy",
-                        subTitle = "github.com/lumolight",
-                        leadingIcon = Icons.Outlined.ColorLens,
+                        showSwitch = true,
+                        switchChecked = false,
                         onClick = {}
                     )
                 }
@@ -98,9 +65,9 @@ fun AboutScreen(
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun AboutScreenPreview() {
+fun AppearanceScreenPreview() {
     LumolightTheme {
-        AboutScreen(
+        AppearanceScreen(
             settingUiState = SettingUiState(),
             settingOnEvent = {},
             onClickBack = {}
