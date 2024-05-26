@@ -10,6 +10,7 @@ import androidx.navigation.compose.rememberNavController
 import com.bitmavrick.lumolight.ui.screen.home.HomeScreen
 import com.bitmavrick.lumolight.ui.screen.home.HomeViewModel
 import com.bitmavrick.lumolight.ui.screen.screenFlash.FlashScreen
+import com.bitmavrick.lumolight.ui.screen.setting.AboutScreen
 import com.bitmavrick.lumolight.ui.screen.setting.SettingScreen
 import com.bitmavrick.lumolight.ui.screen.setting.SettingViewModel
 import com.bitmavrick.lumolight.ui.tab.flashlight.FlashlightViewModel
@@ -19,8 +20,9 @@ import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashViewModel
 
 sealed class Screen(val route: String){
     data object HomeScreen : Screen("home_screen")
-    data object SettingScreen : Screen("setting_screen")
     data object FlashScreen : Screen("flash_screen")
+    data object SettingScreen : Screen("setting_screen")
+    data object AboutScreen : Screen("about_screen")
 }
 
 @Composable
@@ -65,6 +67,16 @@ fun Lumolight(
 
         composable(route = Screen.SettingScreen.route){
             SettingScreen(
+                settingUiState = settingViewModel.uiState.collectAsState().value,
+                settingOnEvent = settingViewModel::onEvent,
+                onClickBack = { navController.popBackStack() },
+                onClickAbout = { navController.navigate(Screen.AboutScreen.route) },
+                onClickAppearance = {}
+            )
+        }
+
+        composable(route = Screen.AboutScreen.route){
+            AboutScreen(
                 settingUiState = settingViewModel.uiState.collectAsState().value,
                 settingOnEvent = settingViewModel::onEvent,
                 onClickBack = { navController.popBackStack() }

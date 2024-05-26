@@ -3,23 +3,16 @@ package com.bitmavrick.lumolight.ui.screen.setting
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.ColorLens
 import androidx.compose.material.icons.outlined.DynamicForm
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Sos
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
@@ -29,13 +22,16 @@ import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 fun SettingScreen(
     settingUiState: SettingUiState,
     settingOnEvent: (SettingUiEvent) -> Unit,
-    onClickBack: () -> Unit
+    onClickBack: () -> Unit,
+    onClickAbout: () -> Unit,
+    onClickAppearance: () -> Unit
 ) {
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     Scaffold (
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             SettingScreenTopBar(
+                title = "Settings",
                 scrollBehavior = scrollBehavior,
                 onClickBack = { onClickBack() }
             )
@@ -50,7 +46,7 @@ fun SettingScreen(
                         title = "Appearance",
                         subTitle = "Configure application appearance",
                         leadingIcon = Icons.Outlined.ColorLens,
-                        onClick = {}
+                        onClick = { onClickAppearance() }
                     )
                 }
 
@@ -85,7 +81,7 @@ fun SettingScreen(
                         title = "About",
                         subTitle = "About application",
                         leadingIcon = Icons.Outlined.Info,
-                        onClick = {}
+                        onClick = { onClickAbout() }
                     )
                 }
             }
@@ -93,31 +89,6 @@ fun SettingScreen(
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun SettingScreenTopBar(
-    scrollBehavior : TopAppBarScrollBehavior,
-    onClickBack: () -> Unit
-) {
-    LargeTopAppBar(
-        title = {
-            Text(
-                text ="Settings",
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
-        },
-        navigationIcon = {
-            IconButton(onClick = { onClickBack() }) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
-                    contentDescription = "Localized description"
-                )
-            }
-        },
-        scrollBehavior = scrollBehavior
-    )
-}
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
@@ -126,7 +97,9 @@ fun SettingScreenPreview() {
         SettingScreen(
             settingUiState = SettingUiState(),
             settingOnEvent = {},
-            onClickBack = {}
+            onClickBack = {},
+            onClickAbout = {},
+            onClickAppearance = {}
         )
     }
 }
