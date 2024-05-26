@@ -1,6 +1,7 @@
 package com.bitmavrick.lumolight.ui.screen.setting
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ColorLens
@@ -38,6 +39,7 @@ fun SettingScreen(
         },
         content = { innerPadding ->
             LazyColumn(
+                modifier = Modifier.fillMaxSize(),
                 contentPadding = innerPadding,
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
@@ -52,7 +54,7 @@ fun SettingScreen(
 
                 item {
                     SettingsItem(
-                        title = "Save Quick Action",
+                        title = "Save quick action",
                         subTitle = "Save the last selected status",
                         leadingIcon = Icons.Outlined.DynamicForm,
                         showSwitch = true,
@@ -65,7 +67,7 @@ fun SettingScreen(
 
                 item {
                     SettingsItem(
-                        title = "Show SOS Button",
+                        title = "Show SOS button",
                         subTitle = "Show SOS button on the top bar",
                         leadingIcon = Icons.Outlined.Sos,
                         showSwitch = true,

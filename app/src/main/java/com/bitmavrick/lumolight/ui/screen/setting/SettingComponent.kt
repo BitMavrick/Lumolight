@@ -57,6 +57,18 @@ fun SettingScreenTopBar(
 }
 
 @Composable
+fun SettingSubDividerText(subtitle: String) {
+    Row(
+        Modifier.padding(horizontal = 16.dp)
+    ){
+        Text(
+            text = subtitle,
+            color = MaterialTheme.colorScheme.primary
+        )
+    }
+}
+
+@Composable
 fun SettingsItem(
     title: String,
     subTitle: String,
@@ -85,7 +97,9 @@ fun SettingsItem(
         }
 
         Column (
-            Modifier.fillMaxHeight().weight(1f),
+            Modifier
+                .fillMaxHeight()
+                .weight(1f),
             verticalArrangement = Arrangement.Center
         ){
             Text(
@@ -104,7 +118,9 @@ fun SettingsItem(
 
         if(showSwitch){
             Column(
-                Modifier.fillMaxHeight().padding(16.dp),
+                Modifier
+                    .fillMaxHeight()
+                    .padding(16.dp),
                 verticalArrangement = Arrangement.Center,
             ){
                 Switch(
