@@ -4,7 +4,19 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Code
+import androidx.compose.material.icons.filled.LogoDev
+import androidx.compose.material.icons.outlined.Api
+import androidx.compose.material.icons.outlined.Code
 import androidx.compose.material.icons.outlined.ColorLens
+import androidx.compose.material.icons.outlined.Commit
+import androidx.compose.material.icons.outlined.Dataset
+import androidx.compose.material.icons.outlined.LogoDev
+import androidx.compose.material.icons.outlined.PrivacyTip
+import androidx.compose.material.icons.outlined.Token
+import androidx.compose.material.icons.outlined.ViewCozy
+import androidx.compose.material.icons.outlined.Widgets
+import androidx.compose.material.icons.outlined.Wifi
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarDefaults
@@ -45,7 +57,7 @@ fun AboutScreen(
                     SettingsItem(
                         title = "App name",
                         subTitle = "Lumolight",
-                        leadingIcon = Icons.Outlined.ColorLens,
+                        leadingIcon = Icons.Outlined.Widgets,
                         onClick = {}
                     )
                 }
@@ -54,7 +66,7 @@ fun AboutScreen(
                     SettingsItem(
                         title = "Version",
                         subTitle = "1.0.0",
-                        leadingIcon = Icons.Outlined.ColorLens,
+                        leadingIcon = Icons.Outlined.Commit,
                         onClick = {}
                     )
                 }
@@ -63,7 +75,7 @@ fun AboutScreen(
                     SettingsItem(
                         title = "Developer",
                         subTitle = "BitMavrick",
-                        leadingIcon = Icons.Outlined.ColorLens,
+                        leadingIcon = Icons.Outlined.Code,
                         onClick = {}
                     )
                 }
@@ -78,7 +90,7 @@ fun AboutScreen(
                     SettingsItem(
                         title = "Repository",
                         subTitle = "github.com/lumolight",
-                        leadingIcon = Icons.Outlined.ColorLens,
+                        leadingIcon = Icons.Outlined.Token,
                         onClick = {}
                     )
                 }
@@ -87,7 +99,7 @@ fun AboutScreen(
                     SettingsItem(
                         title = "Privacy policy",
                         subTitle = "github.com/lumolight",
-                        leadingIcon = Icons.Outlined.ColorLens,
+                        leadingIcon = Icons.Outlined.PrivacyTip,
                         onClick = {}
                     )
                 }
