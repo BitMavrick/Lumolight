@@ -88,6 +88,9 @@ fun HomeScreen(
         topBar = {
             HomeScreenTopBar(
                 showSosButton = homeUiState.showSosButton,
+                onClickSos = {
+                    homeOnEvent(HomeUiEvent.InitializeSosTimer)
+                },
                 onClickSettings = {
                     navController.navigate(Screen.SettingScreen.route)
                 },
@@ -99,6 +102,16 @@ fun HomeScreen(
         content = { innerPadding ->
             val pagerState = rememberPagerState {
                 tabItems.size
+            }
+
+            if(homeUiState.showSosDialog){
+                AlertDialog(
+                    title = {
+                        Text(text = "SOS")
+                    },
+                    onDismissRequest = { /*TODO*/ },
+                    confirmButton = { /*TODO*/ }
+                )
             }
 
             if(homeUiState.showAboutDialog){

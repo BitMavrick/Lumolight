@@ -41,6 +41,7 @@ import com.bitmavrick.lumolight.util.openUrl
 @Composable
 fun HomeScreenTopBar(
     showSosButton : Boolean,
+    onClickSos : () -> Unit,
     onClickSettings: () -> Unit,
     onClickAbout : () -> Unit
 ) {
@@ -60,7 +61,7 @@ fun HomeScreenTopBar(
 
             if(showSosButton){
                 IconButton(
-                    onClick = { /* TODO */ }
+                    onClick = { onClickSos() }
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.Sos,

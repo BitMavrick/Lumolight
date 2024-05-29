@@ -5,6 +5,7 @@ data class HomeUiState (
     val selectedTabIndex: Int = 0,
     val topSOSButtonStatus: TopSOSButtonStatus = TopSOSButtonStatus.IDLE,
     val quickSOSCountingSeconds: Int? = null,
+    val showSosDialog: Boolean = false,
     val showAboutDialog: Boolean = false
 )
 

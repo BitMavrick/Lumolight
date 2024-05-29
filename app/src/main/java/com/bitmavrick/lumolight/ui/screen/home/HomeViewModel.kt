@@ -71,6 +71,7 @@ class HomeViewModel @Inject constructor(
     private fun initializeSosTimer(){
         _uiState.update {
             it.copy(
+                showSosDialog = true,
                 topSOSButtonStatus = TopSOSButtonStatus.COUNTING
             )
         }
@@ -100,6 +101,7 @@ class HomeViewModel @Inject constructor(
         timerValue = _timerValue
         _uiState.update {
             it.copy(
+                showSosDialog = false,
                 topSOSButtonStatus = TopSOSButtonStatus.IDLE,
                 quickSOSCountingSeconds = null
             )
