@@ -10,7 +10,7 @@ data class HomeUiState (
 
 
 enum class TopSOSButtonStatus {
-    IDLE,
-    COUNTING,
-    RUNNING
+    IDLE, // Nothing
+    COUNTING, // When the timer is running
+    ACTIVE // When sos is active
 }

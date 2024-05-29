@@ -4,7 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bitmavrick.lumolight.data.UserPreferencesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -67,15 +69,45 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun initializeSosTimer(){
+        _uiState.update {
+            it.copy(
+                topSOSButtonStatus = TopSOSButtonStatus.COUNTING
+            )
+        }
 
+        timerJob = viewModelScope.launch(Dispatchers.IO) {
+            timerValue = _timerValue
+
+            repeat(_timerValue){
+                _uiState.update {
+                    it.copy(
+                        quickSOSCountingSeconds = timerValue
+                    )
+                }
+                delay(1000)
+                timerValue --
+            }
+            _uiState.update {
+                it.copy(
+                    topSOSButtonStatus = TopSOSButtonStatus.ACTIVE
+                )
+            }
+        }
     }
 
     private fun ceaseSosTimer(){
-
+        timerJob?.cancel()
+        timerValue = _timerValue
+        _uiState.update {
+            it.copy(
+                topSOSButtonStatus = TopSOSButtonStatus.IDLE,
+                quickSOSCountingSeconds = null
+            )
+        }
     }
 
     private fun stopSos(){
-
+        ceaseSosTimer()
     }
 
 
