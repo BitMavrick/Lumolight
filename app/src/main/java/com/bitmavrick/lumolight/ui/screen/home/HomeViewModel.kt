@@ -20,8 +20,8 @@ class HomeViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState : StateFlow<HomeUiState> = _uiState
 
-    private val _timerValue = 10
-    private var timerValue = 10
+    private val _timerValue = 5
+    private var timerValue = 5
     private var timerJob : Job? = null
 
     init {

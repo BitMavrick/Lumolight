@@ -144,11 +144,10 @@ fun HomeScreen(
                 )
             }
 
-            /* TODO: Navigate to SOS Screen
             if(homeUiState.topSOSButtonStatus == TopSOSButtonStatus.ACTIVE){
-                // navController.navigate(Screen.AboutScreen.route)
+                navController.navigate(Screen.SosScreen.route)
+                homeOnEvent(HomeUiEvent.StopSos)
             }
-           */
 
             if(homeUiState.showAboutDialog){
                 AlertDialog(

@@ -14,6 +14,7 @@ import com.bitmavrick.lumolight.ui.screen.setting.AboutScreen
 import com.bitmavrick.lumolight.ui.screen.setting.AppearanceScreen
 import com.bitmavrick.lumolight.ui.screen.setting.SettingScreen
 import com.bitmavrick.lumolight.ui.screen.setting.SettingViewModel
+import com.bitmavrick.lumolight.ui.screen.sos.SosScreen
 import com.bitmavrick.lumolight.ui.tab.flashlight.FlashlightViewModel
 import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionUiEvent
 import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionViewModel
@@ -25,6 +26,7 @@ sealed class Screen(val route: String){
     data object SettingScreen : Screen("setting_screen")
     data object AboutScreen : Screen("about_screen")
     data object AppearanceScreen : Screen("appearance_screen")
+    data object SosScreen : Screen("sos_screen")
 }
 
 @Composable
@@ -62,6 +64,14 @@ fun Lumolight(
                     val quickActionUiEvent = quickActionViewModel::onEvent
                     quickActionUiEvent(QuickActionUiEvent.StopStartButton)
                     quickActionUiEvent(QuickActionUiEvent.ToggleFlashLight(context, false))
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        composable(route = Screen.SosScreen.route){
+            SosScreen(
+                onExitClick = {
                     navController.popBackStack()
                 }
             )
