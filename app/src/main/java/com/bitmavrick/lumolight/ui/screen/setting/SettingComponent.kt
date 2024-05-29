@@ -81,7 +81,7 @@ fun SettingsItem(
         Modifier
             .clickable(onClick = onClick)
             .fillMaxWidth()
-            .height(84.dp)
+            .height(92.dp)
     ){
 
         Column(
