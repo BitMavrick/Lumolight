@@ -92,7 +92,7 @@ fun HomeScreen(
                     navController.navigate(Screen.SettingScreen.route)
                 },
                 onClickAbout = {
-                    homeOnEvent(HomeUiEvent.updateShowAboutDialog(true))
+                    homeOnEvent(HomeUiEvent.UpdateShowAboutDialog(true))
                 }
             )
         },
@@ -109,10 +109,10 @@ fun HomeScreen(
                     text = {
                         Text(text = "Version: ${getAppVersion(LocalContext.current)}\nDeveloped by BitMavrick")
                     },
-                    onDismissRequest = { homeOnEvent(HomeUiEvent.updateShowAboutDialog(false))  },
+                    onDismissRequest = { homeOnEvent(HomeUiEvent.UpdateShowAboutDialog(false))  },
                     confirmButton = {
                         TextButton(
-                            onClick = { homeOnEvent(HomeUiEvent.updateShowAboutDialog(false)) }
+                            onClick = { homeOnEvent(HomeUiEvent.UpdateShowAboutDialog(false)) }
                         ) {
                             Text(text = "OK")
                         }
@@ -122,7 +122,7 @@ fun HomeScreen(
 
             LaunchedEffect(pagerState.currentPage, pagerState.isScrollInProgress) {
                 if(!pagerState.isScrollInProgress){
-                    homeOnEvent(HomeUiEvent.updateTab(pagerState.currentPage))
+                    homeOnEvent(HomeUiEvent.UpdateTab(pagerState.currentPage))
                 }
             }
 
@@ -143,7 +143,7 @@ fun HomeScreen(
                         LeadingIconTab(
                             selected = index == homeUiState.selectedTabIndex,
                             onClick = {
-                                homeOnEvent(HomeUiEvent.updateTab(index))
+                                homeOnEvent(HomeUiEvent.UpdateTab(index))
                                 coroutineScope.launch { pagerState.animateScrollToPage(index) }
                             },
                             text = {

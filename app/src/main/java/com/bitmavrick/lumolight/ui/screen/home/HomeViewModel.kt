@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bitmavrick.lumolight.data.UserPreferencesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -16,6 +17,10 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState : StateFlow<HomeUiState> = _uiState
+
+    private val _timerValue = 10
+    private var timerValue = 10
+    private var timerJob : Job? = null
 
     init {
         viewModelScope.launch {
@@ -31,12 +36,24 @@ class HomeViewModel @Inject constructor(
 
     fun onEvent(event: HomeUiEvent){
         when(event){
-            is HomeUiEvent.updateTab -> {
+            is HomeUiEvent.UpdateTab -> {
                 updateTabIndex(event.tabIndex)
             }
 
-            is HomeUiEvent.updateShowAboutDialog -> {
+            is HomeUiEvent.UpdateShowAboutDialog -> {
                 updateShowAboutDialog(event.status)
+            }
+
+            is HomeUiEvent.InitializeSosTimer -> {
+                initializeSosTimer()
+            }
+
+            is HomeUiEvent.CeaseSosTimer -> {
+                ceaseSosTimer()
+            }
+
+            is HomeUiEvent.StopSos -> {
+                stopSos()
             }
         }
     }
@@ -48,6 +65,20 @@ class HomeViewModel @Inject constructor(
             )
         }
     }
+
+    private fun initializeSosTimer(){
+
+    }
+
+    private fun ceaseSosTimer(){
+
+    }
+
+    private fun stopSos(){
+
+    }
+
+
 
     private fun updateShowAboutDialog(status : Boolean){
         _uiState.update {
