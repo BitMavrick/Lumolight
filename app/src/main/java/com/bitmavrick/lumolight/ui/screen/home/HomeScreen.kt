@@ -13,12 +13,14 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CameraRear
 import androidx.compose.material.icons.filled.DynamicForm
 import androidx.compose.material.icons.filled.PhoneIphone
+import androidx.compose.material.icons.filled.Sos
 import androidx.compose.material.icons.outlined.CameraRear
 import androidx.compose.material.icons.outlined.DynamicForm
 import androidx.compose.material.icons.outlined.Smartphone
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LeadingIconTab
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -34,6 +36,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.lerp
@@ -41,6 +44,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.bitmavrick.lumolight.activity.core.Screen
+import com.bitmavrick.lumolight.ui.tab.CustomFilledButton
 import com.bitmavrick.lumolight.ui.tab.flashlight.FlashlightScreen
 import com.bitmavrick.lumolight.ui.tab.flashlight.FlashlightViewModel
 import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionScreen
@@ -106,13 +110,45 @@ fun HomeScreen(
 
             if(homeUiState.showSosDialog){
                 AlertDialog(
-                    title = {
-                        Text(text = "SOS")
+                    icon = {
+                        Icon(
+                            imageVector = Icons.Default.Sos,
+                            tint = MaterialTheme.colorScheme.primary,
+                            contentDescription = null
+                        )
                     },
-                    onDismissRequest = { /*TODO*/ },
-                    confirmButton = { /*TODO*/ }
+                    title = {
+                        Text(
+                            text = "Emergency SOS",
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                    },
+                    text = {
+                        Text(
+                            text = "Starts at: ${homeUiState.quickSOSCountingSeconds}",
+                            modifier = Modifier.fillMaxWidth(),
+                            textAlign = TextAlign.Center,
+                            style = MaterialTheme.typography.bodyLarge
+                        )
+                    },
+                    onDismissRequest = {},
+                    confirmButton = {},
+                    dismissButton = {
+                        CustomFilledButton(
+                            buttonText = "STOP",
+                            onClick = {
+                                homeOnEvent(HomeUiEvent.CeaseSosTimer)
+                            }
+                        )
+                    }
                 )
             }
+
+            /* TODO: Navigate to SOS Screen
+            if(homeUiState.topSOSButtonStatus == TopSOSButtonStatus.ACTIVE){
+                // navController.navigate(Screen.AboutScreen.route)
+            }
+           */
 
             if(homeUiState.showAboutDialog){
                 AlertDialog(

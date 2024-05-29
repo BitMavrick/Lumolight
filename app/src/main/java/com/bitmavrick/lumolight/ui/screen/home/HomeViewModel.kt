@@ -90,7 +90,8 @@ class HomeViewModel @Inject constructor(
             }
             _uiState.update {
                 it.copy(
-                    topSOSButtonStatus = TopSOSButtonStatus.ACTIVE
+                    topSOSButtonStatus = TopSOSButtonStatus.ACTIVE,
+                    showSosDialog = false
                 )
             }
         }
