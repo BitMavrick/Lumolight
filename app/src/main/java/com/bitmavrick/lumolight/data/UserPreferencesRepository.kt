@@ -15,7 +15,7 @@ val Context.dataStore by preferencesDataStore(name = USER_PREFERENCES_NAME)
 
 class UserPreferencesRepository(context: Context) {
     companion object {
-        private val APPEARACE_KEY = stringPreferencesKey("appearance")
+        private val APPEARANCE_KEY = stringPreferencesKey("appearance")
         private val APP_LOADING_KEY = booleanPreferencesKey("appLoading")
         private val SAVE_QUICK_ACTION_KEY = booleanPreferencesKey("saveQuickAction")
         private val SHOW_SOS_BUTTON_KEY = booleanPreferencesKey("showSosButton")
@@ -26,7 +26,7 @@ class UserPreferencesRepository(context: Context) {
 
     val appearance: Flow<String> = dataStore.data
         .map { preferences ->
-            preferences[APPEARACE_KEY] ?: Appearance.DEFAULT.name
+            preferences[APPEARANCE_KEY] ?: Appearance.DEFAULT.name
         }
 
     val appLoading: Flow<Boolean> = dataStore.data
@@ -51,7 +51,7 @@ class UserPreferencesRepository(context: Context) {
 
     suspend fun updateAppearance(value: Appearance){
         dataStore.edit { preferences ->
-            preferences[APPEARACE_KEY] = value.name
+            preferences[APPEARANCE_KEY] = value.name
         }
     }
 

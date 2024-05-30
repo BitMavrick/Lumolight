@@ -16,6 +16,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bitmavrick.lumolight.activity.core.CoreViewModel
 import com.bitmavrick.lumolight.activity.core.InitialLoadingScreen
 import com.bitmavrick.lumolight.activity.core.Lumolight
+import com.bitmavrick.lumolight.ui.screen.setting.Appearance
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,7 +35,13 @@ class MainActivity : ComponentActivity() {
             val coreUiState = coreViewModel.uiState.collectAsState().value
 
             LumolightTheme(
-                darkTheme = isSystemInDarkTheme()
+                darkTheme = if(coreUiState.appearance == Appearance.DEFAULT){
+                    isSystemInDarkTheme()
+                } else if(coreUiState.appearance == Appearance.LIGHT){
+                    false
+                } else {
+                    true
+                }
             ) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),

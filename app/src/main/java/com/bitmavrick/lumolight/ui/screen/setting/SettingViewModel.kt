@@ -3,6 +3,7 @@ package com.bitmavrick.lumolight.ui.screen.setting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bitmavrick.lumolight.data.UserPreferencesRepository
+import com.bitmavrick.lumolight.util.toAppearance
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -21,10 +22,12 @@ class SettingViewModel @Inject constructor (
     init {
         viewModelScope.launch {
             combine(
+                userPreferencesRepository.appearance,
                 userPreferencesRepository.saveQuickAction,
                 userPreferencesRepository.showSosButton
-            ){ saveQuickAction, showSosButton ->
+            ){ appearance, saveQuickAction, showSosButton ->
                 SettingUiState(
+                    appearance = appearance.toAppearance(),
                     saveQuickAction = saveQuickAction,
                     showSosButton = showSosButton
                 )
@@ -47,6 +50,10 @@ class SettingViewModel @Inject constructor (
             is SettingUiEvent.UpdateThemeDialog -> {
                 updateThemeDialog(event.visible)
             }
+
+            is SettingUiEvent.UpdateAppearance -> {
+                updateAppearance(event.appearance)
+            }
         }
     }
 
@@ -55,6 +62,17 @@ class SettingViewModel @Inject constructor (
             it.copy(
                 showThemeDialog = value
             )
+        }
+    }
+
+    private fun updateAppearance(appearance: Appearance){
+        _uiState.update {
+            it.copy(
+                appearance = appearance
+            )
+        }
+        viewModelScope.launch {
+            userPreferencesRepository.updateAppearance(appearance)
         }
     }
 
@@ -71,3 +89,4 @@ class SettingViewModel @Inject constructor (
         }
     }
 }
+

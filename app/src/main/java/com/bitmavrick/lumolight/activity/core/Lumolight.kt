@@ -96,7 +96,7 @@ fun Lumolight(
         composable(route = Screen.AppearanceScreen.route){
             AppearanceScreen(
                 settingUiState = settingViewModel.uiState.collectAsState().value,
-                settingOnEvent = settingViewModel::onEvent,
+                settingUiEvent = settingViewModel::onEvent,
                 onClickBack = { navController.popBackStack() }
             )
         }

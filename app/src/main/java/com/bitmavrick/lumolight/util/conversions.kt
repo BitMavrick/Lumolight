@@ -3,6 +3,7 @@ package com.bitmavrick.lumolight.util
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
+import com.bitmavrick.lumolight.ui.screen.setting.Appearance
 
 @SuppressLint("DefaultLocale")
 fun formatDuration(seconds: Int): String {
@@ -21,5 +22,13 @@ fun getAppVersion(context: Context): String {
         }
     }else {
         "Unknown" // Due to the preview limitation we had to do this!
+    }
+}
+
+fun String.toAppearance(): Appearance {
+    return try {
+        Appearance.valueOf(this.uppercase())
+    } catch (e: IllegalArgumentException) {
+        Appearance.DEFAULT // Fallback to DEFAULT if the string doesn't match any enum
     }
 }
