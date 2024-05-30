@@ -15,7 +15,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ColorLens
 import androidx.compose.material.icons.outlined.DarkMode
 import androidx.compose.material.icons.outlined.LightMode
-import androidx.compose.material.icons.outlined.SettingsBrightness
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -160,6 +159,8 @@ fun AppearanceScreen(
                     )
                 }
 
+                /* For the future update
+
                 item {
                     SettingsItem(
                         title = "OLED dark",
@@ -170,6 +171,8 @@ fun AppearanceScreen(
                         onClick = {}
                     )
                 }
+
+                 */
 
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S){
                     item {

@@ -6,12 +6,19 @@ import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bitmavrick.lumolight.activity.core.CoreViewModel
@@ -32,33 +39,40 @@ class MainActivity : ComponentActivity() {
         )
 
         setContent {
-            val coreViewModel : CoreViewModel = viewModel()
-            val coreUiState = coreViewModel.uiState.collectAsState().value
+            val coreViewModel: CoreViewModel = viewModel()
+            val coreUiState by coreViewModel.uiState.collectAsState()
 
             LumolightTheme(
                 darkTheme = when(coreUiState.appearance) {
-                    Appearance.DEFAULT -> {
-                        isSystemInDarkTheme()
-                    }
-
-                    Appearance.LIGHT -> {
-                        false
-                    }
-
-                    Appearance.DARK -> {
-                        true
-                    }
+                    Appearance.DEFAULT -> isSystemInDarkTheme()
+                    Appearance.LIGHT -> false
+                    Appearance.DARK -> true
                 },
-
                 dynamicColor = coreUiState.dynamicTheme
             ) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    if(coreUiState.appLoading){
+                    var isVisible by remember { mutableStateOf(false) }
+
+                    LaunchedEffect(coreUiState.appLoading) {
+                        isVisible = coreUiState.appLoading
+                    }
+
+                    AnimatedVisibility(
+                        visible = isVisible,
+                        enter = fadeIn(),
+                        exit = fadeOut()
+                    ) {
                         Lumolight()
-                    }else{
+                    }
+
+                    AnimatedVisibility(
+                        visible = !isVisible,
+                        enter = fadeIn(),
+                        exit = fadeOut()
+                    ) {
                         InitialLoadingScreen()
                     }
                 }
@@ -66,4 +80,5 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
 
