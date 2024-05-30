@@ -16,6 +16,7 @@ val Context.dataStore by preferencesDataStore(name = USER_PREFERENCES_NAME)
 class UserPreferencesRepository(context: Context) {
     companion object {
         private val APPEARANCE_KEY = stringPreferencesKey("appearance")
+        private val DYNAMIC_THEME_KEY = booleanPreferencesKey("dynamicTheme")
         private val APP_LOADING_KEY = booleanPreferencesKey("appLoading")
         private val SAVE_QUICK_ACTION_KEY = booleanPreferencesKey("saveQuickAction")
         private val SHOW_SOS_BUTTON_KEY = booleanPreferencesKey("showSosButton")
@@ -27,6 +28,11 @@ class UserPreferencesRepository(context: Context) {
     val appearance: Flow<String> = dataStore.data
         .map { preferences ->
             preferences[APPEARANCE_KEY] ?: Appearance.DEFAULT.name
+        }
+
+    val dynamicTheme: Flow<Boolean> = dataStore.data
+        .map { preferences ->
+            preferences[DYNAMIC_THEME_KEY] ?: true
         }
 
     val appLoading: Flow<Boolean> = dataStore.data
@@ -52,6 +58,12 @@ class UserPreferencesRepository(context: Context) {
     suspend fun updateAppearance(value: Appearance){
         dataStore.edit { preferences ->
             preferences[APPEARANCE_KEY] = value.name
+        }
+    }
+
+    suspend fun updateDynamicTheme(value: Boolean){
+        dataStore.edit { preferences ->
+            preferences[DYNAMIC_THEME_KEY] = value
         }
     }
 

@@ -25,11 +25,13 @@ class CoreViewModel @Inject constructor (
         viewModelScope.launch {
             combine(
                 userPreferencesRepository.appLoading,
-                userPreferencesRepository.appearance
-            ){ appLoading, appearance ->
+                userPreferencesRepository.appearance,
+                userPreferencesRepository.dynamicTheme
+            ){ appLoading, appearance, dynamicTheme ->
                 CoreUiState(
                     appLoading = appLoading,
-                    appearance = getAppearance(appearance)
+                    appearance = getAppearance(appearance),
+                    dynamicTheme = dynamicTheme
                 )
             }.collect{ newState ->
                 _uiState.value = newState

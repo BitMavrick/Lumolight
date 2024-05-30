@@ -41,7 +41,8 @@ class MainActivity : ComponentActivity() {
                     false
                 } else {
                     true
-                }
+                },
+                dynamicColor = coreUiState.dynamicTheme
             ) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),

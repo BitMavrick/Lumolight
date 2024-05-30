@@ -178,8 +178,8 @@ fun AppearanceScreen(
                             subTitle = "Color based on your wallpaper accent",
                             leadingIcon = Icons.Outlined.ColorLens,
                             showSwitch = true,
-                            switchChecked = false,
-                            onClick = {}
+                            switchChecked = settingUiState.dynamicTheme,
+                            onClick = { settingUiEvent(SettingUiEvent.UpdateDynamicTheme(!settingUiState.dynamicTheme)) }
                         )
                     }
                 }

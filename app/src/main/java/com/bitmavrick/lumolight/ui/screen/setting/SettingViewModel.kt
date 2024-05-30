@@ -23,11 +23,13 @@ class SettingViewModel @Inject constructor (
         viewModelScope.launch {
             combine(
                 userPreferencesRepository.appearance,
+                userPreferencesRepository.dynamicTheme,
                 userPreferencesRepository.saveQuickAction,
                 userPreferencesRepository.showSosButton
-            ){ appearance, saveQuickAction, showSosButton ->
+            ){ appearance, dynamicTheme, saveQuickAction, showSosButton ->
                 SettingUiState(
                     appearance = appearance.toAppearance(),
+                    dynamicTheme = dynamicTheme,
                     saveQuickAction = saveQuickAction,
                     showSosButton = showSosButton
                 )
@@ -54,6 +56,10 @@ class SettingViewModel @Inject constructor (
             is SettingUiEvent.UpdateAppearance -> {
                 updateAppearance(event.appearance)
             }
+
+            is SettingUiEvent.UpdateDynamicTheme -> {
+                updateDynamicTheme(event.dynamicTheme)
+            }
         }
     }
 
@@ -73,6 +79,17 @@ class SettingViewModel @Inject constructor (
         }
         viewModelScope.launch {
             userPreferencesRepository.updateAppearance(appearance)
+        }
+    }
+
+    private fun updateDynamicTheme(value: Boolean){
+        _uiState.update {
+            it.copy(
+                dynamicTheme = value
+            )
+        }
+        viewModelScope.launch {
+            userPreferencesRepository.updateDynamicTheme(value)
         }
     }
 
