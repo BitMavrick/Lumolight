@@ -7,6 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -42,6 +43,18 @@ class SettingViewModel @Inject constructor (
             is SettingUiEvent.UpdateShowSosButtonPreference -> {
                 updateShowSosButtonPreference(event.sosButtonPreference)
             }
+
+            is SettingUiEvent.UpdateThemeDialog -> {
+                updateThemeDialog(event.visible)
+            }
+        }
+    }
+
+    private fun updateThemeDialog(value: Boolean){
+        _uiState.update {
+            it.copy(
+                showThemeDialog = value
+            )
         }
     }
 
