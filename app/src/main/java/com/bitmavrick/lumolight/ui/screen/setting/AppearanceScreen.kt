@@ -1,5 +1,6 @@
 package com.bitmavrick.lumolight.ui.screen.setting
 
+import android.os.Build
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,6 +11,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.ColorLens
 import androidx.compose.material.icons.outlined.DarkMode
 import androidx.compose.material.icons.outlined.SettingsBrightness
 import androidx.compose.material3.AlertDialog
@@ -57,7 +59,9 @@ fun AppearanceScreen(
                                 .height(46.dp)
                                 .selectable(
                                     selected = (text == selectedOption),
-                                    onClick = { onOptionSelected(text) },
+                                    onClick = {
+                                        onOptionSelected(text)
+                                    },
                                     role = Role.RadioButton
                                 )
                                 .padding(horizontal = 12.dp),
@@ -109,7 +113,7 @@ fun AppearanceScreen(
                 item {
                     SettingsItem(
                         title = "App theme",
-                        subTitle = "Follow System",
+                        subTitle = getAppearanceName(settingUiState),
                         leadingIcon = Icons.Outlined.DarkMode,
                         onClick = { settingOnEvent(SettingUiEvent.UpdateThemeDialog(true)) }
                     )
@@ -117,7 +121,7 @@ fun AppearanceScreen(
 
                 item {
                     SettingsItem(
-                        title = "OLED theme",
+                        title = "OLED dark",
                         subTitle = "Enable pure black background",
                         leadingIcon = Icons.Outlined.SettingsBrightness,
                         showSwitch = true,
@@ -125,9 +129,38 @@ fun AppearanceScreen(
                         onClick = {}
                     )
                 }
+
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S){
+                    item {
+                        SettingsItem(
+                            title = "Dynamic color",
+                            subTitle = "Color based on your wallpaper accent",
+                            leadingIcon = Icons.Outlined.ColorLens,
+                            showSwitch = true,
+                            switchChecked = false,
+                            onClick = {}
+                        )
+                    }
+                }
             }
         }
     )
+}
+
+private fun getAppearanceName(
+    settingUiState: SettingUiState
+): String {
+    return when(settingUiState.appearance){
+        Appearance.DEFAULT -> {
+            "Follow System"
+        }
+        Appearance.LIGHT -> {
+            "Light"
+        }
+        Appearance.DARK -> {
+            "Dark"
+        }
+    }
 }
 
 @Preview(showBackground = true, showSystemUi = true)
@@ -136,7 +169,7 @@ fun AppearanceScreenPreview() {
     LumolightTheme {
         AppearanceScreen(
             settingUiState = SettingUiState(
-                showThemeDialog = true
+                showThemeDialog = false
             ),
             settingOnEvent = {},
             onClickBack = {}

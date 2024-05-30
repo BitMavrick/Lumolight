@@ -4,7 +4,9 @@ import android.content.Context
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.bitmavrick.lumolight.ui.screen.setting.Appearance
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -13,6 +15,7 @@ val Context.dataStore by preferencesDataStore(name = USER_PREFERENCES_NAME)
 
 class UserPreferencesRepository(context: Context) {
     companion object {
+        private val APPEARACE_KEY = stringPreferencesKey("appearance")
         private val APP_LOADING_KEY = booleanPreferencesKey("appLoading")
         private val SAVE_QUICK_ACTION_KEY = booleanPreferencesKey("saveQuickAction")
         private val SHOW_SOS_BUTTON_KEY = booleanPreferencesKey("showSosButton")
@@ -20,6 +23,11 @@ class UserPreferencesRepository(context: Context) {
     }
 
     private val dataStore = context.dataStore
+
+    val appearance: Flow<String> = dataStore.data
+        .map { preferences ->
+            preferences[APPEARACE_KEY] ?: Appearance.DEFAULT.name
+        }
 
     val appLoading: Flow<Boolean> = dataStore.data
         .map { preferences ->
@@ -40,6 +48,12 @@ class UserPreferencesRepository(context: Context) {
         .map { preferences ->
             preferences[SEGMENTED_BUTTON_VALUE_KEY] ?: 0
         }
+
+    suspend fun updateAppearance(value: Appearance){
+        dataStore.edit { preferences ->
+            preferences[APPEARACE_KEY] = value.name
+        }
+    }
 
     suspend fun updateQuickActionPreference(value: Boolean) {
         dataStore.edit { preferences ->

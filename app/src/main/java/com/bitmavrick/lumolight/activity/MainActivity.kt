@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -32,17 +33,17 @@ class MainActivity : ComponentActivity() {
             val coreViewModel : CoreViewModel = viewModel()
             val coreUiState = coreViewModel.uiState.collectAsState().value
 
-            LumolightTheme {
+            LumolightTheme(
+                darkTheme = isSystemInDarkTheme()
+            ) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    LumolightTheme {
-                        if(coreUiState.appLoading){
-                            Lumolight()
-                        }else{
-                            InitialLoadingScreen()
-                        }
+                    if(coreUiState.appLoading){
+                        Lumolight()
+                    }else{
+                        InitialLoadingScreen()
                     }
                 }
             }
