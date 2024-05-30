@@ -35,13 +35,20 @@ class MainActivity : ComponentActivity() {
             val coreUiState = coreViewModel.uiState.collectAsState().value
 
             LumolightTheme(
-                darkTheme = if(coreUiState.appearance == Appearance.DEFAULT){
-                    isSystemInDarkTheme()
-                } else if(coreUiState.appearance == Appearance.LIGHT){
-                    false
-                } else {
-                    true
+                darkTheme = when(coreUiState.appearance) {
+                    Appearance.DEFAULT -> {
+                        isSystemInDarkTheme()
+                    }
+
+                    Appearance.LIGHT -> {
+                        false
+                    }
+
+                    Appearance.DARK -> {
+                        true
+                    }
                 },
+
                 dynamicColor = coreUiState.dynamicTheme
             ) {
                 Surface(
