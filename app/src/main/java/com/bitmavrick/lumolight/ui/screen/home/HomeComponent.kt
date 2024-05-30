@@ -1,12 +1,15 @@
 package com.bitmavrick.lumolight.ui.screen.home
 
+import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.Comment
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material.icons.outlined.PrivacyTip
 import androidx.compose.material.icons.outlined.Settings
-import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material.icons.outlined.Sos
 import androidx.compose.material.icons.outlined.Spoke
 import androidx.compose.material.icons.outlined.StarRate
@@ -35,6 +38,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat.startActivity
 import com.bitmavrick.lumolight.util.openUrl
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -108,9 +112,14 @@ fun HomeScreenTopBar(
 
                 DropdownMenuItem(
                     text = {
-                        Text(text = "Feedback")
+                        Text(text = "Report issue")
                     },
-                    onClick = { /*TODO*/ },
+                    onClick = {
+                        openUrl(
+                            context = context,
+                            url = "https://github.com/BitMavrick/Lumolight/issues"
+                        )
+                    },
                     leadingIcon = {
                         Icon(imageVector = Icons.AutoMirrored.Outlined.Comment,
                             contentDescription = null)
@@ -119,18 +128,7 @@ fun HomeScreenTopBar(
 
                 DropdownMenuItem(
                     text = {
-                        Text(text = "Share")
-                    },
-                    onClick = { /*TODO*/ },
-                    leadingIcon = {
-                        Icon(imageVector = Icons.Outlined.Share,
-                            contentDescription = null)
-                    }
-                )
-
-                DropdownMenuItem(
-                    text = {
-                        Text(text = "Privacy Policy")
+                        Text(text = "Privacy policy")
                     },
                     onClick = {
                         openUrl(
@@ -150,7 +148,9 @@ fun HomeScreenTopBar(
                     text = {
                         Text(text = "Rate Lumolight")
                     },
-                    onClick = { /*TODO*/ },
+                    onClick = {
+                        openAppInPlayStore(context)
+                    },
                     leadingIcon = {
                         Icon(imageVector = Icons.Outlined.StarRate,
                             contentDescription = null)
@@ -161,7 +161,12 @@ fun HomeScreenTopBar(
                     text = {
                         Text(text = "Try more apps")
                     },
-                    onClick = { /*TODO*/ },
+                    onClick = {
+                        openUrl(
+                            context = context,
+                            url = "https://play.google.com/store/apps/dev?id=8579128568898304037"
+                        )
+                    },
                     leadingIcon = {
                         Icon(imageVector = Icons.Outlined.Spoke,
                             contentDescription = null)
@@ -173,6 +178,27 @@ fun HomeScreenTopBar(
         }
     )
 }
+
+
+fun openAppInPlayStore(context: Context) {
+    val uri = Uri.parse("market://details?id=" + context.packageName)
+    val goToMarketIntent = Intent(Intent.ACTION_VIEW, uri)
+
+    var flags = Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+    flags =
+        flags or Intent.FLAG_ACTIVITY_NEW_DOCUMENT
+    goToMarketIntent.addFlags(flags)
+
+    try {
+        startActivity(context, goToMarketIntent, null)
+    } catch (e: ActivityNotFoundException) {
+        val intent = Intent(Intent.ACTION_VIEW,
+            Uri.parse("http://play.google.com/store/apps/details?id=" + context.packageName))
+
+        startActivity(context, intent, null)
+    }
+}
+
 
 @Composable
 fun CustomTabRow(
