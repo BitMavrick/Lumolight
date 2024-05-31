@@ -44,6 +44,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.bitmavrick.lumolight.activity.core.Screen
+import com.bitmavrick.lumolight.ui.screen.sos.SosViewModel
 import com.bitmavrick.lumolight.ui.tab.CustomFilledButton
 import com.bitmavrick.lumolight.ui.tab.flashlight.FlashlightScreen
 import com.bitmavrick.lumolight.ui.tab.flashlight.FlashlightViewModel
@@ -65,8 +66,11 @@ fun HomeScreen(
     quickActionUiState: QuickActionUiState,
     quickActionUiEvent: (QuickActionUiEvent) -> Unit,
     screenFlashViewModel : ScreenFlashViewModel = viewModel(),
-    flashlightViewModel : FlashlightViewModel = viewModel()
+    flashlightViewModel : FlashlightViewModel = viewModel(),
+    sosViewModel: SosViewModel = viewModel()
 ) {
+    val context = LocalContext.current
+
     val tabItems = listOf(
         TabItem(
             title = "Actions",
@@ -145,8 +149,10 @@ fun HomeScreen(
             }
 
             if(homeUiState.topSOSButtonStatus == TopSOSButtonStatus.ACTIVE){
-                navController.navigate(Screen.SosScreen.route)
                 homeOnEvent(HomeUiEvent.StopSos)
+                sosViewModel.updateFlashlightStatus(true)
+                sosViewModel.toggleFlashLight(context, true)
+                navController.navigate(Screen.SosScreen.route)
             }
 
             if(homeUiState.showAboutDialog){

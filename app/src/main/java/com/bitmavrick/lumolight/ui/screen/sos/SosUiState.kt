@@ -1,4 +1,6 @@
 package com.bitmavrick.lumolight.ui.screen.sos
 
-class SosUiState {
-}
+data class SosUiState (
+    val flashlightStatus : Boolean = false,
+    val flashlightBpmValue : Int = 120,
+)

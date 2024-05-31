@@ -38,7 +38,6 @@ import androidx.compose.ui.util.fastForEachIndexed
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bitmavrick.lumolight.ui.tab.CustomFilledButton
 import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionUiEvent
-import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionViewModel
 import com.bitmavrick.lumolight.util.BpmValue
 import com.bitmavrick.lumolight.util.TimeDuration
 import com.bitmavrick.lumolight.util.formatDuration
