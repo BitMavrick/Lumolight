@@ -14,6 +14,8 @@ composeBom = "2024.05.00"
 # Custom Implementation
 lifecycleViewmodelCompose = "2.8.0"
 navigationCompose = "2.7.7"
+review = "2.0.1"
+reviewKtx = "2.0.1"
 # playServicesAds = "23.1.0"
 
 
@@ -41,6 +43,8 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 androidx-material3-window = { group = "androidx.compose.material3", name = "material3-window-size-class" }
 androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
 androidx-material-icon-extended = { group = "androidx.compose.material", name = "material-icons-extended-android" }
+review = { module = "com.google.android.play:review", version.ref = "review" }
+review-ktx = { module = "com.google.android.play:review-ktx", version.ref = "reviewKtx" }
 # play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "playServicesAds" }
 
 [plugins]

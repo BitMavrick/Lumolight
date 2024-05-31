@@ -13,8 +13,8 @@ android {
         applicationId = "com.bitmavrick.lumolight"
         minSdk = 24
         targetSdk = 34
-        versionCode = 5
-        versionName = "1.1.0"
+        versionCode = 6
+        versionName = "2.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -88,6 +88,6 @@ dependencies {
 
 
     // In app review
-    implementation("com.google.android.play:review:2.0.1")
-    implementation("com.google.android.play:review-ktx:2.0.1")
+    implementation(libs.review)
+    implementation(libs.review.ktx)
 }
