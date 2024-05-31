@@ -3,14 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-<!--    <uses-permission android:name="android.permission.VIBRATE" />-->
     <uses-permission android:name="android.permission.FLASHLIGHT" />
 
     <uses-feature
         android:name="android.hardware.camera.flash"
         android:required="true" />
 
-    <!--    Setting permissions for the Brightness control (Maybe we don't need it, we have to check this)  -->
     <uses-permission android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
 
@@ -51,14 +49,6 @@
             <meta-data android:name="android.service.quicksettings.ACTIVE_TILE"
                 android:value="true" />
         </service>
-
-        <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713 -->
-
-<!-- I think I have delete this before the next update
-
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />  -->
 
     </application>
 </manifest>
