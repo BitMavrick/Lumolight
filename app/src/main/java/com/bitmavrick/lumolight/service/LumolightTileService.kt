@@ -1,3 +1,7 @@
+/* *
+* Lumolight :: Open-source program under GPL-3.0 :: Copyright - BitMavrick :: https://github.com/BitMavrick
+* */
+
 package com.bitmavrick.lumolight.service
 
 import android.app.PendingIntent
