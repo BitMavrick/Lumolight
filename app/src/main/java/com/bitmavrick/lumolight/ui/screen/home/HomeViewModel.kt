@@ -3,7 +3,6 @@ package com.bitmavrick.lumolight.ui.screen.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bitmavrick.lumolight.data.UserPreferencesRepository
-import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

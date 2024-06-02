@@ -122,7 +122,7 @@ fun AppearanceScreen(
             },
 
             onDismissRequest = { settingUiEvent(SettingUiEvent.UpdateThemeDialog(false)) },
-            confirmButton = { /*TODO*/ },
+            confirmButton = {},
             dismissButton = {
                 TextButton(
                     onClick = {

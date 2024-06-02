@@ -45,7 +45,6 @@ fun AboutScreen(
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
                 contentPadding = innerPadding,
-                //verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 item {
                     SettingsItem(

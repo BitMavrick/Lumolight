@@ -13,8 +13,8 @@ android {
         applicationId = "com.bitmavrick.lumolight"
         minSdk = 24
         targetSdk = 34
-        versionCode = 6
-        versionName = "2.0.0"
+        versionCode = 7 // This version is already used in closed and open testing
+        versionName = "2.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -70,24 +70,13 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    // Custom Implementation
     implementation(libs.androidx.material3.window)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.material.icon.extended)
     implementation(libs.androidx.navigation.compose)
-
-    // Preferences Datastore
     implementation(libs.androidx.datastore.preferences)
-
-    // Google Ads (for future)
-    // implementation(libs.play.services.ads)
-
-    // Dagger hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
-
-
-    // In app review
     implementation(libs.review)
     implementation(libs.review.ktx)
 }
