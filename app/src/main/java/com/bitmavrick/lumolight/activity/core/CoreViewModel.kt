@@ -9,7 +9,6 @@ import androidx.lifecycle.viewModelScope
 import com.bitmavrick.lumolight.data.UserPreferencesRepository
 import com.bitmavrick.lumolight.ui.screen.setting.Appearance
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
@@ -26,14 +25,13 @@ class CoreViewModel @Inject constructor (
 
     init {
         viewModelScope.launch {
-            delay(1000)
             combine(
                 userPreferencesRepository.appLoading,
                 userPreferencesRepository.appearance,
                 userPreferencesRepository.dynamicTheme
             ){ appLoading, appearance, dynamicTheme ->
                 CoreUiState(
-                    appLoading = appLoading,
+                    appLoading = !appLoading,
                     appearance = getAppearance(appearance),
                     dynamicTheme = dynamicTheme
                 )

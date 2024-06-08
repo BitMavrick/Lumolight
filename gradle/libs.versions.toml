@@ -1,9 +1,10 @@
 # /* *
-#* Lumolight :: Open-source program under GPL-3.0 :: Copyright - BitMavrick :: https://github.com/BitMavrick
+#* Lumolight :: Open-source program under GPL-3.0 :: Copyright © BitMavrick :: https://github.com/BitMavrick
 #* */
 
 [versions]
 agp = "8.4.1"
+coreSplashscreen = "1.0.1"
 datastorePreferences = "1.1.1"
 hiltAndroid = "2.51.1"
 kotlin = "1.9.23"
@@ -22,6 +23,7 @@ reviewKtx = "2.0.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
