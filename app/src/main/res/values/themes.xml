@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- Lumolight :: Open-source program under GPL-3.0 :: Copyright © BitMavrick :: https://github.com/BitMavrick -->
+
 <resources>
     <style name="Theme.Lumolight" parent="android:Theme.Material.Light.NoActionBar" />
 </resources>

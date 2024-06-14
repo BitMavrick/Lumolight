@@ -14,11 +14,11 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.bitmavrick.lumolight"
+        applicationId = "com.bitmavrick.lumolight" 
         minSdk = 24
         targetSdk = 34
-        versionCode = 7 // This version is already used in closed and open testing
-        versionName = "2.0.1"
+        versionCode = 9
+        versionName = "2.0.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

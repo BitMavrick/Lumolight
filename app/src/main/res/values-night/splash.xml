@@ -4,8 +4,8 @@
 
 <resources>
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">#FFFFFF</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/icon_dark</item>
+        <item name="windowSplashScreenBackground">#202020</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/icon_light</item>
         <item name="postSplashScreenTheme">@style/Theme.Lumolight</item>
     </style>
 </resources>
