@@ -54,7 +54,7 @@ fun FlashScreen(
                 delay(1000L)
                 time--
             }
-            navController.popBackStack()
+            navController.navigateUp()
         }
     }
 

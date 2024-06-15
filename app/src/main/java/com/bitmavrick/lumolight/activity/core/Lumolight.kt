@@ -71,7 +71,7 @@ fun Lumolight(
                     val quickActionUiEvent = quickActionViewModel::onEvent
                     quickActionUiEvent(QuickActionUiEvent.StopStartButton)
                     quickActionUiEvent(QuickActionUiEvent.ToggleFlashLight(context, false))
-                    navController.popBackStack()
+                    navController.navigateUp()
                 }
             )
         }
@@ -80,7 +80,7 @@ fun Lumolight(
             SosScreen(
                 sosViewModel = sosViewModel,
                 onExitClick = {
-                    navController.popBackStack()
+                    navController.navigateUp()
                 }
             )
         }
@@ -89,7 +89,7 @@ fun Lumolight(
             SettingScreen(
                 settingUiState = settingViewModel.uiState.collectAsState().value,
                 settingOnEvent = settingViewModel::onEvent,
-                onClickBack = { navController.popBackStack() },
+                onClickBack = { navController.navigateUp() },
                 onClickAbout = { navController.navigate(Screen.AboutScreen.route) },
                 onClickAppearance = { navController.navigate(Screen.AppearanceScreen.route) }
             )
@@ -97,7 +97,7 @@ fun Lumolight(
 
         composable(route = Screen.AboutScreen.route){
             AboutScreen(
-                onClickBack = { navController.popBackStack() }
+                onClickBack = { navController.navigateUp() }
             )
         }
 
@@ -105,7 +105,7 @@ fun Lumolight(
             AppearanceScreen(
                 settingUiState = settingViewModel.uiState.collectAsState().value,
                 settingUiEvent = settingViewModel::onEvent,
-                onClickBack = { navController.popBackStack() }
+                onClickBack = { navController.navigateUp() }
             )
         }
     }
