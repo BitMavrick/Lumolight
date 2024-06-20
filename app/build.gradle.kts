@@ -17,8 +17,8 @@ android {
         applicationId = "com.bitmavrick.lumolight" 
         minSdk = 24
         targetSdk = 34
-        versionCode = 9
-        versionName = "2.0.2"
+        versionCode = 10
+        versionName = "2.0.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
