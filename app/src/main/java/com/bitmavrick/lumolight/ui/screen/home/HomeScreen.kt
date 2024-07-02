@@ -40,6 +40,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Constraints
@@ -163,10 +164,14 @@ fun HomeScreen(
             if(homeUiState.showAboutDialog){
                 AlertDialog(
                     title = {
-                        Text(text = context.getString(R.string.app_name))
+                        Text(
+                            text = context.getString(R.string.app_name),
+                            style = MaterialTheme.typography.titleLarge,
+                            fontWeight = FontWeight.Bold
+                        )
                     },
                     text = {
-                        Text(text = "Version: ${getAppVersion(LocalContext.current)}\nDeveloped by BitMavrick")
+                        Text(text = "Version: ${getAppVersion(LocalContext.current)}\nDeveloped by BitMavrick\nLicensed under GPL-3.0")
                     },
                     onDismissRequest = { homeOnEvent(HomeUiEvent.UpdateShowAboutDialog(false))  },
                     confirmButton = {
