@@ -1,5 +1,78 @@
 <!-- Lumolight :: Open-source program under GPL-3.0 :: Copyright © BitMavrick :: https://github.com/BitMavrick -->
 
 <resources>
+
+    <!--  Main Strings  -->
     <string name="app_name">Lumolight</string>
+    <string name="actions">Actions</string>
+    <string name="flashlight">Flashlight</string>
+    <string name="cant_change_flash">Can\'t change the type while flash is active</string>
+    <string name="screen">Screen</string>
+    <string name="both">Both</string>
+    <string name="flash">Flash</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="emergency_sos">Emergency SOS</string>
+    <string name="ok">OK</string>
+    <string name="flashlight_active">Flashlight Active</string>
+    <string name="duration">Duration</string>
+    <string name="blink_per_minute">BLINK PER MINUTE (BPM)</string>
+    <string name="running">Running</string>
+    <string name="color">Color</string>
+    <string name="brightness">Brightness</string>
+    <string name="settings">Settings</string>
+    <string name="appearance_icon">Appearance Icon</string>
+    <string name="select_theme">Select Theme</string>
+    <string name="follow_system">Follow System</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="app_theme">App theme</string>
+
+    <string name="appearance">Appearance</string>
+    <string name="appearance_description">Configure application appearance</string>
+
+    <string name="save_quick_action_title">Save quick action</string>
+    <string name="save_quick_action_description">Save the last selected status</string>
+
+    <string name="show_sos_button_title">Show SOS button</string>
+    <string name="show_sos_button_description">Show SOS button on the top bar</string>
+
+    <string name="about_title">About</string>
+    <string name="about_description">About application</string>
+
+    <string name="dynamic_color_title">Dynamic color</string>
+    <string name="dynamic_color_description">Color based on your wallpaper accent</string>
+
+    <string name="app_name_title">App name</string>
+    <string name="version_title">Version</string>
+    <string name="package_type_title">Package type</string>
+    <string name="developer_title">Developer</string>
+
+    <string name="links">Links</string>
+
+    <string name="repository_title">Repository</string>
+    <string name="privacy_policy">Privacy policy</string>
+    <string name="report_issue">Report issue</string>
+
+    <string name="rate_lumolight">Rate Lumolight</string>
+    <string name="try_more_apps">Try more apps</string>
+
+    <!--  Descriptive String  -->
+    <string name="duration_icon_description">Duration Icon</string>
+    <string name="selected_icon_description">Selected Icon</string>
+    <string name="power_icon_description">Clickable Power Icon</string>
+    <string name="bpm_icon_description">Blink Per Minute Icon</string>
+    <string name="color_icon_description">Color Icon</string>
+    <string name="color_preview_icon_description">Color Preview Icon</string>
+    <string name="brightness_icon_description">Brightness Icon</string>
+    <string name="navigation_icon_description">Going Back Arrow Button</string>
+    <string name="save_quick_action_icon_description">Save Quick Action Icon</string>
+    <string name="sos_icon_description">SOS Icon</string>
+    <string name="info_icon_description">About Icon</string>
+    <string name="settings_icon_description">Settings Icon</string>
+    <string name="more_icon_description">More Option Icon</string>
+    <string name="comment_icon_description">Comment Icon</string>
+    <string name="privacy_icon_description">Privacy Icon</string>
+    <string name="tab_icon_description">Leading Tab Icon</string>
 </resources>

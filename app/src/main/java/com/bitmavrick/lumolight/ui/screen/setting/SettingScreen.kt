@@ -17,7 +17,9 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import com.bitmavrick.lumolight.R
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -30,13 +32,15 @@ fun SettingScreen(
     onClickAppearance: () -> Unit
 ) {
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+    val context = LocalContext.current
     Scaffold (
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             SettingScreenTopBar(
-                title = "Settings",
+                title = context.getString(R.string.settings),
                 scrollBehavior = scrollBehavior,
-                onClickBack = { onClickBack() }
+                onClickBack = { onClickBack() },
+                backIconDescription = context.getString(R.string.navigation_icon_description)
             )
         },
         content = { innerPadding ->
@@ -46,18 +50,20 @@ fun SettingScreen(
             ) {
                 item {
                     SettingsItem(
-                        title = "Appearance",
-                        subTitle = "Configure application appearance",
+                        title = context.getString(R.string.appearance),
+                        subTitle = context.getString(R.string.appearance_description),
                         leadingIcon = Icons.Outlined.ColorLens,
+                        iconDescription = context.getString(R.string.appearance_icon),
                         onClick = { onClickAppearance() }
                     )
                 }
 
                 item {
                     SettingsItem(
-                        title = "Save quick action",
-                        subTitle = "Save the last selected status",
+                        title = context.getString(R.string.save_quick_action_title),
+                        subTitle = context.getString(R.string.save_quick_action_description),
                         leadingIcon = Icons.Outlined.DynamicForm,
+                        iconDescription = context.getString(R.string.save_quick_action_icon_description),
                         showSwitch = true,
                         switchChecked = settingUiState.saveQuickAction,
                         onClick = {
@@ -68,9 +74,10 @@ fun SettingScreen(
 
                 item {
                     SettingsItem(
-                        title = "Show SOS button",
-                        subTitle = "Show SOS button on the top bar",
+                        title = context.getString(R.string.show_sos_button_title),
+                        subTitle = context.getString(R.string.show_sos_button_description),
                         leadingIcon = Icons.Outlined.Sos,
+                        iconDescription = context.getString(R.string.sos_icon_description),
                         showSwitch = true,
                         switchChecked = settingUiState.showSosButton,
                         onClick = {
@@ -81,9 +88,10 @@ fun SettingScreen(
 
                 item {
                     SettingsItem(
-                        title = "About",
-                        subTitle = "About application",
+                        title = context.getString(R.string.about_title),
+                        subTitle = context.getString(R.string.about_description),
                         leadingIcon = Icons.Outlined.Info,
+                        iconDescription = context.getString(R.string.info_icon_description),
                         onClick = { onClickAbout() }
                     )
                 }

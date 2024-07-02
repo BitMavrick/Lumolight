@@ -37,7 +37,8 @@ import androidx.compose.ui.unit.dp
 fun SettingScreenTopBar(
     title: String,
     scrollBehavior : TopAppBarScrollBehavior,
-    onClickBack: () -> Unit
+    onClickBack: () -> Unit,
+    backIconDescription: String
 ) {
     LargeTopAppBar(
         title = {
@@ -51,7 +52,7 @@ fun SettingScreenTopBar(
             IconButton(onClick = { onClickBack() }) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
-                    contentDescription = "Localized description"
+                    contentDescription = backIconDescription
                 )
             }
         },
@@ -76,6 +77,7 @@ fun SettingsItem(
     title: String,
     subTitle: String,
     leadingIcon: ImageVector,
+    iconDescription: String = "Settings Icon",
     showSwitch: Boolean = false,
     switchChecked: Boolean = false,
     onClick: () -> Unit,
@@ -95,7 +97,7 @@ fun SettingsItem(
         ) {
             Icon(
                 imageVector = leadingIcon,
-                contentDescription = null
+                contentDescription = iconDescription
             )
         }
 
@@ -127,7 +129,7 @@ fun SettingsItem(
                 verticalArrangement = Arrangement.Center,
             ){
                 Switch(
-                    modifier = Modifier.semantics { contentDescription = "Switch" },
+                    modifier = Modifier.semantics { contentDescription = "Toggle Switch" },
                     checked = switchChecked,
                     onCheckedChange = { onClick() }
                 )
@@ -143,6 +145,7 @@ fun SettingsItemPreview() {
         title = "Package Type",
         subTitle = "release",
         leadingIcon = Icons.Outlined.Cookie,
+        iconDescription = "Settings Icon",
         showSwitch = true,
         switchChecked = true,
         onClick = {}

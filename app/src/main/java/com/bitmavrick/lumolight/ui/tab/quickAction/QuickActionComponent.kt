@@ -28,8 +28,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.bitmavrick.lumolight.R
 
 @Composable
 fun QuickStartButton(
@@ -38,6 +40,7 @@ fun QuickStartButton(
 ){
     val backgroundButtonColor: CardColors
     val foregroundButtonColor: CardColors
+    val context = LocalContext.current
 
     if (uiState.startButtonStatus){
         backgroundButtonColor = CardDefaults.cardColors(
@@ -92,7 +95,7 @@ fun QuickStartButton(
                     }else{
                         Icon(
                             imageVector = Icons.Filled.PowerSettingsNew,
-                            contentDescription = null,
+                            contentDescription = context.getString(R.string.power_icon_description),
                             modifier = Modifier.size(62.dp)
                         )
                     }

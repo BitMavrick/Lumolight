@@ -32,11 +32,13 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEachIndexed
 import androidx.core.graphics.toColorInt
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.bitmavrick.lumolight.R
 import com.bitmavrick.lumolight.ui.tab.CustomFilledButton
 import com.bitmavrick.lumolight.util.BrightnessValue
 import com.bitmavrick.lumolight.util.ColorValue
@@ -49,6 +51,7 @@ fun ScreenFlashScreen(
     onClickStart: () -> Unit
 ) {
     val uiState = screenFlashViewModel.uiState.collectAsState().value
+    val context = LocalContext.current
 
     Column(
         Modifier
@@ -70,11 +73,11 @@ fun ScreenFlashScreen(
                     Icon(
                         imageVector = Icons.Outlined.Timelapse,
                         tint = MaterialTheme.colorScheme.primary,
-                        contentDescription = null
+                        contentDescription = context.getString(R.string.duration_icon_description)
                     )
 
                     Text(
-                        text = "DURATION",
+                        text = context.getString(R.string.duration).uppercase(),
                         style = MaterialTheme.typography.titleSmall,
                         color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.padding(start = 8.dp)
@@ -99,7 +102,8 @@ fun ScreenFlashScreen(
                                     {
                                         Icon(
                                             imageVector = Icons.Filled.Done,
-                                            contentDescription = "Done Icon")
+                                            contentDescription = context.getString(R.string.selected_icon_description)
+                                        )
                                     }
                                 } else {
                                     null
@@ -124,11 +128,11 @@ fun ScreenFlashScreen(
                     Icon(
                         imageVector = Icons.Outlined.ColorLens,
                         tint = MaterialTheme.colorScheme.primary,
-                        contentDescription = null
+                        contentDescription = context.getString(R.string.color_icon_description)
                     )
 
                     Text(
-                        text = "COLOR",
+                        text = context.getString(R.string.color).uppercase(),
                         style = MaterialTheme.typography.titleSmall,
                         color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.padding(start = 8.dp)
@@ -156,14 +160,15 @@ fun ScreenFlashScreen(
                                     {
                                         Icon(
                                             imageVector = Icons.Filled.Done,
-                                            contentDescription = "Done Icon")
+                                            contentDescription = context.getString(R.string.selected_icon_description)
+                                        )
                                     }
                                 } else {
                                     {
                                         Icon(
                                             imageVector = Icons.Filled.TripOrigin,
                                             tint = Color(element.code.toColorInt()),
-                                            contentDescription = "Done Icon"
+                                            contentDescription = context.getString(R.string.color_preview_icon_description)
                                         )
                                     }
                                 }
@@ -188,11 +193,11 @@ fun ScreenFlashScreen(
                     Icon(
                         imageVector = Icons.Outlined.BrightnessLow,
                         tint = MaterialTheme.colorScheme.primary,
-                        contentDescription = null
+                        contentDescription = context.getString(R.string.brightness_icon_description)
                     )
 
                     Text(
-                        text = "BRIGHTNESS",
+                        text = context.getString(R.string.brightness).uppercase(),
                         style = MaterialTheme.typography.titleSmall,
                         color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.padding(start = 8.dp)
@@ -218,7 +223,8 @@ fun ScreenFlashScreen(
                                     {
                                         Icon(
                                             imageVector = Icons.Filled.Done,
-                                            contentDescription = "Done Icon")
+                                            contentDescription = context.getString(R.string.selected_icon_description)
+                                        )
                                     }
                                 } else {
                                     null
@@ -234,7 +240,7 @@ fun ScreenFlashScreen(
         Spacer(modifier = Modifier.height(8.dp))
 
         CustomFilledButton(
-            buttonText = "start",
+            buttonText = context.getString(R.string.start),
             onClick =  onClickStart
         )
     }

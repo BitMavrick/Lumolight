@@ -32,9 +32,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.bitmavrick.lumolight.R
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -45,11 +47,14 @@ fun AppearanceScreen(
     onClickBack: () -> Unit
 ) {
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+    val context = LocalContext.current
 
     if(settingUiState.showThemeDialog){
         AlertDialog(
             title = {
-                Text(text = "Select Theme")
+                Text(
+                    text = context.getString(R.string.select_theme)
+                )
             },
 
             text = {
@@ -71,7 +76,7 @@ fun AppearanceScreen(
                             onClick = null
                         )
                         Text(
-                            text = "Follow System",
+                            text = context.getString(R.string.follow_system),
                             style = MaterialTheme.typography.bodyLarge,
                             modifier = Modifier.padding(start = 12.dp)
                         )
@@ -94,7 +99,7 @@ fun AppearanceScreen(
                             onClick = null
                         )
                         Text(
-                            text = "Light",
+                            text = context.getString(R.string.light),
                             style = MaterialTheme.typography.bodyLarge,
                             modifier = Modifier.padding(start = 12.dp)
                         )
@@ -117,7 +122,7 @@ fun AppearanceScreen(
                             onClick = null
                         )
                         Text(
-                            text = "Dark",
+                            text = context.getString(R.string.dark),
                             style = MaterialTheme.typography.bodyLarge,
                             modifier = Modifier.padding(start = 12.dp)
                         )
@@ -133,7 +138,9 @@ fun AppearanceScreen(
                         settingUiEvent(SettingUiEvent.UpdateThemeDialog(false))
                     }
                 ) {
-                    Text(text = "Dismiss")
+                    Text(
+                        text = context.getString(R.string.dismiss)
+                    )
                 }
             }
         )
@@ -143,9 +150,10 @@ fun AppearanceScreen(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             SettingScreenTopBar(
-                title = "Appearance",
+                title = context.getString(R.string.appearance),
                 scrollBehavior = scrollBehavior,
-                onClickBack = { onClickBack() }
+                onClickBack = { onClickBack() },
+                backIconDescription = context.getString(R.string.navigation_icon_description)
             )
         },
 
@@ -156,7 +164,7 @@ fun AppearanceScreen(
             ) {
                 item {
                     SettingsItem(
-                        title = "App theme",
+                        title = context.getString(R.string.app_theme),
                         subTitle = getAppearanceName(settingUiState),
                         leadingIcon = getProperThemeIcon(settingUiState),
                         onClick = { settingUiEvent(SettingUiEvent.UpdateThemeDialog(true)) }
@@ -181,8 +189,8 @@ fun AppearanceScreen(
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.S){
                     item {
                         SettingsItem(
-                            title = "Dynamic color",
-                            subTitle = "Color based on your wallpaper accent",
+                            title = context.getString(R.string.dynamic_color_title),
+                            subTitle = context.getString(R.string.dynamic_color_description),
                             leadingIcon = Icons.Outlined.ColorLens,
                             showSwitch = true,
                             switchChecked = settingUiState.dynamicTheme,

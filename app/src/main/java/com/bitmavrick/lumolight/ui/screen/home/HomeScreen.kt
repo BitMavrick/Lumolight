@@ -47,6 +47,7 @@ import androidx.compose.ui.unit.lerp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.bitmavrick.lumolight.R
 import com.bitmavrick.lumolight.activity.core.Screen
 import com.bitmavrick.lumolight.ui.screen.sos.SosViewModel
 import com.bitmavrick.lumolight.ui.tab.CustomFilledButton
@@ -77,17 +78,17 @@ fun HomeScreen(
 
     val tabItems = listOf(
         TabItem(
-            title = "Actions",
+            title = context.getString(R.string.actions),
             unselectedIcon = Icons.Outlined.DynamicForm,
             selectedIcon = Icons.Filled.DynamicForm
         ),
         TabItem(
-            title = "Screen",
+            title = context.getString(R.string.screen),
             unselectedIcon = Icons.Outlined.Smartphone,
             selectedIcon = Icons.Filled.PhoneIphone
         ),
         TabItem(
-            title = "Flashlight",
+            title = context.getString(R.string.flashlight),
             unselectedIcon = Icons.Outlined.CameraRear,
             selectedIcon = Icons.Filled.CameraRear
         ),
@@ -127,7 +128,7 @@ fun HomeScreen(
                     },
                     title = {
                         Text(
-                            text = "Emergency SOS",
+                            text = context.getString(R.string.emergency_sos),
                             color = MaterialTheme.colorScheme.primary
                         )
                     },
@@ -143,7 +144,7 @@ fun HomeScreen(
                     confirmButton = {},
                     dismissButton = {
                         CustomFilledButton(
-                            buttonText = "STOP",
+                            buttonText = context.getString(R.string.stop).uppercase(),
                             onClick = {
                                 homeOnEvent(HomeUiEvent.CeaseSosTimer)
                             }
@@ -162,7 +163,7 @@ fun HomeScreen(
             if(homeUiState.showAboutDialog){
                 AlertDialog(
                     title = {
-                        Text(text = "Lumolight")
+                        Text(text = context.getString(R.string.app_name))
                     },
                     text = {
                         Text(text = "Version: ${getAppVersion(LocalContext.current)}\nDeveloped by BitMavrick")
@@ -172,7 +173,7 @@ fun HomeScreen(
                         TextButton(
                             onClick = { homeOnEvent(HomeUiEvent.UpdateShowAboutDialog(false)) }
                         ) {
-                            Text(text = "OK")
+                            Text(text = context.getString(R.string.ok).uppercase())
                         }
                     }
                 )
@@ -215,7 +216,7 @@ fun HomeScreen(
                                     imageVector = if(index == homeUiState.selectedTabIndex){
                                         item.selectedIcon
                                     } else item.unselectedIcon ,
-                                    contentDescription = null
+                                    contentDescription = context.getString(R.string.tab_icon_description)
                                 )
                             }
                         )

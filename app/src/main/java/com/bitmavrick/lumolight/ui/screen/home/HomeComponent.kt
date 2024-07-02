@@ -43,6 +43,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat.startActivity
+import com.bitmavrick.lumolight.R
 import com.bitmavrick.lumolight.util.openUrl
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -59,7 +60,7 @@ fun HomeScreenTopBar(
     TopAppBar(
         title = {
             Text(
-                text = "Lumolight",
+                text = context.getString(R.string.app_name),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 fontWeight = FontWeight.Bold
@@ -73,7 +74,7 @@ fun HomeScreenTopBar(
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.Sos,
-                        contentDescription = null
+                        contentDescription = context.getString(R.string.sos_icon_description)
                     )
                 }
             }
@@ -83,7 +84,7 @@ fun HomeScreenTopBar(
             ) {
                 Icon(
                     imageVector = Icons.Outlined.Settings,
-                    contentDescription = null
+                    contentDescription = context.getString(R.string.settings_icon_description)
                 )
             }
 
@@ -92,7 +93,7 @@ fun HomeScreenTopBar(
             ) {
                 Icon(
                     imageVector = Icons.Outlined.MoreVert,
-                    contentDescription = null
+                    contentDescription = context.getString(R.string.more_icon_description)
                 )
             }
 
@@ -104,19 +105,24 @@ fun HomeScreenTopBar(
 
                 DropdownMenuItem(
                     text = {
-                        Text(text = "About")
+                        Text(
+                            text = context.getString(R.string.about_title)
+                        )
                     },
                     onClick = { onClickAbout() },
                     leadingIcon = {
                         Icon(imageVector = Icons.Outlined.Info,
-                            contentDescription = null)
+                            contentDescription = context.getString(R.string.info_icon_description)
+                        )
                     }
                 )
 
 
                 DropdownMenuItem(
                     text = {
-                        Text(text = "Report issue")
+                        Text(
+                            text = context.getString(R.string.report_issue)
+                        )
                     },
                     onClick = {
                         openUrl(
@@ -126,13 +132,16 @@ fun HomeScreenTopBar(
                     },
                     leadingIcon = {
                         Icon(imageVector = Icons.AutoMirrored.Outlined.Comment,
-                            contentDescription = null)
+                            contentDescription = context.getString(R.string.comment_icon_description)
+                        )
                     }
                 )
 
                 DropdownMenuItem(
                     text = {
-                        Text(text = "Privacy policy")
+                        Text(
+                            text = context.getString(R.string.privacy_policy)
+                        )
                     },
                     onClick = {
                         openUrl(
@@ -142,7 +151,8 @@ fun HomeScreenTopBar(
                     },
                     leadingIcon = {
                         Icon(imageVector = Icons.Outlined.PrivacyTip,
-                            contentDescription = null)
+                            contentDescription = context.getString(R.string.privacy_icon_description)
+                        )
                     }
                 )
 
@@ -150,20 +160,25 @@ fun HomeScreenTopBar(
 
                 DropdownMenuItem(
                     text = {
-                        Text(text = "Rate Lumolight")
+                        Text(
+                            text = context.getString(R.string.rate_lumolight)
+                        )
                     },
                     onClick = {
                         openAppInPlayStore(context)
                     },
                     leadingIcon = {
                         Icon(imageVector = Icons.Outlined.StarRate,
-                            contentDescription = null)
+                            contentDescription = null
+                        )
                     }
                 )
 
                 DropdownMenuItem(
                     text = {
-                        Text(text = "Try more apps")
+                        Text(
+                            text = context.getString(R.string.try_more_apps)
+                        )
                     },
                     onClick = {
                         openUrl(
@@ -173,11 +188,10 @@ fun HomeScreenTopBar(
                     },
                     leadingIcon = {
                         Icon(imageVector = Icons.Outlined.Spoke,
-                            contentDescription = null)
+                            contentDescription = null
+                        )
                     }
                 )
-
-
             }
         }
     )

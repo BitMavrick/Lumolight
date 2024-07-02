@@ -28,6 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.bitmavrick.lumolight.R
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -40,7 +41,11 @@ fun QuickActionScreen(
 ) {
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
-    val options = listOf("Screen", "Both", "Flash")
+    val options = listOf(
+        context.getString(R.string.screen),
+        context.getString(R.string.both),
+        context.getString(R.string.flash)
+    )
 
     Column(
         Modifier
@@ -53,17 +58,6 @@ fun QuickActionScreen(
                 .weight(2f),
             verticalArrangement = Arrangement.Bottom
         ) {
-            Row(
-                Modifier
-                    .weight(1f)
-                    .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-                // BannerAd()
-                //Text(text = "Ad Placeholder")
-            }
-
             Row (
                 Modifier
                     .fillMaxWidth()
@@ -101,7 +95,7 @@ fun QuickActionScreen(
                             }else{
                                 scope.launch {
                                     snakeBarHost.showSnackbar(
-                                        message = "Can't change the type while flash is active",
+                                        message = context.getString(R.string.cant_change_flash),
                                         withDismissAction = true
                                     )
                                 }

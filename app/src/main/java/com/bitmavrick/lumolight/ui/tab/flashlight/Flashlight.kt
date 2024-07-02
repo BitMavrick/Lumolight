@@ -40,6 +40,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEachIndexed
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.bitmavrick.lumolight.R
 import com.bitmavrick.lumolight.ui.tab.CustomFilledButton
 import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionUiEvent
 import com.bitmavrick.lumolight.util.BpmValue
@@ -78,7 +79,7 @@ fun FlashlightScreen(
         AlertDialog(
             onDismissRequest = {},
             confirmButton = {},
-            title = { Text(text = "Flashlight Active") },
+            title = { Text(text = context.getString(R.string.flashlight_active)) },
             text = {
                 if(uiState.flashlightDurationMin != -1){
                     Text(
@@ -92,7 +93,7 @@ fun FlashlightScreen(
             },
             dismissButton = {
                 CustomFilledButton(
-                    buttonText = "STOP",
+                    buttonText = context.getString(R.string.stop).uppercase(),
                     onClick = {
                         flashlightViewModel.toggleFlashLight(context, false)
                         flashlightViewModel.updateFlashlightAlert(false)
@@ -125,11 +126,11 @@ fun FlashlightScreen(
                     Icon(
                         imageVector = Icons.Outlined.Timelapse,
                         tint = MaterialTheme.colorScheme.primary,
-                        contentDescription = null
+                        contentDescription = context.getString(R.string.duration_icon_description)
                     )
 
                     Text(
-                        text = "DURATION",
+                        text = context.getString(R.string.duration).uppercase(),
                         style = MaterialTheme.typography.titleSmall,
                         color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.padding(start = 8.dp)
@@ -154,7 +155,8 @@ fun FlashlightScreen(
                                     {
                                         Icon(
                                             imageVector = Icons.Filled.Done,
-                                            contentDescription = "Done Icon")
+                                            contentDescription = context.getString(R.string.selected_icon_description)
+                                        )
                                     }
                                 } else {
                                     null
@@ -179,11 +181,11 @@ fun FlashlightScreen(
                     Icon(
                         imageVector = Icons.Outlined.Fluorescent,
                         tint = MaterialTheme.colorScheme.primary,
-                        contentDescription = null
+                        contentDescription = context.getString(R.string.bpm_icon_description)
                     )
 
                     Text(
-                        text = "BLINK PER MINUTE (BPM)",
+                        text = context.getString(R.string.blink_per_minute).uppercase(),
                         style = MaterialTheme.typography.titleSmall,
                         color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.padding(start = 8.dp)
@@ -208,7 +210,8 @@ fun FlashlightScreen(
                                     {
                                         Icon(
                                             imageVector = Icons.Filled.Done,
-                                            contentDescription = "Done Icon")
+                                            contentDescription = context.getString(R.string.selected_icon_description)
+                                        )
                                     }
                                 } else {
                                     null
@@ -219,7 +222,7 @@ fun FlashlightScreen(
                 }
             }
 
-            /* !! Maybe in the upcoming version
+            /* !! Maybe in the upcoming versions
 
             item {
                 HorizontalDivider(
@@ -285,7 +288,7 @@ fun FlashlightScreen(
         */
         Spacer(modifier = Modifier.height(16.dp))
         CustomFilledButton(
-            buttonText = if(uiState.flashlightStatus) "Running" else "START",
+            buttonText = if(uiState.flashlightStatus) context.getString(R.string.running).uppercase() else context.getString(R.string.start).uppercase(),
             onClick = {
                 flashlightViewModel.updateFlashlightAlert(true)
                 flashlightViewModel.toggleFlashLight(context, true)

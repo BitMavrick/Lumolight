@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import com.bitmavrick.lumolight.R
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 import com.bitmavrick.lumolight.util.AppConstants
 import com.bitmavrick.lumolight.util.getAppVersion
@@ -39,9 +40,10 @@ fun AboutScreen(
 
         topBar = {
             SettingScreenTopBar(
-                title = "About",
+                title = context.getString(R.string.about_title),
                 scrollBehavior = scrollBehavior,
-                onClickBack = { onClickBack() }
+                onClickBack = { onClickBack() },
+                backIconDescription = context.getString(R.string.navigation_icon_description)
             )
         },
 
@@ -52,7 +54,7 @@ fun AboutScreen(
             ) {
                 item {
                     SettingsItem(
-                        title = "App name",
+                        title = context.getString(R.string.app_name_title),
                         subTitle = AppConstants.APP_NAME,
                         leadingIcon = Icons.Outlined.Widgets,
                         onClick = {}
@@ -61,8 +63,8 @@ fun AboutScreen(
 
                 item {
                     SettingsItem(
-                        title = "Version",
-                        subTitle = getAppVersion(context), // Works only release mode
+                        title = context.getString(R.string.version_title),
+                        subTitle = getAppVersion(context), // shows only release mode
                         leadingIcon = Icons.Outlined.Commit,
                         onClick = {}
                     )
@@ -70,7 +72,7 @@ fun AboutScreen(
 
                 item {
                     SettingsItem(
-                        title = "Package type",
+                        title = context.getString(R.string.package_type_title),
                         subTitle = AppConstants.APP_PRODUCTION_MODE.name.lowercase(),
                         leadingIcon = Icons.Outlined.Cookie,
                         onClick = {}
@@ -79,7 +81,7 @@ fun AboutScreen(
 
                 item {
                     SettingsItem(
-                        title = "Developer",
+                        title = context.getString(R.string.developer_title),
                         subTitle = AppConstants.DEVELOPER,
                         leadingIcon = Icons.Outlined.Code,
                         onClick = {}
@@ -88,13 +90,13 @@ fun AboutScreen(
 
                 item {
                     SettingSubDividerText(
-                        subtitle = "Links"
+                        subtitle = context.getString(R.string.links)
                     )
                 }
 
                 item {
                     SettingsItem(
-                        title = "Repository",
+                        title = context.getString(R.string.repository_title),
                         subTitle = AppConstants.REPOSITORY,
                         leadingIcon = Icons.Outlined.Token,
                         onClick = {
@@ -105,7 +107,7 @@ fun AboutScreen(
 
                 item {
                     SettingsItem(
-                        title = "Privacy policy",
+                        title = context.getString(R.string.privacy_policy),
                         subTitle = AppConstants.PRIVACY_POLICY,
                         leadingIcon = Icons.Outlined.PrivacyTip,
                         onClick = {
