@@ -17,6 +17,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bitmavrick.lumolight.activity.core.CoreViewModel
@@ -28,10 +29,12 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private lateinit var splashScreen: SplashScreen
+    private lateinit var coreViewModel: CoreViewModel
 
-        installSplashScreen()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        splashScreen = installSplashScreen()
+        super.onCreate(savedInstanceState)
 
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT),
@@ -39,8 +42,12 @@ class MainActivity : ComponentActivity() {
         )
 
         setContent {
-            val coreViewModel: CoreViewModel = viewModel()
+            coreViewModel = viewModel()
             val coreUiState by coreViewModel.uiState.collectAsState()
+
+            splashScreen.setKeepOnScreenCondition {
+                coreUiState.appLoadingStatus
+            }
 
             LumolightTheme(
                 darkTheme = when(coreUiState.appearance) {
