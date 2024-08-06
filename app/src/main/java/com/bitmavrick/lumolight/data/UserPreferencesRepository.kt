@@ -21,6 +21,7 @@ class UserPreferencesRepository(context: Context) {
     companion object {
         private val APPEARANCE_KEY = stringPreferencesKey("appearance")
         private val DYNAMIC_THEME_KEY = booleanPreferencesKey("dynamicTheme")
+        private val OLED_THEME_KEY = booleanPreferencesKey("oledTheme")
         private val APP_LOADING_KEY = booleanPreferencesKey("appLoading")
         private val SAVE_QUICK_ACTION_KEY = booleanPreferencesKey("saveQuickAction")
         private val SHOW_SOS_BUTTON_KEY = booleanPreferencesKey("showSosButton")
@@ -37,6 +38,11 @@ class UserPreferencesRepository(context: Context) {
     val dynamicTheme: Flow<Boolean> = dataStore.data
         .map { preferences ->
             preferences[DYNAMIC_THEME_KEY] ?: true
+        }
+
+    val oledTheme: Flow<Boolean> = dataStore.data
+        .map { preferences ->
+            preferences[OLED_THEME_KEY] ?: false
         }
 
     val appLoading: Flow<Boolean> = dataStore.data
@@ -68,6 +74,12 @@ class UserPreferencesRepository(context: Context) {
     suspend fun updateDynamicTheme(value: Boolean){
         dataStore.edit { preferences ->
             preferences[DYNAMIC_THEME_KEY] = value
+        }
+    }
+
+    suspend fun updateOledTheme(value: Boolean){
+        dataStore.edit { preferences ->
+            preferences[OLED_THEME_KEY] = value
         }
     }
 

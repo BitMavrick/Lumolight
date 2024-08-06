@@ -9,7 +9,8 @@ data class SettingUiState (
     val showSosButton: Boolean = true,
     val showThemeDialog: Boolean = false,
     val appearance: Appearance = Appearance.DEFAULT,
-    val dynamicTheme: Boolean = true
+    val dynamicTheme: Boolean = true,
+    val oledTheme: Boolean = false
 )
 
 enum class Appearance{

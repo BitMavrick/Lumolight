@@ -9,5 +9,6 @@ import com.bitmavrick.lumolight.ui.screen.setting.Appearance
 data class CoreUiState (
     val appLoadingStatus: Boolean = true,
     val appearance: Appearance = Appearance.DEFAULT,
-    val dynamicTheme: Boolean = true
+    val dynamicTheme: Boolean = true,
+    val oledTheme: Boolean = false
 )

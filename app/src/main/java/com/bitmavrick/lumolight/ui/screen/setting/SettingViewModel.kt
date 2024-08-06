@@ -11,6 +11,7 @@ import com.bitmavrick.lumolight.util.toAppearance
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -21,19 +22,21 @@ class SettingViewModel @Inject constructor (
     private val userPreferencesRepository: UserPreferencesRepository
 ) : ViewModel(){
     private val _uiState = MutableStateFlow(SettingUiState())
-    val uiState : StateFlow<SettingUiState> = _uiState
+    val uiState : StateFlow<SettingUiState> = _uiState.asStateFlow()
 
     init {
         viewModelScope.launch {
             combine(
                 userPreferencesRepository.appearance,
                 userPreferencesRepository.dynamicTheme,
+                userPreferencesRepository.oledTheme,
                 userPreferencesRepository.saveQuickAction,
                 userPreferencesRepository.showSosButton
-            ){ appearance, dynamicTheme, saveQuickAction, showSosButton ->
+            ){ appearance, dynamicTheme, oledTheme, saveQuickAction, showSosButton ->
                 SettingUiState(
                     appearance = appearance.toAppearance(),
                     dynamicTheme = dynamicTheme,
+                    oledTheme = oledTheme,
                     saveQuickAction = saveQuickAction,
                     showSosButton = showSosButton
                 )
@@ -63,6 +66,10 @@ class SettingViewModel @Inject constructor (
 
             is SettingUiEvent.UpdateDynamicTheme -> {
                 updateDynamicTheme(event.dynamicTheme)
+            }
+
+            is SettingUiEvent.UpdateOledTheme -> {
+                updateOledTheme(event.oledTheme)
             }
         }
     }
@@ -94,6 +101,17 @@ class SettingViewModel @Inject constructor (
         }
         viewModelScope.launch {
             userPreferencesRepository.updateDynamicTheme(value)
+        }
+    }
+
+    private fun updateOledTheme(value: Boolean){
+        _uiState.update {
+            it.copy(
+                oledTheme = value
+            )
+        }
+        viewModelScope.launch {
+            userPreferencesRepository.updateOledTheme(value)
         }
     }
 

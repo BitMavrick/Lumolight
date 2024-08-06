@@ -55,7 +55,8 @@ class MainActivity : ComponentActivity() {
                     Appearance.LIGHT -> false
                     Appearance.DARK -> true
                 },
-                dynamicColor = coreUiState.dynamicTheme
+                dynamicColor = coreUiState.dynamicTheme,
+                darkOled = coreUiState.oledTheme
             ) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),

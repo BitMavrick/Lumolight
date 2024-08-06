@@ -29,12 +29,14 @@ class CoreViewModel @Inject constructor (
             combine(
                 userPreferencesRepository.appLoading,
                 userPreferencesRepository.appearance,
-                userPreferencesRepository.dynamicTheme
-            ){ appLoading, appearance, dynamicTheme ->
+                userPreferencesRepository.dynamicTheme,
+                userPreferencesRepository.oledTheme
+            ){ appLoading, appearance, dynamicTheme, oledTheme ->
                 CoreUiState(
                     appLoadingStatus = !appLoading,
                     appearance = getAppearance(appearance),
-                    dynamicTheme = dynamicTheme
+                    dynamicTheme = dynamicTheme,
+                    oledTheme = oledTheme
                 )
             }.collect{ newState ->
                 _uiState.value = newState

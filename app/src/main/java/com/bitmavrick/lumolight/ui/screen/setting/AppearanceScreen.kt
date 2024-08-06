@@ -191,8 +191,8 @@ fun AppearanceScreen(
                         subTitle = "Enable pure black background",
                         leadingIcon = Icons.Outlined.SettingsBrightness,
                         showSwitch = true,
-                        switchChecked = false,
-                        onClick = {}
+                        switchChecked = settingUiState.oledTheme,
+                        onClick = { settingUiEvent(SettingUiEvent.UpdateOledTheme(!settingUiState.oledTheme)) }
                     )
                 }
             }
