@@ -187,8 +187,8 @@ fun AppearanceScreen(
 
                 item {
                     SettingsItem(
-                        title = "OLED dark",
-                        subTitle = "Enable pure black background",
+                        title = context.getString(R.string.oled_dark_title),
+                        subTitle = context.getString(R.string.oled_dark_description),
                         leadingIcon = Icons.Outlined.SettingsBrightness,
                         showSwitch = true,
                         switchChecked = settingUiState.oledTheme,
