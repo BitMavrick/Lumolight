@@ -10,8 +10,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Code
 import androidx.compose.material.icons.outlined.Commit
 import androidx.compose.material.icons.outlined.Cookie
+import androidx.compose.material.icons.outlined.Groups
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.PrivacyTip
-import androidx.compose.material.icons.outlined.Token
 import androidx.compose.material.icons.outlined.Widgets
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -83,7 +84,7 @@ fun AboutScreen(
                     SettingsItem(
                         title = context.getString(R.string.developer_title),
                         subTitle = AppConstants.DEVELOPER,
-                        leadingIcon = Icons.Outlined.Code,
+                        leadingIcon = Icons.Outlined.Person,
                         onClick = {}
                     )
                 }
@@ -98,9 +99,20 @@ fun AboutScreen(
                     SettingsItem(
                         title = context.getString(R.string.repository_title),
                         subTitle = AppConstants.REPOSITORY,
-                        leadingIcon = Icons.Outlined.Token,
+                        leadingIcon = Icons.Outlined.Code,
                         onClick = {
                             openUrl(context, AppConstants.REPOSITORY)
+                        }
+                    )
+                }
+
+                item {
+                    SettingsItem(
+                        title = "Reddit Community",
+                        subTitle = AppConstants.REDDIT,
+                        leadingIcon = Icons.Outlined.Groups,
+                        onClick = {
+                            openUrl(context, AppConstants.REDDIT)
                         }
                     )
                 }

@@ -9,6 +9,7 @@ class AppConstants{
         const val APP_NAME = "Lumolight"
         const val DEVELOPER = "BitMavrick"
         const val REPOSITORY = "https://github.com/BitMavrick/Lumolight"
+        const val REDDIT = "https://www.reddit.com/r/Lumolight"
         const val PRIVACY_POLICY = "https://bitmavrick.github.io/privacy-policy/lumolight.html"
     }
 }
