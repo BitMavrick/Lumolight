@@ -108,7 +108,7 @@ fun AboutScreen(
 
                 item {
                     SettingsItem(
-                        title = "Reddit Community",
+                        title = context.getString(R.string.reddit_community),
                         subTitle = AppConstants.REDDIT,
                         leadingIcon = Icons.Outlined.Groups,
                         onClick = {
