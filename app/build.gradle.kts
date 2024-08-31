@@ -11,12 +11,12 @@ plugins {
 
 android {
     namespace = "com.bitmavrick.lumolight"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.bitmavrick.lumolight" 
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 12
         versionName = "2.0.5"
 
