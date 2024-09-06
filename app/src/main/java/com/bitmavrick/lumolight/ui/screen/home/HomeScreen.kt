@@ -4,7 +4,6 @@
 
 package com.bitmavrick.lumolight.ui.screen.home
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -63,7 +62,7 @@ import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 import com.bitmavrick.lumolight.util.getAppVersion
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalFoundationApi::class)
+
 @Composable
 fun HomeScreen(
     navController: NavController,
@@ -233,7 +232,7 @@ fun HomeScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .weight(1f)
-                ) {index ->
+                ) { index ->
                     Box(
                         modifier = Modifier.fillMaxSize(),
                     ) {
@@ -271,7 +270,6 @@ data class TabItem(
     val selectedIcon: ImageVector
 )
 
-@OptIn(ExperimentalFoundationApi::class)
 private fun Modifier.pagerTabIndicatorOffset(
     pagerState: PagerState,
     tabPositions: List<TabPosition>,
@@ -316,7 +314,7 @@ private fun Modifier.pagerTabIndicatorOffset(
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@Preview(showBackground = true, showSystemUi = false)
 @Composable
 fun HomeScreenPreview() {
     LumolightTheme {
