@@ -127,7 +127,7 @@ fun QuickActionScreen(
     }
 }
 
-// * Experimental Systems
+// ** Experimental Systems **
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
 private fun getTorchStrengthValue(context: Context) : Int {
     return if(AppConstants.APP_PRODUCTION_MODE == ProductionMode.RELEASE){

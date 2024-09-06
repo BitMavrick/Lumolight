@@ -62,7 +62,6 @@ import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 import com.bitmavrick.lumolight.util.getAppVersion
 import kotlinx.coroutines.launch
 
-
 @Composable
 fun HomeScreen(
     navController: NavController,

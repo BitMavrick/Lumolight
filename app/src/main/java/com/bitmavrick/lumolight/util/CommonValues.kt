@@ -5,11 +5,11 @@
 package com.bitmavrick.lumolight.util
 class AppConstants{
     companion object {
-        val APP_PRODUCTION_MODE = ProductionMode.DEBUG // Change to Release before release
+        val APP_PRODUCTION_MODE = ProductionMode.DEBUG // !! Change it to Release before release !!
         const val APP_NAME = "Lumolight"
         const val DEVELOPER = "BitMavrick"
         const val REPOSITORY = "https://github.com/BitMavrick/Lumolight"
-        const val REDDIT = "https://www.reddit.com/r/Lumolight"
+        const val REDDIT = "https://www.reddit.com/r/Lumolight" // ? The community is Banned
         const val PRIVACY_POLICY = "https://bitmavrick.github.io/privacy-policy/lumolight.html"
     }
 }
