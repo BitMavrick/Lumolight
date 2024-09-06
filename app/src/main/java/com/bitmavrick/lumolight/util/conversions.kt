@@ -6,7 +6,6 @@ package com.bitmavrick.lumolight.util
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.pm.PackageManager
 import com.bitmavrick.lumolight.ui.screen.setting.Appearance
 
 @SuppressLint("DefaultLocale")
@@ -17,6 +16,8 @@ fun formatDuration(seconds: Int): String {
 }
 
 fun getAppVersion(context: Context): String {
+
+    /* Previous system
     return if(AppConstants.APP_PRODUCTION_MODE == ProductionMode.RELEASE){
         try {
             val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
@@ -26,6 +27,15 @@ fun getAppVersion(context: Context): String {
         }
     }else {
         "Unknown" // Due to the preview limitation we had to do this!
+    }
+     */
+
+    // latest system
+    return if(AppConstants.APP_PRODUCTION_MODE == ProductionMode.RELEASE) {
+        val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
+        packageInfo.versionName ?: "Unable to show"
+    }else{
+        "Running Debug Mode"
     }
 }
 
