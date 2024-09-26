@@ -82,7 +82,7 @@ fun QuickStartButton(
             modifier = Modifier.fillMaxSize()
         ){
             Card(
-                modifier = Modifier.padding(30.dp),
+                modifier = Modifier.padding(25.dp),
                 shape = CircleShape,
                 colors = foregroundButtonColor
             ){
