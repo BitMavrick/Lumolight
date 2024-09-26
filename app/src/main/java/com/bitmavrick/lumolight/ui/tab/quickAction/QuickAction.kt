@@ -4,11 +4,6 @@
 
 package com.bitmavrick.lumolight.ui.tab.quickAction
 
-import android.content.Context
-import android.hardware.camera2.CameraCharacteristics
-import android.hardware.camera2.CameraManager
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -30,12 +25,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.bitmavrick.lumolight.R
-import com.bitmavrick.lumolight.util.AppConstants
-import com.bitmavrick.lumolight.util.ProductionMode
 import kotlinx.coroutines.launch
 
 @Composable
@@ -113,33 +105,8 @@ fun QuickActionScreen(
                     }
                 }
             }
-
             Spacer(modifier = Modifier.weight(1f))
-
-            if(Build.VERSION.SDK_INT >= 33){
-                Text(
-                    text = getTorchStrengthValue(LocalContext.current).toString()
-                )
-            }else{
-                Text("Unsupported Value")
-            }
         }
-    }
-}
-
-// ** Experimental Systems **
-@RequiresApi(Build.VERSION_CODES.TIRAMISU)
-private fun getTorchStrengthValue(context: Context) : Int {
-    return if(AppConstants.APP_PRODUCTION_MODE == ProductionMode.RELEASE){
-        val cameraManager = ContextCompat.getSystemService(context, CameraManager::class.java) as CameraManager
-        val cameraId = cameraManager.cameraIdList[0]
-        val cameraCharacteristics = cameraManager.getCameraCharacteristics(cameraId)
-
-        val torchMaxLevel = cameraCharacteristics[CameraCharacteristics.FLASH_INFO_STRENGTH_MAXIMUM_LEVEL] ?: -1
-
-        torchMaxLevel
-    }else{
-        -10
     }
 }
 
