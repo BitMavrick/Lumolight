@@ -22,6 +22,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import com.bitmavrick.lumolight.system.KeepScreenOn
 import com.bitmavrick.lumolight.system.SetBrightness
 import com.bitmavrick.lumolight.ui.tab.CustomOutlinedButton
@@ -37,6 +40,13 @@ class FlashTileActivity: ComponentActivity() {
             statusBarStyle = SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT),
             navigationBarStyle = SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT)
         )
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        WindowInsetsControllerCompat(window, window.decorView).let { controller ->
+            controller.hide(WindowInsetsCompat.Type.systemBars())
+            controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        }
 
         setContent {
             TileFlash()
@@ -56,7 +66,7 @@ fun TileFlash() {
             Column(
                 Modifier
                     .fillMaxSize().padding(innerPadding)
-                    .padding(16.dp).background(androidx.compose.ui.graphics.Color.White),
+                    .background(androidx.compose.ui.graphics.Color.White).padding(16.dp),
                 verticalArrangement = Arrangement.Bottom,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
