@@ -10,7 +10,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Code
 import androidx.compose.material.icons.outlined.Commit
 import androidx.compose.material.icons.outlined.Cookie
-import androidx.compose.material.icons.outlined.Groups
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.PrivacyTip
 import androidx.compose.material.icons.outlined.Widgets
@@ -106,6 +105,7 @@ fun AboutScreen(
                     )
                 }
 
+                /* ? -- The community is currently Banned by Reddit!
                 item {
                     SettingsItem(
                         title = context.getString(R.string.reddit_community),
@@ -116,6 +116,7 @@ fun AboutScreen(
                         }
                     )
                 }
+                */
 
                 item {
                     SettingsItem(

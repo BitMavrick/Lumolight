@@ -40,6 +40,7 @@ fun QuickStartButton(
 ){
     val backgroundButtonColor: CardColors
     val foregroundButtonColor: CardColors
+
     val context = LocalContext.current
 
     if (uiState.startButtonStatus){
