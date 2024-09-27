@@ -20,7 +20,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.material.icons.outlined.Fluorescent
 import androidx.compose.material.icons.outlined.Timelapse
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -29,6 +28,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
@@ -45,7 +45,6 @@ import com.bitmavrick.lumolight.ui.tab.CustomFilledButton
 import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionUiEvent
 import com.bitmavrick.lumolight.util.BpmValue
 import com.bitmavrick.lumolight.util.TimeDuration
-import com.bitmavrick.lumolight.util.formatDuration
 import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -76,33 +75,16 @@ fun FlashlightScreen(
             }
         }
 
-        AlertDialog(
-            onDismissRequest = {},
-            confirmButton = {},
-            title = { Text(text = context.getString(R.string.flashlight_active)) },
-            text = {
+        FlashAlertDialog(
+            time = remember { derivedStateOf { time } },
+            flashlightViewModel = flashlightViewModel,
+            onClickDismiss = {
+                flashlightViewModel.toggleFlashLight(context, false)
+                flashlightViewModel.updateFlashlightAlert(false)
+                quickActionUiEvent(QuickActionUiEvent.StopStartButton)
                 if(uiState.flashlightDurationMin != -1){
-                    Text(
-                        text = "Duration: ${formatDuration(time)}\nBlink per min: ${uiState.flashlightBpmValue}"
-                    )
-                }else{
-                    Text(
-                        text = "Duration: N/A\nBlink per min: ${uiState.flashlightBpmValue}"
-                    )
+                    time = uiState.flashlightDurationMin * 60
                 }
-            },
-            dismissButton = {
-                CustomFilledButton(
-                    buttonText = context.getString(R.string.stop).uppercase(),
-                    onClick = {
-                        flashlightViewModel.toggleFlashLight(context, false)
-                        flashlightViewModel.updateFlashlightAlert(false)
-                        quickActionUiEvent(QuickActionUiEvent.StopStartButton)
-                        if(uiState.flashlightDurationMin != -1){
-                            time = uiState.flashlightDurationMin * 60
-                        }
-                    }
-                )
             }
         )
     }
@@ -221,71 +203,9 @@ fun FlashlightScreen(
                     }
                 }
             }
-
-            /* !! Maybe in the upcoming versions
-
-            item {
-                HorizontalDivider(
-                    Modifier.padding(vertical = 8.dp)
-                )
-
-                Row(
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 8.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Icon(
-                        imageVector = Icons.Outlined.Highlight,
-                        tint = MaterialTheme.colorScheme.primary,
-                        contentDescription = null
-                    )
-
-                    Text(
-                        text = "INTENSITY",
-                        style = MaterialTheme.typography.titleSmall,
-                        color = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier.padding(start = 8.dp)
-                    )
-                }
-
-                Column {
-                    FlowRow(
-                        Modifier
-                            .fillMaxWidth(1f)
-                            .wrapContentHeight(align = Alignment.Top),
-                        horizontalArrangement = Arrangement.Start,
-                    ) {
-                        IntensityValue.list.fastForEachIndexed { index, element ->
-                            FilterChip(
-                                modifier = Modifier
-                                    .padding(horizontal = 4.dp)
-                                    .align(alignment = Alignment.CenterVertically),
-                                selected = index == uiState.flashlightIntensityIndex,
-                                onClick = { viewModel.updateFlashlightIntensity(index, element.value) },
-                                label = { Text(element.title) },
-                                leadingIcon = if(index == uiState.flashlightIntensityIndex){
-                                    {
-                                        Icon(
-                                            imageVector = Icons.Filled.Done,
-                                            contentDescription = "Done Icon")
-                                    }
-                                } else {
-                                    null
-                                }
-                            )
-                        }
-                    }
-                }
-            }
-
-            */
         }
 
-        /* !! Maybe in the upcoming version
-        Spacer(modifier = Modifier.height(16.dp))
-        FlashlightMorseCodeButton()
-        */
+
         Spacer(modifier = Modifier.height(16.dp))
         CustomFilledButton(
             buttonText = if(uiState.flashlightStatus) context.getString(R.string.running).uppercase() else context.getString(R.string.start).uppercase(),
