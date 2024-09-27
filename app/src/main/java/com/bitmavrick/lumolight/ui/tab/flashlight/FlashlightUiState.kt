@@ -9,6 +9,7 @@ data class FlashlightUiState (
     val flashlightDurationMin : Int = -1,
     val flashlightBpmIndex : Int = 0,
     val flashlightBpmValue : Int = 0,
-    val flashlightIntensityIndex : Int = 0,
+    val flashlightMaxStrengthIndex : Int = 5,
+    val flashlightStrength: Int = 1,
     val flashlightStatus : Boolean = false
 )

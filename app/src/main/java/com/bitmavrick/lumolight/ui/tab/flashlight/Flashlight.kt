@@ -4,6 +4,7 @@
 
 package com.bitmavrick.lumolight.ui.tab.flashlight
 
+import android.os.Build
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -43,7 +44,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bitmavrick.lumolight.R
 import com.bitmavrick.lumolight.ui.tab.CustomFilledButton
 import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionUiEvent
+import com.bitmavrick.lumolight.util.AppConstants
 import com.bitmavrick.lumolight.util.BpmValue
+import com.bitmavrick.lumolight.util.ProductionMode
 import com.bitmavrick.lumolight.util.TimeDuration
 import kotlinx.coroutines.delay
 
@@ -58,6 +61,10 @@ fun FlashlightScreen(
 
     var time by remember { mutableIntStateOf(uiState.flashlightDurationMin) }
 
+    if(Build.VERSION.SDK_INT >= 33 && AppConstants.APP_PRODUCTION_MODE != ProductionMode.DEBUG){
+        flashlightViewModel.updateMaxFlashlightStrengthIndex(context)
+    }
+
     if(uiState.flashlightStatus){
 
         if(uiState.flashlightDurationMin != -1){
@@ -67,7 +74,7 @@ fun FlashlightScreen(
             LaunchedEffect(key1 = Unit) {
                 for (i in 1..uiState.flashlightDurationMin * 60) {
                     delay(1000L)
-                    time--
+                    time --
                 }
                 flashlightViewModel.toggleFlashLight(context, false)
                 flashlightViewModel.updateFlashlightAlert(false)

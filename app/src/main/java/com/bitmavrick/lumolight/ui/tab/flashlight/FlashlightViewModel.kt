@@ -6,7 +6,10 @@ package com.bitmavrick.lumolight.ui.tab.flashlight
 
 import android.content.Context
 import android.hardware.camera2.CameraAccessException
+import android.hardware.camera2.CameraCharacteristics
 import android.hardware.camera2.CameraManager
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -38,16 +41,24 @@ class FlashlightViewModel : ViewModel() {
         }
     }
 
-    /*
-    fun updateFlashlightIntensity(index: Int, value : String){
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    fun updateMaxFlashlightStrengthIndex(context: Context){
+        val strength = getMaxTorchStrengthValue(context)
         _uiState.update {
             it.copy(
-                flashlightIntensityIndex = index,
-                flashlightIntensityValue = value
+                flashlightMaxStrengthIndex = strength
             )
         }
     }
-     */
+
+    fun updateFlashlightStrength(value: Int){
+        _uiState.update {
+            it.copy(
+                flashlightStrength = value
+            )
+        }
+    }
+
 
     fun updateFlashlightAlert(value : Boolean){
         _uiState.update {
@@ -84,4 +95,15 @@ class FlashlightViewModel : ViewModel() {
             }
         }
     }
+}
+
+@RequiresApi(Build.VERSION_CODES.TIRAMISU)
+private fun getMaxTorchStrengthValue(context: Context) : Int {
+    val cameraManager = ContextCompat.getSystemService(context, CameraManager::class.java) as CameraManager
+    val cameraId = cameraManager.cameraIdList[0]
+    val cameraCharacteristics = cameraManager.getCameraCharacteristics(cameraId)
+
+    val torchMaxLevel = cameraCharacteristics[CameraCharacteristics.FLASH_INFO_STRENGTH_MAXIMUM_LEVEL] ?: 1
+
+    return torchMaxLevel
 }
