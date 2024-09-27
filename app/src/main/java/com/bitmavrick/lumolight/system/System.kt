@@ -48,6 +48,6 @@ fun SetBrightness(level: Float) {
 fun brightness(context: Context, isFull: Boolean, level: Float = 1f) {
     val activity = context as? Activity ?: return
     val layoutParams: WindowManager.LayoutParams = activity.window.attributes
-    layoutParams.screenBrightness = if (isFull) level else WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE // 1f is the brightness value
+    layoutParams.screenBrightness = if (isFull) level else WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE // ? 1f is the brightness value
     activity.window.attributes = layoutParams
 }
