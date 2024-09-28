@@ -3,6 +3,7 @@
 * */
 
 package com.bitmavrick.lumolight.util
+
 class AppConstants{
     companion object {
         val APP_PRODUCTION_MODE = ProductionMode.DEBUG // !! Change it to Release before release !!
