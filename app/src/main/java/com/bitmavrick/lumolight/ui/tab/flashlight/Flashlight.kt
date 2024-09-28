@@ -76,8 +76,8 @@ fun FlashlightScreen(
                     delay(1000L)
                     time --
                 }
-                flashlightViewModel.toggleFlashLight(context, false)
-                flashlightViewModel.updateFlashlightAlert(false)
+                flashlightViewModel.toggleFlashLight(context)
+                flashlightViewModel.updateFlashlightStatus(false)
                 time = uiState.flashlightDurationMin * 60
             }
         }
@@ -86,8 +86,8 @@ fun FlashlightScreen(
             time = remember { derivedStateOf { time } },
             flashlightViewModel = flashlightViewModel,
             onClickDismiss = {
-                flashlightViewModel.toggleFlashLight(context, false)
-                flashlightViewModel.updateFlashlightAlert(false)
+                flashlightViewModel.updateFlashlightStatus(false)
+                flashlightViewModel.toggleFlashLight(context)
                 quickActionUiEvent(QuickActionUiEvent.StopStartButton)
                 if(uiState.flashlightDurationMin != -1){
                     time = uiState.flashlightDurationMin * 60
@@ -217,8 +217,8 @@ fun FlashlightScreen(
         CustomFilledButton(
             buttonText = if(uiState.flashlightStatus) context.getString(R.string.running).uppercase() else context.getString(R.string.start).uppercase(),
             onClick = {
-                flashlightViewModel.updateFlashlightAlert(true)
-                flashlightViewModel.toggleFlashLight(context, true)
+                flashlightViewModel.updateFlashlightStatus(true)
+                flashlightViewModel.toggleFlashLight(context)
             }
         )
     }

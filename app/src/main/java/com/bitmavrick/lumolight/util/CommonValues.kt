@@ -16,11 +16,12 @@ class AppConstants{
 
 
 /* ? Why the ProductionMode is even exist ???
-! Certain configuration does not properly support the @Preview system. Developers use that to make the UI/UX is ok.
+! Certain configuration does not properly support the @Preview system. Developers use that to make sure the UI/UX is ok.
 * The best convention to use preview using  -- "ProductionMode.DEBUG" --
 * And for the running or testing the app use -- "ProductionMode.RELEASE" --
 * -- Simple! --
 * */
+
 enum class ProductionMode {
     DEBUG,
     RELEASE

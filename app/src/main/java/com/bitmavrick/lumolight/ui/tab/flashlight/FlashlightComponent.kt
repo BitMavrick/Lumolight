@@ -68,7 +68,6 @@ fun FlashAlertDialog(
             }
         },
         text = {
-
             Column {
                 if(uiState.flashlightDurationMin != -1){
                     Text(
@@ -105,25 +104,28 @@ fun FlashAlertDialog(
 fun FlashStrengthSlider(
     flashlightViewModel: FlashlightViewModel,
 ) {
+
     val uiState = flashlightViewModel.uiState.collectAsState().value
 
-    Column {
-        Text(
-            text = "Strength Level: ${uiState.flashlightStrength}",
-            fontWeight = FontWeight.Bold
-        )
+    if(uiState.flashlightDurationMin == -1){
+        Column {
+            Text(
+                text = "Strength Level: ${uiState.flashlightStrength}",
+                fontWeight = FontWeight.Bold
+            )
 
-        Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(4.dp))
 
-        Slider(
-            modifier = Modifier.semantics { contentDescription = "Localized Description" },
-            value = uiState.flashlightStrength.toFloat(),
-            onValueChange = {
-                flashlightViewModel.updateFlashlightStrength(it.roundToInt())
-            },
-            valueRange = 0f..uiState.flashlightMaxStrengthIndex.toFloat(),
-            steps = uiState.flashlightMaxStrengthIndex - 1
-        )
+            Slider(
+                modifier = Modifier.semantics { contentDescription = "Localized Description" },
+                value = uiState.flashlightStrength.toFloat(),
+                onValueChange = {
+                    flashlightViewModel.updateFlashlightStrength(it.roundToInt())
+                },
+                valueRange = 1f..uiState.flashlightMaxStrengthIndex.toFloat(),
+                steps = uiState.flashlightMaxStrengthIndex - 2
+            )
+        }
     }
 }
 
