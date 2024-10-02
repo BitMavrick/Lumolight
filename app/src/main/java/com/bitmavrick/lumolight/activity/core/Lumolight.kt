@@ -4,6 +4,14 @@
 
 package com.bitmavrick.lumolight.activity.core
 
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.platform.LocalContext
@@ -50,7 +58,15 @@ fun Lumolight(
         navController = navController,
         startDestination = Screen.HomeScreen.route
     ) {
-        composable(route = Screen.HomeScreen.route){
+        composable(
+            route = Screen.HomeScreen.route,
+            enterTransition = {
+                zoomInTransition()
+            },
+            exitTransition = {
+                zoomOutTransition()
+            }
+        ){
             HomeScreen(
                 navController = navController,
                 homeUiState = homeViewModel.uiState.collectAsState().value,
@@ -85,7 +101,15 @@ fun Lumolight(
             )
         }
 
-        composable(route = Screen.SettingScreen.route){
+        composable(
+            route = Screen.SettingScreen.route,
+            enterTransition = {
+                zoomInTransition()
+            },
+            exitTransition = {
+                zoomOutTransition()
+            }
+        ){
             SettingScreen(
                 settingUiState = settingViewModel.uiState.collectAsState().value,
                 settingOnEvent = settingViewModel::onEvent,
@@ -95,13 +119,29 @@ fun Lumolight(
             )
         }
 
-        composable(route = Screen.AboutScreen.route){
+        composable(
+            route = Screen.AboutScreen.route,
+            enterTransition = {
+                zoomInTransition()
+            },
+            exitTransition = {
+                zoomOutTransition()
+            }
+        ){
             AboutScreen(
                 onClickBack = { navController.navigateUp() }
             )
         }
 
-        composable(route = Screen.AppearanceScreen.route){
+        composable(
+            route = Screen.AppearanceScreen.route,
+            enterTransition = {
+                zoomInTransition()
+            },
+            exitTransition = {
+                zoomOutTransition()
+            }
+        ){
             AppearanceScreen(
                 settingUiState = settingViewModel.uiState.collectAsState().value,
                 settingUiEvent = settingViewModel::onEvent,
@@ -109,4 +149,35 @@ fun Lumolight(
             )
         }
     }
+}
+
+// * Optimized only for the forward view
+fun zoomInTransition(): EnterTransition {
+    return scaleIn(
+        initialScale = 0.85f,
+        animationSpec = tween(
+            durationMillis = 250,
+            easing = FastOutSlowInEasing
+        )
+    )+ fadeIn(
+        animationSpec = tween(
+            durationMillis = 250,
+            easing = FastOutSlowInEasing
+        )
+    )
+}
+
+fun zoomOutTransition(): ExitTransition {
+    return scaleOut(
+        targetScale = 1.15f,
+        animationSpec = tween(
+            durationMillis = 250,
+            easing = FastOutSlowInEasing
+        )
+    ) + fadeOut(
+        animationSpec = tween(
+            durationMillis = 250,
+            easing = FastOutSlowInEasing
+        )
+    )
 }
