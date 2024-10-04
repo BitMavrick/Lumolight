@@ -45,7 +45,7 @@
     <string name="dynamic_color_description">Color based on your wallpaper accent</string>
 
     <string name="oled_dark_title">OLED dark</string>
-    <string name="oled_dark_description">Enable pure dark background when dark mode enabled</string>
+    <string name="oled_dark_description">Enable pure dark background when dark mode is active</string>
 
     <string name="app_name_title">App name</string>
     <string name="version_title">Version</string>
