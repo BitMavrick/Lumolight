@@ -4,14 +4,6 @@
 
 package com.bitmavrick.lumolight.activity.core
 
-import androidx.compose.animation.EnterTransition
-import androidx.compose.animation.ExitTransition
-import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.scaleIn
-import androidx.compose.animation.scaleOut
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.platform.LocalContext
@@ -54,6 +46,9 @@ fun Lumolight(
     val navController = rememberNavController()
     val context = LocalContext.current
 
+    val forwardTransitionSpeed = 250
+    val backwardTransitionSpeed = 200
+
     NavHost(
         navController = navController,
         startDestination = Screen.HomeScreen.route
@@ -61,10 +56,24 @@ fun Lumolight(
         composable(
             route = Screen.HomeScreen.route,
             enterTransition = {
-                zoomInTransition()
+                zoomInTransition(
+                    forwardTransitionSpeed = forwardTransitionSpeed
+                )
             },
             exitTransition = {
-                zoomOutTransition()
+                zoomOutTransition(
+                    forwardTransitionSpeed = forwardTransitionSpeed
+                )
+            },
+            popEnterTransition = {
+                popZoomInTransition(
+                    backwardTransitionSpeed = backwardTransitionSpeed
+                )
+            },
+            popExitTransition = {
+                popZoomOutTransition(
+                    backwardTransitionSpeed = backwardTransitionSpeed
+                )
             }
         ){
             HomeScreen(
@@ -104,10 +113,24 @@ fun Lumolight(
         composable(
             route = Screen.SettingScreen.route,
             enterTransition = {
-                zoomInTransition()
+                zoomInTransition(
+                    forwardTransitionSpeed = forwardTransitionSpeed
+                )
             },
             exitTransition = {
-                zoomOutTransition()
+                zoomOutTransition(
+                    forwardTransitionSpeed = forwardTransitionSpeed
+                )
+            },
+            popEnterTransition = {
+                popZoomInTransition(
+                    backwardTransitionSpeed = backwardTransitionSpeed
+                )
+            },
+            popExitTransition = {
+                popZoomOutTransition(
+                    backwardTransitionSpeed = backwardTransitionSpeed
+                )
             }
         ){
             SettingScreen(
@@ -122,10 +145,24 @@ fun Lumolight(
         composable(
             route = Screen.AboutScreen.route,
             enterTransition = {
-                zoomInTransition()
+                zoomInTransition(
+                    forwardTransitionSpeed = forwardTransitionSpeed
+                )
             },
             exitTransition = {
-                zoomOutTransition()
+                zoomOutTransition(
+                    forwardTransitionSpeed = forwardTransitionSpeed
+                )
+            },
+            popEnterTransition = {
+                popZoomInTransition(
+                    backwardTransitionSpeed = backwardTransitionSpeed
+                )
+            },
+            popExitTransition = {
+                popZoomOutTransition(
+                    backwardTransitionSpeed = backwardTransitionSpeed
+                )
             }
         ){
             AboutScreen(
@@ -136,10 +173,24 @@ fun Lumolight(
         composable(
             route = Screen.AppearanceScreen.route,
             enterTransition = {
-                zoomInTransition()
+                zoomInTransition(
+                    forwardTransitionSpeed = forwardTransitionSpeed
+                )
             },
             exitTransition = {
-                zoomOutTransition()
+                zoomOutTransition(
+                    forwardTransitionSpeed = forwardTransitionSpeed
+                )
+            },
+            popEnterTransition = {
+                popZoomInTransition(
+                    backwardTransitionSpeed = backwardTransitionSpeed
+                )
+            },
+            popExitTransition = {
+                popZoomOutTransition(
+                    backwardTransitionSpeed = backwardTransitionSpeed
+                )
             }
         ){
             AppearanceScreen(
@@ -151,33 +202,3 @@ fun Lumolight(
     }
 }
 
-// * Optimized only for the forward view
-fun zoomInTransition(): EnterTransition {
-    return scaleIn(
-        initialScale = 0.85f,
-        animationSpec = tween(
-            durationMillis = 250,
-            easing = FastOutSlowInEasing
-        )
-    )+ fadeIn(
-        animationSpec = tween(
-            durationMillis = 250,
-            easing = FastOutSlowInEasing
-        )
-    )
-}
-
-fun zoomOutTransition(): ExitTransition {
-    return scaleOut(
-        targetScale = 1.15f,
-        animationSpec = tween(
-            durationMillis = 250,
-            easing = FastOutSlowInEasing
-        )
-    ) + fadeOut(
-        animationSpec = tween(
-            durationMillis = 250,
-            easing = FastOutSlowInEasing
-        )
-    )
-}

@@ -14,9 +14,9 @@ junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.6"
 activityCompose = "1.9.2"
-composeBom = "2024.09.02"
+composeBom = "2024.09.03"
 lifecycleViewmodelCompose = "2.8.6"
-navigationCompose = "2.8.1"
+navigationCompose = "2.8.2"
 review = "2.0.1"
 reviewKtx = "2.0.1"
 
@@ -42,7 +42,7 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 
-# Custom Implementation
+# * Custom Implementation
 androidx-material3-window = { group = "androidx.compose.material3", name = "material3-window-size-class" }
 androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
 androidx-material-icon-extended = { group = "androidx.compose.material", name = "material-icons-extended-android" }
