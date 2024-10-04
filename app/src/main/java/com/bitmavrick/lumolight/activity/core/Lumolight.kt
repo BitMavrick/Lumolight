@@ -25,15 +25,6 @@ import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionUiEvent
 import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionViewModel
 import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashViewModel
 
-sealed class Screen(val route: String){
-    data object HomeScreen : Screen("home_screen")
-    data object FlashScreen : Screen("flash_screen")
-    data object SettingScreen : Screen("setting_screen")
-    data object AboutScreen : Screen("about_screen")
-    data object AppearanceScreen : Screen("appearance_screen")
-    data object SosScreen : Screen("sos_screen")
-}
-
 @Composable
 fun Lumolight(
     homeViewModel: HomeViewModel = viewModel(),
@@ -143,34 +134,6 @@ fun Lumolight(
         }
 
         composable(
-            route = Screen.AboutScreen.route,
-            enterTransition = {
-                zoomInTransition(
-                    forwardTransitionSpeed = forwardTransitionSpeed
-                )
-            },
-            exitTransition = {
-                zoomOutTransition(
-                    forwardTransitionSpeed = forwardTransitionSpeed
-                )
-            },
-            popEnterTransition = {
-                popZoomInTransition(
-                    backwardTransitionSpeed = backwardTransitionSpeed
-                )
-            },
-            popExitTransition = {
-                popZoomOutTransition(
-                    backwardTransitionSpeed = backwardTransitionSpeed
-                )
-            }
-        ){
-            AboutScreen(
-                onClickBack = { navController.navigateUp() }
-            )
-        }
-
-        composable(
             route = Screen.AppearanceScreen.route,
             enterTransition = {
                 zoomInTransition(
@@ -199,6 +162,36 @@ fun Lumolight(
                 onClickBack = { navController.navigateUp() }
             )
         }
+
+        composable(
+            route = Screen.AboutScreen.route,
+            enterTransition = {
+                zoomInTransition(
+                    forwardTransitionSpeed = forwardTransitionSpeed
+                )
+            },
+            exitTransition = {
+                zoomOutTransition(
+                    forwardTransitionSpeed = forwardTransitionSpeed
+                )
+            },
+            popEnterTransition = {
+                popZoomInTransition(
+                    backwardTransitionSpeed = backwardTransitionSpeed
+                )
+            },
+            popExitTransition = {
+                popZoomOutTransition(
+                    backwardTransitionSpeed = backwardTransitionSpeed
+                )
+            }
+        ){
+            AboutScreen(
+                onClickBack = { navController.navigateUp() }
+            )
+        }
     }
 }
+
+
 
