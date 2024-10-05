@@ -4,6 +4,7 @@
 
 package com.bitmavrick.lumolight.ui.screen.screenFlash
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,8 +26,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.toColorInt
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.bitmavrick.lumolight.system.KeepScreenOn
 import com.bitmavrick.lumolight.system.SetBrightness
 import com.bitmavrick.lumolight.ui.tab.CustomOutlinedButton
@@ -36,12 +35,15 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun FlashScreen(
-    navController: NavController,
     screenFlashUiState: ScreenFlashUiState = ScreenFlashUiState(),
     onClose: () -> Unit
 ) {
     SetBrightness(screenFlashUiState.screenFlashBrightnessValue)
     KeepScreenOn()
+
+    BackHandler {
+        onClose()
+    }
 
     var time by remember { mutableIntStateOf(screenFlashUiState.screenFlashDurationMin) }
 
@@ -54,7 +56,7 @@ fun FlashScreen(
                 delay(1000L)
                 time--
             }
-            navController.navigateUp()
+            onClose()
         }
     }
 
@@ -72,7 +74,9 @@ fun FlashScreen(
                 verticalArrangement = Arrangement.Bottom,
             ){
                 Column(
-                    Modifier.weight(1f).fillMaxWidth(),
+                    Modifier
+                        .weight(1f)
+                        .fillMaxWidth(),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
@@ -99,7 +103,6 @@ fun FlashScreen(
 @Composable
 fun FlashScreenPreview(){
     FlashScreen(
-        navController = rememberNavController(),
         onClose = {}
     )
 }

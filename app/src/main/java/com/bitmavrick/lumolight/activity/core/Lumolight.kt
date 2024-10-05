@@ -81,7 +81,6 @@ fun Lumolight(
 
         composable(route = Screen.FlashScreen.route){
             FlashScreen(
-                navController = navController,
                 screenFlashUiState = screenFlashViewModel.uiState.collectAsState().value,
                 onClose = {
                     val quickActionUiEvent = quickActionViewModel::onEvent
