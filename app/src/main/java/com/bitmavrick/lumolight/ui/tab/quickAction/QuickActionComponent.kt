@@ -73,11 +73,12 @@ fun QuickStartButton(
             .padding(8.dp)
             .noRippleClickable(
                 onClick = {
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                        vibrator.vibrate(
-                            VibrationEffect.createPredefined(VibrationEffect.EFFECT_HEAVY_CLICK)
-                        )
+                    if(uiState.hapticStatus){
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                            vibrator.vibrate(
+                                VibrationEffect.createPredefined(VibrationEffect.EFFECT_HEAVY_CLICK)
+                            )
+                        }
                     }
 
                     onClick()

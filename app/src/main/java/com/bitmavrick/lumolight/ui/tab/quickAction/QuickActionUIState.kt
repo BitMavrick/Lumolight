@@ -10,4 +10,5 @@ data class QuickActionUiState (
     val segmentedButtonSelectedIndex: Int = 0,
     val segmentedButtonDisable: Boolean = false,
     val shouldSaveSegmentedButtonIndex: Boolean = false,
+    val hapticStatus: Boolean = false
 )

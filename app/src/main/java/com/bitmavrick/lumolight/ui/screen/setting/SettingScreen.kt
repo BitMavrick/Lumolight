@@ -4,6 +4,7 @@
 
 package com.bitmavrick.lumolight.ui.screen.setting
 
+import android.os.Build
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
@@ -87,18 +88,20 @@ fun SettingScreen(
                     )
                 }
 
-                item {
-                    SettingsItem(
-                        title = context.getString(R.string.enable_haptic_title),
-                        subTitle = context.getString(R.string.enable_haptic_description),
-                        leadingIcon = Icons.Outlined.Vibration,
-                        iconDescription = context.getString(R.string.vibration_icon_description),
-                        showSwitch = true,
-                        switchChecked = settingUiState.hapticStatus,
-                        onClick = {
-                            settingOnEvent(SettingUiEvent.UpdateHapticStatus(!settingUiState.hapticStatus))
-                        }
-                    )
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    item {
+                        SettingsItem(
+                            title = context.getString(R.string.enable_haptic_title),
+                            subTitle = context.getString(R.string.enable_haptic_description),
+                            leadingIcon = Icons.Outlined.Vibration,
+                            iconDescription = context.getString(R.string.vibration_icon_description),
+                            showSwitch = true,
+                            switchChecked = settingUiState.hapticStatus,
+                            onClick = {
+                                settingOnEvent(SettingUiEvent.UpdateHapticStatus(!settingUiState.hapticStatus))
+                            }
+                        )
+                    }
                 }
 
                 item {

@@ -31,11 +31,13 @@ class QuickActionViewModel @Inject constructor (
         viewModelScope.launch {
             combine(
                 userPreferencesRepository.segmentedButtonValue,
-                userPreferencesRepository.saveQuickAction
-            ) { segmentedButtonValue, shouldSaveSegmentedButtonIndex ->
+                userPreferencesRepository.saveQuickAction,
+                userPreferencesRepository.enableHapticStatus
+            ) { segmentedButtonValue, shouldSaveSegmentedButtonIndex, enableHapticStatus ->
                 QuickActionUiState(
                     segmentedButtonSelectedIndex = segmentedButtonValue,
-                    shouldSaveSegmentedButtonIndex = shouldSaveSegmentedButtonIndex
+                    shouldSaveSegmentedButtonIndex = shouldSaveSegmentedButtonIndex,
+                    hapticStatus = enableHapticStatus
                 )
             }.collect { newState ->
                 _uiState.value = newState
