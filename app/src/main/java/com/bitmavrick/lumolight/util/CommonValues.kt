@@ -6,7 +6,7 @@ package com.bitmavrick.lumolight.util
 
 class AppConstants{
     companion object {
-        val APP_PRODUCTION_MODE = ProductionMode.DEBUG // !! Change it to Release before release !!
+        val APP_PRODUCTION_MODE = ProductionMode.RELEASE // !! Change it to Release before release !!
         const val APP_NAME = "Lumolight"
         const val DEVELOPER = "BitMavrick"
         const val REPOSITORY = "https://github.com/BitMavrick/Lumolight"

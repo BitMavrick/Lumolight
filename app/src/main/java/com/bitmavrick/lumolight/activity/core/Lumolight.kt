@@ -37,8 +37,8 @@ fun Lumolight(
     val navController = rememberNavController()
     val context = LocalContext.current
 
-    val forwardTransitionSpeed = 250
-    val backwardTransitionSpeed = 200
+    val forwardTransitionSpeed = 275
+    val backwardTransitionSpeed = 225
 
     NavHost(
         navController = navController,
