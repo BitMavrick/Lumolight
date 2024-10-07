@@ -243,10 +243,12 @@ fun HomeScreen(
                                 snakeBarHost = snackBarHostState
                             )
                             1 -> ScreenFlashScreen(
+                                homeUiState = homeUiState,
                                 screenFlashViewModel = screenFlashViewModel,
                                 onClickStart = { navController.navigate(Screen.FlashScreen.route) }
                             )
                             2 -> FlashlightScreen(
+                                homeUiState = homeUiState,
                                 quickActionUiEvent = quickActionUiEvent,
                                 flashlightViewModel = flashlightViewModel
                             )

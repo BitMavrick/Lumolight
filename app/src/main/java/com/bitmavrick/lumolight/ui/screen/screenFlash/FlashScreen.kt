@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.graphics.toColorInt
 import com.bitmavrick.lumolight.system.KeepScreenOn
 import com.bitmavrick.lumolight.system.SetBrightness
+import com.bitmavrick.lumolight.ui.screen.setting.SettingUiState
 import com.bitmavrick.lumolight.ui.tab.CustomOutlinedButton
 import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashUiState
 import com.bitmavrick.lumolight.util.formatDuration
@@ -39,6 +40,7 @@ import kotlinx.coroutines.delay
 @Composable
 fun FlashScreen(
     screenFlashUiState: ScreenFlashUiState = ScreenFlashUiState(),
+    settingUiState: SettingUiState = SettingUiState(),
     onClose: () -> Unit
 ) {
     SetBrightness(screenFlashUiState.screenFlashBrightnessValue)
@@ -95,7 +97,8 @@ fun FlashScreen(
                     onClick = {
                         onClose()
                     },
-                    color = MaterialTheme.colorScheme.primary
+                    color = MaterialTheme.colorScheme.primary,
+                    hapticStatus = settingUiState.hapticStatus
                 )
             }
         }

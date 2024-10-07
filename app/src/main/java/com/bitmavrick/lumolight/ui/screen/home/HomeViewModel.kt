@@ -13,6 +13,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -30,12 +31,16 @@ class HomeViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            userPreferencesRepository.showSosButton.collect{ value ->
-                _uiState.update {
-                    it.copy(
-                        showSosButton = value
-                    )
-                }
+            combine(
+                userPreferencesRepository.showSosButton,
+                userPreferencesRepository.enableHapticStatus
+            ){ showSosButton, hapticStatus ->
+                HomeUiState(
+                    showSosButton = showSosButton,
+                    hapticStatus = hapticStatus
+                )
+            }.collect{ newState ->
+                _uiState.value = newState
             }
         }
     }

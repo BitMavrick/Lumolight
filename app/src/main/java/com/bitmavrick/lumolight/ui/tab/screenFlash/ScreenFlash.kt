@@ -40,6 +40,7 @@ import androidx.compose.ui.util.fastForEachIndexed
 import androidx.core.graphics.toColorInt
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bitmavrick.lumolight.R
+import com.bitmavrick.lumolight.ui.screen.home.HomeUiState
 import com.bitmavrick.lumolight.ui.tab.CustomFilledButton
 import com.bitmavrick.lumolight.util.BrightnessValue
 import com.bitmavrick.lumolight.util.ColorValue
@@ -50,6 +51,7 @@ import com.bitmavrick.lumolight.util.TimeDuration
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun ScreenFlashScreen(
+    homeUiState: HomeUiState = HomeUiState(),
     screenFlashViewModel: ScreenFlashViewModel,
     onClickStart: () -> Unit
 ) {
@@ -244,7 +246,8 @@ fun ScreenFlashScreen(
 
         CustomFilledButton(
             buttonText = context.getString(R.string.start),
-            onClick =  onClickStart
+            onClick =  onClickStart,
+            hapticStatus = homeUiState.hapticStatus
         )
     }
 }

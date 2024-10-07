@@ -82,6 +82,7 @@ fun Lumolight(
         composable(route = Screen.FlashScreen.route){
             FlashScreen(
                 screenFlashUiState = screenFlashViewModel.uiState.collectAsState().value,
+                settingUiState = settingViewModel.uiState.collectAsState().value,
                 onClose = {
                     val quickActionUiEvent = quickActionViewModel::onEvent
                     quickActionUiEvent(QuickActionUiEvent.StopStartButton)

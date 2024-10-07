@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastForEachIndexed
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bitmavrick.lumolight.R
+import com.bitmavrick.lumolight.ui.screen.home.HomeUiState
 import com.bitmavrick.lumolight.ui.tab.CustomFilledButton
 import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionUiEvent
 import com.bitmavrick.lumolight.util.AppConstants
@@ -53,6 +54,7 @@ import kotlinx.coroutines.delay
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun FlashlightScreen(
+    homeUiState: HomeUiState = HomeUiState(),
     quickActionUiEvent: (QuickActionUiEvent) -> Unit,
     flashlightViewModel: FlashlightViewModel,
 ) {
@@ -92,7 +94,8 @@ fun FlashlightScreen(
                 if(uiState.flashlightDurationMin != -1){
                     time = uiState.flashlightDurationMin * 60
                 }
-            }
+            },
+            hapticStatus = homeUiState.hapticStatus
         )
     }
 
@@ -219,7 +222,8 @@ fun FlashlightScreen(
             onClick = {
                 flashlightViewModel.updateFlashlightStatus(true)
                 flashlightViewModel.toggleFlashLight(context)
-            }
+            },
+            hapticStatus = homeUiState.hapticStatus
         )
     }
 }

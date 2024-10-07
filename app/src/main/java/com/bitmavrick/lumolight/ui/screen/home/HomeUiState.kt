@@ -10,7 +10,8 @@ data class HomeUiState (
     val topSOSButtonStatus: TopSOSButtonStatus = TopSOSButtonStatus.IDLE,
     val quickSOSCountingSeconds: Int? = null,
     val showSosDialog: Boolean = false,
-    val showAboutDialog: Boolean = false
+    val showAboutDialog: Boolean = false,
+    val hapticStatus: Boolean = false
 )
 
 

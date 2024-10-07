@@ -40,7 +40,8 @@ import kotlin.math.roundToInt
 fun FlashAlertDialog(
     time: State<Int>,
     flashlightViewModel: FlashlightViewModel,
-    onClickDismiss: () -> Unit
+    onClickDismiss: () -> Unit,
+    hapticStatus: Boolean = false
 ){
     val context = LocalContext.current
     val uiState = flashlightViewModel.uiState.collectAsState().value
@@ -94,7 +95,8 @@ fun FlashAlertDialog(
                 buttonText = context.getString(R.string.stop).uppercase(),
                 onClick = {
                     onClickDismiss()
-                }
+                },
+                hapticStatus = hapticStatus
             )
         }
     )
