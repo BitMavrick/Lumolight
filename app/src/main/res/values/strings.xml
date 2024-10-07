@@ -39,7 +39,7 @@
     <string name="show_sos_button_description">Show SOS button on the top bar</string>
 
     <string name="enable_haptic_title">Haptic feedback</string>
-    <string name="enable_haptic_description">Enable haptic feedback for certain actions</string>
+    <string name="enable_haptic_description">Enable haptic feedback for certain major actions</string>
 
     <string name="about_title">About</string>
     <string name="about_description">About application</string>
