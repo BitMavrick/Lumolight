@@ -4,6 +4,7 @@
 
 package com.bitmavrick.lumolight.ui.screen.screenFlash
 
+import android.annotation.SuppressLint
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -33,6 +34,8 @@ import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashUiState
 import com.bitmavrick.lumolight.util.formatDuration
 import kotlinx.coroutines.delay
 
+
+@SuppressLint("NewApi")
 @Composable
 fun FlashScreen(
     screenFlashUiState: ScreenFlashUiState = ScreenFlashUiState(),
