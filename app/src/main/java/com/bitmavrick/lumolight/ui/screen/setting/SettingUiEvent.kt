@@ -11,4 +11,5 @@ sealed interface SettingUiEvent {
     data class UpdateAppearance(val appearance: Appearance) : SettingUiEvent
     data class UpdateDynamicTheme(val dynamicTheme: Boolean) : SettingUiEvent
     data class UpdateOledTheme(val oledTheme: Boolean) : SettingUiEvent
+    data class UpdateHapticStatus(val status: Boolean) : SettingUiEvent
 }

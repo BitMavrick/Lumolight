@@ -94,9 +94,9 @@ fun SettingScreen(
                         leadingIcon = Icons.Outlined.Vibration,
                         iconDescription = context.getString(R.string.vibration_icon_description),
                         showSwitch = true,
-                        switchChecked = settingUiState.showSosButton,
+                        switchChecked = settingUiState.hapticStatus,
                         onClick = {
-                            settingOnEvent(SettingUiEvent.UpdateShowSosButtonPreference(!settingUiState.showSosButton))
+                            settingOnEvent(SettingUiEvent.UpdateHapticStatus(!settingUiState.hapticStatus))
                         }
                     )
                 }

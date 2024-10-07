@@ -46,10 +46,12 @@ class SettingViewModel @Inject constructor (
         }
 
         viewModelScope.launch{
-            _uiState.update {
-                it.copy(
-                    // hapticStatus = userPreferencesRepository.enableHapticStatus
-                )
+            userPreferencesRepository.enableHapticStatus.collect{ value ->
+                _uiState.update {
+                    it.copy(
+                        hapticStatus = value
+                    )
+                }
             }
         }
     }
@@ -78,6 +80,10 @@ class SettingViewModel @Inject constructor (
 
             is SettingUiEvent.UpdateOledTheme -> {
                 updateOledTheme(event.oledTheme)
+            }
+
+            is SettingUiEvent.UpdateHapticStatus -> {
+                updateHapticStatus(event.status)
             }
         }
     }
@@ -133,6 +139,12 @@ class SettingViewModel @Inject constructor (
     private fun updateShowSosButtonPreference(value: Boolean){
         viewModelScope.launch {
             userPreferencesRepository.updateShowSosButtonPreference(value)
+        }
+    }
+
+    private fun updateHapticStatus(value: Boolean){
+        viewModelScope.launch {
+            userPreferencesRepository.updateHapticStatus(value)
         }
     }
 }
