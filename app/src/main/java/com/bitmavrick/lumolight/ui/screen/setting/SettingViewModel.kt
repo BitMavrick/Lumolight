@@ -31,17 +31,25 @@ class SettingViewModel @Inject constructor (
                 userPreferencesRepository.dynamicTheme,
                 userPreferencesRepository.oledTheme,
                 userPreferencesRepository.saveQuickAction,
-                userPreferencesRepository.showSosButton
+                userPreferencesRepository.showSosButton,
             ){ appearance, dynamicTheme, oledTheme, saveQuickAction, showSosButton ->
                 SettingUiState(
                     appearance = appearance.toAppearance(),
                     dynamicTheme = dynamicTheme,
                     oledTheme = oledTheme,
                     saveQuickAction = saveQuickAction,
-                    showSosButton = showSosButton
+                    showSosButton = showSosButton,
                 )
             }.collect{ newState ->
                 _uiState.value = newState
+            }
+        }
+
+        viewModelScope.launch{
+            _uiState.update {
+                it.copy(
+                    // hapticStatus = userPreferencesRepository.enableHapticStatus
+                )
             }
         }
     }

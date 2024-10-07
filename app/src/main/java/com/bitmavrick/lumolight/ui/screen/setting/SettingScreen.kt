@@ -11,6 +11,7 @@ import androidx.compose.material.icons.outlined.ColorLens
 import androidx.compose.material.icons.outlined.DynamicForm
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Sos
+import androidx.compose.material.icons.outlined.Vibration
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarDefaults
@@ -78,6 +79,20 @@ fun SettingScreen(
                         subTitle = context.getString(R.string.show_sos_button_description),
                         leadingIcon = Icons.Outlined.Sos,
                         iconDescription = context.getString(R.string.sos_icon_description),
+                        showSwitch = true,
+                        switchChecked = settingUiState.showSosButton,
+                        onClick = {
+                            settingOnEvent(SettingUiEvent.UpdateShowSosButtonPreference(!settingUiState.showSosButton))
+                        }
+                    )
+                }
+
+                item {
+                    SettingsItem(
+                        title = context.getString(R.string.enable_haptic_title),
+                        subTitle = context.getString(R.string.enable_haptic_description),
+                        leadingIcon = Icons.Outlined.Vibration,
+                        iconDescription = context.getString(R.string.vibration_icon_description),
                         showSwitch = true,
                         switchChecked = settingUiState.showSosButton,
                         onClick = {

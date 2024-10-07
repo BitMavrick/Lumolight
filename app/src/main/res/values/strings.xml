@@ -38,6 +38,9 @@
     <string name="show_sos_button_title">Show SOS button</string>
     <string name="show_sos_button_description">Show SOS button on the top bar</string>
 
+    <string name="enable_haptic_title">Haptic feedback</string>
+    <string name="enable_haptic_description">Enable haptic feedback for certain actions</string>
+
     <string name="about_title">About</string>
     <string name="about_description">About application</string>
 
@@ -79,4 +82,5 @@
     <string name="comment_icon_description">Comment Icon</string>
     <string name="privacy_icon_description">Privacy Icon</string>
     <string name="tab_icon_description">Leading Tab Icon</string>
+    <string name="vibration_icon_description">Leading Tab Icon</string>
 </resources>

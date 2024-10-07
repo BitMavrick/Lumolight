@@ -5,6 +5,9 @@
 package com.bitmavrick.lumolight.ui.tab.quickAction
 
 import android.annotation.SuppressLint
+import android.os.Build
+import android.os.VibrationEffect
+import android.os.Vibrator
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -42,6 +45,7 @@ fun QuickStartButton(
     val foregroundButtonColor: CardColors
 
     val context = LocalContext.current
+    val vibrator = context.getSystemService(Vibrator::class.java)
 
     if (uiState.startButtonStatus){
         backgroundButtonColor = CardDefaults.cardColors(
@@ -69,6 +73,13 @@ fun QuickStartButton(
             .padding(8.dp)
             .noRippleClickable(
                 onClick = {
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        vibrator.vibrate(
+                            VibrationEffect.createPredefined(VibrationEffect.EFFECT_HEAVY_CLICK)
+                        )
+                    }
+
                     onClick()
                 }
             ),

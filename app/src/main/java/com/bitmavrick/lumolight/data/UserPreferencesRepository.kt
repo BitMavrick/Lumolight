@@ -25,6 +25,7 @@ class UserPreferencesRepository(context: Context) {
         private val APP_LOADING_KEY = booleanPreferencesKey("appLoading")
         private val SAVE_QUICK_ACTION_KEY = booleanPreferencesKey("saveQuickAction")
         private val SHOW_SOS_BUTTON_KEY = booleanPreferencesKey("showSosButton")
+        private val ENABLE_HAPTIC_STATUS_KEY = booleanPreferencesKey("enableHapticStatus")
         private val SEGMENTED_BUTTON_VALUE_KEY = intPreferencesKey("segmentedButtonValue")
     }
 
@@ -53,6 +54,11 @@ class UserPreferencesRepository(context: Context) {
     val showSosButton: Flow<Boolean> = dataStore.data
         .map { preferences ->
             preferences[SHOW_SOS_BUTTON_KEY] ?: true
+        }
+
+    val enableHapticStatus: Flow<Boolean> = dataStore.data
+        .map { preferences ->
+            preferences[ENABLE_HAPTIC_STATUS_KEY] ?: false
         }
 
     val saveQuickAction: Flow<Boolean> = dataStore.data
@@ -98,6 +104,12 @@ class UserPreferencesRepository(context: Context) {
     suspend fun saveSegmentedButtonValue(value: Int) {
         dataStore.edit { preferences ->
             preferences[SEGMENTED_BUTTON_VALUE_KEY] = value
+        }
+    }
+
+    suspend fun updateHapticStatus(value: Boolean){
+        dataStore.edit { preferences ->
+            preferences[ENABLE_HAPTIC_STATUS_KEY] = value
         }
     }
 
