@@ -4,6 +4,7 @@
 
 package com.bitmavrick.lumolight.ui.tab.screenFlash
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -28,7 +29,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -45,6 +45,8 @@ import com.bitmavrick.lumolight.util.BrightnessValue
 import com.bitmavrick.lumolight.util.ColorValue
 import com.bitmavrick.lumolight.util.TimeDuration
 
+
+@SuppressLint("NewApi")
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun ScreenFlashScreen(

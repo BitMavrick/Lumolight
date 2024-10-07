@@ -4,6 +4,10 @@
 
 package com.bitmavrick.lumolight.ui.tab
 
+import android.content.Context
+import android.os.Build
+import android.os.VibrationEffect
+import android.os.Vibrator
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -17,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -25,9 +30,11 @@ import androidx.compose.ui.unit.dp
 fun CustomOutlinedButton(
     buttonText : String,
     onClick: () -> Unit,
-    color: Color = Color.Red
+    color: Color = Color.Red,
+    hapticStatus: Boolean = false
 ) {
     val customShape = RoundedCornerShape(percent = 15)
+    val context = LocalContext.current
 
     Box(
         modifier = Modifier
@@ -38,7 +45,12 @@ fun CustomOutlinedButton(
                 color = color,
                 shape = customShape
             )
-            .clickable { onClick() },
+            .clickable {
+                onClick()
+                if (hapticStatus) {
+                    vibrate(context)
+                }
+            },
         contentAlignment = Alignment.Center
     ) {
         Text(
@@ -52,9 +64,11 @@ fun CustomOutlinedButton(
 @Composable
 fun CustomFilledButton(
     buttonText : String,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    hapticStatus: Boolean = false
 ) {
     val customShape = RoundedCornerShape(percent = 15)
+    val context = LocalContext.current
 
     Box(
         modifier = Modifier
@@ -64,13 +78,30 @@ fun CustomFilledButton(
                 color = MaterialTheme.colorScheme.primary,
                 shape = customShape
             )
-            .clickable{ onClick() },
+            .clickable {
+                onClick()
+                if (hapticStatus) {
+                    vibrate(context)
+                }
+            },
         contentAlignment = Alignment.Center
     ){
         Text(
             text = buttonText.uppercase(),
             color = MaterialTheme.colorScheme.onPrimary,
             fontWeight = FontWeight.Bold
+        )
+    }
+}
+
+private fun vibrate(
+    context: Context
+){
+    val vibrator = context.getSystemService(Vibrator::class.java)
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        vibrator.vibrate(
+            VibrationEffect.createPredefined(VibrationEffect.EFFECT_HEAVY_CLICK)
         )
     }
 }
