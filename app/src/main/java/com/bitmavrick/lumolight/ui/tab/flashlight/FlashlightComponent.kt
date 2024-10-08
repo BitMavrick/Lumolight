@@ -34,6 +34,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bitmavrick.lumolight.R
 import com.bitmavrick.lumolight.ui.tab.CustomFilledButton
 import com.bitmavrick.lumolight.util.formatDuration
+import com.bitmavrick.lumolight.util.vibrate
 import kotlin.math.roundToInt
 
 @Composable
@@ -84,7 +85,8 @@ fun FlashAlertDialog(
                     Spacer(modifier = Modifier.height(16.dp))
 
                     FlashStrengthSlider(
-                        flashlightViewModel
+                        hapticStatus = hapticStatus,
+                        flashlightViewModel = flashlightViewModel
                     )
                 }
             }
@@ -104,10 +106,12 @@ fun FlashAlertDialog(
 
 @Composable
 fun FlashStrengthSlider(
+    hapticStatus: Boolean,
     flashlightViewModel: FlashlightViewModel,
 ) {
 
     val uiState = flashlightViewModel.uiState.collectAsState().value
+    val context = LocalContext.current
 
     if(uiState.flashlightDurationMin == -1){
         Column {
@@ -123,6 +127,9 @@ fun FlashStrengthSlider(
                 value = uiState.flashlightStrength.toFloat(),
                 onValueChange = {
                     flashlightViewModel.updateFlashlightStrength(it.roundToInt())
+                    if(hapticStatus){
+                        vibrate(context)
+                    }
                 },
                 valueRange = 1f..uiState.flashlightMaxStrengthIndex.toFloat(),
                 steps = uiState.flashlightMaxStrengthIndex - 2
