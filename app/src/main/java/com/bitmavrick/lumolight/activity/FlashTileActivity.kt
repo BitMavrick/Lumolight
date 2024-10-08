@@ -29,12 +29,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import com.bitmavrick.lumolight.R
 import com.bitmavrick.lumolight.system.KeepScreenOn
 import com.bitmavrick.lumolight.ui.tab.CustomOutlinedButton
 import kotlin.system.exitProcess
@@ -91,28 +93,29 @@ class FlashTileActivity: ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun VolumeInfo(){
+    val context = LocalContext.current
+
     Column(
         Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Icon(
             imageVector = Icons.Default.ArrowUpward,
-            contentDescription = "Volume up",
+            contentDescription = context.getString(R.string.brightness_up_icon_description),
             tint = androidx.compose.ui.graphics.Color.Gray
         )
 
         Text(
-            text = "Use volume keys to adjust the brightness",
+            text = context.getString(R.string.brightness_suggestion),
             modifier = Modifier.padding(vertical = 12.dp),
             color = androidx.compose.ui.graphics.Color.Gray
         )
 
         Icon(
             imageVector = Icons.Default.ArrowDownward,
-            contentDescription = "Volume up",
+            contentDescription = context.getString(R.string.brightness_down_icon_description),
             tint = androidx.compose.ui.graphics.Color.Gray
         )
-
     }
 }
 

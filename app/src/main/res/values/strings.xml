@@ -29,6 +29,8 @@
     <string name="dismiss">Dismiss</string>
     <string name="app_theme">App theme</string>
 
+    <string name="brightness_suggestion">Use volume keys to adjust the brightness</string>
+
     <string name="appearance">Appearance</string>
     <string name="appearance_description">Configure application appearance</string>
 
@@ -83,4 +85,6 @@
     <string name="privacy_icon_description">Privacy Icon</string>
     <string name="tab_icon_description">Leading Tab Icon</string>
     <string name="vibration_icon_description">Leading Tab Icon</string>
+    <string name="brightness_up_icon_description">Brightness increase by volume up button icon</string>
+    <string name="brightness_down_icon_description">Brightness decrease by volume down button icon</string>
 </resources>
