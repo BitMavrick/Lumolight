@@ -16,9 +16,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDownward
+import androidx.compose.material.icons.filled.ArrowUpward
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.ui.Alignment
@@ -40,6 +46,7 @@ class FlashTileActivity: ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         installSplashScreen()
+        changeBrightness(0f)
 
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT),
@@ -80,6 +87,35 @@ class FlashTileActivity: ComponentActivity() {
     }
 }
 
+
+@Preview(showBackground = true)
+@Composable
+fun VolumeInfo(){
+    Column(
+        Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Icon(
+            imageVector = Icons.Default.ArrowUpward,
+            contentDescription = "Volume up",
+            tint = androidx.compose.ui.graphics.Color.Gray
+        )
+
+        Text(
+            text = "Use volume keys to adjust the brightness",
+            modifier = Modifier.padding(vertical = 12.dp),
+            color = androidx.compose.ui.graphics.Color.Gray
+        )
+
+        Icon(
+            imageVector = Icons.Default.ArrowDownward,
+            contentDescription = "Volume up",
+            tint = androidx.compose.ui.graphics.Color.Gray
+        )
+
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun TileFlash() {
@@ -94,7 +130,14 @@ fun TileFlash() {
                 verticalArrangement = Arrangement.Bottom,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Spacer(Modifier.height(20.dp))
+                Spacer(Modifier.height(30.dp))
+                Column (
+                    Modifier.weight(1f),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ){
+                    VolumeInfo()
+                }
                 CustomOutlinedButton(
                     buttonText = "Exit",
                     onClick = {
