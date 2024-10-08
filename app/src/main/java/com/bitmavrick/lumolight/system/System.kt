@@ -33,7 +33,6 @@ fun Context.findActivity(): Activity? {
     return null
 }
 
-
 @Composable
 fun SetBrightness(level: Float) {
     val context = LocalContext.current
