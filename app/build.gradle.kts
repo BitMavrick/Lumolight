@@ -6,8 +6,10 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.hiltAndroid)
+
+    // * kotlin annotation processing tool
     kotlin("kapt")
-    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -18,8 +20,8 @@ android {
         applicationId = "com.bitmavrick.lumolight"
         minSdk = 24
         targetSdk = 35
-        versionCode = 15
-        versionName = "2.1.1"
+        versionCode = 16
+        versionName = "2.2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
