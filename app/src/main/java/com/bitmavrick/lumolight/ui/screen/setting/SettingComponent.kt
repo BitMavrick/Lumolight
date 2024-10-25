@@ -32,6 +32,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.lerp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -41,12 +42,22 @@ fun SettingScreenTopBar(
     onClickBack: () -> Unit,
     backIconDescription: String
 ) {
+    val expandedFontSize = MaterialTheme.typography.headlineMedium.fontSize
+    val collapsedFontSize = MaterialTheme.typography.titleLarge.fontSize
+
+    val fontSize = lerp(
+        start = expandedFontSize,
+        stop = collapsedFontSize,
+        fraction = scrollBehavior.state.collapsedFraction
+    )
+
     LargeTopAppBar(
         title = {
             Text(
                 text = title,
                 maxLines = 1,
-                overflow = TextOverflow.Ellipsis
+                overflow = TextOverflow.Ellipsis,
+                fontSize = fontSize
             )
         },
         navigationIcon = {
