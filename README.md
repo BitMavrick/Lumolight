@@ -1,8 +1,6 @@
 # Lumolight: Screen & Flashlight
 
-[<img height=80 alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"/>](https://play.google.com/store/apps/details?id=com.bitmavrick.lumolight&hl=en)
-
-[<img height="80" src="https://github.com/machiav3lli/oandbackupx/blob/034b226cea5c1b30eb4f6a6f313e4dadcbb0ece4/badge_github.png"/>](https://github.com/BitMavrick/Lumolight/releases/latest)
+[<img height=80 alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"/>](https://play.google.com/store/apps/details?id=com.bitmavrick.lumolight&hl=en)[<img height="80" src="https://github.com/machiav3lli/oandbackupx/blob/034b226cea5c1b30eb4f6a6f313e4dadcbb0ece4/badge_github.png"/>](https://github.com/BitMavrick/Lumolight/releases/latest)
 
 [![Product Name Screen Shot][product-screenshot]](https://play.google.com/store/apps/details?id=com.bitmavrick.lumolight)
 
