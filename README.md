@@ -1,6 +1,7 @@
 # Lumolight: Screen & Flashlight
 
-[<img height=80 alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"/>](https://play.google.com/store/apps/details?id=com.bitmavrick.lumolight&hl=en)[<img height="80" src="https://github.com/machiav3lli/oandbackupx/blob/034b226cea5c1b30eb4f6a6f313e4dadcbb0ece4/badge_github.png"/>](https://github.com/BitMavrick/Lumolight/releases/latest)
+| [<img height=80 alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"/>](https://play.google.com/store/apps/details?id=com.bitmavrick.lumolight&hl=en) | [<img height="80" src="https://github.com/machiav3lli/oandbackupx/blob/034b226cea5c1b30eb4f6a6f313e4dadcbb0ece4/badge_github.png"/>](https://github.com/BitMavrick/Lumolight/releases/latest) |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 [![Product Name Screen Shot][product-screenshot]](https://play.google.com/store/apps/details?id=com.bitmavrick.lumolight)
 
@@ -40,5 +41,3 @@ We are constantly improving our app by adding exciting features and fixing any i
 [ss-7]: images/7.png
 [ss-8]: images/8.png
 [ss-9]: images/9.png
-
-<a href='https://play.google.com/store/apps/details?id=com.bitmavrick.lumolight&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' height='100' /></a>
