@@ -110,7 +110,7 @@ fun AboutScreen(
                     )
                 }
 
-                /* ? -- The community is currently Banned by Reddit!
+                /* ! -- The community is currently Banned by Reddit!
                 item {
                     SettingsItem(
                         title = context.getString(R.string.reddit_community),

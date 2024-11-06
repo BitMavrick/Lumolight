@@ -121,26 +121,29 @@ fun HomeScreen(
                     icon = {
                         Icon(
                             imageVector = Icons.Default.Sos,
-                            tint = MaterialTheme.colorScheme.primary,
+                            tint = MaterialTheme.colorScheme.error,
                             contentDescription = null
                         )
                     },
                     title = {
                         Text(
                             text = context.getString(R.string.emergency_sos),
-                            color = MaterialTheme.colorScheme.primary
+                            color = MaterialTheme.colorScheme.error,
+                            fontWeight = FontWeight.Bold
                         )
                     },
                     text = {
                         Text(
-                            text = "Starts at: ${homeUiState.quickSOSCountingSeconds}",
+                            text = homeUiState.quickSOSCountingSeconds.toString(),
                             modifier = Modifier.fillMaxWidth(),
                             textAlign = TextAlign.Center,
-                            style = MaterialTheme.typography.bodyLarge
+                            style = MaterialTheme.typography.titleLarge,
+                            fontWeight = FontWeight.Bold
                         )
                     },
                     onDismissRequest = {},
                     confirmButton = {},
+                    containerColor = MaterialTheme.colorScheme.errorContainer,
                     dismissButton = {
                         CustomFilledButton(
                             buttonText = context.getString(R.string.stop).uppercase(),
@@ -321,7 +324,11 @@ fun HomeScreenPreview() {
     LumolightTheme {
         HomeScreen(
             navController = rememberNavController(),
-            homeUiState = HomeUiState(),
+            homeUiState = HomeUiState(
+                showSosDialog = false,
+                showAboutDialog = false,
+                quickSOSCountingSeconds = 3
+            ),
             homeOnEvent = {},
             quickActionUiState = QuickActionUiState(),
             quickActionUiEvent = {},
