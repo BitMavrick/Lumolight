@@ -28,6 +28,7 @@
     <string name="dark">Dark</string>
     <string name="dismiss">Dismiss</string>
     <string name="app_theme">App theme</string>
+    <string name="app_theme_icon_description">App theme icon</string>
 
     <string name="brightness_suggestion">Use volume keys to adjust the brightness</string>
 
@@ -37,8 +38,8 @@
     <string name="save_quick_action_title">Save quick action</string>
     <string name="save_quick_action_description">Save the last selected status</string>
 
-    <string name="show_sos_button_title">Show SOS button</string>
-    <string name="show_sos_button_description">Show SOS button on the top bar</string>
+    <string name="show_sos_button_title">Enable SOS feature</string>
+    <string name="show_sos_button_description">Add SOS button on the top bar</string>
 
     <string name="enable_haptic_title">Haptic feedback</string>
     <string name="enable_haptic_description">Enable haptic feedback for certain major actions</string>
@@ -47,21 +48,30 @@
     <string name="about_description">About application</string>
 
     <string name="dynamic_color_title">Dynamic color</string>
+    <string name="dynamic_color_icon_description">Dynamic color</string>
     <string name="dynamic_color_description">Color based on your wallpaper accent</string>
 
     <string name="oled_dark_title">OLED dark</string>
+    <string name="oled_dark_icon_description">OLED dark icon</string>
     <string name="oled_dark_description">Enable pure dark background when dark mode is active</string>
 
     <string name="app_name_title">App name</string>
+    <string name="app_name_icon_description">App name icon</string>
     <string name="version_title">Version</string>
+    <string name="version_icon_description">Version icon</string>
     <string name="package_type_title">Package type</string>
+    <string name="package_type_icon_description">Package icon</string>
     <string name="developer_title">Developer</string>
+    <string name="developer_icon_description">Developer icon</string>
 
     <string name="links">Links</string>
 
     <string name="repository_title">Repository</string>
+    <string name="repository_icon_description">Repository icon</string>
     <string name="reddit_community">Reddit community</string>
+    <string name="reddit_community_icon_description">Reddit community icon</string>
     <string name="privacy_policy">Privacy policy</string>
+    <string name="privacy_policy_icon_description">Privacy policy icon</string>
     <string name="report_issue">Report issue</string>
 
     <string name="rate_lumolight">Rate Lumolight</string>
@@ -69,6 +79,7 @@
 
     <!--  Descriptive String  -->
     <string name="duration_icon_description">Duration Icon</string>
+    <string name="checked_icon_description">Checked</string>
     <string name="selected_icon_description">Selected Icon</string>
     <string name="power_icon_description">Clickable Power Icon</string>
     <string name="bpm_icon_description">Blink Per Minute Icon</string>

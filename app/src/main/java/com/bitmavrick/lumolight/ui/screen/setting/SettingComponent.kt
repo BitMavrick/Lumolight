@@ -12,8 +12,10 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.outlined.Cookie
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -21,13 +23,13 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -82,9 +84,10 @@ fun SettingsItem(
     title: String,
     subTitle: String,
     leadingIcon: ImageVector,
-    iconDescription: String = "Settings Icon",
+    iconDescription: String,
     showSwitch: Boolean = false,
     switchChecked: Boolean = false,
+    thumbIcon: ImageVector = Icons.Filled.Check,
     onClick: () -> Unit,
 ) {
     Row (
@@ -134,9 +137,19 @@ fun SettingsItem(
                 verticalArrangement = Arrangement.Center,
             ){
                 Switch(
-                    modifier = Modifier.semantics { contentDescription = "Toggle Switch" },
                     checked = switchChecked,
-                    onCheckedChange = { onClick() }
+                    onCheckedChange = { onClick() },
+                    thumbContent = if (switchChecked) {
+                        {
+                            Icon(
+                                imageVector = thumbIcon,
+                                contentDescription = "option enabled",
+                                modifier = Modifier.size(SwitchDefaults.IconSize),
+                            )
+                        }
+                    } else {
+                        null
+                    }
                 )
             }
         }

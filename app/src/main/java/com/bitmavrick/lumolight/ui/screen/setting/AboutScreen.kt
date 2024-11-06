@@ -57,6 +57,7 @@ fun AboutScreen(
                         title = context.getString(R.string.app_name_title),
                         subTitle = AppConstants.APP_NAME,
                         leadingIcon = Icons.Outlined.Widgets,
+                        iconDescription = context.getString(R.string.app_name_icon_description),
                         onClick = {}
                     )
                 }
@@ -66,6 +67,7 @@ fun AboutScreen(
                         title = context.getString(R.string.version_title),
                         subTitle = getAppVersion(context), // shows only release mode
                         leadingIcon = Icons.Outlined.Commit,
+                        iconDescription = context.getString(R.string.version_icon_description),
                         onClick = {}
                     )
                 }
@@ -75,6 +77,7 @@ fun AboutScreen(
                         title = context.getString(R.string.package_type_title),
                         subTitle = AppConstants.APP_PRODUCTION_MODE.name.lowercase(),
                         leadingIcon = Icons.Outlined.Cookie,
+                        iconDescription = context.getString(R.string.package_type_icon_description),
                         onClick = {}
                     )
                 }
@@ -84,6 +87,7 @@ fun AboutScreen(
                         title = context.getString(R.string.developer_title),
                         subTitle = AppConstants.DEVELOPER,
                         leadingIcon = Icons.Outlined.Person,
+                        iconDescription = context.getString(R.string.developer_icon_description),
                         onClick = {}
                     )
                 }
@@ -99,6 +103,7 @@ fun AboutScreen(
                         title = context.getString(R.string.repository_title),
                         subTitle = AppConstants.REPOSITORY,
                         leadingIcon = Icons.Outlined.Code,
+                        iconDescription = context.getString(R.string.repository_icon_description),
                         onClick = {
                             openUrl(context, AppConstants.REPOSITORY)
                         }
@@ -123,6 +128,7 @@ fun AboutScreen(
                         title = context.getString(R.string.privacy_policy),
                         subTitle = AppConstants.PRIVACY_POLICY,
                         leadingIcon = Icons.Outlined.PrivacyTip,
+                        iconDescription = context.getString(R.string.privacy_icon_description),
                         onClick = {
                             openUrl(context, AppConstants.PRIVACY_POLICY)
                         }

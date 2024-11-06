@@ -168,6 +168,7 @@ fun AppearanceScreen(
                         title = context.getString(R.string.app_theme),
                         subTitle = getAppearanceName(settingUiState),
                         leadingIcon = getProperThemeIcon(settingUiState),
+                        iconDescription = context.getString(R.string.app_theme_icon_description),
                         onClick = { settingUiEvent(SettingUiEvent.UpdateThemeDialog(true)) }
                     )
                 }
@@ -178,6 +179,7 @@ fun AppearanceScreen(
                             title = context.getString(R.string.dynamic_color_title),
                             subTitle = context.getString(R.string.dynamic_color_description),
                             leadingIcon = Icons.Outlined.ColorLens,
+                            iconDescription = context.getString(R.string.dynamic_color_icon_description),
                             showSwitch = true,
                             switchChecked = settingUiState.dynamicTheme,
                             onClick = { settingUiEvent(SettingUiEvent.UpdateDynamicTheme(!settingUiState.dynamicTheme)) }
@@ -190,6 +192,7 @@ fun AppearanceScreen(
                         title = context.getString(R.string.oled_dark_title),
                         subTitle = context.getString(R.string.oled_dark_description),
                         leadingIcon = Icons.Outlined.SettingsBrightness,
+                        iconDescription = context.getString(R.string.oled_dark_icon_description),
                         showSwitch = true,
                         switchChecked = settingUiState.oledTheme,
                         onClick = { settingUiEvent(SettingUiEvent.UpdateOledTheme(!settingUiState.oledTheme)) }
