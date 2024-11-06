@@ -74,10 +74,12 @@ fun FlashlightScreen(
             time = uiState.flashlightDurationMin * 60
 
             LaunchedEffect(key1 = Unit) {
-                for (i in 1..uiState.flashlightDurationMin * 60) {
+
+                repeat(uiState.flashlightDurationMin * 60) {
                     delay(1000L)
-                    time --
+                    time--
                 }
+
                 flashlightViewModel.toggleFlashLight(context)
                 flashlightViewModel.updateFlashlightStatus(false)
                 time = uiState.flashlightDurationMin * 60

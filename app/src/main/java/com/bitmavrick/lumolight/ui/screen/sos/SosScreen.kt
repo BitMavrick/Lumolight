@@ -4,6 +4,7 @@
 
 package com.bitmavrick.lumolight.ui.screen.sos
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -40,6 +41,12 @@ fun SosScreen(
 
     SetBrightness(1f)
     KeepScreenOn()
+
+    BackHandler {
+        sosViewModel.toggleFlashLight(context, false)
+        sosViewModel.updateFlashlightStatus(false)
+        onExitClick()
+    }
 
     // * Black and Red Combination is also good (Next Update: We can consider to may give users an extra option there)
 

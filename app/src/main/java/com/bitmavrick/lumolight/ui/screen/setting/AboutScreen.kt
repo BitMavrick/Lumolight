@@ -133,7 +133,7 @@ fun AboutScreen(
     )
 }
 
-@Preview(showBackground = true, showSystemUi = true)
+@Preview(showBackground = true, showSystemUi = false)
 @Composable
 fun AboutScreenPreview() {
     LumolightTheme {
