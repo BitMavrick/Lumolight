@@ -57,7 +57,7 @@ fun FlashScreen(
         time = screenFlashUiState.screenFlashDurationMin * 60
 
         LaunchedEffect(key1 = Unit) {
-            for (i in 1..screenFlashUiState.screenFlashDurationMin * 60) {
+            repeat(screenFlashUiState.screenFlashDurationMin * 60) {
                 delay(1000L)
                 time--
             }
