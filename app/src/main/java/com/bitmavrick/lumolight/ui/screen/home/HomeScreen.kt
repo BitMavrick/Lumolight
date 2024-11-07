@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
@@ -21,6 +22,7 @@ import androidx.compose.material.icons.outlined.CameraRear
 import androidx.compose.material.icons.outlined.DynamicForm
 import androidx.compose.material.icons.outlined.Smartphone
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LeadingIconTab
 import androidx.compose.material3.MaterialTheme
@@ -30,7 +32,6 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.TabPosition
 import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -43,6 +44,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Constraints
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -165,23 +167,31 @@ fun HomeScreen(
             if(homeUiState.showAboutDialog){
                 AlertDialog(
                     title = {
-                        Text(
-                            text = context.getString(R.string.app_name),
-                            style = MaterialTheme.typography.titleLarge,
-                            fontWeight = FontWeight.Bold
-                        )
+                        Column(
+                            modifier = Modifier.height(60.dp),
+                        ) {
+                            AppIconRound()
+                        }
                     },
                     text = {
-                        Text(text = "Version: ${getAppVersion(LocalContext.current)}\nDeveloped by BitMavrick\nLicensed under GPL-3.0")
+
+                        Column {
+                            Text(
+                                text = context.getString(R.string.app_name),
+                                style = MaterialTheme.typography.titleLarge,
+                                fontWeight = FontWeight.Bold
+                            )
+                            HorizontalDivider(
+                                thickness = 1.dp,
+                                modifier = Modifier.padding(vertical = 8.dp)
+                            )
+
+                            Text(text = "Version: ${getAppVersion(LocalContext.current)}\nDeveloped by BitMavrick\nLicensed under GPL-3.0")
+                        }
+
                     },
                     onDismissRequest = { homeOnEvent(HomeUiEvent.UpdateShowAboutDialog(false))  },
-                    confirmButton = {
-                        TextButton(
-                            onClick = { homeOnEvent(HomeUiEvent.UpdateShowAboutDialog(false)) }
-                        ) {
-                            Text(text = context.getString(R.string.ok).uppercase())
-                        }
-                    }
+                    confirmButton = {}
                 )
             }
 
