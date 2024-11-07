@@ -15,11 +15,11 @@ import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CameraRear
-import androidx.compose.material.icons.filled.DynamicForm
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.PhoneIphone
 import androidx.compose.material.icons.filled.Sos
 import androidx.compose.material.icons.outlined.CameraRear
-import androidx.compose.material.icons.outlined.DynamicForm
+import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Smartphone
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.HorizontalDivider
@@ -80,8 +80,8 @@ fun HomeScreen(
     val tabItems = listOf(
         TabItem(
             title = context.getString(R.string.actions),
-            unselectedIcon = Icons.Outlined.DynamicForm,
-            selectedIcon = Icons.Filled.DynamicForm
+            unselectedIcon = Icons.Outlined.Home,
+            selectedIcon = Icons.Filled.Home,
         ),
         TabItem(
             title = context.getString(R.string.screen),

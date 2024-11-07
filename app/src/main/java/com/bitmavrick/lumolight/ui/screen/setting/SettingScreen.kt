@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ColorLens
-import androidx.compose.material.icons.outlined.DynamicForm
+import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Sos
 import androidx.compose.material.icons.outlined.Vibration
@@ -64,7 +64,7 @@ fun SettingScreen(
                     SettingsItem(
                         title = context.getString(R.string.save_quick_action_title),
                         subTitle = context.getString(R.string.save_quick_action_description),
-                        leadingIcon = Icons.Outlined.DynamicForm,
+                        leadingIcon = Icons.Outlined.Home,
                         iconDescription = context.getString(R.string.save_quick_action_icon_description),
                         showSwitch = true,
                         switchChecked = settingUiState.saveQuickAction,

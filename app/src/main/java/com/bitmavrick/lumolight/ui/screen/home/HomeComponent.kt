@@ -11,7 +11,6 @@ import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.Comment
@@ -218,7 +217,7 @@ fun openAppInPlayStore(context: Context) {
 
     try {
         startActivity(context, goToMarketIntent, null)
-    } catch (e: ActivityNotFoundException) {
+    } catch (_: ActivityNotFoundException) {
         val intent = Intent(Intent.ACTION_VIEW,
             Uri.parse("http://play.google.com/store/apps/details?id=" + context.packageName))
 
@@ -255,6 +254,7 @@ fun CustomTabRow(
 @Preview(showBackground = false)
 @Composable
 fun AppIconRound() {
+    val context = LocalContext.current
     Box(
         modifier = Modifier
             .clip(CircleShape)
@@ -264,7 +264,7 @@ fun AppIconRound() {
         Icon(
             painter = painterResource(id = R.drawable.icon_light),
             modifier = Modifier.padding(4.dp),
-            contentDescription = null,
+            contentDescription = context.getString(R.string.app_icon_description),
             tint = MaterialTheme.colorScheme.primary
         )
     }

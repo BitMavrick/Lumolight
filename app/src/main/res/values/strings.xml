@@ -4,8 +4,9 @@
 
     <!--  Main Strings  -->
     <string name="app_name">Lumolight</string>
-    <string name="actions">Actions</string>
-    <string name="flashlight">Flashlight</string>
+    <string name="app_icon_description">Lumolight app icon</string>
+    <string name="actions">Home</string>
+    <string name="flashlight">Flash</string>
     <string name="cant_change_flash">Can\'t change the type while flash is active</string>
     <string name="screen">Screen</string>
     <string name="both">Both</string>
@@ -35,8 +36,8 @@
     <string name="appearance">Appearance</string>
     <string name="appearance_description">Configure application appearance</string>
 
-    <string name="save_quick_action_title">Save quick action</string>
-    <string name="save_quick_action_description">Save the last selected status</string>
+    <string name="save_quick_action_title">Save home status</string>
+    <string name="save_quick_action_description">Save the last selected status of home screen</string>
 
     <string name="show_sos_button_title">Enable SOS feature</string>
     <string name="show_sos_button_description">Add SOS button on the top bar</string>
