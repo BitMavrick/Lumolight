@@ -10,8 +10,6 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
 
-// * Optimized only for the forward transition
-
 fun zoomInTransition(
     forwardTransitionSpeed : Int = 250
 ): EnterTransition {
