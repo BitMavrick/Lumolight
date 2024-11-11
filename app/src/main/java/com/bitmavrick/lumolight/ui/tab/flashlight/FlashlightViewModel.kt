@@ -17,6 +17,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
 class FlashlightViewModel : ViewModel() {
@@ -74,36 +75,35 @@ class FlashlightViewModel : ViewModel() {
 
         viewModelScope.launch {
             _uiState.collect { uiStateValue ->
-                if(!uiStateValue.flashlightStatus){
-                    // ? making this as a priority to make the flash off anytime
-                    cameraManager.setTorchMode(cameraId, false)
-                }else{
-                    if(uiStateValue.flashlightBpmValue == 0){
-                        if(Build.VERSION.SDK_INT >= 33 && uiStateValue.flashlightMaxStrengthIndex > 1){
-                            cameraManager.turnOnTorchWithStrengthLevel(cameraId, uiStateValue.flashlightStrength)
-                        }else{
-                            cameraManager.setTorchMode(cameraId, true)
-                        }
-                    }else{
-                        val bpm = 60000L / uiState.value.flashlightBpmValue.toLong()
-                        while (uiState.value.flashlightStatus) {
-                            try {
+                try {
+                    if (!uiStateValue.flashlightStatus) {
+                        cameraManager.setTorchMode(cameraId, false)
+                    } else {
+                        if (uiStateValue.flashlightBpmValue == 0) {
+                            if (Build.VERSION.SDK_INT >= 33 && uiStateValue.flashlightMaxStrengthIndex > 1) {
+                                cameraManager.turnOnTorchWithStrengthLevel(cameraId, uiStateValue.flashlightStrength)
+                            } else {
                                 cameraManager.setTorchMode(cameraId, true)
-
+                            }
+                        } else {
+                            val bpm = 60000L / uiStateValue.flashlightBpmValue.toLong()
+                            while (isActive && uiState.value.flashlightStatus) {
+                                cameraManager.setTorchMode(cameraId, true)
                                 delay(bpm / 2)
-
                                 cameraManager.setTorchMode(cameraId, false)
-
                                 delay(bpm / 2)
-                            } catch (e: CameraAccessException) {
-                                e.printStackTrace()
                             }
                         }
                     }
+                } catch (e: CameraAccessException) {
+                    e.printStackTrace()
+                } catch (e: SecurityException) {
+                    e.printStackTrace()
                 }
             }
         }
     }
+
 }
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
