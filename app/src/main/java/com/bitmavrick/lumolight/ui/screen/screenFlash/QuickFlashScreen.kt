@@ -1,3 +1,7 @@
+/* *
+* Lumolight :: Open-source program under GPL-3.0 :: Copyright - BitMavrick :: https://github.com/BitMavrick
+* */
+
 package com.bitmavrick.lumolight.ui.screen.screenFlash
 
 import androidx.activity.compose.BackHandler
@@ -15,6 +19,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.bitmavrick.lumolight.system.KeepScreenOn
+import com.bitmavrick.lumolight.system.SetBrightness
 import com.bitmavrick.lumolight.ui.screen.setting.SettingUiState
 import com.bitmavrick.lumolight.ui.tab.CustomOutlinedButton
 
@@ -23,6 +29,9 @@ fun QuickFlashScreen(
     settingUiState: SettingUiState,
     onClose: () -> Unit
 ){
+
+    SetBrightness(1f)
+    KeepScreenOn()
 
     Scaffold (
         content = { innerPadding ->
@@ -43,7 +52,7 @@ fun QuickFlashScreen(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-
+                    // ? Empty Space
                 }
                 CustomOutlinedButton(
                     buttonText = "Close",

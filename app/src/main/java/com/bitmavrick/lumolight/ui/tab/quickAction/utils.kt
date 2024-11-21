@@ -15,13 +15,13 @@ fun startButtonActionHandler(
     context: Context
 ){
     if (uiState.segmentedButtonSelectedIndex == 0 && !uiState.startButtonStatus){
-        navController.navigate(Screen.FlashScreen.route)
+        navController.navigate(Screen.QuickFlashScreen.route)
         uiEvent(QuickActionUiEvent.ActiveStartButton)
     }
 
     if (uiState.segmentedButtonSelectedIndex == 1 && !uiState.startButtonStatus){
         uiEvent(QuickActionUiEvent.ToggleFlashLight(context, true))
-        navController.navigate(Screen.FlashScreen.route)
+        navController.navigate(Screen.QuickFlashScreen.route)
         uiEvent(QuickActionUiEvent.ActiveStartButton)
     }
 
