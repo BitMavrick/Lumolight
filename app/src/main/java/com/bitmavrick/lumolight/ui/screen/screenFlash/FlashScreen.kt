@@ -46,10 +46,6 @@ fun FlashScreen(
     SetBrightness(screenFlashUiState.screenFlashBrightnessValue)
     KeepScreenOn()
 
-    BackHandler {
-        onClose()
-    }
-
     var time by remember { mutableIntStateOf(screenFlashUiState.screenFlashDurationMin) }
 
     if(screenFlashUiState.screenFlashDurationMin != -1){
@@ -103,6 +99,10 @@ fun FlashScreen(
             }
         }
     )
+
+    BackHandler {
+        onClose()
+    }
 }
 
 @Preview(showBackground = true, showSystemUi = true)
