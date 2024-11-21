@@ -14,6 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import com.bitmavrick.lumolight.ui.screen.home.HomeScreen
 import com.bitmavrick.lumolight.ui.screen.home.HomeViewModel
 import com.bitmavrick.lumolight.ui.screen.screenFlash.FlashScreen
+import com.bitmavrick.lumolight.ui.screen.screenFlash.QuickFlashScreen
 import com.bitmavrick.lumolight.ui.screen.setting.AboutScreen
 import com.bitmavrick.lumolight.ui.screen.setting.AppearanceScreen
 import com.bitmavrick.lumolight.ui.screen.setting.SettingScreen
@@ -34,6 +35,7 @@ fun Lumolight(
     settingViewModel: SettingViewModel = viewModel(),
     sosViewModel: SosViewModel = viewModel()
 ) {
+    val quickActionUiEvent = quickActionViewModel::onEvent
     val navController = rememberNavController()
     val context = LocalContext.current
 
@@ -79,12 +81,22 @@ fun Lumolight(
             )
         }
 
+        composable(route = Screen.QuickFlashScreen.route){
+            QuickFlashScreen(
+                settingUiState = settingViewModel.uiState.collectAsState().value,
+                onClose = {
+                    quickActionUiEvent(QuickActionUiEvent.StopStartButton)
+                    quickActionUiEvent(QuickActionUiEvent.ToggleFlashLight(context, false))
+                    navController.navigateUp()
+                }
+            )
+        }
+
         composable(route = Screen.FlashScreen.route){
             FlashScreen(
                 screenFlashUiState = screenFlashViewModel.uiState.collectAsState().value,
                 settingUiState = settingViewModel.uiState.collectAsState().value,
                 onClose = {
-                    val quickActionUiEvent = quickActionViewModel::onEvent
                     quickActionUiEvent(QuickActionUiEvent.StopStartButton)
                     quickActionUiEvent(QuickActionUiEvent.ToggleFlashLight(context, false))
                     navController.navigateUp()
