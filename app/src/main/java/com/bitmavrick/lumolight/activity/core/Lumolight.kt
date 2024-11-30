@@ -108,6 +108,7 @@ fun Lumolight(
             SosScreen(
                 sosViewModel = sosViewModel,
                 onExitClick = {
+                    quickActionUiEvent(QuickActionUiEvent.StopStartButton)
                     navController.navigateUp()
                 }
             )
