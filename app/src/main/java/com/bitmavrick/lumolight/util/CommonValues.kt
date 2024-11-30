@@ -4,6 +4,13 @@
 
 package com.bitmavrick.lumolight.util
 
+/* ? Why the ProductionMode is even exist ???
+! Certain configuration does not properly support the @Preview system. Developers use that to make sure the UI/UX is ok.
+* The best convention to use preview using  -- "ProductionMode.DEBUG" --
+* And for the running or testing the app use -- "ProductionMode.RELEASE" --
+* -- Simple! --
+* */
+
 class AppConstants{
     companion object {
         val APP_PRODUCTION_MODE = ProductionMode.DEBUG // !! Change it to Release before release !!
@@ -14,14 +21,6 @@ class AppConstants{
         const val PRIVACY_POLICY = "https://bitmavrick.github.io/privacy-policy/lumolight.html"
     }
 }
-
-
-/* ? Why the ProductionMode is even exist ???
-! Certain configuration does not properly support the @Preview system. Developers use that to make sure the UI/UX is ok.
-* The best convention to use preview using  -- "ProductionMode.DEBUG" --
-* And for the running or testing the app use -- "ProductionMode.RELEASE" --
-* -- Simple! --
-* */
 
 enum class ProductionMode {
     DEBUG,
