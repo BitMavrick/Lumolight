@@ -50,7 +50,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat.startActivity
 import com.bitmavrick.lumolight.R
 import com.bitmavrick.lumolight.util.openUrl
 
@@ -216,12 +215,11 @@ fun openAppInPlayStore(context: Context) {
     goToMarketIntent.addFlags(flags)
 
     try {
-        startActivity(context, goToMarketIntent, null)
+        context.startActivity(goToMarketIntent)
     } catch (_: ActivityNotFoundException) {
         val intent = Intent(Intent.ACTION_VIEW,
             Uri.parse("http://play.google.com/store/apps/details?id=" + context.packageName))
-
-        startActivity(context, intent, null)
+        context.startActivity(intent)
     }
 }
 
