@@ -20,8 +20,8 @@ android {
         applicationId = "com.bitmavrick.lumolight"
         minSdk = 24
         targetSdk = 35
-        versionCode = 19
-        versionName = "2.2.3"
+        versionCode = 20
+        versionName = "2.2.4.20"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -63,6 +63,11 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
+    dependenciesInfo {
+        includeInApk = false
+        includeInBundle = false
+    }
 }
 
 dependencies {
@@ -90,6 +95,4 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
-    implementation(libs.review)
-    implementation(libs.review.ktx)
 }

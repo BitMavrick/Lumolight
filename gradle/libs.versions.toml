@@ -17,8 +17,6 @@ activityCompose = "1.10.1"
 composeBom = "2025.03.00"
 lifecycleViewmodelCompose = "2.8.7"
 navigationCompose = "2.8.9"
-review = "2.0.2"
-reviewKtx = "2.0.2"
 
 
 [libraries]
@@ -46,8 +44,6 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 androidx-material3-window = { group = "androidx.compose.material3", name = "material3-window-size-class" }
 androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
 androidx-material-icon-extended = { group = "androidx.compose.material", name = "material-icons-extended-android" }
-review = { module = "com.google.android.play:review", version.ref = "review" }
-review-ktx = { module = "com.google.android.play:review-ktx", version.ref = "reviewKtx" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
