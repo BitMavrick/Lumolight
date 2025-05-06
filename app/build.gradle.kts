@@ -14,14 +14,14 @@ plugins {
 
 android {
     namespace = "com.bitmavrick.lumolight"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.bitmavrick.lumolight"
         minSdk = 24
-        targetSdk = 35
-        versionCode = 20
-        versionName = "2.2.4.20"
+        targetSdk = 36
+        versionCode = 21
+        versionName = "2.2.4.21"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
