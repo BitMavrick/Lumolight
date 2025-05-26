@@ -107,6 +107,7 @@ class QuickActionViewModel @Inject constructor (
         activateSegmentedButton()
     }
 
+    /* ! App crash a lot
     private fun toggleFlashLight(context: Context, status: Boolean){
         val cameraManager = ContextCompat.getSystemService(context, CameraManager::class.java) as CameraManager
         val cameraId = cameraManager.cameraIdList[0]
@@ -116,6 +117,43 @@ class QuickActionViewModel @Inject constructor (
                 cameraManager.setTorchMode(cameraId, status)
             } catch (e: CameraAccessException) {
                 e.printStackTrace()
+            }
+        }
+    }
+     */
+
+    // * New Implementation
+    private fun toggleFlashLight(context: Context, status: Boolean) {
+        val cameraManager = ContextCompat.getSystemService(context, CameraManager::class.java) as? CameraManager
+        if (cameraManager == null) {
+            println("CameraManager is null")
+            return
+        }
+
+        val cameraId = cameraManager.cameraIdList.firstOrNull { id ->
+            try {
+                val characteristics = cameraManager.getCameraCharacteristics(id)
+                val hasFlash = characteristics.get(android.hardware.camera2.CameraCharacteristics.FLASH_INFO_AVAILABLE) == true
+                val isBackFacing = characteristics.get(android.hardware.camera2.CameraCharacteristics.LENS_FACING) ==
+                        android.hardware.camera2.CameraCharacteristics.LENS_FACING_BACK
+                hasFlash && isBackFacing
+            } catch (e: Exception) {
+                false
+            }
+        }
+
+        if (cameraId == null) {
+            println("No valid camera with flash found")
+            return
+        }
+
+        viewModelScope.launch {
+            try {
+                cameraManager.setTorchMode(cameraId, status)
+            } catch (e: CameraAccessException) {
+                println("CameraAccessException: ${e.message}")
+            } catch (e: Exception) {
+                println("Torch error: ${e.message}")
             }
         }
     }
