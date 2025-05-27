@@ -103,7 +103,6 @@ class FlashlightViewModel : ViewModel() {
             }
         }
     }
-
 }
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
