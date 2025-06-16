@@ -8,6 +8,9 @@ import android.annotation.SuppressLint
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -20,12 +23,12 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PowerSettingsNew
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,32 +43,37 @@ import com.bitmavrick.lumolight.R
 fun QuickStartButton(
     uiState: QuickActionUiState,
     onClick: () -> Unit
-){
-    val backgroundButtonColor: CardColors
-    val foregroundButtonColor: CardColors
-
+) {
     val context = LocalContext.current
     val vibrator = context.getSystemService(Vibrator::class.java)
 
-    if (uiState.startButtonStatus){
-        backgroundButtonColor = CardDefaults.cardColors(
-            containerColor = Color.White
-        )
+    // Animate background and foreground colors
+    val backgroundColor by animateColorAsState(
+        targetValue = if (uiState.startButtonStatus) Color.White
+        else MaterialTheme.colorScheme.primaryContainer,
+        animationSpec = tween(durationMillis = 300, easing = FastOutSlowInEasing)
+    )
 
-        foregroundButtonColor = CardDefaults.cardColors(
-            containerColor = Color.Red,
-            contentColor = Color.White
-        )
-    }else{
-        backgroundButtonColor = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer
-        )
+    val foregroundContainerColor by animateColorAsState(
+        targetValue = if (uiState.startButtonStatus) Color.Red
+        else MaterialTheme.colorScheme.primary,
+        animationSpec = tween(durationMillis = 300, easing = FastOutSlowInEasing)
+    )
 
-        foregroundButtonColor = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primary,
-            contentColor = MaterialTheme.colorScheme.onPrimary
-        )
-    }
+    val foregroundContentColor by animateColorAsState(
+        targetValue = if (uiState.startButtonStatus) Color.White
+        else MaterialTheme.colorScheme.onPrimary,
+        animationSpec = tween(durationMillis = 300, easing = FastOutSlowInEasing)
+    )
+
+    val backgroundButtonColor = CardDefaults.cardColors(
+        containerColor = backgroundColor
+    )
+
+    val foregroundButtonColor = CardDefaults.cardColors(
+        containerColor = foregroundContainerColor,
+        contentColor = foregroundContentColor
+    )
 
     Card(
         modifier = Modifier
@@ -73,14 +81,13 @@ fun QuickStartButton(
             .padding(8.dp)
             .noRippleClickable(
                 onClick = {
-                    if(uiState.hapticStatus){
+                    if (uiState.hapticStatus) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                             vibrator.vibrate(
                                 VibrationEffect.createPredefined(VibrationEffect.EFFECT_HEAVY_CLICK)
                             )
                         }
                     }
-
                     onClick()
                 }
             ),
@@ -88,24 +95,23 @@ fun QuickStartButton(
         colors = backgroundButtonColor,
         elevation = CardDefaults.cardElevation(),
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.primaryContainer)
-
     ) {
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier.fillMaxSize()
-        ){
+        ) {
             Card(
                 modifier = Modifier.padding(25.dp),
                 shape = CircleShape,
                 colors = foregroundButtonColor
-            ){
+            ) {
                 Box(
                     contentAlignment = Alignment.Center,
                     modifier = Modifier.fillMaxSize()
-                ){
-                    if(uiState.startButtonLittleLoading){
+                ) {
+                    if (uiState.startButtonLittleLoading) {
                         CircularProgressIndicator(color = MaterialTheme.colorScheme.onPrimary)
-                    }else{
+                    } else {
                         Icon(
                             imageVector = Icons.Filled.PowerSettingsNew,
                             contentDescription = context.getString(R.string.power_icon_description),
@@ -117,6 +123,7 @@ fun QuickStartButton(
         }
     }
 }
+
 
 @SuppressLint("ModifierFactoryUnreferencedReceiver")
 fun Modifier.noRippleClickable(
