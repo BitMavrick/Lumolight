@@ -7,10 +7,8 @@ package com.bitmavrick.lumolight.ui.screen.home
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.Comment
@@ -50,6 +48,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.net.toUri
 import com.bitmavrick.lumolight.R
 import com.bitmavrick.lumolight.util.openUrl
 
@@ -206,7 +205,7 @@ fun HomeScreenTopBar(
 
 
 fun openAppInPlayStore(context: Context) {
-    val uri = Uri.parse("market://details?id=" + context.packageName)
+    val uri = ("market://details?id=" + context.packageName).toUri()
     val goToMarketIntent = Intent(Intent.ACTION_VIEW, uri)
 
     var flags = Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_MULTIPLE_TASK
@@ -218,7 +217,7 @@ fun openAppInPlayStore(context: Context) {
         context.startActivity(goToMarketIntent)
     } catch (_: ActivityNotFoundException) {
         val intent = Intent(Intent.ACTION_VIEW,
-            Uri.parse("http://play.google.com/store/apps/details?id=" + context.packageName))
+            ("http://play.google.com/store/apps/details?id=" + context.packageName).toUri())
         context.startActivity(intent)
     }
 }
@@ -260,8 +259,7 @@ fun AppIconRound() {
         contentAlignment = Alignment.Center
     ) {
         Icon(
-            painter = painterResource(id = R.drawable.icon_light),
-            modifier = Modifier.padding(4.dp),
+            painter = painterResource(id = R.drawable.ic_launcher_foreground),
             contentDescription = context.getString(R.string.app_icon_description),
             tint = MaterialTheme.colorScheme.primary
         )
