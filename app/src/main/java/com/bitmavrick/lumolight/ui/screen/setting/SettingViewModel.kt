@@ -83,7 +83,7 @@ class SettingViewModel @Inject constructor (
             }
 
             is SettingUiEvent.UpdateHapticStatus -> {
-                updateHapticStatus(event.status)
+                updateHapticStatus1(event.status)
             }
         }
     }
@@ -142,7 +142,7 @@ class SettingViewModel @Inject constructor (
         }
     }
 
-    private fun updateHapticStatus(value: Boolean){
+    private fun updateHapticStatus1(value: Boolean){
         viewModelScope.launch {
             userPreferencesRepository.updateHapticStatus(value)
         }
