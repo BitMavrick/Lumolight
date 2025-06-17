@@ -28,10 +28,10 @@ class FlashlightViewModel : ViewModel() {
     fun onEvent(event: FlashlightUiEvent){
         when(event) {
             is FlashlightUiEvent.UpdateFlashlightDuration -> {
-                updateFlashlightDuration(event.index, event.index * 5)
+                updateFlashlightDuration(event.index, event.time)
             }
             is FlashlightUiEvent.UpdateFlashlightBPM -> {
-                updateFlashlightBpm(event.index, event.index * 5)
+                updateFlashlightBpm(event.index, event.value)
             }
 
             is FlashlightUiEvent.ToggleFlashlight -> {

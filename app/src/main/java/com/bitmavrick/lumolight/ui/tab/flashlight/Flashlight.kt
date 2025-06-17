@@ -82,6 +82,8 @@ fun FlashlightScreen(
 
                 // flashlightViewModel.toggleFlashLight(context)
                 // flashlightViewModel.updateFlashlightStatus(false)
+                flashlightUiEvent(FlashlightUiEvent.ToggleFlashlight(context))
+                flashlightUiEvent(FlashlightUiEvent.UpdateFlashlightStatus(false))
                 time = flashlightUiState.flashlightDurationMin * 60
             }
         }
@@ -149,6 +151,7 @@ fun FlashlightScreen(
                                 selected = index == flashlightUiState.flashlightDurationIndex,
                                 onClick = {
                                     // flashlightViewModel.updateFlashlightDuration(index, element.time)
+                                    flashlightUiEvent(FlashlightUiEvent.UpdateFlashlightDuration(index, element.time))
                                           },
                                 label = { Text(element.duration) },
                                 leadingIcon = if(index == flashlightUiState.flashlightDurationIndex){
@@ -204,9 +207,7 @@ fun FlashlightScreen(
                                     .padding(horizontal = 4.dp)
                                     .align(alignment = Alignment.CenterVertically),
                                 selected = index == flashlightUiState.flashlightBpmIndex,
-                                onClick = {
-                                    // flashlightViewModel.updateFlashlightBpm(index, element.value)
-                                          },
+                                onClick = { flashlightUiEvent(FlashlightUiEvent.UpdateFlashlightBPM(index, element.value)) },
                                 label = { Text(element.title) },
                                 leadingIcon = if(index == flashlightUiState.flashlightBpmIndex){
                                     {
@@ -230,8 +231,8 @@ fun FlashlightScreen(
         CustomFilledButton(
             buttonText = if(flashlightUiState.flashlightStatus) context.getString(R.string.running).uppercase() else context.getString(R.string.start).uppercase(),
             onClick = {
-                // flashlightViewModel.updateFlashlightStatus(true)
-                // flashlightViewModel.toggleFlashLight(context)
+                flashlightUiEvent(FlashlightUiEvent.UpdateFlashlightStatus(true))
+                flashlightUiEvent(FlashlightUiEvent.ToggleFlashlight(context))
             },
             hapticStatus = homeUiState.hapticStatus
         )
