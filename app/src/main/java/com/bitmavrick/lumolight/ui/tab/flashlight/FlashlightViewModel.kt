@@ -13,6 +13,8 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bitmavrick.lumolight.util.BpmValue
+import com.bitmavrick.lumolight.util.TimeDuration
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -56,7 +58,6 @@ class FlashlightViewModel : ViewModel() {
         _uiState.update {
             it.copy(
                 flashlightDurationIndex = index,
-                flashlightDurationMin = time
             )
         }
     }
@@ -65,7 +66,6 @@ class FlashlightViewModel : ViewModel() {
         _uiState.update {
             it.copy(
                 flashlightBpmIndex = index,
-                flashlightBpmValue = value
             )
         }
     }
@@ -104,18 +104,19 @@ class FlashlightViewModel : ViewModel() {
 
         viewModelScope.launch {
             _uiState.collect { uiStateValue ->
+                val flashlightBpmValue = BpmValue.list[uiStateValue.flashlightBpmIndex].value
                 try {
                     if (!uiStateValue.flashlightStatus) {
                         cameraManager.setTorchMode(cameraId, false)
                     } else {
-                        if (uiStateValue.flashlightBpmValue == 0) {
+                        if (flashlightBpmValue == 0) {
                             if (Build.VERSION.SDK_INT >= 33 && uiStateValue.flashlightMaxStrengthIndex > 1) {
                                 cameraManager.turnOnTorchWithStrengthLevel(cameraId, uiStateValue.flashlightStrength)
                             } else {
                                 cameraManager.setTorchMode(cameraId, true)
                             }
                         } else {
-                            val bpm = 60000L / uiStateValue.flashlightBpmValue.toLong()
+                            val bpm = 60000L / flashlightBpmValue.toLong()
                             while (isActive && uiState.value.flashlightStatus) {
                                 cameraManager.setTorchMode(cameraId, true)
                                 delay(bpm / 2)

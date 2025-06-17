@@ -31,6 +31,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bitmavrick.lumolight.R
 import com.bitmavrick.lumolight.ui.tab.CustomFilledButton
+import com.bitmavrick.lumolight.util.BpmValue
+import com.bitmavrick.lumolight.util.TimeDuration
 import com.bitmavrick.lumolight.util.formatDuration
 import com.bitmavrick.lumolight.util.vibrate
 import kotlin.math.roundToInt
@@ -44,6 +46,9 @@ fun FlashAlertDialog(
     hapticStatus: Boolean = false
 ){
     val context = LocalContext.current
+
+    val flashlightBpmValue = BpmValue.list[uiState.flashlightBpmIndex].value
+    val flashlightDurationMin = TimeDuration.list[uiState.flashlightDurationIndex].time
 
     AlertDialog(
         onDismissRequest = {},
@@ -69,13 +74,13 @@ fun FlashAlertDialog(
         },
         text = {
             Column {
-                if(uiState.flashlightDurationMin != -1){
+                if(flashlightDurationMin != -1){
                     Text(
-                        text = "Duration: ${formatDuration(time.value)}\nBlink per min: ${uiState.flashlightBpmValue}"
+                        text = "Duration: ${formatDuration(time.value)}\nBlink per min: $flashlightBpmValue"
                     )
                 }else{
                     Text(
-                        text = "Duration: N/A\nBlink per min: ${uiState.flashlightBpmValue}"
+                        text = "Duration: N/A\nBlink per min: $flashlightBpmValue"
                     )
                 }
 
@@ -110,8 +115,9 @@ fun FlashStrengthSlider(
     uiEvent: (FlashlightUiEvent) -> Unit,
 ) {
     val context = LocalContext.current
+    val flashlightDurationMin = TimeDuration.list[uiState.flashlightDurationIndex].time
 
-    if(uiState.flashlightDurationMin == -1){
+    if(flashlightDurationMin == -1){
         Column {
             Text(
                 text = "Strength Level: ${uiState.flashlightStrength}",
