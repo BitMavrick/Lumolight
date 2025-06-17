@@ -34,6 +34,10 @@ class UserPreferencesRepository(context: Context) {
         private val SCREEN_FLASH_DURATION_INDEX_KEY = intPreferencesKey("screenFlashDurationIndex")
         private val SCREEN_FLASH_COLOR_INDEX_KEY = intPreferencesKey("screenFlashColorIndex")
         private val SCREEN_FLASH_BRIGHTNESS_INDEX_KEY = intPreferencesKey("screenFlashBrightnessIndex")
+
+        // * Flashlight
+        private val FLASHLIGHT_DURATION_INDEX_KEY = intPreferencesKey("flashlightDurationIndex")
+        private val FLASHLIGHT_BPM_INDEX_KEY = intPreferencesKey("flashlightBpmIndex")
     }
 
     private val dataStore = context.dataStore
@@ -91,6 +95,16 @@ class UserPreferencesRepository(context: Context) {
     val screenFlashBrightnessIndex: Flow<Int> = dataStore.data
         .map { preferences ->
             preferences[SCREEN_FLASH_BRIGHTNESS_INDEX_KEY] ?: 0
+        }
+
+    val flashlightDurationIndex: Flow<Int> = dataStore.data
+        .map { preferences ->
+            preferences[FLASHLIGHT_DURATION_INDEX_KEY] ?: 0
+        }
+
+    val flashlightBpmIndex: Flow<Int> = dataStore.data
+        .map { preferences ->
+            preferences[FLASHLIGHT_BPM_INDEX_KEY] ?: 0
         }
 
     suspend fun updateAppearance(value: Appearance){
@@ -156,6 +170,18 @@ class UserPreferencesRepository(context: Context) {
     suspend fun updateScreenFlashBrightnessIndex(value: Int) {
         dataStore.edit { preferences ->
             preferences[SCREEN_FLASH_BRIGHTNESS_INDEX_KEY] = value
+        }
+    }
+
+    suspend fun updateFlashlightDurationIndex(value: Int) {
+        dataStore.edit { preferences ->
+            preferences[FLASHLIGHT_DURATION_INDEX_KEY] = value
+        }
+    }
+
+    suspend fun updateFlashlightBpmIndex(value: Int) {
+        dataStore.edit { preferences ->
+            preferences[FLASHLIGHT_BPM_INDEX_KEY] = value
         }
     }
 }

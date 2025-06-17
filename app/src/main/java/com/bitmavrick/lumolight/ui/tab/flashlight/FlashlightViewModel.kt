@@ -13,18 +13,40 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bitmavrick.lumolight.data.UserPreferencesRepository
 import com.bitmavrick.lumolight.util.BpmValue
-import com.bitmavrick.lumolight.util.TimeDuration
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FlashlightViewModel : ViewModel() {
+@HiltViewModel
+class FlashlightViewModel @Inject constructor(
+    private val userPreferencesRepository: UserPreferencesRepository
+) : ViewModel() {
     private val _uiState = MutableStateFlow(FlashlightUiState())
     val uiState : StateFlow<FlashlightUiState> = _uiState
+
+    init {
+        viewModelScope.launch {
+            combine(
+                userPreferencesRepository.flashlightDurationIndex,
+                userPreferencesRepository.flashlightBpmIndex
+            ){ durationIndex, bpmIndex ->
+                FlashlightUiState(
+                    flashlightDurationIndex = durationIndex,
+                    flashlightBpmIndex = bpmIndex
+                )
+            }.collect { newState ->
+                _uiState.value = newState
+            }
+        }
+    }
 
 
     fun onEvent(event: FlashlightUiEvent){
@@ -53,12 +75,15 @@ class FlashlightViewModel : ViewModel() {
         }
     }
 
-
     private fun updateFlashlightDuration(index : Int){
         _uiState.update {
             it.copy(
                 flashlightDurationIndex = index,
             )
+        }
+
+        viewModelScope.launch {
+            userPreferencesRepository.updateFlashlightDurationIndex(index)
         }
     }
 
@@ -67,6 +92,10 @@ class FlashlightViewModel : ViewModel() {
             it.copy(
                 flashlightBpmIndex = index,
             )
+        }
+
+        viewModelScope.launch {
+            userPreferencesRepository.updateFlashlightBpmIndex(index)
         }
     }
 
