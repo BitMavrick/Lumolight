@@ -2,14 +2,18 @@
 * Lumolight :: Open-source program under GPL-3.0 :: Copyright - BitMavrick :: https://github.com/BitMavrick
 * */
 
-package com.bitmavrick.lumolight.activity.core
 
-import com.bitmavrick.lumolight.ui.screen.setting.appearance.Appearance
+package com.bitmavrick.lumolight.ui.screen.setting.appearance
 
-
-data class CoreUiState (
-    val appLoadingStatus: Boolean = true,
+data class ThemeUiState (
     val appearance: Appearance = Appearance.DEFAULT,
+    val showThemeDialog: Boolean = false,
     val dynamicTheme: Boolean = true,
     val oledTheme: Boolean = false
 )
+
+enum class Appearance{
+    DEFAULT,
+    LIGHT,
+    DARK
+}

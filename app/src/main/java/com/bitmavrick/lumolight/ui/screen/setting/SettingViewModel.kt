@@ -7,13 +7,11 @@ package com.bitmavrick.lumolight.ui.screen.setting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bitmavrick.lumolight.data.UserPreferencesRepository
-import com.bitmavrick.lumolight.util.toAppearance
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -27,31 +25,17 @@ class SettingViewModel @Inject constructor (
     init {
         viewModelScope.launch {
             combine(
-                userPreferencesRepository.appearance,
-                userPreferencesRepository.dynamicTheme,
-                userPreferencesRepository.oledTheme,
                 userPreferencesRepository.saveQuickAction,
                 userPreferencesRepository.showSosButton,
-            ){ appearance, dynamicTheme, oledTheme, saveQuickAction, showSosButton ->
+                userPreferencesRepository.enableHapticStatus,
+            ){saveQuickAction, showSosButton, haptic->
                 SettingUiState(
-                    appearance = appearance.toAppearance(),
-                    dynamicTheme = dynamicTheme,
-                    oledTheme = oledTheme,
                     saveQuickAction = saveQuickAction,
                     showSosButton = showSosButton,
+                    hapticStatus = haptic
                 )
             }.collect{ newState ->
                 _uiState.value = newState
-            }
-        }
-
-        viewModelScope.launch{
-            userPreferencesRepository.enableHapticStatus.collect{ value ->
-                _uiState.update {
-                    it.copy(
-                        hapticStatus = value
-                    )
-                }
             }
         }
     }
@@ -66,66 +50,9 @@ class SettingViewModel @Inject constructor (
                 updateShowSosButtonPreference(event.sosButtonPreference)
             }
 
-            is SettingUiEvent.UpdateThemeDialog -> {
-                updateThemeDialog(event.visible)
-            }
-
-            is SettingUiEvent.UpdateAppearance -> {
-                updateAppearance(event.appearance)
-            }
-
-            is SettingUiEvent.UpdateDynamicTheme -> {
-                updateDynamicTheme(event.dynamicTheme)
-            }
-
-            is SettingUiEvent.UpdateOledTheme -> {
-                updateOledTheme(event.oledTheme)
-            }
-
             is SettingUiEvent.UpdateHapticStatus -> {
-                updateHapticStatus1(event.status)
+                updateHapticStatus(event.status)
             }
-        }
-    }
-
-    private fun updateThemeDialog(value: Boolean){
-        _uiState.update {
-            it.copy(
-                showThemeDialog = value
-            )
-        }
-    }
-
-    private fun updateAppearance(appearance: Appearance){
-        _uiState.update {
-            it.copy(
-                appearance = appearance
-            )
-        }
-        viewModelScope.launch {
-            userPreferencesRepository.updateAppearance(appearance)
-        }
-    }
-
-    private fun updateDynamicTheme(value: Boolean){
-        _uiState.update {
-            it.copy(
-                dynamicTheme = value
-            )
-        }
-        viewModelScope.launch {
-            userPreferencesRepository.updateDynamicTheme(value)
-        }
-    }
-
-    private fun updateOledTheme(value: Boolean){
-        _uiState.update {
-            it.copy(
-                oledTheme = value
-            )
-        }
-        viewModelScope.launch {
-            userPreferencesRepository.updateOledTheme(value)
         }
     }
 
@@ -142,7 +69,7 @@ class SettingViewModel @Inject constructor (
         }
     }
 
-    private fun updateHapticStatus1(value: Boolean){
+    private fun updateHapticStatus(value: Boolean){
         viewModelScope.launch {
             userPreferencesRepository.updateHapticStatus(value)
         }

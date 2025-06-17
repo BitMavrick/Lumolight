@@ -2,7 +2,7 @@
 * Lumolight :: Open-source program under GPL-3.0 :: Copyright - BitMavrick :: https://github.com/BitMavrick
 * */
 
-package com.bitmavrick.lumolight.ui.screen.setting
+ package com.bitmavrick.lumolight.ui.screen.setting.appearance
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -38,19 +38,21 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bitmavrick.lumolight.R
+import com.bitmavrick.lumolight.ui.screen.setting.SettingScreenTopBar
+import com.bitmavrick.lumolight.ui.screen.setting.SettingsItem
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppearanceScreen(
-    settingUiState: SettingUiState,
-    settingUiEvent: (SettingUiEvent) -> Unit,
+    themeUiState: ThemeUiState,
+    themeUiEvent: (ThemeUiEvent) -> Unit,
     onClickBack: () -> Unit
 ) {
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     val context = LocalContext.current
 
-    if(settingUiState.showThemeDialog){
+    if(themeUiState.showThemeDialog){
         AlertDialog(
             title = {
                 Text(
@@ -65,15 +67,15 @@ fun AppearanceScreen(
                             .fillMaxWidth()
                             .height(46.dp)
                             .selectable(
-                                selected = (settingUiState.appearance == Appearance.DEFAULT),
-                                onClick = { settingUiEvent(SettingUiEvent.UpdateAppearance(Appearance.DEFAULT)) },
+                                selected = (themeUiState.appearance == Appearance.DEFAULT),
+                                onClick = { themeUiEvent(ThemeUiEvent.UpdateAppearance(Appearance.DEFAULT)) },
                                 role = Role.RadioButton
                             )
                             .padding(horizontal = 12.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         RadioButton(
-                            selected = (settingUiState.appearance == Appearance.DEFAULT),
+                            selected = (themeUiState.appearance == Appearance.DEFAULT),
                             onClick = null
                         )
                         Text(
@@ -88,15 +90,15 @@ fun AppearanceScreen(
                             .fillMaxWidth()
                             .height(46.dp)
                             .selectable(
-                                selected = (settingUiState.appearance == Appearance.LIGHT),
-                                onClick = { settingUiEvent(SettingUiEvent.UpdateAppearance(Appearance.LIGHT)) },
+                                selected = (themeUiState.appearance == Appearance.LIGHT),
+                                onClick = { themeUiEvent(ThemeUiEvent.UpdateAppearance(Appearance.LIGHT)) },
                                 role = Role.RadioButton
                             )
                             .padding(horizontal = 12.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         RadioButton(
-                            selected = (settingUiState.appearance == Appearance.LIGHT),
+                            selected = (themeUiState.appearance == Appearance.LIGHT),
                             onClick = null
                         )
                         Text(
@@ -111,15 +113,15 @@ fun AppearanceScreen(
                             .fillMaxWidth()
                             .height(46.dp)
                             .selectable(
-                                selected = (settingUiState.appearance == Appearance.DARK),
-                                onClick = { settingUiEvent(SettingUiEvent.UpdateAppearance(Appearance.DARK)) },
+                                selected = (themeUiState.appearance == Appearance.DARK),
+                                onClick = { themeUiEvent(ThemeUiEvent.UpdateAppearance(Appearance.DARK)) },
                                 role = Role.RadioButton
                             )
                             .padding(horizontal = 12.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         RadioButton(
-                            selected = (settingUiState.appearance == Appearance.DARK),
+                            selected = (themeUiState.appearance == Appearance.DARK),
                             onClick = null
                         )
                         Text(
@@ -131,12 +133,12 @@ fun AppearanceScreen(
                 }
             },
 
-            onDismissRequest = { settingUiEvent(SettingUiEvent.UpdateThemeDialog(false)) },
+            onDismissRequest = { themeUiEvent(ThemeUiEvent.UpdateThemeDialog(false)) },
             confirmButton = {},
             dismissButton = {
                 TextButton(
                     onClick = {
-                        settingUiEvent(SettingUiEvent.UpdateThemeDialog(false))
+                        themeUiEvent(ThemeUiEvent.UpdateThemeDialog(false))
                     }
                 ) {
                     Text(
@@ -166,10 +168,10 @@ fun AppearanceScreen(
                 item {
                     SettingsItem(
                         title = context.getString(R.string.app_theme),
-                        subTitle = getAppearanceName(settingUiState),
-                        leadingIcon = getProperThemeIcon(settingUiState),
+                        subTitle = getAppearanceName(themeUiState),
+                        leadingIcon = getProperThemeIcon(themeUiState),
                         iconDescription = context.getString(R.string.app_theme_icon_description),
-                        onClick = { settingUiEvent(SettingUiEvent.UpdateThemeDialog(true)) }
+                        onClick = { themeUiEvent(ThemeUiEvent.UpdateThemeDialog(true)) }
                     )
                 }
 
@@ -181,8 +183,8 @@ fun AppearanceScreen(
                             leadingIcon = Icons.Outlined.ColorLens,
                             iconDescription = context.getString(R.string.dynamic_color_icon_description),
                             showSwitch = true,
-                            switchChecked = settingUiState.dynamicTheme,
-                            onClick = { settingUiEvent(SettingUiEvent.UpdateDynamicTheme(!settingUiState.dynamicTheme)) }
+                            switchChecked = themeUiState.dynamicTheme,
+                            onClick = { themeUiEvent(ThemeUiEvent.UpdateDynamicTheme(!themeUiState.dynamicTheme)) }
                         )
                     }
                 }
@@ -194,8 +196,8 @@ fun AppearanceScreen(
                         leadingIcon = Icons.Outlined.SettingsBrightness,
                         iconDescription = context.getString(R.string.oled_dark_icon_description),
                         showSwitch = true,
-                        switchChecked = settingUiState.oledTheme,
-                        onClick = { settingUiEvent(SettingUiEvent.UpdateOledTheme(!settingUiState.oledTheme)) }
+                        switchChecked = themeUiState.oledTheme,
+                        onClick = { themeUiEvent(ThemeUiEvent.UpdateOledTheme(!themeUiState.oledTheme)) }
                     )
                 }
             }
@@ -204,9 +206,9 @@ fun AppearanceScreen(
 }
 
 private fun getAppearanceName(
-    settingUiState: SettingUiState
+    themeUiState: ThemeUiState
 ): String {
-    return when(settingUiState.appearance){
+    return when(themeUiState.appearance){
         Appearance.DEFAULT -> {
             "Follow System"
         }
@@ -222,9 +224,9 @@ private fun getAppearanceName(
 
 @Composable
 private fun getProperThemeIcon(
-    settingUiState: SettingUiState
+    themeUiState: ThemeUiState
 ) : ImageVector {
-    return when(settingUiState.appearance){
+    return when(themeUiState.appearance){
         Appearance.DEFAULT -> {
             if(isSystemInDarkTheme()){
                 Icons.Outlined.DarkMode
@@ -248,8 +250,8 @@ private fun getProperThemeIcon(
 fun AppearanceScreenPreview() {
     LumolightTheme {
         AppearanceScreen(
-            settingUiState = SettingUiState(),
-            settingUiEvent = {},
+            themeUiState = ThemeUiState(),
+            themeUiEvent = {},
             onClickBack = {}
         )
     }

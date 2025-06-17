@@ -16,9 +16,10 @@ import com.bitmavrick.lumolight.ui.screen.home.HomeViewModel
 import com.bitmavrick.lumolight.ui.screen.screenFlash.FlashScreen
 import com.bitmavrick.lumolight.ui.screen.screenFlash.QuickFlashScreen
 import com.bitmavrick.lumolight.ui.screen.setting.AboutScreen
-import com.bitmavrick.lumolight.ui.screen.setting.AppearanceScreen
+import com.bitmavrick.lumolight.ui.screen.setting.appearance.AppearanceScreen
 import com.bitmavrick.lumolight.ui.screen.setting.SettingScreen
 import com.bitmavrick.lumolight.ui.screen.setting.SettingViewModel
+import com.bitmavrick.lumolight.ui.screen.setting.appearance.ThemeViewModel
 import com.bitmavrick.lumolight.ui.screen.sos.SosScreen
 import com.bitmavrick.lumolight.ui.screen.sos.SosViewModel
 import com.bitmavrick.lumolight.ui.tab.flashlight.FlashlightViewModel
@@ -33,6 +34,7 @@ fun Lumolight(
     screenFlashViewModel: ScreenFlashViewModel = viewModel(),
     flashlightViewModel: FlashlightViewModel = viewModel(),
     settingViewModel: SettingViewModel = viewModel(),
+    themeViewModel: ThemeViewModel = viewModel(),
     sosViewModel: SosViewModel = viewModel()
 ) {
     val quickActionUiEvent = quickActionViewModel::onEvent
@@ -170,8 +172,8 @@ fun Lumolight(
             }
         ){
             AppearanceScreen(
-                settingUiState = settingViewModel.uiState.collectAsState().value,
-                settingUiEvent = settingViewModel::onEvent,
+                themeUiState = themeViewModel.uiState.collectAsState().value,
+                themeUiEvent = themeViewModel::onEvent,
                 onClickBack = { navController.navigateUp() }
             )
         }

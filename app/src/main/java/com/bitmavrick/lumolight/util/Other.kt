@@ -6,7 +6,7 @@ package com.bitmavrick.lumolight.util
 
 import android.annotation.SuppressLint
 import android.content.Context
-import com.bitmavrick.lumolight.ui.screen.setting.Appearance
+import com.bitmavrick.lumolight.ui.screen.setting.appearance.Appearance
 
 @SuppressLint("DefaultLocale")
 fun formatDuration(seconds: Int): String {
