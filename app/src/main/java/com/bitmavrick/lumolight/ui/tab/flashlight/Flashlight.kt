@@ -58,8 +58,6 @@ fun FlashlightScreen(
     flashlightUiEvent: (FlashlightUiEvent) -> Unit,
 ) {
     val context = LocalContext.current
-
-    val flashlightBpmValue = BpmValue.list[flashlightUiState.flashlightBpmIndex].value
     val flashlightDurationMin = TimeDuration.list[flashlightUiState.flashlightDurationIndex].time
 
     var time by remember { mutableIntStateOf(flashlightDurationMin) }
@@ -147,7 +145,7 @@ fun FlashlightScreen(
                                     .align(alignment = Alignment.CenterVertically),
                                 selected = index == flashlightUiState.flashlightDurationIndex,
                                 onClick = {
-                                    flashlightUiEvent(FlashlightUiEvent.UpdateFlashlightDuration(index, element.time))
+                                    flashlightUiEvent(FlashlightUiEvent.UpdateFlashlightDuration(index))
                                           },
                                 label = { Text(element.duration) },
                                 leadingIcon = if(index == flashlightUiState.flashlightDurationIndex){
@@ -203,7 +201,7 @@ fun FlashlightScreen(
                                     .padding(horizontal = 4.dp)
                                     .align(alignment = Alignment.CenterVertically),
                                 selected = index == flashlightUiState.flashlightBpmIndex,
-                                onClick = { flashlightUiEvent(FlashlightUiEvent.UpdateFlashlightBPM(index, element.value)) },
+                                onClick = { flashlightUiEvent(FlashlightUiEvent.UpdateFlashlightBPM(index)) },
                                 label = { Text(element.title) },
                                 leadingIcon = if(index == flashlightUiState.flashlightBpmIndex){
                                     {

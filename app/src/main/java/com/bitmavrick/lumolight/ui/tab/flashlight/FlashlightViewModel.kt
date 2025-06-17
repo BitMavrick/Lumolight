@@ -30,10 +30,10 @@ class FlashlightViewModel : ViewModel() {
     fun onEvent(event: FlashlightUiEvent){
         when(event) {
             is FlashlightUiEvent.UpdateFlashlightDuration -> {
-                updateFlashlightDuration(event.index, event.time)
+                updateFlashlightDuration(event.index)
             }
             is FlashlightUiEvent.UpdateFlashlightBPM -> {
-                updateFlashlightBpm(event.index, event.value)
+                updateFlashlightBpm(event.index)
             }
 
             is FlashlightUiEvent.ToggleFlashlight -> {
@@ -54,7 +54,7 @@ class FlashlightViewModel : ViewModel() {
     }
 
 
-    private fun updateFlashlightDuration(index : Int, time : Int){
+    private fun updateFlashlightDuration(index : Int){
         _uiState.update {
             it.copy(
                 flashlightDurationIndex = index,
@@ -62,7 +62,7 @@ class FlashlightViewModel : ViewModel() {
         }
     }
 
-    private fun updateFlashlightBpm(index : Int, value : Int){
+    private fun updateFlashlightBpm(index : Int){
         _uiState.update {
             it.copy(
                 flashlightBpmIndex = index,
