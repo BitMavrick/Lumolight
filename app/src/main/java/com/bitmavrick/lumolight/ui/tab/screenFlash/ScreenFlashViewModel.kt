@@ -7,12 +7,10 @@ package com.bitmavrick.lumolight.ui.tab.screenFlash
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bitmavrick.lumolight.data.UserPreferencesRepository
-import com.bitmavrick.lumolight.util.BrightnessValue
-import com.bitmavrick.lumolight.util.ColorValue
-import com.bitmavrick.lumolight.util.TimeDuration
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -26,7 +24,19 @@ class ScreenFlashViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            // * Code from here
+            combine(
+                userPreferencesRepository.screenFlashBrightnessIndex,
+                userPreferencesRepository.screenFlashDurationIndex,
+                userPreferencesRepository.screenFlashColorIndex
+            ) { brightnessIndex, durationIndex, colorIndex ->
+                ScreenFlashUiState(
+                    screenFlashBrightnessIndex = brightnessIndex,
+                    screenFlashDurationIndex = durationIndex,
+                    screenFlashColorIndex = colorIndex
+                )
+            }.collect { newState ->
+                _uiState.value = newState
+            }
         }
     }
 
@@ -52,8 +62,11 @@ class ScreenFlashViewModel @Inject constructor(
         _uiState.update {
             it.copy(
                 screenFlashDurationIndex = index,
-                //screenFlashDurationMin = TimeDuration.list[index].time
             )
+        }
+
+        viewModelScope.launch {
+            userPreferencesRepository.updateScreenFlashDurationIndex(index)
         }
     }
 
@@ -61,8 +74,11 @@ class ScreenFlashViewModel @Inject constructor(
         _uiState.update {
             it.copy(
                 screenFlashColorIndex = index,
-                //screenFlashColorValue = ColorValue.list[index].code
             )
+        }
+
+        viewModelScope.launch {
+            userPreferencesRepository.updateScreenFlashColorIndex(index)
         }
     }
 
@@ -70,8 +86,11 @@ class ScreenFlashViewModel @Inject constructor(
         _uiState.update {
             it.copy(
                 screenFlashBrightnessIndex = index,
-                // screenFlashBrightnessValue = BrightnessValue.list[index].value
             )
+        }
+
+        viewModelScope.launch {
+            userPreferencesRepository.updateScreenFlashBrightnessIndex(index)
         }
     }
 }
