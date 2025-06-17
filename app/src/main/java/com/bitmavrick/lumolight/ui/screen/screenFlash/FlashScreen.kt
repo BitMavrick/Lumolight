@@ -32,6 +32,9 @@ import com.bitmavrick.lumolight.system.SetBrightness
 import com.bitmavrick.lumolight.ui.screen.setting.SettingUiState
 import com.bitmavrick.lumolight.ui.tab.CustomOutlinedButton
 import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashUiState
+import com.bitmavrick.lumolight.util.BrightnessValue
+import com.bitmavrick.lumolight.util.ColorValue
+import com.bitmavrick.lumolight.util.TimeDuration
 import com.bitmavrick.lumolight.util.formatDuration
 import kotlinx.coroutines.delay
 
@@ -43,17 +46,23 @@ fun FlashScreen(
     settingUiState: SettingUiState = SettingUiState(),
     onClose: () -> Unit
 ) {
-    SetBrightness(screenFlashUiState.screenFlashBrightnessValue)
+    val brightness = BrightnessValue.list[screenFlashUiState.screenFlashBrightnessIndex].value
+    val duration = TimeDuration.list[screenFlashUiState.screenFlashDurationIndex].time
+    val color = ColorValue.list[screenFlashUiState.screenFlashColorIndex].code
+
+    SetBrightness(brightness)
+
+
     KeepScreenOn()
 
-    var time by remember { mutableIntStateOf(screenFlashUiState.screenFlashDurationMin) }
+    var time by remember { mutableIntStateOf(duration) }
 
-    if(screenFlashUiState.screenFlashDurationMin != -1){
+    if(duration != -1){
 
-        time = screenFlashUiState.screenFlashDurationMin * 60
+        time = duration * 60
 
         LaunchedEffect(key1 = Unit) {
-            repeat(screenFlashUiState.screenFlashDurationMin * 60) {
+            repeat(duration * 60) {
                 delay(1000L)
                 time--
             }
@@ -68,7 +77,7 @@ fun FlashScreen(
                 Modifier
                     .fillMaxSize()
                     .background(
-                        color = Color(screenFlashUiState.screenFlashColorValue.toColorInt())
+                        color = Color(color.toColorInt())
                     )
                     .padding(innerPadding)
                     .padding(16.dp),

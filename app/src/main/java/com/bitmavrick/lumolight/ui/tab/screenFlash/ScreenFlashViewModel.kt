@@ -7,6 +7,9 @@ package com.bitmavrick.lumolight.ui.tab.screenFlash
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bitmavrick.lumolight.data.UserPreferencesRepository
+import com.bitmavrick.lumolight.util.BrightnessValue
+import com.bitmavrick.lumolight.util.ColorValue
+import com.bitmavrick.lumolight.util.TimeDuration
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -30,44 +33,44 @@ class ScreenFlashViewModel @Inject constructor(
     fun onEvent(event: ScreenFlashUiEvent){
         when(event){
             is ScreenFlashUiEvent.UpdateScreenFlashDuration -> {
-                // updateScreenFlashDuration(event.index)
+                updateScreenFlashDuration(event.index)
             }
 
             is ScreenFlashUiEvent.UpdateScreenFlashColor -> {
-                // updateScreenFlashColor(event.index)
+                updateScreenFlashColor(event.index)
             }
 
             is ScreenFlashUiEvent.UpdateScreenFlashBrightness -> {
-                //
+                updateScreenFlashBrightness(event.index)
             }
         }
 
     }
 
 
-    fun updateScreenFlashDuration(index: Int, time: Int){
+    private fun updateScreenFlashDuration(index: Int){
         _uiState.update {
             it.copy(
                 screenFlashDurationIndex = index,
-                screenFlashDurationMin = time
+                //screenFlashDurationMin = TimeDuration.list[index].time
             )
         }
     }
 
-    fun updateScreenFlashColor(index : Int, color : String){
+    private fun updateScreenFlashColor(index : Int){
         _uiState.update {
             it.copy(
                 screenFlashColorIndex = index,
-                screenFlashColorValue = color
+                //screenFlashColorValue = ColorValue.list[index].code
             )
         }
     }
 
-    fun updateScreenFlashBrightness(index: Int, brightness: Float){
+    private fun updateScreenFlashBrightness(index: Int){
         _uiState.update {
             it.copy(
                 screenFlashBrightnessIndex = index,
-                screenFlashBrightnessValue = brightness
+                // screenFlashBrightnessValue = BrightnessValue.list[index].value
             )
         }
     }
