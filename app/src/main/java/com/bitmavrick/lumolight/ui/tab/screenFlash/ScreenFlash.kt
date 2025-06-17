@@ -52,10 +52,10 @@ import com.bitmavrick.lumolight.util.TimeDuration
 @Composable
 fun ScreenFlashScreen(
     homeUiState: HomeUiState = HomeUiState(),
-    screenFlashViewModel: ScreenFlashViewModel,
+    screenFlashUiState: ScreenFlashUiState = ScreenFlashUiState(),
+    screenFlashUiEvent: (ScreenFlashUiEvent) -> Unit,
     onClickStart: () -> Unit
 ) {
-    val uiState = screenFlashViewModel.uiState.collectAsState().value
     val context = LocalContext.current
 
     Column(
@@ -100,10 +100,12 @@ fun ScreenFlashScreen(
                                 modifier = Modifier
                                     .padding(horizontal = 4.dp)
                                     .align(alignment = Alignment.CenterVertically),
-                                selected = index == uiState.screenFlashDurationIndex,
-                                onClick = { screenFlashViewModel.updateScreenFlashDuration(index, element.time) },
+                                selected = index == screenFlashUiState.screenFlashDurationIndex,
+                                onClick = {
+                                    // screenFlashViewModel.updateScreenFlashDuration(index, element.time)
+                                    screenFlashUiEvent(ScreenFlashUiEvent.UpdateScreenFlashDuration(index)) },
                                 label = { Text(element.duration) },
-                                leadingIcon = if(index == uiState.screenFlashDurationIndex){
+                                leadingIcon = if(index == screenFlashUiState.screenFlashDurationIndex){
                                     {
                                         Icon(
                                             imageVector = Icons.Filled.Done,
@@ -158,10 +160,13 @@ fun ScreenFlashScreen(
                                 modifier = Modifier
                                     .padding(horizontal = 4.dp)
                                     .align(alignment = Alignment.CenterVertically),
-                                selected = index == uiState.screenFlashColorIndex,
-                                onClick = { screenFlashViewModel.updateScreenFlashColor(index, element.code) },
+                                selected = index == screenFlashUiState.screenFlashColorIndex,
+                                onClick = {
+                                    // screenFlashViewModel.updateScreenFlashColor(index, element.code)
+                                    screenFlashUiEvent(ScreenFlashUiEvent.UpdateScreenFlashColor(index))
+                                          },
                                 label = { Text(element.name) },
-                                leadingIcon = if(index == uiState.screenFlashColorIndex){
+                                leadingIcon = if(index == screenFlashUiState.screenFlashColorIndex){
                                     {
                                         Icon(
                                             imageVector = Icons.Filled.Done,
@@ -221,10 +226,13 @@ fun ScreenFlashScreen(
                                 modifier = Modifier
                                     .padding(horizontal = 4.dp)
                                     .align(alignment = Alignment.CenterVertically),
-                                selected = index == uiState.screenFlashBrightnessIndex,
-                                onClick = { screenFlashViewModel.updateScreenFlashBrightness(index, element.value) },
+                                selected = index == screenFlashUiState.screenFlashBrightnessIndex,
+                                onClick = {
+                                    // screenFlashViewModel.updateScreenFlashBrightness(index, element.value)
+                                    screenFlashUiEvent(ScreenFlashUiEvent.UpdateScreenFlashBrightness(index))
+                                          },
                                 label = { Text(element.title) },
-                                leadingIcon = if(index == uiState.screenFlashBrightnessIndex){
+                                leadingIcon = if(index == screenFlashUiState.screenFlashBrightnessIndex){
                                     {
                                         Icon(
                                             imageVector = Icons.Filled.Done,
@@ -257,7 +265,9 @@ fun ScreenFlashScreen(
 fun ScreenFlashScreenPreview(){
     val screenFlashViewModel : ScreenFlashViewModel = viewModel()
     ScreenFlashScreen(
-        screenFlashViewModel = screenFlashViewModel,
+        homeUiState = HomeUiState(),
+        screenFlashUiState = ScreenFlashUiState(),
+        screenFlashUiEvent = {},
         onClickStart = {}
     )
 }

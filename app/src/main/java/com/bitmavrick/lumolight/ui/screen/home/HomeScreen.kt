@@ -59,7 +59,8 @@ import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionScreen
 import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionUiEvent
 import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionUiState
 import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashScreen
-import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashViewModel
+import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashUiEvent
+import com.bitmavrick.lumolight.ui.tab.screenFlash.ScreenFlashUiState
 import com.bitmavrick.lumolight.ui.theme.LumolightTheme
 import com.bitmavrick.lumolight.util.getAppVersion
 import kotlinx.coroutines.launch
@@ -71,7 +72,8 @@ fun HomeScreen(
     homeOnEvent: (HomeUiEvent) -> Unit,
     quickActionUiState: QuickActionUiState,
     quickActionUiEvent: (QuickActionUiEvent) -> Unit,
-    screenFlashViewModel : ScreenFlashViewModel = viewModel(),
+    screenFlashUiSate: ScreenFlashUiState,
+    screenFlashUiEvent: (ScreenFlashUiEvent) -> Unit,
     flashlightViewModel : FlashlightViewModel = viewModel(),
     sosViewModel: SosViewModel = viewModel()
 ) {
@@ -257,7 +259,8 @@ fun HomeScreen(
                             )
                             1 -> ScreenFlashScreen(
                                 homeUiState = homeUiState,
-                                screenFlashViewModel = screenFlashViewModel,
+                                screenFlashUiState = screenFlashUiSate,
+                                screenFlashUiEvent = screenFlashUiEvent,
                                 onClickStart = { navController.navigate(Screen.FlashScreen.route) }
                             )
                             2 -> FlashlightScreen(
@@ -342,6 +345,8 @@ fun HomeScreenPreview() {
             homeOnEvent = {},
             quickActionUiState = QuickActionUiState(),
             quickActionUiEvent = {},
+            screenFlashUiSate = ScreenFlashUiState(),
+            screenFlashUiEvent = {}
         )
     }
 }

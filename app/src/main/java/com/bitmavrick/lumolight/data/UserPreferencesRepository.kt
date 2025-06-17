@@ -18,6 +18,8 @@ private const val USER_PREFERENCES_NAME = "user_preferences"
 val Context.dataStore by preferencesDataStore(name = USER_PREFERENCES_NAME)
 
 class UserPreferencesRepository(context: Context) {
+
+
     companion object {
         private val APPEARANCE_KEY = stringPreferencesKey("appearance")
         private val DYNAMIC_THEME_KEY = booleanPreferencesKey("dynamicTheme")
@@ -27,6 +29,11 @@ class UserPreferencesRepository(context: Context) {
         private val SHOW_SOS_BUTTON_KEY = booleanPreferencesKey("showSosButton")
         private val ENABLE_HAPTIC_STATUS_KEY = booleanPreferencesKey("enableHapticStatus")
         private val SEGMENTED_BUTTON_VALUE_KEY = intPreferencesKey("segmentedButtonValue")
+
+        // * Screen flash
+        private val SCREEN_FLASH_DURATION_INDEX_KEY = intPreferencesKey("screenFlashDurationIndex")
+        private val SCREEN_FLASH_COLOR_INDEX_KEY = intPreferencesKey("screenFlashColorIndex")
+        private val SCREEN_FLASH_BRIGHTNESS_INDEX_KEY = intPreferencesKey("screenFlashBrightnessIndex")
     }
 
     private val dataStore = context.dataStore
@@ -69,6 +76,21 @@ class UserPreferencesRepository(context: Context) {
     val segmentedButtonValue: Flow<Int> = dataStore.data
         .map { preferences ->
             preferences[SEGMENTED_BUTTON_VALUE_KEY] ?: 0
+        }
+
+    val screenFlashDurationIndex: Flow<Int> = dataStore.data
+        .map { preferences ->
+            preferences[SCREEN_FLASH_DURATION_INDEX_KEY] ?: 0
+        }
+
+    val screenFlashColorIndex: Flow<Int> = dataStore.data
+        .map { preferences ->
+            preferences[SCREEN_FLASH_COLOR_INDEX_KEY] ?: 0
+        }
+
+    val screenFlashBrightnessIndex: Flow<Int> = dataStore.data
+        .map { preferences ->
+            preferences[SCREEN_FLASH_BRIGHTNESS_INDEX_KEY] ?: 0
         }
 
     suspend fun updateAppearance(value: Appearance){
@@ -116,6 +138,24 @@ class UserPreferencesRepository(context: Context) {
     suspend fun resetSegmentedButtonValue() {
         dataStore.edit { preferences ->
             preferences[SEGMENTED_BUTTON_VALUE_KEY] = 0
+        }
+    }
+
+    suspend fun updateScreenFlashDurationIndex(value: Int) {
+        dataStore.edit { preferences ->
+            preferences[SCREEN_FLASH_DURATION_INDEX_KEY] = value
+        }
+    }
+
+    suspend fun updateScreenFlashColorIndex(value: Int) {
+        dataStore.edit { preferences ->
+            preferences[SCREEN_FLASH_COLOR_INDEX_KEY] = value
+        }
+    }
+
+    suspend fun updateScreenFlashBrightnessIndex(value: Int) {
+        dataStore.edit { preferences ->
+            preferences[SCREEN_FLASH_BRIGHTNESS_INDEX_KEY] = value
         }
     }
 }
