@@ -1,0 +1,9 @@
+- Integration of Material 3 Expressive design elements
+- refreshed user interface with improved animations for better visibility
+- Lumolight now automatically remembers your last selected options
+
+Additional Improvements:
+- Updated all underlying libraries
+- Resolved an issue with the vibration toggle
+- Numerous internal code improvements and refinements
+- Enhanced overall app performance and stability with general bug fixes
