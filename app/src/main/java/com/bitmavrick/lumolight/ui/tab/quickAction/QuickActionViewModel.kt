@@ -107,22 +107,6 @@ class QuickActionViewModel @Inject constructor (
         activateSegmentedButton()
     }
 
-    /* ! App crash a lot
-    private fun toggleFlashLight(context: Context, status: Boolean){
-        val cameraManager = ContextCompat.getSystemService(context, CameraManager::class.java) as CameraManager
-        val cameraId = cameraManager.cameraIdList[0]
-
-        viewModelScope.launch {
-            try {
-                cameraManager.setTorchMode(cameraId, status)
-            } catch (e: CameraAccessException) {
-                e.printStackTrace()
-            }
-        }
-    }
-     */
-
-    // * New Implementation
     private fun toggleFlashLight(context: Context, status: Boolean) {
         val cameraManager = ContextCompat.getSystemService(context, CameraManager::class.java) as? CameraManager
         if (cameraManager == null) {

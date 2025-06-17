@@ -56,45 +56,49 @@ import kotlinx.coroutines.delay
 fun FlashlightScreen(
     homeUiState: HomeUiState = HomeUiState(),
     quickActionUiEvent: (QuickActionUiEvent) -> Unit,
-    flashlightViewModel: FlashlightViewModel,
+    flashlightUiState: FlashlightUiState = FlashlightUiState(),
+    flashlightUiEvent: (FlashlightUiEvent) -> Unit,
 ) {
     val context = LocalContext.current
-    val uiState = flashlightViewModel.uiState.collectAsState().value
 
-    var time by remember { mutableIntStateOf(uiState.flashlightDurationMin) }
+    var time by remember { mutableIntStateOf(flashlightUiState.flashlightDurationMin) }
 
     if(Build.VERSION.SDK_INT >= 33 && AppConstants.APP_PRODUCTION_MODE != ProductionMode.DEBUG){
-        flashlightViewModel.updateMaxFlashlightStrengthIndex(context)
+        flashlightUiEvent(FlashlightUiEvent.UpdateMaxFlashlightStrengthIndex(context))
     }
 
-    if(uiState.flashlightStatus){
+    if(flashlightUiState.flashlightStatus){
 
-        if(uiState.flashlightDurationMin != -1){
+        if(flashlightUiState.flashlightDurationMin != -1){
 
-            time = uiState.flashlightDurationMin * 60
+            time = flashlightUiState.flashlightDurationMin * 60
 
             LaunchedEffect(key1 = Unit) {
 
-                repeat(uiState.flashlightDurationMin * 60) {
+                repeat(flashlightUiState.flashlightDurationMin * 60) {
                     delay(1000L)
                     time--
                 }
 
-                flashlightViewModel.toggleFlashLight(context)
-                flashlightViewModel.updateFlashlightStatus(false)
-                time = uiState.flashlightDurationMin * 60
+                // flashlightViewModel.toggleFlashLight(context)
+                // flashlightViewModel.updateFlashlightStatus(false)
+                time = flashlightUiState.flashlightDurationMin * 60
             }
         }
 
         FlashAlertDialog(
             time = remember { derivedStateOf { time } },
-            flashlightViewModel = flashlightViewModel,
+            uiState = flashlightUiState,
+            uiEvent = flashlightUiEvent,
             onClickDismiss = {
-                flashlightViewModel.updateFlashlightStatus(false)
-                flashlightViewModel.toggleFlashLight(context)
+                //flashlightViewModel.updateFlashlightStatus(false)
+                //flashlightViewModel.toggleFlashLight(context)
+                flashlightUiEvent(FlashlightUiEvent.UpdateFlashlightStatus(false))
+                flashlightUiEvent(FlashlightUiEvent.ToggleFlashlight(context))
+
                 quickActionUiEvent(QuickActionUiEvent.StopStartButton)
-                if(uiState.flashlightDurationMin != -1){
-                    time = uiState.flashlightDurationMin * 60
+                if(flashlightUiState.flashlightDurationMin != -1){
+                    time = flashlightUiState.flashlightDurationMin * 60
                 }
             },
             hapticStatus = homeUiState.hapticStatus
@@ -142,10 +146,12 @@ fun FlashlightScreen(
                                 modifier = Modifier
                                     .padding(horizontal = 4.dp)
                                     .align(alignment = Alignment.CenterVertically),
-                                selected = index == uiState.flashlightDurationIndex,
-                                onClick = { flashlightViewModel.updateFlashlightDuration(index, element.time) },
+                                selected = index == flashlightUiState.flashlightDurationIndex,
+                                onClick = {
+                                    // flashlightViewModel.updateFlashlightDuration(index, element.time)
+                                          },
                                 label = { Text(element.duration) },
-                                leadingIcon = if(index == uiState.flashlightDurationIndex){
+                                leadingIcon = if(index == flashlightUiState.flashlightDurationIndex){
                                     {
                                         Icon(
                                             imageVector = Icons.Filled.Done,
@@ -197,10 +203,12 @@ fun FlashlightScreen(
                                 modifier = Modifier
                                     .padding(horizontal = 4.dp)
                                     .align(alignment = Alignment.CenterVertically),
-                                selected = index == uiState.flashlightBpmIndex,
-                                onClick = { flashlightViewModel.updateFlashlightBpm(index, element.value) },
+                                selected = index == flashlightUiState.flashlightBpmIndex,
+                                onClick = {
+                                    // flashlightViewModel.updateFlashlightBpm(index, element.value)
+                                          },
                                 label = { Text(element.title) },
-                                leadingIcon = if(index == uiState.flashlightBpmIndex){
+                                leadingIcon = if(index == flashlightUiState.flashlightBpmIndex){
                                     {
                                         Icon(
                                             imageVector = Icons.Filled.Done,
@@ -220,10 +228,10 @@ fun FlashlightScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
         CustomFilledButton(
-            buttonText = if(uiState.flashlightStatus) context.getString(R.string.running).uppercase() else context.getString(R.string.start).uppercase(),
+            buttonText = if(flashlightUiState.flashlightStatus) context.getString(R.string.running).uppercase() else context.getString(R.string.start).uppercase(),
             onClick = {
-                flashlightViewModel.updateFlashlightStatus(true)
-                flashlightViewModel.toggleFlashLight(context)
+                // flashlightViewModel.updateFlashlightStatus(true)
+                // flashlightViewModel.toggleFlashLight(context)
             },
             hapticStatus = homeUiState.hapticStatus
         )
@@ -236,6 +244,7 @@ fun FlashlightScreenPreview(){
     val flashlightViewModel : FlashlightViewModel = viewModel()
     FlashlightScreen(
         quickActionUiEvent = {},
-        flashlightViewModel = flashlightViewModel
+        flashlightUiState = FlashlightUiState(),
+        flashlightUiEvent = {},
     )
 }

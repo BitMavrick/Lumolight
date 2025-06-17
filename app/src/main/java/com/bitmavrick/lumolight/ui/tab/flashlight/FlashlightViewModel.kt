@@ -24,7 +24,36 @@ class FlashlightViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(FlashlightUiState())
     val uiState : StateFlow<FlashlightUiState> = _uiState
 
-    fun updateFlashlightDuration(index : Int, time : Int){
+
+    fun onEvent(event: FlashlightUiEvent){
+        when(event) {
+            is FlashlightUiEvent.UpdateFlashlightDuration -> {
+                updateFlashlightDuration(event.index, event.index * 5)
+            }
+            is FlashlightUiEvent.UpdateFlashlightBPM -> {
+                updateFlashlightBpm(event.index, event.index * 5)
+            }
+
+            is FlashlightUiEvent.ToggleFlashlight -> {
+                toggleFlashLight(event.value)
+            }
+
+            is FlashlightUiEvent.UpdateMaxFlashlightStrengthIndex -> {
+                updateMaxFlashlightStrengthIndex(event.value)
+            }
+
+            is FlashlightUiEvent.UpdateFlashlightStrength -> {
+               updateFlashlightStrength(event.index)
+            }
+            is FlashlightUiEvent.UpdateFlashlightStatus -> {
+                updateFlashlightStatus(event.status)
+            }
+        }
+
+    }
+
+
+    private fun updateFlashlightDuration(index : Int, time : Int){
         _uiState.update {
             it.copy(
                 flashlightDurationIndex = index,
@@ -33,7 +62,7 @@ class FlashlightViewModel : ViewModel() {
         }
     }
 
-    fun updateFlashlightBpm(index : Int, value : Int){
+    private fun updateFlashlightBpm(index : Int, value : Int){
         _uiState.update {
             it.copy(
                 flashlightBpmIndex = index,
@@ -42,17 +71,18 @@ class FlashlightViewModel : ViewModel() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
-    fun updateMaxFlashlightStrengthIndex(context: Context){
-        val strength = getMaxTorchStrengthValue(context)
-        _uiState.update {
-            it.copy(
-                flashlightMaxStrengthIndex = strength
-            )
+    private fun updateMaxFlashlightStrengthIndex(context: Context){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            val strength = getMaxTorchStrengthValue(context)
+            _uiState.update {
+                it.copy(
+                    flashlightMaxStrengthIndex = strength
+                )
+            }
         }
     }
 
-    fun updateFlashlightStrength(value: Int){
+    private fun updateFlashlightStrength(value: Int){
         _uiState.update {
             it.copy(
                 flashlightStrength = value
@@ -61,7 +91,7 @@ class FlashlightViewModel : ViewModel() {
     }
 
 
-    fun updateFlashlightStatus(value : Boolean){
+    private fun updateFlashlightStatus(value : Boolean){
         _uiState.update {
             it.copy(
                 flashlightStatus = value

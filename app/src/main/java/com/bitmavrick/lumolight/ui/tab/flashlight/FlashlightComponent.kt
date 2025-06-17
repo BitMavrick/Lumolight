@@ -20,7 +20,6 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -30,7 +29,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bitmavrick.lumolight.R
 import com.bitmavrick.lumolight.ui.tab.CustomFilledButton
 import com.bitmavrick.lumolight.util.formatDuration
@@ -40,12 +38,12 @@ import kotlin.math.roundToInt
 @Composable
 fun FlashAlertDialog(
     time: State<Int>,
-    flashlightViewModel: FlashlightViewModel,
+    uiState : FlashlightUiState,
+    uiEvent: (FlashlightUiEvent) -> Unit,
     onClickDismiss: () -> Unit,
     hapticStatus: Boolean = false
 ){
     val context = LocalContext.current
-    val uiState = flashlightViewModel.uiState.collectAsState().value
 
     AlertDialog(
         onDismissRequest = {},
@@ -86,7 +84,8 @@ fun FlashAlertDialog(
 
                     FlashStrengthSlider(
                         hapticStatus = hapticStatus,
-                        flashlightViewModel = flashlightViewModel
+                        uiState = uiState,
+                        uiEvent = uiEvent
                     )
                 }
             }
@@ -107,10 +106,9 @@ fun FlashAlertDialog(
 @Composable
 fun FlashStrengthSlider(
     hapticStatus: Boolean,
-    flashlightViewModel: FlashlightViewModel,
+    uiState : FlashlightUiState,
+    uiEvent: (FlashlightUiEvent) -> Unit,
 ) {
-
-    val uiState = flashlightViewModel.uiState.collectAsState().value
     val context = LocalContext.current
 
     if(uiState.flashlightDurationMin == -1){
@@ -126,7 +124,8 @@ fun FlashStrengthSlider(
                 modifier = Modifier.semantics { contentDescription = "Localized Description" },
                 value = uiState.flashlightStrength.toFloat(),
                 onValueChange = {
-                    flashlightViewModel.updateFlashlightStrength(it.roundToInt())
+                    uiEvent(FlashlightUiEvent.UpdateFlashlightStrength(it.roundToInt()))
+
                     if(hapticStatus){
                         vibrate(context)
                     }
@@ -141,10 +140,10 @@ fun FlashStrengthSlider(
 @Preview
 @Composable
 fun FlashAlertDialogPreview(){
-    val flashlightViewModel : FlashlightViewModel = viewModel()
     FlashAlertDialog(
         time = remember { derivedStateOf { 0 } },
-        flashlightViewModel = flashlightViewModel,
+        uiState = FlashlightUiState(),
+        uiEvent = {},
         onClickDismiss = {}
     )
 }

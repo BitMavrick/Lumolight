@@ -54,7 +54,8 @@ import com.bitmavrick.lumolight.activity.core.Screen
 import com.bitmavrick.lumolight.ui.screen.sos.SosViewModel
 import com.bitmavrick.lumolight.ui.tab.CustomFilledButton
 import com.bitmavrick.lumolight.ui.tab.flashlight.FlashlightScreen
-import com.bitmavrick.lumolight.ui.tab.flashlight.FlashlightViewModel
+import com.bitmavrick.lumolight.ui.tab.flashlight.FlashlightUiEvent
+import com.bitmavrick.lumolight.ui.tab.flashlight.FlashlightUiState
 import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionScreen
 import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionUiEvent
 import com.bitmavrick.lumolight.ui.tab.quickAction.QuickActionUiState
@@ -74,7 +75,8 @@ fun HomeScreen(
     quickActionUiEvent: (QuickActionUiEvent) -> Unit,
     screenFlashUiSate: ScreenFlashUiState,
     screenFlashUiEvent: (ScreenFlashUiEvent) -> Unit,
-    flashlightViewModel : FlashlightViewModel = viewModel(),
+    flashlightUiState: FlashlightUiState,
+    flashlightUiEvent: (FlashlightUiEvent) -> Unit,
     sosViewModel: SosViewModel = viewModel()
 ) {
     val context = LocalContext.current
@@ -266,7 +268,8 @@ fun HomeScreen(
                             2 -> FlashlightScreen(
                                 homeUiState = homeUiState,
                                 quickActionUiEvent = quickActionUiEvent,
-                                flashlightViewModel = flashlightViewModel
+                                flashlightUiState = flashlightUiState,
+                                flashlightUiEvent = flashlightUiEvent
                             )
                         }
                     }
@@ -346,7 +349,9 @@ fun HomeScreenPreview() {
             quickActionUiState = QuickActionUiState(),
             quickActionUiEvent = {},
             screenFlashUiSate = ScreenFlashUiState(),
-            screenFlashUiEvent = {}
+            screenFlashUiEvent = {},
+            flashlightUiState = FlashlightUiState(),
+            flashlightUiEvent = {}
         )
     }
 }
