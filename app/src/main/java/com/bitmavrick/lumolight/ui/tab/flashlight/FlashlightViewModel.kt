@@ -49,7 +49,6 @@ class FlashlightViewModel : ViewModel() {
                 updateFlashlightStatus(event.status)
             }
         }
-
     }
 
 

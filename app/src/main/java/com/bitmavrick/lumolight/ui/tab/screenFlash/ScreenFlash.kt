@@ -164,6 +164,7 @@ fun ScreenFlashScreen(
                                     {
                                         Icon(
                                             imageVector = Icons.Filled.Done,
+                                            tint = Color(element.code.toColorInt()),
                                             contentDescription = context.getString(R.string.selected_icon_description)
                                         )
                                     }
@@ -244,6 +245,7 @@ fun ScreenFlashScreen(
         Spacer(modifier = Modifier.height(8.dp))
 
         CustomFilledButton(
+            colorIndex = screenFlashUiState.screenFlashColorIndex,
             buttonText = context.getString(R.string.start),
             onClick =  onClickStart,
             hapticStatus = homeUiState.hapticStatus
