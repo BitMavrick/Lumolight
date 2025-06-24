@@ -79,7 +79,6 @@ fun Lumolight(
                 quickActionUiEvent = quickActionViewModel::onEvent,
                 screenFlashUiSate = screenFlashViewModel.uiState.collectAsState().value,
                 screenFlashUiEvent = screenFlashViewModel::onEvent,
-                // flashlightViewModel = flashlightViewModel,
                 flashlightUiState = flashlightViewModel.uiState.collectAsState().value,
                 flashlightUiEvent = flashlightViewModel::onEvent,
                 sosViewModel = sosViewModel,
