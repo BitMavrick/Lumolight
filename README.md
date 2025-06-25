@@ -2,10 +2,14 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://play.google.com/store/apps/details?id=com.bitmavrick.lumolight)
 
+## Get it from
+
 <div align="center">
 
-| [<img height=80 alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png"/>](https://play.google.com/store/apps/details?id=com.bitmavrick.lumolight&hl=en) | [<img height="80" src="https://github.com/machiav3lli/oandbackupx/blob/034b226cea5c1b30eb4f6a6f313e4dadcbb0ece4/badge_github.png"/>](https://github.com/BitMavrick/Lumolight/releases/latest) | [<img height=52 alt="Get it on izzy on droid" src="https://github.com/suvam0451/dhaaga/blob/main/.github/badges/izzy_on_droid.png"/>](https://apt.izzysoft.de/fdroid/index/apk/com.bitmavrick.lumolight) |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+<a href="https://play.google.com/store/apps/details?id=com.bitmavrick.lumolight"><img src="assets/play.png" height="60"></a>
+<a href="https://github.com/BitMavrick/Lumolight/releases/latest"><img src="assets/github.png" height="60"></a>
+<a href="https://f-droid.org/en/packages/com.bitmavrick.lumolight/"><img src="assets/fdroid.png" height="60"></a>
+<a href="https://apt.izzysoft.de/fdroid/index/apk/com.bitmavrick.lumolight"><img src="assets/izzy.png" height="60"></a>
 
 </div>
 
