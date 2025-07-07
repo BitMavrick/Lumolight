@@ -6,10 +6,10 @@
 
 <div align="center">
 
-<a href="https://play.google.com/store/apps/details?id=com.bitmavrick.lumolight"><img src="assets/play.png" height="60"></a>
-<a href="https://github.com/BitMavrick/Lumolight/releases/latest"><img src="assets/github.png" height="60"></a>
-<a href="https://f-droid.org/en/packages/com.bitmavrick.lumolight/"><img src="assets/fdroid.png" height="60"></a>
-<a href="https://apt.izzysoft.de/fdroid/index/apk/com.bitmavrick.lumolight"><img src="assets/izzy.png" height="60"></a>
+<a href="https://play.google.com/store/apps/details?id=com.bitmavrick.lumolight"><img src="assets/play.png" height="50"></a>
+<a href="https://github.com/BitMavrick/Lumolight/releases/latest"><img src="assets/github.png" height="50"></a>
+<a href="https://f-droid.org/en/packages/com.bitmavrick.lumolight/"><img src="assets/fdroid.png" height="50"></a>
+<a href="https://apt.izzysoft.de/fdroid/index/apk/com.bitmavrick.lumolight"><img src="assets/izzy.png" height="50"></a>
 
 </div>
 
