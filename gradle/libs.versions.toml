@@ -3,22 +3,22 @@
 #* */
 
 [versions]
-agp = "8.11.0"
+agp = "8.11.1"
 coreSplashscreen = "1.0.1"
 datastorePreferences = "1.1.7"
 hiltAndroid = "2.56.2"
-kotlin = "2.1.21"
+kotlin = "2.2.0"
 coreKtx = "1.16.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.9.1"
 activityCompose = "1.10.1"
-composeBom = "2025.06.00"
+composeBom = "2025.06.01"
 lifecycleViewmodelCompose = "2.9.1"
 material3Adaptive = "1.0.0-alpha06"
-material3Android = "1.4.0-alpha15"
-navigationCompose = "2.9.0"
+material3Android = "1.4.0-alpha17"
+navigationCompose = "2.9.1"
 
 
 [libraries]
