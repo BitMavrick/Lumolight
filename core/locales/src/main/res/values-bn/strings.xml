@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Lumolight</string>
+
+    <!-- ? Navigation Options  -->
+    <string name="shortcuts">শর্টকাট</string>
+    <string name="screen">স্ক্রিন</string>
+    <string name="flash">ফ্ল্যাশ</string>
+    <string name="settings">সেটিংস</string>
+
+    <!-- ? Topbar Options  -->
+    <string name="screen_topbar">স্ক্রিন লাইট</string>
+    <string name="flash_topbar">ফ্ল্যাশ লাইট</string>
+
+    <!-- ? Shortcut button  -->
+    <string name="both">দুইটাই</string>
+
+    <!-- ? Screen flash card titles  -->
+    <string name="color">রঙ</string>
+    <string name="duration">সময়কাল</string>
+    <string name="brightness">উজ্জ্বলতা</string>
+
+    <!-- ? Flashlight card titles  -->
+    <string name="bpm_title">বিপিএম (প্রতি মিনিটে বিট)</string>
+    <string name="intensity_level">তীব্রতার মাত্রা</string>
+
+    <!-- ? Button texts  -->
+    <string name="start">শুরু করুন</string>
+    <string name="exit">বের হন</string>
+
+    <!-- ? Settings Page - Appearance -->
+    <string name="appearance">চেহারা</string>
+    <string name="theme">থিম</string>
+    <string name="select_theme">থিম নির্বাচন করুন</string>
+    <string name="follow_system">সিস্টেম অনুসরণ করুন</string>
+    <string name="light">লাইট</string>
+    <string name="dark">ডার্ক</string>
+
+    <string name="dynamic_color">ডাইনামিক রঙ</string>
+    <string name="dynamic_color_des">ডাইনামিক রঙের থিম সক্রিয় করুন</string>
+
+    <string name="oled_dark">ওলেড ডার্ক</string>
+    <string name="oled_dark_des">উচ্চ কনট্রাস্ট ডার্ক মোড</string>
+
+    <!-- ? Settings Page - General  -->
+    <string name="general">সাধারণ</string>
+    <string name="language">ভাষা</string>
+    <string name="language_des">অ্যাপের ভাষা পরিবর্তন করুন</string>
+
+    <!-- ? Settings Page - About  -->
+    <string name="about">সম্পর্কে</string>
+    <string name="app_name_title">অ্যাপের নাম</string>
+    <string name="version">সংস্করণ</string>
+
+    <string name="privacy_policy">গোপনীয়তা নীতি</string>
+    <string name="privacy_policy_des">গোপনীয়তা নীতি • শর্তাবলী</string>
+
+    <!-- ? Settings Page - Support  -->
+    <string name="support">সহায়তা</string>
+    <string name="rate_us">আমাদের রেট করুন</string>
+    <string name="rate_us_des">আপনার প্রতিটি তারকা আমাদের আরও ভালো করে তোলে!</string>
+
+    <string name="try_more_apps">আরও অ্যাপ ব্যবহার করুন</string>
+    <string name="try_more_apps_des">আমাদের আরও অসাধারণ অ্যাপগুলো চেষ্টা করুন</string>
+
+    <string name="feedback">মতামত</string>
+    <string name="feedback_des">আমরা কীভাবে আরও উন্নত হতে পারি জানাতে সাহায্য করুন</string>
+
+    <!-- ? Billing Module  -->
+    <string translatable="false" name="lumolight_plus">Lumolight Plus</string>
+    <string name="remove_ads">বিজ্ঞাপন সরান</string>
+    <string name="getting_ready">প্রস্তুত হচ্ছে …</string>
+    <string name="premium_des">প্রিমিয়ামে যান, সীমাহীন ব্যবহার করুন!\nবিজ্ঞাপন ছাড়াই Lumolight উপভোগ করুন এবং এর নির্মাতাদের সহায়তা করুন।</string>
+    <string name="restart_note">* আপগ্রেড করার পর অ্যাপটি পুনরায় চালু করুন।</string>
+    <string name="upgrade_now">এখনই আপগ্রেড করুন</string>
+</resources>

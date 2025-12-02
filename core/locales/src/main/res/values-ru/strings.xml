@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Lumolight</string>
+
+    <!-- ? Navigation Options  -->
+    <string name="shortcuts">Ярлыки</string>
+    <string name="screen">Экран</string>
+    <string name="flash">Вспышка</string>
+    <string name="settings">Настройки</string>
+
+    <!-- ? Topbar Options  -->
+    <string name="screen_topbar">Подсветка экрана</string>
+    <string name="flash_topbar">Фонарик</string>
+
+    <!-- ? Shortcut button  -->
+    <string name="both">Оба</string>
+
+    <!-- ? Screen flash card titles  -->
+    <string name="color">Цвет</string>
+    <string name="duration">Продолжительность</string>
+    <string name="brightness">Яркость</string>
+
+    <!-- ? Flashlight card titles  -->
+    <string name="bpm_title">BPM (ударов в минуту)</string>
+    <string name="intensity_level">Уровень интенсивности</string>
+
+    <!-- ? Button texts  -->
+    <string name="start">Запустить</string>
+    <string name="exit">Выйти</string>
+
+    <!-- ? Settings Page - Appearance -->
+    <string name="appearance">Внешний вид</string>
+    <string name="theme">Тема</string>
+    <string name="select_theme">Выберите тему</string>
+    <string name="follow_system">Следовать системе</string>
+    <string name="light">Светлая</string>
+    <string name="dark">Тёмная</string>
+
+    <string name="dynamic_color">Динамический цвет</string>
+    <string name="dynamic_color_des">Включить динамическую цветовую тему</string>
+
+    <string name="oled_dark">OLED-тёмная</string>
+    <string name="oled_dark_des">Режим тёмной темы с высоким контрастом</string>
+
+    <!-- ? Settings Page - General  -->
+    <string name="general">Общие</string>
+    <string name="language">Язык</string>
+    <string name="language_des">Изменить язык приложения</string>
+
+    <!-- ? Settings Page - About  -->
+    <string name="about">О приложении</string>
+    <string name="app_name_title">Название приложения</string>
+    <string name="version">Версия</string>
+
+    <string name="privacy_policy">Политика конфиденциальности</string>
+    <string name="privacy_policy_des">Политика конфиденциальности • Условия использования</string>
+
+    <!-- ? Settings Page - Support  -->
+    <string name="support">Поддержка</string>
+    <string name="rate_us">Оцените нас</string>
+    <string name="rate_us_des">Каждая звезда делает нас лучше!</string>
+
+    <string name="try_more_apps">Попробуйте другие приложения</string>
+    <string name="try_more_apps_des">Ознакомьтесь с другими нашими замечательными приложениями</string>
+
+    <string name="feedback">Отзыв</string>
+    <string name="feedback_des">Расскажите, как мы можем стать лучше</string>
+
+    <!-- ? Billing Module  -->
+    <string translatable="false" name="lumolight_plus">Lumolight Plus</string>
+    <string name="remove_ads">Удалить рекламу</string>
+    <string name="getting_ready">Подготовка…</string>
+    <string name="premium_des">Перейдите на Premium и пользуйтесь без ограничений!\nНаслаждайтесь Lumolight без рекламы и поддержите его создателей.</string>
+    <string name="restart_note">* После обновления перезапустите приложение.</string>
+    <string name="upgrade_now">Обновить сейчас</string>
+</resources>

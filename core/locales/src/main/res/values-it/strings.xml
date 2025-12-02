@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Lumolight</string>
+
+    <!-- ? Navigation Options  -->
+    <string name="shortcuts">Scorciatoie</string>
+    <string name="screen">Schermo</string>
+    <string name="flash">Flash</string>
+    <string name="settings">Impostazioni</string>
+
+    <!-- ? Topbar Options  -->
+    <string name="screen_topbar">Luce dello schermo</string>
+    <string name="flash_topbar">Torcia</string>
+
+    <!-- ? Shortcut button  -->
+    <string name="both">Entrambi</string>
+
+    <!-- ? Screen flash card titles  -->
+    <string name="color">Colore</string>
+    <string name="duration">Durata</string>
+    <string name="brightness">Luminosità</string>
+
+    <!-- ? Flashlight card titles  -->
+    <string name="bpm_title">BPM (battiti al minuto)</string>
+    <string name="intensity_level">Livello di intensità</string>
+
+    <!-- ? Button texts  -->
+    <string name="start">Avvia</string>
+    <string name="exit">Esci</string>
+
+    <!-- ? Settings Page - Appearance -->
+    <string name="appearance">Aspetto</string>
+    <string name="theme">Tema</string>
+    <string name="select_theme">Seleziona tema</string>
+    <string name="follow_system">Segui il sistema</string>
+    <string name="light">Chiaro</string>
+    <string name="dark">Scuro</string>
+
+    <string name="dynamic_color">Colore dinamico</string>
+    <string name="dynamic_color_des">Attiva il tema a colori dinamici</string>
+
+    <string name="oled_dark">Scuro OLED</string>
+    <string name="oled_dark_des">Modalità scura ad alto contrasto</string>
+
+    <!-- ? Settings Page - General  -->
+    <string name="general">Generale</string>
+    <string name="language">Lingua</string>
+    <string name="language_des">Cambia la lingua dell’app</string>
+
+    <!-- ? Settings Page - About  -->
+    <string name="about">Informazioni</string>
+    <string name="app_name_title">Nome dell’app</string>
+    <string name="version">Versione</string>
+
+    <string name="privacy_policy">Informativa sulla privacy</string>
+    <string name="privacy_policy_des">Informativa sulla privacy • Termini e condizioni</string>
+
+    <!-- ? Settings Page - Support  -->
+    <string name="support">Supporto</string>
+    <string name="rate_us">Valutaci</string>
+    <string name="rate_us_des">Ogni stella ci aiuta a migliorare!</string>
+
+    <string name="try_more_apps">Prova altre app</string>
+    <string name="try_more_apps_des">Scopri altre app straordinarie sviluppate da noi</string>
+
+    <string name="feedback">Feedback</string>
+    <string name="feedback_des">Dicci come possiamo migliorare</string>
+
+    <!-- ? Billing Module  -->
+    <string translatable="false" name="lumolight_plus">Lumolight Plus</string>
+    <string name="remove_ads">Rimuovi gli annunci</string>
+    <string name="getting_ready">Preparazione in corso…</string>
+    <string name="premium_des">Passa a Premium, senza limiti!\nGoditi Lumolight senza pubblicità per sempre e supporta i suoi creatori.</string>
+    <string name="restart_note">* Riavvia l\'app dopo l\'aggiornamento.</string>
+    <string name="upgrade_now">Aggiorna ora</string>
+</resources>

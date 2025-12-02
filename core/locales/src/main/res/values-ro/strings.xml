@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Lumolight</string>
+
+    <!-- ? Navigation Options  -->
+    <string name="shortcuts">Comenzi rapide</string>
+    <string name="screen">Ecran</string>
+    <string name="flash">Bliț</string>
+    <string name="settings">Setări</string>
+
+    <!-- ? Topbar Options  -->
+    <string name="screen_topbar">Lumină de ecran</string>
+    <string name="flash_topbar">Lanternă</string>
+
+    <!-- ? Shortcut button  -->
+    <string name="both">Ambele</string>
+
+    <!-- ? Screen flash card titles  -->
+    <string name="color">Culoare</string>
+    <string name="duration">Durată</string>
+    <string name="brightness">Luminozitate</string>
+
+    <!-- ? Flashlight card titles  -->
+    <string name="bpm_title">BPM (bătăi pe minut)</string>
+    <string name="intensity_level">Nivel de intensitate</string>
+
+    <!-- ? Button texts  -->
+    <string name="start">Porniți</string>
+    <string name="exit">Ieșiți</string>
+
+    <!-- ? Settings Page - Appearance -->
+    <string name="appearance">Aspect</string>
+    <string name="theme">Temă</string>
+    <string name="select_theme">Selectați tema</string>
+    <string name="follow_system">Urmăriți sistemul</string>
+    <string name="light">Luminos</string>
+    <string name="dark">Întunecat</string>
+
+    <string name="dynamic_color">Culoare dinamică</string>
+    <string name="dynamic_color_des">Activați tema de culoare dinamică</string>
+
+    <string name="oled_dark">Întunecat OLED</string>
+    <string name="oled_dark_des">Mod întunecat cu contrast ridicat</string>
+
+    <!-- ? Settings Page - General  -->
+    <string name="general">General</string>
+    <string name="language">Limbă</string>
+    <string name="language_des">Schimbați limba aplicației</string>
+
+    <!-- ? Settings Page - About  -->
+    <string name="about">Despre</string>
+    <string name="app_name_title">Numele aplicației</string>
+    <string name="version">Versiune</string>
+
+    <string name="privacy_policy">Politica de confidențialitate</string>
+    <string name="privacy_policy_des">Politica de confidențialitate • Termeni și condiții</string>
+
+    <!-- ? Settings Page - Support  -->
+    <string name="support">Asistență</string>
+    <string name="rate_us">Evaluați-ne</string>
+    <string name="rate_us_des">Fiecare stea ne ajută să devenim mai buni!</string>
+
+    <string name="try_more_apps">Încercați mai multe aplicații</string>
+    <string name="try_more_apps_des">Descoperiți alte aplicații uimitoare de la noi</string>
+
+    <string name="feedback">Feedback</string>
+    <string name="feedback_des">Spuneți-ne cum ne putem îmbunătăți</string>
+
+    <!-- ? Billing Module  -->
+    <string translatable="false" name="lumolight_plus">Lumolight Plus</string>
+    <string name="remove_ads">Elimină reclamele</string>
+    <string name="getting_ready">Se pregătește…</string>
+    <string name="premium_des">Treci la Premium, fără limite!\nBucură-te de Lumolight fără reclame pentru totdeauna și sprijină creatorii săi.</string>
+    <string name="restart_note">* Repornește aplicația după actualizare.</string>
+    <string name="upgrade_now">Actualizează acum</string>
+</resources>

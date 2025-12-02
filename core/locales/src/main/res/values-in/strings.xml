@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Lumolight</string>
+
+    <!-- ? Navigation Options  -->
+    <string name="shortcuts">Pintasan</string>
+    <string name="screen">Layar</string>
+    <string name="flash">Flash</string>
+    <string name="settings">Pengaturan</string>
+
+    <!-- ? Topbar Options  -->
+    <string name="screen_topbar">Cahaya Layar</string>
+    <string name="flash_topbar">Senter</string>
+
+    <!-- ? Shortcut button  -->
+    <string name="both">Keduanya</string>
+
+    <!-- ? Screen flash card titles  -->
+    <string name="color">Warna</string>
+    <string name="duration">Durasi</string>
+    <string name="brightness">Kecerahan</string>
+
+    <!-- ? Flashlight card titles  -->
+    <string name="bpm_title">BPM (Ketukan per menit)</string>
+    <string name="intensity_level">Tingkat Intensitas</string>
+
+    <!-- ? Button texts  -->
+    <string name="start">Mulai</string>
+    <string name="exit">Keluar</string>
+
+    <!-- ? Settings Page - Appearance -->
+    <string name="appearance">Tampilan</string>
+    <string name="theme">Tema</string>
+    <string name="select_theme">Pilih tema</string>
+    <string name="follow_system">Ikuti sistem</string>
+    <string name="light">Terang</string>
+    <string name="dark">Gelap</string>
+
+    <string name="dynamic_color">Warna Dinamis</string>
+    <string name="dynamic_color_des">Aktifkan tema warna dinamis</string>
+
+    <string name="oled_dark">Gelap OLED</string>
+    <string name="oled_dark_des">Mode gelap kontras tinggi</string>
+
+    <!-- ? Settings Page - General  -->
+    <string name="general">Umum</string>
+    <string name="language">Bahasa</string>
+    <string name="language_des">Ubah bahasa aplikasi</string>
+
+    <!-- ? Settings Page - About  -->
+    <string name="about">Tentang</string>
+    <string name="app_name_title">Nama aplikasi</string>
+    <string name="version">Versi</string>
+
+    <string name="privacy_policy">Kebijakan Privasi</string>
+    <string name="privacy_policy_des">Kebijakan Privasi • Syarat dan Ketentuan</string>
+
+    <!-- ? Settings Page - Support  -->
+    <string name="support">Dukungan</string>
+    <string name="rate_us">Beri kami rating</string>
+    <string name="rate_us_des">Setiap bintang membuat kami lebih baik!</string>
+
+    <string name="try_more_apps">Coba aplikasi lainnya</string>
+    <string name="try_more_apps_des">Coba aplikasi menakjubkan lainnya dari kami</string>
+
+    <string name="feedback">Masukan</string>
+    <string name="feedback_des">Beri tahu kami bagaimana kami bisa lebih baik</string>
+
+    <!-- ? Billing Module  -->
+    <string translatable="false" name="lumolight_plus">Lumolight Plus</string>
+    <string name="remove_ads">Hapus iklan</string>
+    <string name="getting_ready">Sedang mempersiapkan…</string>
+    <string name="premium_des">Tingkatkan ke Premium, tanpa batas!\nNikmati Lumolight tanpa iklan selamanya sambil mendukung para pembuatnya.</string>
+    <string name="restart_note">* Silakan mulai ulang aplikasi setelah peningkatan.</string>
+    <string name="upgrade_now">Tingkatkan sekarang</string>
+</resources>
