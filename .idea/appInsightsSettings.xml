@@ -22,10 +22,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="com.bitmavrick.lumolight" />
-                  <option name="mobileSdkAppId" value="1:578983010039:android:330cfc6a5c8b0d532c3df2" />
-                  <option name="projectId" value="lumolight-bitmavrick" />
-                  <option name="projectNumber" value="578983010039" />
+                  <option name="appId" value="PLACEHOLDER" />
+                  <option name="mobileSdkAppId" value="" />
+                  <option name="projectId" value="" />
+                  <option name="projectNumber" value="" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
