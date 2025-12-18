@@ -262,7 +262,7 @@ fun SettingsScreen(
                         supportingText = if(BuildConfig.DEBUG){
                             "Unknown"
                         }else {
-                            getAppVersionName(context).toString()
+                            getAppVersionName(context).toString() + " | FOSS"
                         },
                         leadingContent = {
                             Icon(
