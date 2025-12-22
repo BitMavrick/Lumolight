@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Lumolight</string>
+
+    <!-- Navigation Options -->
+    <string name="shortcuts">الاختصارات</string>
+    <string name="screen">الشاشة</string>
+    <string name="flash">الفلاش</string>
+    <string name="settings">الإعدادات</string>
+
+    <!-- Topbar Options -->
+    <string name="screen_topbar">إضاءة الشاشة</string>
+    <string name="flash_topbar">المصباح اليدوي</string>
+
+    <!-- Shortcut button -->
+    <string name="both">كلاهما</string>
+
+    <!-- Screen flash card titles -->
+    <string name="color">اللون</string>
+    <string name="duration">المدة</string>
+    <string name="brightness">السطوع</string>
+
+    <!-- Flashlight card titles -->
+    <string name="bpm_title">BPM (نبضة في الدقيقة)</string>
+    <string name="intensity_level">مستوى الشدة</string>
+
+    <!-- Button texts -->
+    <string name="start">بدء</string>
+    <string name="exit">خروج</string>
+
+    <!-- Settings Page - Appearance -->
+    <string name="appearance">المظهر</string>
+    <string name="theme">السمة</string>
+    <string name="select_theme">اختيار السمة</string>
+    <string name="follow_system">اتباع النظام</string>
+    <string name="light">فاتح</string>
+    <string name="dark">داكن</string>
+
+    <string name="dynamic_color">الألوان الديناميكية</string>
+    <string name="dynamic_color_des">تمكين سمة الألوان الديناميكية</string>
+
+    <string name="oled_dark">داكن OLED</string>
+    <string name="oled_dark_des">وضع داكن عالي التباين</string>
+
+    <!-- Settings Page - General -->
+    <string name="general">عام</string>
+    <string name="language">اللغة</string>
+    <string name="language_des">تغيير لغة التطبيق</string>
+
+    <!-- Settings Page - About -->
+    <string name="about">حول</string>
+    <string name="app_name_title">اسم التطبيق</string>
+    <string name="version">الإصدار</string>
+
+    <string name="privacy_policy">سياسة الخصوصية</string>
+    <string name="privacy_policy_des">سياسة الخصوصية • الشروط والأحكام</string>
+
+    <!-- Settings Page - Support -->
+    <string name="support">الدعم</string>
+    <string name="rate_us">قيّمنا</string>
+    <string name="rate_us_des">كل تقييم يساعدنا على التحسن!</string>
+
+    <string name="try_more_apps">جرّب المزيد من التطبيقات</string>
+    <string name="try_more_apps_des">اكتشف المزيد من تطبيقاتنا الرائعة</string>
+
+    <string name="feedback">ملاحظات</string>
+    <string name="feedback_des">أخبرنا كيف يمكننا التحسين</string>
+
+    <!-- Billing Module -->
+    <string translatable="false" name="lumolight_plus">Lumolight Plus</string>
+    <string name="remove_ads">إزالة الإعلانات</string>
+    <string name="getting_ready">جارٍ التحضير…</string>
+    <string name="premium_des">
+        انتقل إلى النسخة المميزة بلا حدود!
+        استمتع بـ Lumolight بدون إعلانات للأبد مع دعم المطورين.
+    </string>
+    <string name="restart_note">* يرجى إعادة تشغيل التطبيق بعد الترقية.</string>
+    <string name="upgrade_now">الترقية الآن</string>
+
+</resources>
