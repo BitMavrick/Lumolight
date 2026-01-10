@@ -26,6 +26,7 @@ import androidx.compose.material.icons.outlined.DarkMode
 import androidx.compose.material.icons.outlined.Feedback
 import androidx.compose.material.icons.outlined.FormatPaint
 import androidx.compose.material.icons.outlined.LightMode
+import androidx.compose.material.icons.outlined.RadioButtonChecked
 import androidx.compose.material.icons.outlined.Shield
 import androidx.compose.material.icons.outlined.StarRate
 import androidx.compose.material.icons.outlined.Translate
@@ -233,6 +234,34 @@ fun SettingsScreen(
                             Icon(
                                 imageVector = Icons.Outlined.Translate,
                                 contentDescription = stringResource(localesR.string.language)
+                            )
+                        }
+                    )
+                }
+            }
+
+            item{
+                SectionTitle("Utility")
+
+                SettingsSection {
+                    SettingItem(
+                        modifier = Modifier.clickable {
+                            // * Code will be here
+                        },
+                        headlineText = "Volume button controls",
+                        supportingText = "Enable or disable flash screen volume button controls",
+                        leadingContent = {
+                            Icon(
+                                imageVector = Icons.Outlined.RadioButtonChecked,
+                                contentDescription = stringResource(localesR.string.language)
+                            )
+                        },
+                        trailingContent = {
+                            Switch(
+                                checked = uiState.dynamicTheme,
+                                onCheckedChange = {
+                                    onEvent(SettingsUiEvent.UpdateDynamicTheme(!uiState.dynamicTheme))
+                                }
                             )
                         }
                     )
