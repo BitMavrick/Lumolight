@@ -158,8 +158,17 @@ fun LumolightTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }
+    }
+
+    SideEffect {
+        val window = (view.context as Activity).window
+        window.isNavigationBarContrastEnforced = false
+        val windowsInsetsController = WindowCompat.getInsetsController(window, view)
+
+        windowsInsetsController.isAppearanceLightStatusBars = !darkTheme
+        windowsInsetsController.isAppearanceLightNavigationBars = !darkTheme
     }
 
     MaterialTheme(
