@@ -94,24 +94,29 @@ class ScreenFlashActivity : ComponentActivity() {
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         val uiState = screenFlashViewModel.uiState.value
-        val currentBrightness = uiState.brightness
 
-        return when (keyCode) {
-            KeyEvent.KEYCODE_VOLUME_UP -> {
-                val newBrightness = (currentBrightness + 10).coerceAtMost(100)
-                screenFlashViewModel.onEvent(ScreenFlashUiEvent.UpdateBrightness(newBrightness))
-                changeBrightness(newBrightness.toFloat()/100)
-                true
+        if(uiState.volumeButtonControls){
+            val currentBrightness = uiState.brightness
+
+            return when (keyCode) {
+                KeyEvent.KEYCODE_VOLUME_UP -> {
+                    val newBrightness = (currentBrightness + 10).coerceAtMost(100)
+                    screenFlashViewModel.onEvent(ScreenFlashUiEvent.UpdateBrightness(newBrightness))
+                    changeBrightness(newBrightness.toFloat()/100)
+                    true
+                }
+
+                KeyEvent.KEYCODE_VOLUME_DOWN -> {
+                    val newBrightness = (currentBrightness - 10).coerceAtLeast(0)
+                    screenFlashViewModel.onEvent(ScreenFlashUiEvent.UpdateBrightness(newBrightness))
+                    changeBrightness(newBrightness.toFloat()/100)
+                    true
+                }
+
+                else -> super.onKeyDown(keyCode, event)
             }
-
-            KeyEvent.KEYCODE_VOLUME_DOWN -> {
-                val newBrightness = (currentBrightness - 10).coerceAtLeast(0)
-                screenFlashViewModel.onEvent(ScreenFlashUiEvent.UpdateBrightness(newBrightness))
-                changeBrightness(newBrightness.toFloat()/100)
-                true
-            }
-
-            else -> super.onKeyDown(keyCode, event)
+        }else{
+            return super.onKeyDown(keyCode, event)
         }
     }
 

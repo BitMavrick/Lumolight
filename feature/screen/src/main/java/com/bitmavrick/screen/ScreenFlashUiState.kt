@@ -7,5 +7,6 @@ data class ScreenFlashUiState (
     val screenColorPresetSelection: Boolean = false,
     val screenColorPresetIndex: Int = 0,
     val brightness: Int = 1,
-    val duration: Int = 1
+    val duration: Int = 1,
+    val volumeButtonControls: Boolean = true
 )

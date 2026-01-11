@@ -3,16 +3,19 @@ package com.bitmavrick.screen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bitmavrick.store.preference.ScreenFlashPreferenceRepository
+import com.bitmavrick.store.preference.SettingsPreferenceRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ScreenFlashViewModel @Inject constructor(
-    private val screenFlashPreferenceRepository: ScreenFlashPreferenceRepository
+    private val screenFlashPreferenceRepository: ScreenFlashPreferenceRepository,
+    private val settingsPreferenceRepository: SettingsPreferenceRepository
 ): ViewModel() {
     val scope = viewModelScope
     private val _uiState = MutableStateFlow(ScreenFlashUiState())
@@ -63,19 +66,29 @@ class ScreenFlashViewModel @Inject constructor(
         }
     }
 
-    init {
+    private fun syncUpdates(){
         scope.launch {
-            screenFlashPreferenceRepository.screenFlashPreferencesFlow.collect { preferences ->
-                _uiState.value = ScreenFlashUiState(
-                    screenColorHue = preferences.screenColorHue,
-                    screenColorSat = preferences.screenColorSat,
-                    screenColorVal = preferences.screenColorVal,
-                    screenColorPresetSelection = preferences.screenColorPresetSelection,
-                    screenColorPresetIndex = preferences.screenColorPresetIndex,
-                    brightness = preferences.brightness,
-                    duration = preferences.duration
+            combine(
+                screenFlashPreferenceRepository.screenFlashPreferencesFlow,
+                settingsPreferenceRepository.settingsPreferenceFlow
+            ){ screenFlash,settings ->
+                ScreenFlashUiState(
+                    screenColorHue = screenFlash.screenColorHue,
+                    screenColorSat = screenFlash.screenColorSat,
+                    screenColorVal = screenFlash.screenColorVal,
+                    screenColorPresetSelection = screenFlash.screenColorPresetSelection,
+                    screenColorPresetIndex = screenFlash.screenColorPresetIndex,
+                    brightness = screenFlash.brightness,
+                    duration = screenFlash.duration,
+                    volumeButtonControls = settings.volumeButtonControls
                 )
+            }.collect {
+                _uiState.value = it
             }
         }
+    }
+
+    init {
+        syncUpdates()
     }
 }
