@@ -96,22 +96,27 @@ class FlashlightActivity : ComponentActivity() {
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         val uiState = flashlightViewModel.uiState.value
-        val currentIntensity = uiState.intensity
 
-        return when (keyCode) {
-            KeyEvent.KEYCODE_VOLUME_UP -> {
-                val newIntensity = (currentIntensity + 1).coerceAtMost(maxIntensityLevel.intValue)
-                flashlightViewModel.onEvent(FlashlightUiEvent.UpdateFlashlightIntensity(newIntensity))
-                true
+        if(uiState.volumeButtonControls){
+            val currentIntensity = uiState.intensity
+
+            return when (keyCode) {
+                KeyEvent.KEYCODE_VOLUME_UP -> {
+                    val newIntensity = (currentIntensity + 1).coerceAtMost(maxIntensityLevel.intValue)
+                    flashlightViewModel.onEvent(FlashlightUiEvent.UpdateFlashlightIntensity(newIntensity))
+                    true
+                }
+
+                KeyEvent.KEYCODE_VOLUME_DOWN -> {
+                    val newIntensity = (currentIntensity - 1).coerceAtLeast(1)
+                    flashlightViewModel.onEvent(FlashlightUiEvent.UpdateFlashlightIntensity(newIntensity))
+                    true
+                }
+
+                else -> super.onKeyDown(keyCode, event)
             }
-
-            KeyEvent.KEYCODE_VOLUME_DOWN -> {
-                val newIntensity = (currentIntensity - 1).coerceAtLeast(1)
-                flashlightViewModel.onEvent(FlashlightUiEvent.UpdateFlashlightIntensity(newIntensity))
-                true
-            }
-
-            else -> super.onKeyDown(keyCode, event)
+        }else{
+            return super.onKeyDown(keyCode, event)
         }
     }
 }

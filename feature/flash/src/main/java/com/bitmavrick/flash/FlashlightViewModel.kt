@@ -3,16 +3,19 @@ package com.bitmavrick.flash
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bitmavrick.store.preference.FlashlightPreferenceRepository
+import com.bitmavrick.store.preference.SettingsPreferenceRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class FlashlightViewModel @Inject constructor(
-    private val flashlightPreferenceRepository: FlashlightPreferenceRepository
+    private val flashlightPreferenceRepository: FlashlightPreferenceRepository,
+    private val settingsPreferenceRepository: SettingsPreferenceRepository
 ): ViewModel() {
     val scope = viewModelScope
     private val _uiState = MutableStateFlow(FlashlightUiState())
@@ -50,15 +53,25 @@ class FlashlightViewModel @Inject constructor(
         }
     }
 
-    init {
+    private fun syncUpdates(){
         scope.launch {
-            flashlightPreferenceRepository.flashLightPreferenceFlow.collect { preferences ->
-                _uiState.value = FlashlightUiState(
-                    bpm = preferences.bpm,
-                    duration = preferences.duration,
-                    intensity = preferences.intensity
+            combine(
+                flashlightPreferenceRepository.flashLightPreferenceFlow,
+                settingsPreferenceRepository.settingsPreferenceFlow
+            ) { flashlight, settings ->
+                FlashlightUiState(
+                    bpm = flashlight.bpm,
+                    duration = flashlight.duration,
+                    intensity = flashlight.intensity,
+                    volumeButtonControls = settings.volumeButtonControls
                 )
+            }.collect {
+                _uiState.value = it
             }
         }
+    }
+
+    init {
+        syncUpdates()
     }
 }
