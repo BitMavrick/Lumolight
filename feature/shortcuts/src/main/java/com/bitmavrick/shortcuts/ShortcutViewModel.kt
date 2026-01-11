@@ -2,20 +2,17 @@ package com.bitmavrick.shortcuts
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bitmavrick.store.preference.SettingsPreferenceRepository
 import com.bitmavrick.store.preference.ShortcutPreferenceRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ShortcutViewModel @Inject constructor(
-    private val shortcutPreferenceRepository: ShortcutPreferenceRepository,
-    private val settingsPreferenceRepository: SettingsPreferenceRepository
+    private val shortcutPreferenceRepository: ShortcutPreferenceRepository
 ) : ViewModel() {
     val scope = viewModelScope
 
@@ -38,15 +35,10 @@ class ShortcutViewModel @Inject constructor(
 
     init {
         scope.launch {
-            combine(
-                settingsPreferenceRepository.settingsPreferenceFlow,
-                shortcutPreferenceRepository.shortcutPreferenceFlow
-            ) { settings, shortcut ->
-                ShortcutUiState(
-                    quickButtonIndex = shortcut.quickButtonIndex
+            shortcutPreferenceRepository.shortcutPreferenceFlow.collect {
+                _uiState.value = ShortcutUiState(
+                    quickButtonIndex = it.quickButtonIndex
                 )
-            }.collect { state ->
-                _uiState.value = state
             }
         }
     }
