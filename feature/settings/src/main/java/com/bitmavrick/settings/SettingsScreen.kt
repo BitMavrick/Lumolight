@@ -246,7 +246,7 @@ fun SettingsScreen(
                 SettingsSection {
                     SettingItem(
                         modifier = Modifier.clickable {
-                            // * Code will be here
+                            onEvent(SettingsUiEvent.UpdateVolumeButtonControls(!uiState.volumeButtonControls))
                         },
                         headlineText = "Volume button controls",
                         supportingText = "Enable or disable flash screen volume button controls",
@@ -258,9 +258,9 @@ fun SettingsScreen(
                         },
                         trailingContent = {
                             Switch(
-                                checked = uiState.dynamicTheme,
+                                checked = uiState.volumeButtonControls,
                                 onCheckedChange = {
-                                    onEvent(SettingsUiEvent.UpdateDynamicTheme(!uiState.dynamicTheme))
+                                    onEvent(SettingsUiEvent.UpdateVolumeButtonControls(it))
                                 }
                             )
                         }

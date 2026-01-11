@@ -19,6 +19,8 @@ class SettingsPreferenceRepository(
         private val DARK_THEME = intPreferencesKey("dark_theme")
         private val DYNAMIC_THEME = booleanPreferencesKey("dynamic_theme")
         private val AMOLED_THEME = booleanPreferencesKey("amoled_theme")
+
+        private val VOLUME_BUTTON_CONTROLS = booleanPreferencesKey("volume_button_controls")
     }
 
     private val dataStore = context.settingsDataStore
@@ -29,6 +31,7 @@ class SettingsPreferenceRepository(
             darkTheme = preferences[DARK_THEME] ?: 0,
             dynamicTheme = preferences[DYNAMIC_THEME] ?: true,
             amoledTheme = preferences[AMOLED_THEME] ?: false,
+            volumeButtonControls = preferences[VOLUME_BUTTON_CONTROLS] ?: true
         )
     }
 
@@ -49,11 +52,18 @@ class SettingsPreferenceRepository(
             preferences[AMOLED_THEME] = value
         }
     }
+
+    suspend fun updateVolumeButtonControls(value: Boolean){
+        dataStore.edit { preferences ->
+            preferences[VOLUME_BUTTON_CONTROLS] = value
+        }
+    }
 }
 
 data class SettingsPreference(
     val loaded : Boolean = false,
     val darkTheme : Int = 0,
     val dynamicTheme : Boolean = true,
-    val amoledTheme : Boolean = false
+    val amoledTheme : Boolean = false,
+    val volumeButtonControls: Boolean = true
 )

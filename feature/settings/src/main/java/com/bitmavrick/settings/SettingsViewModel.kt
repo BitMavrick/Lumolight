@@ -31,6 +31,10 @@ class SettingsViewModel @Inject constructor(
             is SettingsUiEvent.UpdateAmoledTheme -> {
                 updateAmoledTheme(event.amoled)
             }
+
+            is SettingsUiEvent.UpdateVolumeButtonControls -> {
+                updateVolumeButtonControls(event.status)
+            }
         }
     }
 
@@ -52,6 +56,12 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
+    private fun updateVolumeButtonControls(status: Boolean){
+        scope.launch {
+            settingsPreferenceRepository.updateVolumeButtonControls(status)
+        }
+    }
+
     init {
         scope.launch {
             settingsPreferenceRepository.settingsPreferenceFlow.collect {  preference ->
@@ -59,7 +69,8 @@ class SettingsViewModel @Inject constructor(
                     isLoaded = preference.loaded,
                     darkTheme = preference.darkTheme,
                     dynamicTheme = preference.dynamicTheme,
-                    amoledTheme = preference.amoledTheme
+                    amoledTheme = preference.amoledTheme,
+                    volumeButtonControls = preference.volumeButtonControls
                 )
             }
         }
