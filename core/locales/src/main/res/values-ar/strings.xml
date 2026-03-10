@@ -1,53 +1,87 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Lumolight</string>
 
-    <!-- Navigation Options -->
-    <string name="shortcuts">الاختصارات</string>
+    <!-- ? Navigation Options  -->
+    <string name="home">الرئيسية</string>
     <string name="screen">الشاشة</string>
-    <string name="flash">الفلاش</string>
+    <string name="dual">مزدوج</string>
+    <string name="rear">خلفي</string>
     <string name="settings">الإعدادات</string>
 
-    <!-- Topbar Options -->
-    <string name="screen_topbar">إضاءة الشاشة</string>
-    <string name="flash_topbar">المصباح اليدوي</string>
+    <!-- ? Shortcut Module  -->
 
-    <!-- Shortcut button -->
-    <string name="both">كلاهما</string>
+    <!-- ? Screen Module  -->
+    <string name="screen_flash">فلاش الشاشة</string>
+    <string name="screen_not_found_des">أنشئ أول فلاش شاشة مخصص لك الآن.</string>
 
-    <!-- Screen flash card titles -->
-    <string name="color">اللون</string>
+    <!-- ? Both Module  -->
+    <string name="dual_flash">فلاش مزدوج</string>
+    <string name="dual_not_found_des">أنشئ أول فلاش مزدوج مخصص لك الآن.</string>
+
+    <!-- ? Flash Module  -->
+    <string name="rear_flash">فلاش خلفي</string>
+    <string name="rear_not_found_des">أنشئ أول فلاش خلفي مخصص لك الآن.</string>
+
+    <!-- ? Ui Module  -->
+    <string name="delete">حذف</string>
+    <string name="delete_des">سيتم حذفه نهائياً. هل أنت متأكد؟</string>
+    <string name="new_screen_flash">فلاش شاشة جديد</string>
+    <string name="edit_screen_flash">تعديل فلاش الشاشة</string>
+    <string name="new_dual_flash">فلاش مزدوج جديد</string>
+    <string name="edit_dual_flash">تعديل الفلاش المزدوج</string>
+    <string name="new_rear_flash">فلاش خلفي جديد</string>
+    <string name="edit_rear_flash">تعديل الفلاش الخلفي</string>
     <string name="duration">المدة</string>
+    <string name="unsupported_hardware">غير مدعوم من قبل الجهاز</string>
+    <string name="no_flash_hardware_found">لم يتم العثور على فلاش!</string>
+    <string name="enter_title">أدخل عنواناً ...</string>
     <string name="brightness">السطوع</string>
+    <string name="color">اللون</string>
+    <string name="minutes">دقائق</string>
+    <string name="seconds">ثواني</string>
+    <string name="intensity">الكثافة</string>
 
-    <!-- Flashlight card titles -->
-    <string name="bpm_title">BPM (نبضة في الدقيقة)</string>
-    <string name="intensity_level">مستوى الشدة</string>
 
-    <!-- Button texts -->
-    <string name="start">بدء</string>
+    <!-- ? Button texts  -->
+    <string name="loading">جاري التحميل ...</string>
+    <string name="not_found">غير موجود!</string>
+    <string name="create_now">أنشئ الآن</string>
+    <string name="update_now">تحديث الآن</string>
+    <string name="start">ابدأ</string>
     <string name="exit">خروج</string>
+    <string name="cancel">إلغاء</string>
+    <string name="yes_delete">نعم، احذف</string>
+    <string name="edit">تعديل</string>
+    <string name="add_to_home">إضافة إلى الشاشة الرئيسية</string>
+    <string name="remove_from_home">إزالة من الشاشة الرئيسية</string>
+    <string name="ok">موافق</string>
 
-    <!-- Settings Page - Appearance -->
+    <!-- ? Settings Page - Appearance -->
     <string name="appearance">المظهر</string>
     <string name="theme">السمة</string>
-    <string name="select_theme">اختيار السمة</string>
-    <string name="follow_system">اتباع النظام</string>
+    <string name="select_theme">اختر السمة</string>
+    <string name="follow_system">نفس النظام</string>
     <string name="light">فاتح</string>
     <string name="dark">داكن</string>
 
-    <string name="dynamic_color">الألوان الديناميكية</string>
-    <string name="dynamic_color_des">تمكين سمة الألوان الديناميكية</string>
+    <string name="dynamic_color">ألوان متغيرة</string>
+    <string name="dynamic_color_des">تفعيل سمة الألوان المتغيرة</string>
 
-    <string name="oled_dark">داكن OLED</string>
+    <string name="oled_dark">داكن لشاشات OLED</string>
     <string name="oled_dark_des">وضع داكن عالي التباين</string>
 
-    <!-- Settings Page - General -->
+
+    <!-- ? Settings Page - General  -->
     <string name="general">عام</string>
     <string name="language">اللغة</string>
     <string name="language_des">تغيير لغة التطبيق</string>
 
-    <!-- Settings Page - About -->
+    <!-- ? Settings Page - Utility  -->
+    <string name="utility">الأدوات</string>
+    <string name="flash_tile_preference">تفضيلات لوحة الفلاش</string>
+    <string name="flash_tile_preference_des">عام</string>
+
+    <!-- ? Settings Page - About  -->
     <string name="about">حول</string>
     <string name="app_name_title">اسم التطبيق</string>
     <string name="version">الإصدار</string>
@@ -55,26 +89,32 @@
     <string name="privacy_policy">سياسة الخصوصية</string>
     <string name="privacy_policy_des">سياسة الخصوصية • الشروط والأحكام</string>
 
-    <!-- Settings Page - Support -->
+    <!-- ? Settings Page - Support  -->
     <string name="support">الدعم</string>
-    <string name="rate_us">قيّمنا</string>
-    <string name="rate_us_des">كل تقييم يساعدنا على التحسن!</string>
+    <string name="rate_us">قيمنا</string>
+    <string name="rate_us_des">كل نجمة تجعلنا أفضل!</string>
 
-    <string name="try_more_apps">جرّب المزيد من التطبيقات</string>
-    <string name="try_more_apps_des">اكتشف المزيد من تطبيقاتنا الرائعة</string>
+    <string name="try_more_apps">جرب تطبيقات أخرى</string>
+    <string name="try_more_apps_des">جرب تطبيقاتنا الرائعة الأخرى</string>
 
-    <string name="feedback">ملاحظات</string>
-    <string name="feedback_des">أخبرنا كيف يمكننا التحسين</string>
+    <string name="feedback">الملاحظات</string>
+    <string name="feedback_des">أخبرنا كيف يمكننا التحسن</string>
 
-    <!-- Billing Module -->
+    <!-- ? Billing Module  -->
     <string translatable="false" name="lumolight_plus">Lumolight Plus</string>
     <string name="remove_ads">إزالة الإعلانات</string>
-    <string name="getting_ready">جارٍ التحضير…</string>
-    <string name="premium_des">
-        انتقل إلى النسخة المميزة بلا حدود!
-        استمتع بـ Lumolight بدون إعلانات للأبد مع دعم المطورين.
-    </string>
+    <string name="getting_ready">جاري التحضير …</string>
+    <string name="premium_des">كن متميزاً، انطلق بلا حدود!\nاستمتع بـ Lumolight بدون إعلانات للأبد مع دعم منشئيه.</string>
     <string name="restart_note">* يرجى إعادة تشغيل التطبيق بعد الترقية.</string>
-    <string name="upgrade_now">الترقية الآن</string>
+    <string name="upgrade_now">ترقية الآن</string>
+    <string name="no_flashlight">لم يتم اكتشاف فلاش في هذا الجهاز.</string>
+
+    <!-- ? v5.1 new strings  -->
+    <string name="volume_key_control">التحكم في مفتاح الصوت</string>
+    <string name="volume_key_control_des">التحكم في مفتاح الصوت لميض الشاشة</string>
+    <string name="lumolight_tile">لوحة Lumolight</string>
+    <string name="lumolight_tile_suggestion">يوفر Lumolight لوحة مصباح يدوي للوصول السريع من لوحة الإشعارات. ما عليك سوى إضافة اللوحة إلى لوحتك لتشغيل وميض Lumolight على الفور. يمكنك أيضًا تخصيص نوع الوميض الذي تنشطه اللوحة.</string>
+    <string name="manual">يدوي</string>
+    <string name="presets">الإعدادات المسبقة</string>
 
 </resources>

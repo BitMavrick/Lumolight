@@ -17,7 +17,6 @@
         </compositeConfiguration>
         <option name="testRunner" value="CHOOSE_PER_TEST" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -30,11 +29,12 @@
             <option value="$PROJECT_DIR$/core/theme" />
             <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/both" />
             <option value="$PROJECT_DIR$/feature/flash" />
+            <option value="$PROJECT_DIR$/feature/lumoFlash" />
             <option value="$PROJECT_DIR$/feature/screen" />
             <option value="$PROJECT_DIR$/feature/settings" />
             <option value="$PROJECT_DIR$/feature/shortcuts" />
-            <option value="$PROJECT_DIR$/feature/tiles" />
           </set>
         </option>
       </GradleProjectSettings>

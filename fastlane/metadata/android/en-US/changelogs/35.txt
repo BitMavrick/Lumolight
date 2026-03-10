@@ -1,0 +1,11 @@
+Lumolight v5.1
+
+This major update introduces a completely redesigned experience along with several powerful new features:
+
+- Full app redesign
+- Create multiple flash profiles and activate them with a single tap
+- Greater flexibility for color and duration selection
+- Expanded language support
+- Performance improvements and bug fixes
+
+About 90% of the app’s code is written directly by the developer (BitMavrick). The project is primarily handcrafted rather than AI-generated.

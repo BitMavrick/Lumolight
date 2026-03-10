@@ -55,10 +55,12 @@ dependencies {
     implementation(project(":core:locales"))
     implementation(project(":core:theme"))
     implementation(project(":core:store"))
+    implementation(project(":core:ui"))
 
     implementation(project(":feature:shortcuts"))
     implementation(project(":feature:screen"))
     implementation(project(":feature:flash"))
+    implementation(project(":feature:both"))
     implementation(project(":feature:settings"))
 
     implementation(libs.androidx.core.ktx)

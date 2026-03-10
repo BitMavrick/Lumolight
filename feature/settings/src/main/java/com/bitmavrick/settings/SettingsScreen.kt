@@ -11,28 +11,25 @@ import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.AdsClick
 import androidx.compose.material.icons.outlined.Android
 import androidx.compose.material.icons.outlined.Commit
 import androidx.compose.material.icons.outlined.Contrast
 import androidx.compose.material.icons.outlined.DarkMode
 import androidx.compose.material.icons.outlined.Feedback
 import androidx.compose.material.icons.outlined.FormatPaint
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.LightMode
 import androidx.compose.material.icons.outlined.Shield
 import androidx.compose.material.icons.outlined.StarRate
 import androidx.compose.material.icons.outlined.Translate
-import androidx.compose.material.icons.rounded.Settings
+import androidx.compose.material.icons.rounded.FlashlightOn
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilledTonalButton
-import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.FilledTonalIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -42,21 +39,26 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
+import com.bitmavrick.settings.components.FlashTilePrefSelectorDialog
+import com.bitmavrick.settings.components.FlashTileTipsDialog
 import com.bitmavrick.settings.components.SectionTitle
 import com.bitmavrick.settings.components.SettingItem
 import com.bitmavrick.settings.components.SettingsSection
 import com.bitmavrick.settings.components.SettingsSectionDivider
 import com.bitmavrick.settings.components.ThemeSelectorDialog
 import com.bitmavrick.theme.LumolightTheme
+import compose.icons.TablerIcons
+import compose.icons.tablericons.BrandGooglePlay
 import com.bitmavrick.locales.R as localesR
+import com.bitmavrick.ui.R as IconR
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -72,32 +74,20 @@ fun SettingsScreen(
             Column {
                 TopAppBar(
                     title = {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically
-                        ){
-                            Icon(
-                                imageVector = Icons.Rounded.Settings,
-                                contentDescription = null,
-                                tint = MaterialTheme.colorScheme.primary
-                            )
-
-                            Spacer(Modifier.padding(4.dp))
-
-                            Text(
-                                text = stringResource(localesR.string.settings),
-                                fontWeight = FontWeight.SemiBold,
-                                color = MaterialTheme.colorScheme.primary
-                            )
-                        }
+                        Text(
+                            text = stringResource(localesR.string.settings),
+                            fontWeight = FontWeight.SemiBold,
+                            color = MaterialTheme.colorScheme.primary
+                        )
                     }
                 )
-
-                HorizontalDivider(Modifier.fillMaxWidth())
             }
         }
     ) { innerPadding ->
 
         val showThemeSelectorDialog = remember { mutableStateOf(false) }
+        val showTilePreferenceDialog = remember { mutableStateOf(false) }
+        val showTileTipsDialog = remember { mutableStateOf(false) }
 
         LazyColumn(
             modifier = Modifier.fillMaxSize().padding(innerPadding)
@@ -240,6 +230,62 @@ fun SettingsScreen(
                 }
             }
 
+            item {
+                SectionTitle(stringResource(localesR.string.utility))
+
+                SettingsSection {
+                    SettingItem(
+                        modifier = Modifier.clickable {
+                            onEvent(SettingsUiEvent.UpdateVolumeKeyControl(!uiState.volumeKeyFlashControl))
+                        },
+                        headlineText = stringResource(localesR.string.volume_key_control),
+                        supportingText = stringResource(localesR.string.volume_key_control_des),
+                        leadingContent = {
+                            Icon(
+                                painter = painterResource(IconR.drawable.gamepad_up),
+                                contentDescription = stringResource(localesR.string.oled_dark)
+                            )
+                        },
+                        trailingContent = {
+                            Switch(
+                                checked = uiState.volumeKeyFlashControl,
+                                onCheckedChange = {
+                                    onEvent(SettingsUiEvent.UpdateVolumeKeyControl(it))
+                                }
+                            )
+                        }
+                    )
+
+                    SettingsSectionDivider()
+
+                    SettingItem(
+                        modifier = Modifier.clickable {
+                            showTilePreferenceDialog.value = true
+                        },
+                        headlineText = stringResource(localesR.string.flash_tile_preference),
+                        supportingText = if(uiState.flashTilePreference == 0) stringResource(localesR.string.screen_flash) else if(uiState.flashTilePreference == 1) stringResource(localesR.string.dual_flash) else stringResource(localesR.string.rear_flash),
+                        leadingContent = {
+                            Icon(
+                                imageVector = Icons.Rounded.FlashlightOn,
+                                contentDescription = stringResource(localesR.string.flash_tile_preference),
+                            )
+                        },
+                        trailingContent = {
+                            FilledTonalIconButton(
+                                onClick = {
+                                    showTileTipsDialog.value = true
+                                }
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Outlined.Info,
+                                    contentDescription = null
+                                )
+                            }
+                        }
+                    )
+                }
+            }
+
             item{
                 SectionTitle(stringResource(localesR.string.about))
 
@@ -326,7 +372,7 @@ fun SettingsScreen(
                         supportingText = stringResource(localesR.string.try_more_apps_des),
                         leadingContent = {
                             Icon(
-                                imageVector = Icons.Outlined.AdsClick,
+                                imageVector = TablerIcons.BrandGooglePlay,
                                 contentDescription = stringResource(localesR.string.try_more_apps)
                             )
                         }
@@ -370,6 +416,24 @@ fun SettingsScreen(
                 onEvent = onEvent,
                 onDismissRequest = {
                     showThemeSelectorDialog.value = false
+                }
+            )
+        }
+
+        if(showTilePreferenceDialog.value){
+            FlashTilePrefSelectorDialog(
+                uiState = uiState,
+                onEvent = onEvent,
+                onDismissRequest = {
+                    showTilePreferenceDialog.value = false
+                }
+            )
+        }
+
+        if(showTileTipsDialog.value){
+            FlashTileTipsDialog(
+                onDismissRequest = {
+                    showTileTipsDialog.value = false
                 }
             )
         }

@@ -31,6 +31,14 @@ class SettingsViewModel @Inject constructor(
             is SettingsUiEvent.UpdateAmoledTheme -> {
                 updateAmoledTheme(event.amoled)
             }
+
+            is SettingsUiEvent.UpdateFlashTilePreference -> {
+                updateFlashTilePreference(event.flashTilePreference)
+            }
+
+            is SettingsUiEvent.UpdateVolumeKeyControl -> {
+                updateVolumeKeyFlashControl(event.volumeKeyControl)
+            }
         }
     }
 
@@ -52,6 +60,24 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
+    private fun updateFlashTilePreference(preference: Int){
+        scope.launch {
+            settingsPreferenceRepository.updateFlashTilePreference(preference)
+        }
+    }
+
+    private fun updateVolumeKeyFlashControl(volumeKeyFlashControl: Boolean){
+        scope.launch {
+            settingsPreferenceRepository.updateVolumeKeyFlashControl(volumeKeyFlashControl)
+        }
+    }
+
+    fun updateLumolightPremium(lumolightPremium: Boolean){
+        scope.launch {
+            settingsPreferenceRepository.updatePremium(lumolightPremium)
+        }
+    }
+
     init {
         scope.launch {
             settingsPreferenceRepository.settingsPreferenceFlow.collect {  preference ->
@@ -59,7 +85,10 @@ class SettingsViewModel @Inject constructor(
                     isLoaded = preference.loaded,
                     darkTheme = preference.darkTheme,
                     dynamicTheme = preference.dynamicTheme,
-                    amoledTheme = preference.amoledTheme
+                    amoledTheme = preference.amoledTheme,
+                    lumolightPremium = preference.lumolightPremium,
+                    flashTilePreference = preference.flashTilePreference,
+                    volumeKeyFlashControl = preference.volumeKeyFlashControl
                 )
             }
         }

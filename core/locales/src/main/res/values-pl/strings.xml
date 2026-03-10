@@ -1,51 +1,85 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Lumolight</string>
 
     <!-- ? Navigation Options  -->
-    <string name="shortcuts">Skróty</string>
+    <string name="home">Główna</string>
     <string name="screen">Ekran</string>
-    <string name="flash">Flash</string>
+    <string name="dual">Podwójny</string>
+    <string name="rear">Tylny</string>
     <string name="settings">Ustawienia</string>
 
-    <!-- ? Topbar Options  -->
-    <string name="screen_topbar">Światło ekranu</string>
-    <string name="flash_topbar">Latarka</string>
+    <!-- ? Shortcut Module  -->
 
-    <!-- ? Shortcut button  -->
-    <string name="both">Oba</string>
+    <!-- ? Screen Module  -->
+    <string name="screen_flash">Lampa ekranowa</string>
+    <string name="screen_not_found_des">Stwórz teraz swoją pierwszą niestandardową lampę ekranową.</string>
 
-    <!-- ? Screen flash card titles  -->
-    <string name="color">Kolor</string>
+    <!-- ? Both Module  -->
+    <string name="dual_flash">Podwójna lampa</string>
+    <string name="dual_not_found_des">Stwórz teraz swoją pierwszą niestandardową podwójną lampę.</string>
+
+    <!-- ? Flash Module  -->
+    <string name="rear_flash">Tylna lampa</string>
+    <string name="rear_not_found_des">Stwórz teraz swoją pierwszą niestandardową tylną lampę.</string>
+
+    <!-- ? Ui Module  -->
+    <string name="delete">Usuń</string>
+    <string name="delete_des">zostanie usunięty na stałe. Czy na pewno?</string>
+    <string name="new_screen_flash">Nowa lampa ekranowa</string>
+    <string name="edit_screen_flash">Edytuj lampę ekranową</string>
+    <string name="new_dual_flash">Nowa podwójna lampa</string>
+    <string name="edit_dual_flash">Edytuj podwójną lampę</string>
+    <string name="new_rear_flash">Nowa tylna lampa</string>
+    <string name="edit_rear_flash">Edytuj tylną lampę</string>
     <string name="duration">Czas trwania</string>
+    <string name="unsupported_hardware">Nieobsługiwane przez sprzęt</string>
+    <string name="no_flash_hardware_found">Nie znaleziono lampy błyskowej!</string>
+    <string name="enter_title">Wpisz tytuł ...</string>
     <string name="brightness">Jasność</string>
+    <string name="color">Kolor</string>
+    <string name="minutes">Minuty</string>
+    <string name="seconds">Sekundy</string>
+    <string name="intensity">Intensywność</string>
 
-    <!-- ? Flashlight card titles  -->
-    <string name="bpm_title">BPM (uderzeń na minutę)</string>
-    <string name="intensity_level">Poziom intensywności</string>
 
     <!-- ? Button texts  -->
+    <string name="loading">Ładowanie ...</string>
+    <string name="not_found">Nie znaleziono!</string>
+    <string name="create_now">Utwórz teraz</string>
+    <string name="update_now">Aktualizuj teraz</string>
     <string name="start">Start</string>
-    <string name="exit">Wyjdź</string>
+    <string name="exit">Wyjście</string>
+    <string name="cancel">Anuluj</string>
+    <string name="yes_delete">Tak, usuń</string>
+    <string name="edit">Edytuj</string>
+    <string name="add_to_home">Dodaj do ekranu głównego</string>
+    <string name="remove_from_home">Usuń z ekranu głównego</string>
+    <string name="ok">Ok</string>
 
     <!-- ? Settings Page - Appearance -->
     <string name="appearance">Wygląd</string>
     <string name="theme">Motyw</string>
     <string name="select_theme">Wybierz motyw</string>
-    <string name="follow_system">Podążaj za systemem</string>
+    <string name="follow_system">Zgodnie z systemem</string>
     <string name="light">Jasny</string>
     <string name="dark">Ciemny</string>
 
     <string name="dynamic_color">Dynamiczny kolor</string>
-    <string name="dynamic_color_des">Włącz dynamiczny motyw kolorów</string>
+    <string name="dynamic_color_des">Włącz dynamiczny motyw kolorystyczny</string>
 
-    <string name="oled_dark">OLED ciemny</string>
+    <string name="oled_dark">Oled ciemny</string>
     <string name="oled_dark_des">Tryb ciemny o wysokim kontraście</string>
+
 
     <!-- ? Settings Page - General  -->
     <string name="general">Ogólne</string>
     <string name="language">Język</string>
     <string name="language_des">Zmień język aplikacji</string>
+
+    <!-- ? Settings Page - Utility  -->
+    <string name="utility">Narzędzia</string>
+    <string name="flash_tile_preference">Preferencje kafelka lampy</string>
+    <string name="flash_tile_preference_des">Ogólne</string>
 
     <!-- ? Settings Page - About  -->
     <string name="about">O aplikacji</string>
@@ -56,21 +90,31 @@
     <string name="privacy_policy_des">Polityka prywatności • Regulamin</string>
 
     <!-- ? Settings Page - Support  -->
-    <string name="support">Wsparcie</string>
+    <string name="support">Pomoc</string>
     <string name="rate_us">Oceń nas</string>
-    <string name="rate_us_des">Każda gwiazdka pomaga nam się poprawić!</string>
+    <string name="rate_us_des">Każda gwiazdka czyni nas lepszymi!</string>
 
-    <string name="try_more_apps">Wypróbuj więcej aplikacji</string>
-    <string name="try_more_apps_des">Wypróbuj inne wspaniałe aplikacje od nas</string>
+    <string name="try_more_apps">Wypróbuj inne aplikacje</string>
+    <string name="try_more_apps_des">Wypróbuj nasze inne niesamowite aplikacje</string>
 
-    <string name="feedback">Opinie</string>
+    <string name="feedback">Opinia</string>
     <string name="feedback_des">Powiedz nam, jak możemy się poprawić</string>
 
     <!-- ? Billing Module  -->
     <string translatable="false" name="lumolight_plus">Lumolight Plus</string>
     <string name="remove_ads">Usuń reklamy</string>
-    <string name="getting_ready">Przygotowywanie…</string>
-    <string name="premium_des">Przejdź na Premium, bez ograniczeń!\nKorzystaj z Lumolight bez reklam na zawsze i wspieraj jego twórców.</string>
-    <string name="restart_note">* Po aktualizacji uruchom ponownie aplikację.</string>
+    <string name="getting_ready">Przygotowywanie …</string>
+    <string name="premium_des">Zostań Premium, bądź bez granic!\nCiesz się Lumolight bez reklam na zawsze, wspierając jego twórców.</string>
+    <string name="restart_note">* Proszę zrestartować aplikację po aktualizacji.</string>
     <string name="upgrade_now">Uaktualnij teraz</string>
+    <string name="no_flashlight">Nie wykryto latarki w tym urządzeniu.</string>
+
+    <!-- ? v5.1 new strings  -->
+    <string name="volume_key_control">Sterowanie przyciskami głośności</string>
+    <string name="volume_key_control_des">Sterowanie przyciskami głośności lampy ekranowej</string>
+    <string name="lumolight_tile">Kafel Lumolight</string>
+    <string name="lumolight_tile_suggestion">Lumolight zapewnia kafel latarki dla szybkiego dostępu z panelu powiadomień. Po prostu dodaj kafel do swojego panelu, aby natychmiast uruchomić lampę Lumolight. Możesz również dostosować, jaki rodzaj lampy aktywuje kafel.</string>
+    <string name="manual">Ręczny</string>
+    <string name="presets">Presety</string>
+
 </resources>

@@ -7,20 +7,24 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.bitmavrick.settings.SettingsUiEvent
 import com.bitmavrick.settings.SettingsUiState
+import com.bitmavrick.theme.LumolightTheme
 import com.bitmavrick.locales.R as localesR
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -42,13 +46,22 @@ fun ThemeSelectorDialog(
 
         },
         confirmButton = {},
-        dismissButton = {},
+        dismissButton = {
+            FilledTonalButton(
+                onClick = {
+                    onDismissRequest()
+                }
+            ) {
+                Text(stringResource(localesR.string.cancel))
+            }
+        },
         text = {
             Column(Modifier.selectableGroup()) {
                 Row(
                     Modifier
                         .fillMaxWidth()
                         .height(46.dp)
+                        .clip(RoundedCornerShape(10.dp))
                         .selectable(
                             selected = uiState.darkTheme == 0,
                             onClick = {
@@ -74,6 +87,7 @@ fun ThemeSelectorDialog(
                     Modifier
                         .fillMaxWidth()
                         .height(46.dp)
+                        .clip(RoundedCornerShape(10.dp))
                         .selectable(
                             selected = uiState.darkTheme == 1,
                             onClick = { onEvent(SettingsUiEvent.UpdateDarkTheme(1))
@@ -99,6 +113,7 @@ fun ThemeSelectorDialog(
                     Modifier
                         .fillMaxWidth()
                         .height(46.dp)
+                        .clip(RoundedCornerShape(10.dp))
                         .selectable(
                             selected = uiState.darkTheme == 2,
                             onClick = {
@@ -127,9 +142,11 @@ fun ThemeSelectorDialog(
 @PreviewLightDark
 @Composable
 private fun ThemeSelectorDialogPreview(){
-    ThemeSelectorDialog(
-        uiState = SettingsUiState(),
-        onEvent = {},
-        onDismissRequest = {}
-    )
+    LumolightTheme {
+        ThemeSelectorDialog(
+            uiState = SettingsUiState(),
+            onEvent = {},
+            onDismissRequest = {}
+        )
+    }
 }

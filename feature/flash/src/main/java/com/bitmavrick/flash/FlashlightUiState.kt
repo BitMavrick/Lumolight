@@ -1,7 +1,9 @@
 package com.bitmavrick.flash
 
+import com.bitmavrick.data.domain.model.LumoFlash
+
 data class FlashlightUiState (
-    val bpm: Int = 0,
-    val duration: Int = 1,
-    val intensity: Int = 1
+    val isLoading: Boolean = false,
+    val rearFlashList: List<LumoFlash> = emptyList(),
+    val userMessage: String? = null
 )

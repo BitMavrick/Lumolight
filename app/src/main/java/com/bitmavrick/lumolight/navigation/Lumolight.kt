@@ -10,15 +10,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import com.bitmavrick.both.BothFlashScreen
+import com.bitmavrick.both.BothFlashViewModel
 import com.bitmavrick.flash.FlashlightScreen
 import com.bitmavrick.flash.FlashlightViewModel
 import com.bitmavrick.screen.ScreenFlashViewModel
 import com.bitmavrick.screen.ScreenScreen
 import com.bitmavrick.settings.SettingsScreen
 import com.bitmavrick.settings.SettingsViewModel
-import com.bitmavrick.shortcuts.ShortcutScreen
+import com.bitmavrick.shortcuts.HomeScreen
 import com.bitmavrick.shortcuts.ShortcutViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -26,6 +30,7 @@ import com.bitmavrick.shortcuts.ShortcutViewModel
 fun Lumolight(
     settingsViewModel: SettingsViewModel
 ) {
+    val context = LocalContext.current
     var currentDestination by rememberSaveable { mutableStateOf(AppDestinations.SHORTCUTS) }
 
     NavigationSuiteScaffold(
@@ -39,10 +44,21 @@ fun Lumolight(
                             it.icon
                         }
 
-                        Icon(
-                            imageVector = icon,
-                            contentDescription = it.contentDescription
-                        )
+                        when (icon) {
+                            is AppIcon.Vector -> {
+                                Icon(
+                                    imageVector = icon.imageVector,
+                                    contentDescription = it.contentDescription
+                                )
+                            }
+                            is AppIcon.Drawable -> {
+                                // Now we are inside a Composable, so we can safely call painterResource
+                                Icon(
+                                    painter = painterResource(id = icon.id),
+                                    contentDescription = it.contentDescription
+                                )
+                            }
+                        }
                     },
                     label = { Text(text = stringResource(it.label)) },
                     selected = it == currentDestination,
@@ -54,11 +70,12 @@ fun Lumolight(
         val shortcutViewModel: ShortcutViewModel = hiltViewModel()
         val screenFlashViewModel: ScreenFlashViewModel = hiltViewModel()
         val flashlightViewModel: FlashlightViewModel = hiltViewModel()
+        val bothFlashViewModel: BothFlashViewModel = hiltViewModel()
 
         when(currentDestination){
             AppDestinations.SHORTCUTS -> {
                 val shortcutUiState by shortcutViewModel.uiState.collectAsState()
-                ShortcutScreen(
+                HomeScreen(
                     uiState = shortcutUiState,
                     onEvent = shortcutViewModel::onEvent
                 )
@@ -75,6 +92,13 @@ fun Lumolight(
                 FlashlightScreen(
                     uiState = flashlightUiState,
                     onEvent = flashlightViewModel::onEvent
+                )
+            }
+            AppDestinations.BOTH -> {
+                val bothFlashUiState by bothFlashViewModel.uiState.collectAsState()
+                BothFlashScreen(
+                    uiState = bothFlashUiState,
+                    onEvent = bothFlashViewModel::onEvent
                 )
             }
             AppDestinations.SETTINGS -> {

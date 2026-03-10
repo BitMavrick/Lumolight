@@ -11,9 +11,7 @@ plugins {
 
 android {
     namespace = "com.bitmavrick.store"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = Config.COMPILE_SDK_VERSION
 
     defaultConfig {
         minSdk = 30
