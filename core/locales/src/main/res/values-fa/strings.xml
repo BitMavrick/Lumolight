@@ -1,0 +1,120 @@
+<resources>
+    <string name="app_name" translatable="false">Lumolight</string>
+
+    <!-- ? Navigation Options  -->
+    <string name="home">خانه</string>
+    <string name="screen">صفحه نمایش</string>
+    <string name="dual">دوگانه</string>
+    <string name="rear">پشت</string>
+    <string name="settings">تنظیمات</string>
+
+    <!-- ? Shortcut Module  -->
+
+    <!-- ? Screen Module  -->
+    <string name="screen_flash">فلاش صفحه نمایش</string>
+    <string name="screen_not_found_des">همین حالا اولین فلاش صفحه نمایش سفارشی خود را بسازید.</string>
+
+    <!-- ? Both Module  -->
+    <string name="dual_flash">فلاش دوگانه</string>
+    <string name="dual_not_found_des">همین حالا اولین فلاش دوگانه سفارشی خود را بسازید.</string>
+
+    <!-- ? Flash Module  -->
+    <string name="rear_flash">فلاش پشت</string>
+    <string name="rear_not_found_des">همین حالا اولین فلاش پشت سفارشی خود را بسازید.</string>
+
+    <!-- ? Ui Module  -->
+    <string name="delete">حذف</string>
+    <string name="delete_des">به طور دائمی حذف خواهد شد. آیا مطمئن هستید؟</string>
+    <string name="new_screen_flash">فلاش صفحه نمایش جدید</string>
+    <string name="edit_screen_flash">ویرایش فلاش صفحه نمایش</string>
+    <string name="new_dual_flash">فلاش دوگانه جدید</string>
+    <string name="edit_dual_flash">ویرایش فلاش دوگانه</string>
+    <string name="new_rear_flash">فلاش پشت جدید</string>
+    <string name="edit_rear_flash">ویرایش فلاش پشت</string>
+    <string name="duration">مدت زمان</string>
+    <string name="unsupported_hardware">توسط سخت‌افزار پشتیبانی نمی‌شود</string>
+    <string name="no_flash_hardware_found">هیچ سخت‌افزار فلاشی یافت نشد!</string>
+    <string name="enter_title">عنوان را وارد کنید ...</string>
+    <string name="brightness">روشنایی</string>
+    <string name="color">رنگ</string>
+    <string name="minutes">دقیقه</string>
+    <string name="seconds">ثانیه</string>
+    <string name="intensity">شدت</string>
+
+
+    <!-- ? Button texts  -->
+    <string name="loading">در حال بارگذاری ...</string>
+    <string name="not_found">یافت نشد!</string>
+    <string name="create_now">همین حالا بسازید</string>
+    <string name="update_now">همین حالا بروزرسانی کنید</string>
+    <string name="start">شروع</string>
+    <string name="exit">خروج</string>
+    <string name="cancel">لغو</string>
+    <string name="yes_delete">بله، حذف شود</string>
+    <string name="edit">ویرایش</string>
+    <string name="add_to_home">افزودن به صفحه اصلی</string>
+    <string name="remove_from_home">حذف از صفحه اصلی</string>
+    <string name="ok">تایید</string>
+
+    <!-- ? Settings Page - Appearance -->
+    <string name="appearance">ظاهر</string>
+    <string name="theme">تم</string>
+    <string name="select_theme">انتخاب تم</string>
+    <string name="follow_system">مطابق سیستم</string>
+    <string name="light">روشن</string>
+    <string name="dark">تیره</string>
+
+    <string name="dynamic_color">رنگ پویا</string>
+    <string name="dynamic_color_des">فعالسازی تم رنگی پویا</string>
+
+    <string name="oled_dark">تیره OLED</string>
+    <string name="oled_dark_des">حالت تیره با کنتراست بالا</string>
+
+
+    <!-- ? Settings Page - General  -->
+    <string name="general">عمومی</string>
+    <string name="language">زبان</string>
+    <string name="language_des">تغییر زبان برنامه</string>
+
+    <!-- ? Settings Page - Utility  -->
+    <string name="utility">ابزارها</string>
+    <string name="flash_tile_preference">تنظیمات تایل فلاش</string>
+    <string name="flash_tile_preference_des">عمومی</string>
+
+    <!-- ? Settings Page - About  -->
+    <string name="about">درباره</string>
+    <string name="app_name_title">نام برنامه</string>
+    <string name="version">نسخه</string>
+
+    <string name="privacy_policy">سیاست حریم خصوصی</string>
+    <string name="privacy_policy_des">سیاست حریم خصوصی • شرایط و ضوابط</string>
+
+    <!-- ? Settings Page - Support  -->
+    <string name="support">پشتیبانی</string>
+    <string name="rate_us">امتیاز به ما</string>
+    <string name="rate_us_des">هر ستاره ما را بهتر می‌کند!</string>
+
+    <string name="try_more_apps">برنامه‌های بیشتر</string>
+    <string name="try_more_apps_des">سایر برنامه‌های عالی ما را امتحان کنید</string>
+
+    <string name="feedback">بازخورد</string>
+    <string name="feedback_des">به ما بگویید چگونه می‌توانیم بهتر شویم</string>
+
+    <!-- ? Billing Module  -->
+    <string translatable="false" name="lumolight_plus">Lumolight Plus</string>
+    <string name="remove_ads">حذف تبلیغات</string>
+    <string name="getting_ready">در حال آماده‌سازی …</string>
+    <string name="premium_des">به نسخه پرمیوم ارتقا دهید، بدون محدودیت باشید!\nاز لومولایت بدون تبلیغات برای همیشه لذت ببرید و از سازندگان آن حمایت کنید.</string>
+    <string name="restart_note">* لطفا پس از بروزرسانی، برنامه را مجدداً راه‌اندازی کنید.</string>
+    <string name="upgrade_now">همین حالا ارتقا دهید</string>
+    <string name="no_flashlight">هیچ سخت‌افزار چراغ‌قوه‌ای در این دستگاه شناسایی نشد.</string>
+
+    <!-- ? v5.1 new strings  -->
+    <string name="volume_key_control">کنترل کلید صدا</string>
+    <string name="volume_key_control_des">کنترل کلید صدای فلاش صفحه</string>
+    <string name="lumolight_tile">کاشی Lumolight</string>
+    <string name="lumolight_tile_suggestion">Lumolight یک کاشی چراغ قوه برای دسترسی سریع از پنل اعلان‌های شما فراهم می‌کند. به سادگی کاشی را به پنل خود اضافه کنید تا فلاش Lumolight را بلافاصله راه‌اندازی کنید. همچنین می‌توانید سفارشی کنید که کدام نوع فلاش توسط کاشی فعال شود.</string>
+    <string name="manual">دستی</string>
+    <string name="presets">پیش‌تنظیمات</string>
+
+</resources>

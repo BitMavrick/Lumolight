@@ -1,0 +1,120 @@
+<resources>
+    <string name="app_name" translatable="false">Lumolight</string>
+
+    <!-- ? Navigation Options  -->
+    <string name="home">首页</string>
+    <string name="screen">屏幕</string>
+    <string name="dual">双重</string>
+    <string name="rear">后置</string>
+    <string name="settings">设置</string>
+
+    <!-- ? Shortcut Module  -->
+
+    <!-- ? Screen Module  -->
+    <string name="screen_flash">屏幕闪光灯</string>
+    <string name="screen_not_found_des">立即创建您的第一个自定义屏幕闪光灯。</string>
+
+    <!-- ? Both Module  -->
+    <string name="dual_flash">双重闪光灯</string>
+    <string name="dual_not_found_des">立即创建您的第一个自定义双重闪光灯。</string>
+
+    <!-- ? Flash Module  -->
+    <string name="rear_flash">后置闪光灯</string>
+    <string name="rear_not_found_des">立即创建您的第一个自定义后置闪光灯。</string>
+
+    <!-- ? Ui Module  -->
+    <string name="delete">删除</string>
+    <string name="delete_des">将被永久删除。您确定吗？</string>
+    <string name="new_screen_flash">新建屏幕闪光灯</string>
+    <string name="edit_screen_flash">编辑屏幕闪光灯</string>
+    <string name="new_dual_flash">新建双重闪光灯</string>
+    <string name="edit_dual_flash">编辑双重闪光灯</string>
+    <string name="new_rear_flash">新建后置闪光灯</string>
+    <string name="edit_rear_flash">编辑后置闪光灯</string>
+    <string name="duration">持续时间</string>
+    <string name="unsupported_hardware">硬件不支持</string>
+    <string name="no_flash_hardware_found">未找到闪光灯硬件！</string>
+    <string name="enter_title">输入标题 ...</string>
+    <string name="brightness">亮度</string>
+    <string name="color">颜色</string>
+    <string name="minutes">分钟</string>
+    <string name="seconds">秒</string>
+    <string name="intensity">强度</string>
+
+
+    <!-- ? Button texts  -->
+    <string name="loading">加载中 ...</string>
+    <string name="not_found">未找到！</string>
+    <string name="create_now">立即创建</string>
+    <string name="update_now">立即更新</string>
+    <string name="start">开始</string>
+    <string name="exit">退出</string>
+    <string name="cancel">取消</string>
+    <string name="yes_delete">是的，删除</string>
+    <string name="edit">编辑</string>
+    <string name="add_to_home">添加到主屏幕</string>
+    <string name="remove_from_home">从主屏幕移除</string>
+    <string name="ok">确定</string>
+
+    <!-- ? Settings Page - Appearance -->
+    <string name="appearance">外观</string>
+    <string name="theme">主题</string>
+    <string name="select_theme">选择主题</string>
+    <string name="follow_system">跟随系统</string>
+    <string name="light">浅色</string>
+    <string name="dark">深色</string>
+
+    <string name="dynamic_color">动态色彩</string>
+    <string name="dynamic_color_des">启用动态色彩主题</string>
+
+    <string name="oled_dark">Oled 全黑</string>
+    <string name="oled_dark_des">高对比度深色模式</string>
+
+
+    <!-- ? Settings Page - General  -->
+    <string name="general">常规</string>
+    <string name="language">语言</string>
+    <string name="language_des">更改应用语言</string>
+
+    <!-- ? Settings Page - Utility  -->
+    <string name="utility">工具</string>
+    <string name="flash_tile_preference">闪光灯快捷设置偏好</string>
+    <string name="flash_tile_preference_des">常规</string>
+
+    <!-- ? Settings Page - About  -->
+    <string name="about">关于</string>
+    <string name="app_name_title">应用名称</string>
+    <string name="version">版本</string>
+
+    <string name="privacy_policy">隐私政策</string>
+    <string name="privacy_policy_des">隐私政策 • 条款与条件</string>
+
+    <!-- ? Settings Page - Support  -->
+    <string name="support">支持</string>
+    <string name="rate_us">给我们评分</string>
+    <string name="rate_us_des">您的每一颗星都让我们变得更好！</string>
+
+    <string name="try_more_apps">尝试更多应用</string>
+    <string name="try_more_apps_des">尝试我们其他精彩的应用</string>
+
+    <string name="feedback">反馈</string>
+    <string name="feedback_des">告诉我们如何改进</string>
+
+    <!-- ? Billing Module  -->
+    <string translatable="false" name="lumolight_plus">Lumolight Plus</string>
+    <string name="remove_ads">移除广告</string>
+    <string name="getting_ready">正在准备 …</string>
+    <string name="premium_des">加入高级版，尽显无限可能！\n享受永久无广告的 Lumolight，同时支持背后的创作者。</string>
+    <string name="restart_note">* 升级后请重启应用。</string>
+    <string name="upgrade_now">立即升级</string>
+    <string name="no_flashlight">此设备未检测到手电筒。</string>
+
+    <!-- ? v5.1 new strings  -->
+    <string name="volume_key_control">音量键控制</string>
+    <string name="volume_key_control_des">屏幕闪光音量键控制</string>
+    <string name="lumolight_tile">Lumolight 磁贴</string>
+    <string name="lumolight_tile_suggestion">Lumolight 提供了一个手电筒磁贴，方便您从通知面板快速访问。只需将该磁贴添加到面板，即可立即启动 Lumolight 闪光。您还可以自定义磁贴激活的闪光类型。</string>
+    <string name="manual">手动</string>
+    <string name="presets">预设</string>
+
+</resources>
