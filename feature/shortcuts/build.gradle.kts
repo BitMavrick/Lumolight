@@ -49,10 +49,11 @@ android {
 dependencies {
     implementation(project(":core:locales"))
     implementation(project(":core:ui"))
+    implementation(project(":core:theme"))
     implementation(project(":core:store"))
+    implementation(project(":core:data"))
 
-    implementation(project(":feature:screen"))
-    implementation(project(":feature:flash"))
+    implementation(project(":feature:lumoFlash"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -64,6 +65,7 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.material.icon.extended)
 
+    implementation(libs.reorderable)
     implementation(libs.hilt.navigation.compose)
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)

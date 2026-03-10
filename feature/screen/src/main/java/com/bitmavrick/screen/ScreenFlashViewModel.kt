@@ -2,93 +2,150 @@ package com.bitmavrick.screen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bitmavrick.store.preference.ScreenFlashPreferenceRepository
-import com.bitmavrick.store.preference.SettingsPreferenceRepository
+import com.bitmavrick.data.domain.model.LumoFlash
+import com.bitmavrick.data.domain.repository.LumoFlashRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ScreenFlashViewModel @Inject constructor(
-    private val screenFlashPreferenceRepository: ScreenFlashPreferenceRepository,
-    private val settingsPreferenceRepository: SettingsPreferenceRepository
+    private val lumoFlashRepository: LumoFlashRepository
 ): ViewModel() {
-    val scope = viewModelScope
-    private val _uiState = MutableStateFlow(ScreenFlashUiState())
-    val uiState: StateFlow<ScreenFlashUiState> = _uiState.asStateFlow()
+    private val _isLoading = MutableStateFlow(false)
+    private val _userMessage = MutableStateFlow<String?>(null)
+    val uiState: StateFlow<ScreenFlashUiState> = combine(
+        _isLoading,
+        lumoFlashRepository.getAllScreenFlash(),
+        _userMessage
+    ){ isLoading, list, userMessage ->
+        ScreenFlashUiState(
+            isLoading = isLoading,
+            screenFlashList = list,
+            userMessage = userMessage
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = ScreenFlashUiState(isLoading = true)
+    )
 
     fun onEvent(event: ScreenFlashUiEvent){
         when(event){
-            is ScreenFlashUiEvent.UpdateScreenColor -> {
-                updateScreenColor(event.hue, event.saturation, event.value)
-            }
-            is ScreenFlashUiEvent.UpdateScreenColorPreset -> {
-                updateScreenColorPreset(event.index)
-            }
-            is ScreenFlashUiEvent.UpdateBrightness -> {
-                updateBrightness(event.brightness)
-            }
-            is ScreenFlashUiEvent.UpdateDuration -> {
-                updateDuration(event.duration)
-            }
+            is ScreenFlashUiEvent.AddNewFlash -> addNewFlash(event.flash)
+            is ScreenFlashUiEvent.UpdateFlash -> updateFlash(event.flash)
+            is ScreenFlashUiEvent.DeleteFlash -> deleteFlash(event.flash)
+            is ScreenFlashUiEvent.AddToHome -> addToHome(event.flash)
+            is ScreenFlashUiEvent.RemoveFromHome -> removeFromHome(event.flash)
+            is ScreenFlashUiEvent.ReorderBothFlash -> reorder(event.newList)
+            is ScreenFlashUiEvent.Refresh -> refresh()
+            is ScreenFlashUiEvent.UserMessageShown -> userMessageShown()
         }
     }
 
-    private fun updateScreenColor(hue: Float, sat: Float, value: Float){
-        scope.launch {
-            screenFlashPreferenceRepository.updateScreenColor(
-                hue = hue,
-                saturation = sat,
-                value = value
-            )
-        }
-    }
+    private fun addNewFlash(flash: LumoFlash){
+        viewModelScope.launch {
+            _isLoading.update { true }
 
-    private fun updateScreenColorPreset(index: Int){
-        scope.launch {
-            screenFlashPreferenceRepository.updateScreenColorPresetIndex(index)
-        }
-    }
-
-    private fun updateBrightness(value: Int){
-        scope.launch {
-            screenFlashPreferenceRepository.updateBrightness(value)
-        }
-    }
-
-    private fun updateDuration(value: Int){
-        scope.launch {
-            screenFlashPreferenceRepository.updateDuration(value)
-        }
-    }
-
-    private fun syncUpdates(){
-        scope.launch {
-            combine(
-                screenFlashPreferenceRepository.screenFlashPreferencesFlow,
-                settingsPreferenceRepository.settingsPreferenceFlow
-            ){ screenFlash,settings ->
-                ScreenFlashUiState(
-                    screenColorHue = screenFlash.screenColorHue,
-                    screenColorSat = screenFlash.screenColorSat,
-                    screenColorVal = screenFlash.screenColorVal,
-                    screenColorPresetSelection = screenFlash.screenColorPresetSelection,
-                    screenColorPresetIndex = screenFlash.screenColorPresetIndex,
-                    brightness = screenFlash.brightness,
-                    duration = screenFlash.duration,
-                    volumeButtonControls = settings.volumeButtonControls
-                )
-            }.collect {
-                _uiState.value = it
+            try {
+                lumoFlashRepository.addNewFlash(flash)
+               // _userMessage.update { "Flash added successfully" }
+            } catch (e: Exception){
+                _userMessage.update { "Error while adding this flash: ${e.message}" }
+            } finally {
+                _isLoading.update { false }
             }
         }
     }
 
-    init {
-        syncUpdates()
+    private fun updateFlash(flash: LumoFlash){
+        viewModelScope.launch {
+            _isLoading.update { true }
+
+            try {
+                lumoFlashRepository.updateFlash(flash)
+               // _userMessage.update { "Flash updated successfully" }
+            }catch (e: Exception){
+                _userMessage.update { "Error while updating this flash: ${e.message}" }
+            } finally {
+                _isLoading.update { false }
+            }
+        }
+    }
+
+    private fun deleteFlash(flash: LumoFlash){
+        viewModelScope.launch {
+            _isLoading.update { true }
+
+            try {
+                lumoFlashRepository.deleteFlash(flash)
+                // _userMessage.update { "Flash deleted successfully" }
+            } catch (e: Exception){
+                _userMessage.update { "Error while deleting this flash: ${e.message}" }
+            } finally {
+                _isLoading.update { false }
+            }
+        }
+    }
+
+    private fun addToHome(flash: LumoFlash){
+        viewModelScope.launch {
+            _isLoading.update { true }
+
+            try{
+                lumoFlashRepository.pinnedFlash(flash)
+               // _userMessage.update { "Flash pinned successfully" }
+            } catch (e: Exception){
+                _userMessage.update { "Error while adding to home: ${e.message}" }
+            } finally {
+                _isLoading.update { false }
+            }
+        }
+    }
+
+    private fun removeFromHome(flash: LumoFlash){
+        viewModelScope.launch {
+            _isLoading.update { true }
+
+            try{
+                lumoFlashRepository.unPinnedFlash(flash)
+               // _userMessage.update { "Flash unPinned successfully" }
+            } catch (e: Exception){
+                _userMessage.update { "Error while removing from home: ${e.message}" }
+            } finally {
+                _isLoading.update { false }
+            }
+        }
+    }
+
+    private fun reorder(newOrder: List<LumoFlash>){
+        viewModelScope.launch {
+            lumoFlashRepository.reorderFlash(newOrder)
+        }
+    }
+
+    private fun refresh(){
+        viewModelScope.launch {
+            _isLoading.update { true }
+            try {
+                delay(1000)
+               // _userMessage.update { "Refreshed successfully" }
+            } catch (e: Exception) {
+                _userMessage.update { "Error refreshing: ${e.message}" }
+            } finally {
+                _isLoading.update { false }
+            }
+        }
+    }
+
+    private fun userMessageShown() {
+        _userMessage.update { null }
     }
 }

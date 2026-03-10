@@ -1,26 +1,28 @@
 [versions]
-agp = "8.13.2"
-kotlin = "2.2.10" # ? Update version conflicts with KSP
+agp = "9.1.0"
+kotlin = "2.3.10"
 coreKtx = "1.17.0"
 junit = "4.13.2"
 junitVersion = "1.3.0"
 espressoCore = "3.7.0"
 lifecycleRuntimeKtx = "2.10.0"
-activityCompose = "1.12.1"
-composeBom = "2025.12.00"
+activityCompose = "1.12.4"
+composeBom = "2026.02.00"
 appcompat = "1.7.1"
 material = "1.13.0"
 material3WindowSizeClass = "1.4.0"
-composeNavigation = "2.9.6"
+composeNavigation = "2.9.7"
 reorderable = "3.0.0"
 roomVersion = "2.8.4"
-hilt = "2.57.2"
+hilt = "2.58" # ! Conflicts
 hiltNavigation = "1.3.0"
-ksp = "2.2.10-2.0.2"
+ksp = "2.3.3"
 datastorePreferences = "1.2.0"
-material3 = "1.5.0-alpha10"
-ui = "1.10.0"
+material3 = "1.5.0-alpha14"
+ui = "1.10.3"
 coreSplashscreen = "1.2.0"
+colorpickerCompose = "1.1.3"
+tabler = "1.1.1"
 
 [libraries]
 androidx-compose-material3-adaptive-navigation-suite = { module = "androidx.compose.material3:material3-adaptive-navigation-suite" }
@@ -54,6 +56,8 @@ androidx-datastore-preferences = { module = "androidx.datastore:datastore-prefer
 androidx-material3 = { group = "androidx.compose.material3", name = "material3", version.ref="material3" }
 androidx-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "ui" }
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
+colorpicker-compose = { module = "com.github.skydoves:colorpicker-compose", version.ref = "colorpickerCompose" }
+tabler-icons = { module = "br.com.devsrsouza.compose.icons:tabler-icons", version.ref = "tabler" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

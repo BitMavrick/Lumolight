@@ -6,14 +6,16 @@ import android.view.WindowManager
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.platform.LocalContext
 
 @Composable
-fun SetBrightness(level: Float) {
-    val context = LocalContext.current
-    Text("level: $level")
-    DisposableEffect(Unit) {
+fun SetBrightness(level: Float, context: Context) {
+    SideEffect {
         brightness(context, isFull = true, level)
+    }
+
+    DisposableEffect(Unit) {
         onDispose {
             brightness(context, isFull = false)
         }

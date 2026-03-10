@@ -1,12 +1,9 @@
 package com.bitmavrick.screen
 
+import com.bitmavrick.data.domain.model.LumoFlash
+
 data class ScreenFlashUiState (
-    val screenColorHue: Float = 0f,
-    val screenColorSat: Float = 0f,
-    val screenColorVal: Float = 0f,
-    val screenColorPresetSelection: Boolean = false,
-    val screenColorPresetIndex: Int = 0,
-    val brightness: Int = 1,
-    val duration: Int = 1,
-    val volumeButtonControls: Boolean = true
+    val isLoading: Boolean = false,
+    val screenFlashList: List<LumoFlash> = emptyList(),
+    val userMessage: String? = null
 )

@@ -2,13 +2,10 @@ package com.bitmavrick.data.di
 
 import android.content.Context
 import androidx.room.Room
-import com.bitmavrick.data.domain.repository.ScreenColorRepository
-import com.bitmavrick.data.domain.repository.ScreenDurationRepository
+import com.bitmavrick.data.domain.repository.LumoFlashRepository
 import com.bitmavrick.data.local.AppDatabase
-import com.bitmavrick.data.local.dao.ScreenColorDao
-import com.bitmavrick.data.local.dao.ScreenDurationDao
-import com.bitmavrick.data.repository.ScreenColorRepositoryImpl
-import com.bitmavrick.data.repository.ScreenDurationRepositoryImpl
+import com.bitmavrick.data.local.dao.LumoFlashDao
+import com.bitmavrick.data.repository.LumoFlashRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,30 +16,21 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
-
     @Singleton
     @Provides
     fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase {
         return Room.databaseBuilder(
-            context,
-            AppDatabase::class.java,
-            "lumolight_database"
-        ).build()
+                context,
+                AppDatabase::class.java,
+                "lumolight_database"
+            ).fallbackToDestructiveMigration(true).build()
     }
 
     @Provides
-    fun provideScreenColorDao(db: AppDatabase): ScreenColorDao = db.screenColorDao()
+    fun provideLumoFlashDao(db: AppDatabase): LumoFlashDao = db.lumoFlashDao()
 
     @Provides
-    fun provideScreenDurationDao(db: AppDatabase): ScreenDurationDao = db.screenDurationDao()
-
-    @Provides
-    fun provideScreenColorRepository(db: AppDatabase): ScreenColorRepository {
-        return ScreenColorRepositoryImpl(db.screenColorDao())
-    }
-
-    @Provides
-    fun provideScreenDurationRepository(db: AppDatabase): ScreenDurationRepository {
-        return ScreenDurationRepositoryImpl(db.screenDurationDao())
+    fun lumoFlashRepository(db: AppDatabase): LumoFlashRepository {
+        return LumoFlashRepositoryImpl(db.lumoFlashDao())
     }
 }

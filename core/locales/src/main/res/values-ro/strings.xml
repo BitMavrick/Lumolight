@@ -1,51 +1,85 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Lumolight</string>
 
     <!-- ? Navigation Options  -->
-    <string name="shortcuts">Comenzi rapide</string>
+    <string name="home">Acasă</string>
     <string name="screen">Ecran</string>
-    <string name="flash">Bliț</string>
+    <string name="dual">Dual</string>
+    <string name="rear">Spate</string>
     <string name="settings">Setări</string>
 
-    <!-- ? Topbar Options  -->
-    <string name="screen_topbar">Lumină de ecran</string>
-    <string name="flash_topbar">Lanternă</string>
+    <!-- ? Shortcut Module  -->
 
-    <!-- ? Shortcut button  -->
-    <string name="both">Ambele</string>
+    <!-- ? Screen Module  -->
+    <string name="screen_flash">Bliț ecran</string>
+    <string name="screen_not_found_des">Creați acum primul dvs. bliț de ecran personalizat.</string>
 
-    <!-- ? Screen flash card titles  -->
-    <string name="color">Culoare</string>
+    <!-- ? Both Module  -->
+    <string name="dual_flash">Bliț dual</string>
+    <string name="dual_not_found_des">Creați acum primul dvs. bliț dual personalizat.</string>
+
+    <!-- ? Flash Module  -->
+    <string name="rear_flash">Bliț spate</string>
+    <string name="rear_not_found_des">Creați acum primul dvs. bliț de spate personalizat.</string>
+
+    <!-- ? Ui Module  -->
+    <string name="delete">Șterge</string>
+    <string name="delete_des">va fi șters definitiv. Sunteți sigur?</string>
+    <string name="new_screen_flash">Bliț ecran nou</string>
+    <string name="edit_screen_flash">Editați blițul ecranului</string>
+    <string name="new_dual_flash">Bliț dual nou</string>
+    <string name="edit_dual_flash">Editați blițul dual</string>
+    <string name="new_rear_flash">Bliț spate nou</string>
+    <string name="edit_rear_flash">Editați blițul de spate</string>
     <string name="duration">Durată</string>
+    <string name="unsupported_hardware">Nesuportat de hardware</string>
+    <string name="no_flash_hardware_found">Hardware-ul blițului nu a fost găsit!</string>
+    <string name="enter_title">Introduceți un titlu ...</string>
     <string name="brightness">Luminozitate</string>
+    <string name="color">Culoare</string>
+    <string name="minutes">Minute</string>
+    <string name="seconds">Secunde</string>
+    <string name="intensity">Intensitate</string>
 
-    <!-- ? Flashlight card titles  -->
-    <string name="bpm_title">BPM (bătăi pe minut)</string>
-    <string name="intensity_level">Nivel de intensitate</string>
 
     <!-- ? Button texts  -->
-    <string name="start">Porniți</string>
-    <string name="exit">Ieșiți</string>
+    <string name="loading">Se încarcă ...</string>
+    <string name="not_found">Nu a fost găsit!</string>
+    <string name="create_now">Creați acum</string>
+    <string name="update_now">Actualizați acum</string>
+    <string name="start">Start</string>
+    <string name="exit">Ieșire</string>
+    <string name="cancel">Anulare</string>
+    <string name="yes_delete">Da, șterge</string>
+    <string name="edit">Editare</string>
+    <string name="add_to_home">Adăugați la ecranul de pornire</string>
+    <string name="remove_from_home">Eliminați de pe ecranul de pornire</string>
+    <string name="ok">Ok</string>
 
     <!-- ? Settings Page - Appearance -->
     <string name="appearance">Aspect</string>
     <string name="theme">Temă</string>
     <string name="select_theme">Selectați tema</string>
-    <string name="follow_system">Urmăriți sistemul</string>
+    <string name="follow_system">Urmează sistemul</string>
     <string name="light">Luminos</string>
     <string name="dark">Întunecat</string>
 
     <string name="dynamic_color">Culoare dinamică</string>
     <string name="dynamic_color_des">Activați tema de culoare dinamică</string>
 
-    <string name="oled_dark">Întunecat OLED</string>
+    <string name="oled_dark">Oled întunecat</string>
     <string name="oled_dark_des">Mod întunecat cu contrast ridicat</string>
+
 
     <!-- ? Settings Page - General  -->
     <string name="general">General</string>
     <string name="language">Limbă</string>
     <string name="language_des">Schimbați limba aplicației</string>
+
+    <!-- ? Settings Page - Utility  -->
+    <string name="utility">Utilitate</string>
+    <string name="flash_tile_preference">Preferință placă bliț</string>
+    <string name="flash_tile_preference_des">General</string>
 
     <!-- ? Settings Page - About  -->
     <string name="about">Despre</string>
@@ -56,21 +90,31 @@
     <string name="privacy_policy_des">Politica de confidențialitate • Termeni și condiții</string>
 
     <!-- ? Settings Page - Support  -->
-    <string name="support">Asistență</string>
-    <string name="rate_us">Evaluați-ne</string>
-    <string name="rate_us_des">Fiecare stea ne ajută să devenim mai buni!</string>
+    <string name="support">Suport</string>
+    <string name="rate_us">Evaluează-ne</string>
+    <string name="rate_us_des">Fiecare stea ne face mai buni!</string>
 
     <string name="try_more_apps">Încercați mai multe aplicații</string>
-    <string name="try_more_apps_des">Descoperiți alte aplicații uimitoare de la noi</string>
+    <string name="try_more_apps_des">Încercați și alte aplicații uimitoare de la noi</string>
 
     <string name="feedback">Feedback</string>
     <string name="feedback_des">Spuneți-ne cum ne putem îmbunătăți</string>
 
     <!-- ? Billing Module  -->
     <string translatable="false" name="lumolight_plus">Lumolight Plus</string>
-    <string name="remove_ads">Elimină reclamele</string>
-    <string name="getting_ready">Se pregătește…</string>
-    <string name="premium_des">Treci la Premium, fără limite!\nBucură-te de Lumolight fără reclame pentru totdeauna și sprijină creatorii săi.</string>
-    <string name="restart_note">* Repornește aplicația după actualizare.</string>
-    <string name="upgrade_now">Actualizează acum</string>
+    <string name="remove_ads">Eliminați reclamele</string>
+    <string name="getting_ready">Se pregătește …</string>
+    <string name="premium_des">Treceți la Premium, fiți fără limite!\nBucurați-vă de Lumolight fără reclame pentru totdeauna, susținând în același timp creatorii săi.</string>
+    <string name="restart_note">* Vă rugăm să reporniți aplicația după upgrade.</string>
+    <string name="upgrade_now">Actualizați acum</string>
+    <string name="no_flashlight">Nu s-a detectat nicio lanternă pe acest dispozitiv.</string>
+
+    <!-- ? v5.1 new strings  -->
+    <string name="volume_key_control">Control taste volum</string>
+    <string name="volume_key_control_des">Control taste volum blitz ecran</string>
+    <string name="lumolight_tile">Dale Lumolight</string>
+    <string name="lumolight_tile_suggestion">Lumolight oferă o dală de lanternă pentru acces rapid din panoul de notificări. Pur și simplu adăugați dala la panou pentru a lansa instantaneu blitz-ul Lumolight. De asemenea, puteți personaliza ce tip de blitz activează dala.</string>
+    <string name="manual">Manual</string>
+    <string name="presets">Presetări</string>
+
 </resources>

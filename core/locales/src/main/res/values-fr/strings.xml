@@ -1,37 +1,65 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Lumolight</string>
 
     <!-- ? Navigation Options  -->
-    <string name="shortcuts">Raccourcis</string>
+    <string name="home">Accueil</string>
     <string name="screen">Écran</string>
-    <string name="flash">Flash</string>
+    <string name="dual">Double</string>
+    <string name="rear">Arrière</string>
     <string name="settings">Paramètres</string>
 
-    <!-- ? Topbar Options  -->
-    <string name="screen_topbar">Lumière d’écran</string>
-    <string name="flash_topbar">Lampe torche</string>
+    <!-- ? Shortcut Module  -->
 
-    <!-- ? Shortcut button  -->
-    <string name="both">Les deux</string>
+    <!-- ? Screen Module  -->
+    <string name="screen_flash">Flash d\'écran</string>
+    <string name="screen_not_found_des">Créez votre premier flash d\'écran personnalisé maintenant.</string>
 
-    <!-- ? Screen flash card titles  -->
-    <string name="color">Couleur</string>
+    <!-- ? Both Module  -->
+    <string name="dual_flash">Double flash</string>
+    <string name="dual_not_found_des">Créez votre premier double flash personnalisé maintenant.</string>
+
+    <!-- ? Flash Module  -->
+    <string name="rear_flash">Flash arrière</string>
+    <string name="rear_not_found_des">Créez votre premier flash arrière personnalisé maintenant.</string>
+
+    <!-- ? Ui Module  -->
+    <string name="delete">Supprimer</string>
+    <string name="delete_des">sera supprimé définitivement. Êtes-vous sûr ?</string>
+    <string name="new_screen_flash">Nouveau flash d\'écran</string>
+    <string name="edit_screen_flash">Modifier le flash d\'écran</string>
+    <string name="new_dual_flash">Nouveau double flash</string>
+    <string name="edit_dual_flash">Modifier le double flash</string>
+    <string name="new_rear_flash">Nouveau flash arrière</string>
+    <string name="edit_rear_flash">Modifier le flash arrière</string>
     <string name="duration">Durée</string>
+    <string name="unsupported_hardware">Non supporté par le matériel</string>
+    <string name="no_flash_hardware_found">Aucun flash trouvé !</string>
+    <string name="enter_title">Entrez un titre ...</string>
     <string name="brightness">Luminosité</string>
+    <string name="color">Couleur</string>
+    <string name="minutes">Minutes</string>
+    <string name="seconds">Secondes</string>
+    <string name="intensity">Intensité</string>
 
-    <!-- ? Flashlight card titles  -->
-    <string name="bpm_title">BPM (Battement par minute)</string>
-    <string name="intensity_level">Niveau d’intensité</string>
 
     <!-- ? Button texts  -->
+    <string name="loading">Chargement ...</string>
+    <string name="not_found">Introuvable !</string>
+    <string name="create_now">Créer maintenant</string>
+    <string name="update_now">Mettre à jour maintenant</string>
     <string name="start">Démarrer</string>
     <string name="exit">Quitter</string>
+    <string name="cancel">Annuler</string>
+    <string name="yes_delete">Oui, supprimer</string>
+    <string name="edit">Modifier</string>
+    <string name="add_to_home">Ajouter à l\'accueil</string>
+    <string name="remove_from_home">Retirer de l\'accueil</string>
+    <string name="ok">Ok</string>
 
     <!-- ? Settings Page - Appearance -->
     <string name="appearance">Apparence</string>
     <string name="theme">Thème</string>
-    <string name="select_theme">Sélectionner un thème</string>
+    <string name="select_theme">Sélectionner le thème</string>
     <string name="follow_system">Suivre le système</string>
     <string name="light">Clair</string>
     <string name="dark">Sombre</string>
@@ -39,29 +67,35 @@
     <string name="dynamic_color">Couleur dynamique</string>
     <string name="dynamic_color_des">Activer le thème de couleur dynamique</string>
 
-    <string name="oled_dark">Sombre OLED</string>
-    <string name="oled_dark_des">Mode sombre à fort contraste</string>
+    <string name="oled_dark">Oled sombre</string>
+    <string name="oled_dark_des">Mode sombre à contraste élevé</string>
+
 
     <!-- ? Settings Page - General  -->
     <string name="general">Général</string>
     <string name="language">Langue</string>
-    <string name="language_des">Changer la langue de l’application</string>
+    <string name="language_des">Changer la langue de l\'app</string>
+
+    <!-- ? Settings Page - Utility  -->
+    <string name="utility">Utilité</string>
+    <string name="flash_tile_preference">Préférence de tuile flash</string>
+    <string name="flash_tile_preference_des">Général</string>
 
     <!-- ? Settings Page - About  -->
     <string name="about">À propos</string>
-    <string name="app_name_title">Nom de l’application</string>
+    <string name="app_name_title">Nom de l\'app</string>
     <string name="version">Version</string>
 
     <string name="privacy_policy">Politique de confidentialité</string>
     <string name="privacy_policy_des">Politique de confidentialité • Conditions générales</string>
 
     <!-- ? Settings Page - Support  -->
-    <string name="support">Assistance</string>
-    <string name="rate_us">Évaluez-nous</string>
+    <string name="support">Support</string>
+    <string name="rate_us">Notez-nous</string>
     <string name="rate_us_des">Chaque étoile nous rend meilleurs !</string>
 
-    <string name="try_more_apps">Essayer d’autres applications</string>
-    <string name="try_more_apps_des">Découvrez d’autres applications étonnantes de notre part</string>
+    <string name="try_more_apps">Essayer d\'autres apps</string>
+    <string name="try_more_apps_des">Essayez d\'autres de nos apps géniales</string>
 
     <string name="feedback">Commentaires</string>
     <string name="feedback_des">Dites-nous comment nous pouvons nous améliorer</string>
@@ -69,8 +103,18 @@
     <!-- ? Billing Module  -->
     <string translatable="false" name="lumolight_plus">Lumolight Plus</string>
     <string name="remove_ads">Supprimer les publicités</string>
-    <string name="getting_ready">Préparation en cours…</string>
-    <string name="premium_des">Passez à Premium, devenez illimité !\nProfitez de Lumolight sans publicité pour toujours tout en soutenant ses créateurs.</string>
-    <string name="restart_note">* Veuillez redémarrer l’application après la mise à niveau.</string>
+    <string name="getting_ready">Préparation …</string>
+    <string name="premium_des">Passez au Premium, soyez illimité !\nProfitez de Lumolight sans pub à vie tout en soutenant ses créateurs.</string>
+    <string name="restart_note">* Veuillez redémarrer l\'app après la mise à niveau.</string>
     <string name="upgrade_now">Mettre à niveau maintenant</string>
+    <string name="no_flashlight">Aucune lampe torche détectée sur cet appareil.</string>
+
+    <!-- ? v5.1 new strings  -->
+    <string name="volume_key_control">Contrôle des touches de volume</string>
+    <string name="volume_key_control_des">Contrôle des touches de volume du flash de l\'écran</string>
+    <string name="lumolight_tile">Tuile Lumolight</string>
+    <string name="lumolight_tile_suggestion">Lumolight fournit une tuile de lampe de poche pour un accès rapide depuis votre panneau de notification. Ajoutez simplement la tuile à votre panneau pour lancer instantanément le flash Lumolight. Vous pouvez également personnaliser le type de flash que la tuile active.</string>
+    <string name="manual">Manuel</string>
+    <string name="presets">Préréglages</string>
+
 </resources>

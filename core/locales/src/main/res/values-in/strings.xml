@@ -1,32 +1,60 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Lumolight</string>
 
     <!-- ? Navigation Options  -->
-    <string name="shortcuts">Pintasan</string>
+    <string name="home">Beranda</string>
     <string name="screen">Layar</string>
-    <string name="flash">Flash</string>
+    <string name="dual">Ganda</string>
+    <string name="rear">Belakang</string>
     <string name="settings">Pengaturan</string>
 
-    <!-- ? Topbar Options  -->
-    <string name="screen_topbar">Cahaya Layar</string>
-    <string name="flash_topbar">Senter</string>
+    <!-- ? Shortcut Module  -->
 
-    <!-- ? Shortcut button  -->
-    <string name="both">Keduanya</string>
+    <!-- ? Screen Module  -->
+    <string name="screen_flash">Flash Layar</string>
+    <string name="screen_not_found_des">Buat flash layar kustom pertama Anda sekarang.</string>
 
-    <!-- ? Screen flash card titles  -->
-    <string name="color">Warna</string>
+    <!-- ? Both Module  -->
+    <string name="dual_flash">Flash Ganda</string>
+    <string name="dual_not_found_des">Buat flash ganda kustom pertama Anda sekarang.</string>
+
+    <!-- ? Flash Module  -->
+    <string name="rear_flash">Flash Belakang</string>
+    <string name="rear_not_found_des">Buat flash belakang kustom pertama Anda sekarang.</string>
+
+    <!-- ? Ui Module  -->
+    <string name="delete">Hapus</string>
+    <string name="delete_des">akan dihapus secara permanen. Anda yakin?</string>
+    <string name="new_screen_flash">Flash Layar Baru</string>
+    <string name="edit_screen_flash">Edit Flash Layar</string>
+    <string name="new_dual_flash">Flash Ganda Baru</string>
+    <string name="edit_dual_flash">Edit Flash Ganda</string>
+    <string name="new_rear_flash">Flash Belakang Baru</string>
+    <string name="edit_rear_flash">Edit Flash Belakang</string>
     <string name="duration">Durasi</string>
+    <string name="unsupported_hardware">Tidak didukung oleh perangkat keras</string>
+    <string name="no_flash_hardware_found">Tidak ada perangkat keras flash ditemukan!</string>
+    <string name="enter_title">Masukkan judul ...</string>
     <string name="brightness">Kecerahan</string>
+    <string name="color">Warna</string>
+    <string name="minutes">Menit</string>
+    <string name="seconds">Detik</string>
+    <string name="intensity">Intensitas</string>
 
-    <!-- ? Flashlight card titles  -->
-    <string name="bpm_title">BPM (Ketukan per menit)</string>
-    <string name="intensity_level">Tingkat Intensitas</string>
 
     <!-- ? Button texts  -->
+    <string name="loading">Memuat ...</string>
+    <string name="not_found">Tidak ditemukan!</string>
+    <string name="create_now">Buat Sekarang</string>
+    <string name="update_now">Perbarui Sekarang</string>
     <string name="start">Mulai</string>
     <string name="exit">Keluar</string>
+    <string name="cancel">Batal</string>
+    <string name="yes_delete">Ya, Hapus</string>
+    <string name="edit">Edit</string>
+    <string name="add_to_home">Tambah ke beranda</string>
+    <string name="remove_from_home">Hapus dari beranda</string>
+    <string name="ok">Oke</string>
 
     <!-- ? Settings Page - Appearance -->
     <string name="appearance">Tampilan</string>
@@ -36,41 +64,57 @@
     <string name="light">Terang</string>
     <string name="dark">Gelap</string>
 
-    <string name="dynamic_color">Warna Dinamis</string>
+    <string name="dynamic_color">Warna dinamis</string>
     <string name="dynamic_color_des">Aktifkan tema warna dinamis</string>
 
-    <string name="oled_dark">Gelap OLED</string>
+    <string name="oled_dark">Gelap Oled</string>
     <string name="oled_dark_des">Mode gelap kontras tinggi</string>
+
 
     <!-- ? Settings Page - General  -->
     <string name="general">Umum</string>
     <string name="language">Bahasa</string>
     <string name="language_des">Ubah bahasa aplikasi</string>
 
+    <!-- ? Settings Page - Utility  -->
+    <string name="utility">Utilitas</string>
+    <string name="flash_tile_preference">Preferensi ubin flash</string>
+    <string name="flash_tile_preference_des">Umum</string>
+
     <!-- ? Settings Page - About  -->
     <string name="about">Tentang</string>
     <string name="app_name_title">Nama aplikasi</string>
     <string name="version">Versi</string>
 
-    <string name="privacy_policy">Kebijakan Privasi</string>
-    <string name="privacy_policy_des">Kebijakan Privasi • Syarat dan Ketentuan</string>
+    <string name="privacy_policy">Kebijakan privasi</string>
+    <string name="privacy_policy_des">Kebijakan privasi • Syarat dan ketentuan</string>
 
     <!-- ? Settings Page - Support  -->
     <string name="support">Dukungan</string>
-    <string name="rate_us">Beri kami rating</string>
+    <string name="rate_us">Beri rating kami</string>
     <string name="rate_us_des">Setiap bintang membuat kami lebih baik!</string>
 
     <string name="try_more_apps">Coba aplikasi lainnya</string>
-    <string name="try_more_apps_des">Coba aplikasi menakjubkan lainnya dari kami</string>
+    <string name="try_more_apps_des">Coba aplikasi luar biasa lainnya dari kami</string>
 
-    <string name="feedback">Masukan</string>
-    <string name="feedback_des">Beri tahu kami bagaimana kami bisa lebih baik</string>
+    <string name="feedback">Umpan Balik</string>
+    <string name="feedback_des">Beri tahu kami bagaimana kami dapat meningkatkan</string>
 
     <!-- ? Billing Module  -->
     <string translatable="false" name="lumolight_plus">Lumolight Plus</string>
-    <string name="remove_ads">Hapus iklan</string>
-    <string name="getting_ready">Sedang mempersiapkan…</string>
-    <string name="premium_des">Tingkatkan ke Premium, tanpa batas!\nNikmati Lumolight tanpa iklan selamanya sambil mendukung para pembuatnya.</string>
-    <string name="restart_note">* Silakan mulai ulang aplikasi setelah peningkatan.</string>
+    <string name="remove_ads">Hapus Iklan</string>
+    <string name="getting_ready">Menyiapkan …</string>
+    <string name="premium_des">Jadilah Premium, jadilah tanpa batas!\nNikmati Lumolight tanpa iklan selamanya sambil mendukung pembuatnya.</string>
+    <string name="restart_note">* Harap mulai ulang aplikasi setelah meningkatkan.</string>
     <string name="upgrade_now">Tingkatkan sekarang</string>
+    <string name="no_flashlight">Tidak ada senter terdeteksi pada perangkat ini.</string>
+
+    <!-- ? v5.1 new strings  -->
+    <string name="volume_key_control">Kontrol tombol volume</string>
+    <string name="volume_key_control_des">Kontrol tombol volume flash layar</string>
+    <string name="lumolight_tile">Petak Lumolight</string>
+    <string name="lumolight_tile_suggestion">Lumolight menyediakan petak senter untuk akses cepat dari panel notifikasi Anda. Cukup tambahkan petak ke panel Anda untuk meluncurkan flash Lumolight secara instan. Anda juga dapat menyesuaikan jenis flash yang diaktifkan petak.</string>
+    <string name="manual">Manual</string>
+    <string name="presets">Prasetel</string>
+
 </resources>

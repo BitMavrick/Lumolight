@@ -9,11 +9,15 @@ import androidx.core.content.ContextCompat
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
 fun getMaxFlashlightStrengthValue(context: Context) : Int {
-    val cameraManager = ContextCompat.getSystemService(context, CameraManager::class.java) as CameraManager
-    val cameraId = cameraManager.cameraIdList[0]
-    val cameraCharacteristics = cameraManager.getCameraCharacteristics(cameraId)
+    val cameraManager = ContextCompat.getSystemService(context, CameraManager::class.java) ?: return 1
+    val cameraId = getFlashCameraId(context) ?: return 1
+    
+    try {
+        val cameraCharacteristics = cameraManager.getCameraCharacteristics(cameraId)
+        return cameraCharacteristics[CameraCharacteristics.FLASH_INFO_STRENGTH_MAXIMUM_LEVEL] ?: 1
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
 
-    val torchMaxLevel = cameraCharacteristics[CameraCharacteristics.FLASH_INFO_STRENGTH_MAXIMUM_LEVEL] ?: 1
-
-    return torchMaxLevel
+    return 1
 }

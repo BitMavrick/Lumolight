@@ -2,30 +2,59 @@
     <string name="app_name" translatable="false">Lumolight</string>
 
     <!-- ? Navigation Options  -->
-    <string name="shortcuts">Shortcuts</string>
+    <string name="home">Home</string>
     <string name="screen">Screen</string>
-    <string name="flash">Flash</string>
+    <string name="dual">Dual</string>
+    <string name="rear">Rear</string>
     <string name="settings">Settings</string>
 
-    <!-- ? Topbar Options  -->
-    <string name="screen_topbar">Screenlight</string>
-    <string name="flash_topbar">Flashlight</string>
+    <!-- ? Shortcut Module  -->
 
-    <!-- ? Shortcut button  -->
-    <string name="both">Both</string>
+    <!-- ? Screen Module  -->
+    <string name="screen_flash">Screen Flash</string>
+    <string name="screen_not_found_des">"Create your first custom screen flash now.</string>
 
-    <!-- ? Screen flash card titles  -->
-    <string name="color">Color</string>
+    <!-- ? Both Module  -->
+    <string name="dual_flash">Dual Flash</string>
+    <string name="dual_not_found_des">Create your first custom dual flash now.</string>
+
+    <!-- ? Flash Module  -->
+    <string name="rear_flash">Rear Flash</string>
+    <string name="rear_not_found_des">Create your first custom rear flash now.</string>
+
+    <!-- ? Ui Module  -->
+    <string name="delete">Delete</string>
+    <string name="delete_des">will be deleted permanently. Are you sure?</string>
+    <string name="new_screen_flash">New Screen Flash</string>
+    <string name="edit_screen_flash">Edit Screen Flash</string>
+    <string name="new_dual_flash">New Dual Flash</string>
+    <string name="edit_dual_flash">Edit Dual Flash</string>
+    <string name="new_rear_flash">New Rear Flash</string>
+    <string name="edit_rear_flash">Edit Rear Flash</string>
     <string name="duration">Duration</string>
+    <string name="unsupported_hardware">Unsupported by Hardware</string>
+    <string name="no_flash_hardware_found">No flash hardware found!</string>
+    <string name="enter_title">Enter a title ...</string>
     <string name="brightness">Brightness</string>
+    <string name="color">Color</string>
+    <string name="minutes">Minutes</string>
+    <string name="seconds">Seconds</string>
+    <string name="intensity">Intensity</string>
 
-    <!-- ? Flashlight card titles  -->
-    <string name="bpm_title">BPM (Bit per minute)</string>
-    <string name="intensity_level">Intensity level</string>
 
     <!-- ? Button texts  -->
+    <string name="loading">Loading ...</string>
+    <string name="not_found">Not found!</string>
+    <string name="create_now">Create Now</string>
+    <string name="update_now">Update Now</string>
     <string name="start">Start</string>
     <string name="exit">Exit</string>
+    <string name="cancel">Cancel</string>
+    <string name="yes_delete">Yes, Delete</string>
+    <string name="edit">Edit</string>
+    <string name="add_to_home">Add to home</string>
+    <string name="remove_from_home">Remove from home</string>
+    <string name="ok">Ok</string>
 
     <!-- ? Settings Page - Appearance -->
     <string name="appearance">Appearance</string>
@@ -46,6 +75,11 @@
     <string name="general">General</string>
     <string name="language">Language</string>
     <string name="language_des">Change app language</string>
+
+    <!-- ? Settings Page - Utility  -->
+    <string name="utility">Utility</string>
+    <string name="flash_tile_preference">Flash tile preference</string>
+    <string name="flash_tile_preference_des">General</string>
 
     <!-- ? Settings Page - About  -->
     <string name="about">About</string>
@@ -73,5 +107,14 @@
     <string name="premium_des">Go Premium, go limitless!\nEnjoy Lumolight without ads forever while supporting the creators behind it.</string>
     <string name="restart_note">* Please restart the app after upgrading.</string>
     <string name="upgrade_now">Upgrade now</string>
+    <string name="no_flashlight">No flashlight detected on this device.</string>
+
+    <!-- ? v5.1 new strings  -->
+    <string name="volume_key_control">Volume key control</string>
+    <string name="volume_key_control_des">Screen flash volume key control</string>
+    <string name="lumolight_tile">Lumolight tile</string>
+    <string name="lumolight_tile_suggestion">Lumolight provides a flashlight tile for quick access from your notification panel. Simply add the tile to your panel to launch the Lumolight flash instantly. You can also customize which type of flash the tile activates.</string>
+    <string name="manual">Manual</string>
+    <string name="presets">Presets</string>
 
 </resources>

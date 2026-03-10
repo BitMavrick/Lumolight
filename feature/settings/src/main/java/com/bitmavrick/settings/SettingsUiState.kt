@@ -5,5 +5,7 @@ data class SettingsUiState (
     val darkTheme : Int = 0,
     val dynamicTheme : Boolean = true,
     val amoledTheme : Boolean = false,
-    val volumeButtonControls: Boolean = true
+    val lumolightPremium: Boolean = false,
+    val flashTilePreference: Int = 0,
+    val volumeKeyFlashControl: Boolean = true
 )

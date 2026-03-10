@@ -1,139 +1,117 @@
 package com.bitmavrick.flash
 
 import android.content.Intent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.FlashOn
-import androidx.compose.material3.Card
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.PowerSettingsNew
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
+import androidx.compose.material3.FilledTonalIconButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import com.bitmavrick.flash.activity.FlashlightActivity
-import com.bitmavrick.flash.components.card.BpmCard
-import com.bitmavrick.flash.components.card.DurationCard
-import com.bitmavrick.flash.components.card.IntensityCard
-import com.bitmavrick.ui.system.getMaxFlashlightStrengthValue
+import com.bitmavrick.flash.components.MainContent
+import com.bitmavrick.lumoflash.activity.LumoFlashActivity
+import com.bitmavrick.ui.details.FlashDetailsBottomSheet
 import com.bitmavrick.locales.R as localesR
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun FlashlightScreen(
     uiState: FlashlightUiState,
     onEvent: (FlashlightUiEvent) -> Unit
 ) {
     val context = LocalContext.current
+    val snackbarHostState = remember { SnackbarHostState() }
+    val openNewFlashSheet = remember { mutableStateOf(false) }
+
+    LaunchedEffect(uiState.userMessage) {
+        if(uiState.userMessage != null){
+            snackbarHostState.showSnackbar(uiState.userMessage)
+            onEvent(FlashlightUiEvent.UserMessageShown)
+        }
+    }
 
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
         topBar = {
-            Column {
-                TopAppBar(
-                    title = {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically
-                        ){
-                            Icon(
-                                imageVector = Icons.Rounded.FlashOn,
-                                contentDescription = null,
-                                tint = MaterialTheme.colorScheme.primary
-                            )
+            TopAppBar(
+                title = {
+                    Text(
+                        text = stringResource(localesR.string.rear_flash),
+                        fontWeight = FontWeight.SemiBold,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                },
 
-                            Spacer(Modifier.padding(4.dp))
-
-                            Text(
-                                text = stringResource(localesR.string.flash_topbar),
-                                fontWeight = FontWeight.SemiBold,
-                                color = MaterialTheme.colorScheme.primary
-                            )
+                actions = {
+                    FilledTonalIconButton(
+                        onClick = {
+                            val intent = Intent(context, LumoFlashActivity::class.java).apply {
+                                putExtra("flash_id", -3)
+                            }
+                            context.startActivity(intent)
                         }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.PowerSettingsNew,
+                            contentDescription = null
+                        )
                     }
-                )
 
-                HorizontalDivider(Modifier.fillMaxWidth())
-            }
-        }
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 4.dp)
-                .padding(innerPadding),
-        ) {
-            LazyColumn(
-                modifier = Modifier.weight(1f)
-            ) {
-                item { Spacer(Modifier.height(4.dp)) }
-
-                item {
-                    BpmCard(
-                        uiState = uiState,
-                        onEvent = onEvent
-                    )
-                }
-
-                item {
-                    DurationCard(
-                        uiState = uiState,
-                        onEvent = onEvent
-                    )
-                }
-
-                if(getMaxFlashlightStrengthValue(context) > 1){
-                    item {
-                        // ! ------------- Can cause preview issue -------------
-                        IntensityCard(
-                            uiState = uiState,
-                            onEvent = onEvent
+                    IconButton(
+                        onClick = {
+                            openNewFlashSheet.value = true
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Add,
+                            contentDescription = null
                         )
                     }
                 }
-            }
+            )
+        },
+        snackbarHost = {
+            SnackbarHost(snackbarHostState)
+        }
+    ){ paddings ->
+        PullToRefreshBox(
+            modifier = Modifier.padding(paddings),
+            isRefreshing = uiState.isLoading,
+            onRefresh = { onEvent(FlashlightUiEvent.Refresh) }
+        ) {
+            MainContent(
+                uiState = uiState,
+                onEvent = onEvent
+            )
+        }
 
-            Card(
-                modifier = Modifier.height(62.dp).padding(8.dp)
-                    .clickable{
-                        val intent = Intent(context, FlashlightActivity::class.java)
-                        context.startActivity(intent)
-                    },
-                shape = RoundedCornerShape(10.dp)
-            ) {
-                Column(
-                    modifier = Modifier.fillMaxSize().background(
-                        color = MaterialTheme.colorScheme.primary
-                    ),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        text = stringResource(localesR.string.start),
-                        style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.onPrimary
-                    )
+        if(openNewFlashSheet.value){
+            FlashDetailsBottomSheet(
+                onCreate = {
+                    onEvent(FlashlightUiEvent.AddNewFlash(it))
+                },
+                flashType = 2,
+                onDismiss = {
+                    openNewFlashSheet.value = false
                 }
-            }
+            )
         }
     }
 }

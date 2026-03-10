@@ -50,6 +50,7 @@ dependencies {
     implementation(project(":core:locales"))
     implementation(project(":core:theme"))
     implementation(project(":core:store"))
+    implementation(project(":core:ui"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

@@ -16,7 +16,6 @@ android {
 
     defaultConfig {
         minSdk = Config.MIN_SDK_VERSION
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -47,9 +46,11 @@ android {
 
 dependencies {
     implementation(project(":core:locales"))
+
     implementation(project(":core:store"))
     implementation(project(":core:data"))
     implementation(project(":core:ui"))
+    implementation(project(":feature:lumoFlash"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -62,6 +63,7 @@ dependencies {
     implementation(libs.androidx.material.icon.extended)
     implementation(libs.androidx.material3)
 
+    implementation(libs.reorderable)
     implementation(libs.hilt.navigation.compose)
     implementation(libs.hilt.android)
     implementation(libs.androidx.ui)

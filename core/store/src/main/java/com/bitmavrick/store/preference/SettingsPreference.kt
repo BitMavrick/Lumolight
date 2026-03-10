@@ -19,8 +19,9 @@ class SettingsPreferenceRepository(
         private val DARK_THEME = intPreferencesKey("dark_theme")
         private val DYNAMIC_THEME = booleanPreferencesKey("dynamic_theme")
         private val AMOLED_THEME = booleanPreferencesKey("amoled_theme")
-
-        private val VOLUME_BUTTON_CONTROLS = booleanPreferencesKey("volume_button_controls")
+        private val FLASH_TILE_PREFERENCE = intPreferencesKey("flash_tile_preference")
+        private val VOLUME_KEY_FLASH_CONTROL = booleanPreferencesKey("volume_key_flash_control")
+        private val LUMOLIGHT_PREMIUM = booleanPreferencesKey("lumolight_premium")
     }
 
     private val dataStore = context.settingsDataStore
@@ -31,7 +32,9 @@ class SettingsPreferenceRepository(
             darkTheme = preferences[DARK_THEME] ?: 0,
             dynamicTheme = preferences[DYNAMIC_THEME] ?: true,
             amoledTheme = preferences[AMOLED_THEME] ?: false,
-            volumeButtonControls = preferences[VOLUME_BUTTON_CONTROLS] ?: true
+            flashTilePreference = preferences[FLASH_TILE_PREFERENCE] ?: 0,
+            volumeKeyFlashControl = preferences[VOLUME_KEY_FLASH_CONTROL] ?: false,
+            lumolightPremium = preferences[LUMOLIGHT_PREMIUM] ?: false
         )
     }
 
@@ -53,9 +56,21 @@ class SettingsPreferenceRepository(
         }
     }
 
-    suspend fun updateVolumeButtonControls(value: Boolean){
+    suspend fun updateFlashTilePreference(value: Int){
         dataStore.edit { preferences ->
-            preferences[VOLUME_BUTTON_CONTROLS] = value
+            preferences[FLASH_TILE_PREFERENCE] = value
+        }
+    }
+
+    suspend fun updateVolumeKeyFlashControl(value: Boolean){
+        dataStore.edit { preferences ->
+            preferences[VOLUME_KEY_FLASH_CONTROL] = value
+        }
+    }
+
+    suspend fun updatePremium(status: Boolean){
+        dataStore.edit { preferences ->
+            preferences[LUMOLIGHT_PREMIUM] = status
         }
     }
 }
@@ -65,5 +80,7 @@ data class SettingsPreference(
     val darkTheme : Int = 0,
     val dynamicTheme : Boolean = true,
     val amoledTheme : Boolean = false,
-    val volumeButtonControls: Boolean = true
+    val flashTilePreference: Int = 0,
+    val volumeKeyFlashControl: Boolean = false,
+    val lumolightPremium: Boolean = false
 )
