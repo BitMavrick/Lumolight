@@ -1,7 +1,6 @@
 package com.bitmavrick.shortcuts.components
 
 import android.content.Intent
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -32,9 +31,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.viewinterop.AndroidView
 import com.bitmavrick.lumoflash.activity.LumoFlashActivity
-import com.bitmavrick.shortcuts.BuildConfig
 import com.bitmavrick.shortcuts.ShortcutUiEvent
 import com.bitmavrick.shortcuts.ShortcutUiState
 import com.bitmavrick.theme.LumolightTheme
@@ -83,19 +80,7 @@ fun ShortcutScreen(
                     Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    /*
-                    if(!uiState.lumolightPremium){
-                        if(ReleaseMode.STATUS == ReleaseMode.PRODUCTION){
-                            BannerAd(
-                                forceTestAd = false
-                            )
-                        }else{
-                            BannerAd(
-                                forceTestAd = true
-                            )
-                        }
-                    }
-                     */
+                    // * Empty spot
                 }
 
                 Spacer(Modifier.height(68.dp))
