@@ -308,11 +308,7 @@ fun SettingsScreen(
                         supportingText = if(BuildConfig.DEBUG){
                             "Unknown"
                         }else {
-                            if(uiState.lumolightPremium){
-                                getAppVersionName(context).toString() + " | Lumolight+"
-                            }else{
-                                getAppVersionName(context).toString() + " | Free"
-                            }
+                            getAppVersionName(context).toString() + " | FOSS"
                         },
                         leadingContent = {
                             Icon(
