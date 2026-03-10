@@ -1,0 +1,7 @@
+Introducing Lumolight v5.1
+This major update brings you a completely redesigned experience, packed with powerful new features:
+- Full app redesign
+- Users now able to create multiple flash profile and one tap to activate them
+- More flexibility over color and duration selection
+- Expanded language support
+- Improved performace and bug fixes
