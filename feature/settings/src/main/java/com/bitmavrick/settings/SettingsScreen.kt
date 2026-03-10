@@ -29,7 +29,6 @@ import androidx.compose.material.icons.outlined.StarRate
 import androidx.compose.material.icons.outlined.Translate
 import androidx.compose.material.icons.rounded.FlashlightOn
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.FilledTonalIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -48,7 +47,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
-import com.bitmavrick.billing.components.BillingDialog
 import com.bitmavrick.settings.components.FlashTilePrefSelectorDialog
 import com.bitmavrick.settings.components.FlashTileTipsDialog
 import com.bitmavrick.settings.components.SectionTitle
@@ -70,8 +68,6 @@ fun SettingsScreen(
 ) {
     val context = LocalContext.current
 
-    val showBillingAlertDialog = remember { mutableStateOf(false) }
-
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -83,18 +79,6 @@ fun SettingsScreen(
                             fontWeight = FontWeight.SemiBold,
                             color = MaterialTheme.colorScheme.primary
                         )
-                    },
-                    actions = {
-                        if(!uiState.lumolightPremium){
-                            FilledTonalButton(
-                                modifier = Modifier.padding(end = 16.dp),
-                                onClick = {
-                                    showBillingAlertDialog.value = true
-                                }
-                            ) {
-                                Text(stringResource(localesR.string.remove_ads))
-                            }
-                        }
                     }
                 )
             }
@@ -454,14 +438,6 @@ fun SettingsScreen(
             FlashTileTipsDialog(
                 onDismissRequest = {
                     showTileTipsDialog.value = false
-                }
-            )
-        }
-
-        if(showBillingAlertDialog.value){
-            BillingDialog(
-                onDismissRequest = {
-                    showBillingAlertDialog.value = false
                 }
             )
         }

@@ -38,11 +38,6 @@ import com.bitmavrick.shortcuts.BuildConfig
 import com.bitmavrick.shortcuts.ShortcutUiEvent
 import com.bitmavrick.shortcuts.ShortcutUiState
 import com.bitmavrick.theme.LumolightTheme
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdSize
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.LoadAdError
 import com.bitmavrick.locales.R as localesR
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
@@ -179,43 +174,6 @@ fun ShortcutScreen(
                 Spacer(modifier = Modifier.weight(1f))
             }
         }
-    }
-}
-
-@Composable
-private fun BannerAd(
-    forceTestAd: Boolean = false,
-) {
-    Column {
-        AndroidView(
-            modifier = Modifier.fillMaxWidth(),
-            factory = { context ->
-                AdView(context).apply {
-                    setAdSize(AdSize.BANNER)
-
-                    adUnitId = if(BuildConfig.DEBUG){
-                        "ca-app-pub-3940256099942544/9214589741" // ! Test
-                    }else{
-                        if(forceTestAd){
-                            "ca-app-pub-3940256099942544/9214589741" // ! Test
-                        }else{
-                            "ca-app-pub-3812075918119400/7873934162" // ? Real
-                        }
-                    }
-
-                    adListener = object : AdListener() {
-                        override fun onAdFailedToLoad(adError: LoadAdError) {
-                            Log.e("AdMob", "Ad failed to load: ${adError.message}")
-                        }
-                        override fun onAdLoaded() {
-                            Log.d("AdMob", "Ad loaded successfully")
-                        }
-                    }
-
-                    loadAd(AdRequest.Builder().build())
-                }
-            }
-        )
     }
 }
 
