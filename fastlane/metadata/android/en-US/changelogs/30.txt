@@ -1,0 +1,7 @@
+Lumolight 4.0 is here!
+This major update brings you a completely redesigned experience, packed with powerful new features:
+- Full app redesign from the ground up
+- Total manual control over all settings
+- Adjust brightness anytime using your volume keys
+- Expanded language support
+- Improved performace and bug fixes
